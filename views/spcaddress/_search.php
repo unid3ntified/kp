@@ -33,15 +33,15 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'opc_nat0') ?>
 
-    <?php // echo $form->field($model, '2nd_OPC') ?>
+    <?php // echo $form->field($model, 'second_OPC') ?>
 
-    <?php // echo $form->field($model, '3rd_OPC') ?>
+    <?php // echo $form->field($model, 'third_OPC') ?>
 
-    <?php // echo $form->field($model, '4th_OPC') ?>
+    <?php // echo $form->field($model, 'fourth_OPC') ?>
 
-    <?php // echo $form->field($model, '5th_OPC') ?>
+    <?php // echo $form->field($model, 'fifth_OPC') ?>
 
-    <?php // echo $form->field($model, '6th_OPC') ?>
+    <?php // echo $form->field($model, 'sixth_OPC') ?>
 
     <?php // echo $form->field($model, 'INAT0') ?>
 

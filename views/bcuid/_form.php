@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'bcu_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'status')->dropDownList($option, ['prompt'=>'Pilih Status']) ?>
 
     <?= $form->field($model, 'log_date')->textInput() ?>
 

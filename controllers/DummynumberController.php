@@ -61,12 +61,14 @@ class DummynumberController extends Controller
     public function actionCreate()
     {
         $model = new DummyNumber();
+        $option = ['Dismentle', 'Inservice', 'Plan', 'Trial'];
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->name_msc]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'option' => $option,
             ]);
         }
     }
@@ -80,12 +82,14 @@ class DummynumberController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $option = ['Dismentle', 'Inservice', 'Plan', 'Trial'];
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->name_msc]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'option' => $option,
             ]);
         }
     }

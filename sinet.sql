@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 25, 2015 at 09:06 PM
+-- Generation Time: Jun 12, 2015 at 09:36 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -109,11 +109,11 @@ CREATE TABLE IF NOT EXISTS `spc_address` (
   `gtt` varchar(15) DEFAULT NULL,
   `opc_nat1` varchar(5) NOT NULL,
   `opc_nat0` varchar(5) DEFAULT NULL,
-  `2nd_OPC` varchar(5) DEFAULT NULL,
-  `3rd_OPC` varchar(5) DEFAULT NULL,
-  `4th_OPC` varchar(5) DEFAULT NULL,
-  `5th_OPC` varchar(5) DEFAULT NULL,
-  `6th_OPC` varchar(5) DEFAULT NULL,
+  `second_OPC` varchar(5) DEFAULT NULL,
+  `third_OPC` varchar(5) DEFAULT NULL,
+  `fourth_OPC` varchar(5) DEFAULT NULL,
+  `fifth_OPC` varchar(5) DEFAULT NULL,
+  `sixth_OPC` varchar(5) DEFAULT NULL,
   `INAT0` varchar(5) DEFAULT NULL,
   `status` varchar(15) NOT NULL,
   `log_date` date NOT NULL,

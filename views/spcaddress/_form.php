@@ -30,19 +30,19 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'opc_nat0')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, '2nd_OPC')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'second_OPC')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, '3rd_OPC')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'third_OPC')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, '4th_OPC')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'fourth_OPC')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, '5th_OPC')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'fifth_OPC')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, '6th_OPC')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'sixth_OPC')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'INAT0')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'status')->dropDownList($option, ['prompt'=>'Pilih Status']) ?>
 
     <?= $form->field($model, 'log_date')->textInput() ?>
 

@@ -16,11 +16,11 @@ use Yii;
  * @property string $gtt
  * @property string $opc_nat1
  * @property string $opc_nat0
- * @property string $2nd_OPC
- * @property string $3rd_OPC
- * @property string $4th_OPC
- * @property string $5th_OPC
- * @property string $6th_OPC
+ * @property string $second_OPC
+ * @property string $third_OPC
+ * @property string $fourth_OPC
+ * @property string $fifth_OPC
+ * @property string $sixth_OPC
  * @property string $INAT0
  * @property string $status
  * @property string $log_date
@@ -48,7 +48,7 @@ class SpcAddress extends \yii\db\ActiveRecord
             [['network_element', 'provinsi', 'vendor'], 'string', 'max' => 32],
             [['sc_address'], 'string', 'max' => 255],
             [['gtt', 'status'], 'string', 'max' => 15],
-            [['opc_nat1', 'opc_nat0', '2nd_OPC', '3rd_OPC', '4th_OPC', '5th_OPC', '6th_OPC', 'INAT0'], 'string', 'max' => 5],
+            [['opc_nat1', 'opc_nat0', 'second_OPC', 'third_OPC', 'fourth_OPC', 'fifth_OPC', 'sixth_OPC', 'INAT0'], 'string', 'max' => 5],
             [['opc_nat1'], 'unique'],
             [['sc_address'], 'unique']
         ];
@@ -69,11 +69,11 @@ class SpcAddress extends \yii\db\ActiveRecord
             'gtt' => 'Gtt',
             'opc_nat1' => 'Opc Nat1',
             'opc_nat0' => 'Opc Nat0',
-            '2nd_OPC' => '2nd  Opc',
-            '3rd_OPC' => '3rd  Opc',
-            '4th_OPC' => '4th  Opc',
-            '5th_OPC' => '5th  Opc',
-            '6th_OPC' => '6th  Opc',
+            'second_OPC' => 'Second  Opc',
+            'third_OPC' => 'Third  Opc',
+            'fourth_OPC' => 'Fourth  Opc',
+            'fifth_OPC' => 'Fifth  Opc',
+            'sixth_OPC' => 'Sixth  Opc',
             'INAT0' => 'Inat0',
             'status' => 'Status',
             'log_date' => 'Log Date',
