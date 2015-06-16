@@ -15,17 +15,15 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'name_mgw') ?>
+    <?= $form->field($model, 'mgw_name') ?>
 
-    <?= $form->field($model, 'pool') ?>
+    <?= $form->field($model, 'new_mss_connected') ?>
 
-    <?= $form->field($model, 'vendor') ?>
+    <?= $form->field($model, 'old_mss_connected') ?>
 
-    <?= $form->field($model, 'provinsi') ?>
+    <?= $form->field($model, 'region') ?>
 
     <?= $form->field($model, 'location') ?>
-
-    <?php // echo $form->field($model, 'bcu_id') ?>
 
     <?php // echo $form->field($model, 'status') ?>
 

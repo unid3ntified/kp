@@ -12,21 +12,17 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'name_mgw')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'mgw_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'pool')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'new_mss_connected')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'vendor')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'old_mss_connected')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'provinsi')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'region')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'location')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'bcu_id')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'status')->checkBoxList($option, array('separator' => '<br>')) ?>
-
-    <?= $form->field($model, 'log_date')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList($option, ['prompt'=>'Pilih Status']) ?>
 
     <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 

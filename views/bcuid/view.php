@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\BcuId */
 
-$this->title = $model->name_mgw;
+$this->title = $model->mgw_name;
 $this->params['breadcrumbs'][] = ['label' => 'Bcu Ids', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->name_mgw], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->name_mgw], [
+        <?= Html::a('Update', ['update', 'id' => $model->mgw_name], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->mgw_name], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -28,12 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'name_mgw',
-            'pool:ntext',
-            'vendor',
-            'provinsi',
+            'mgw_name',
+            'new_mss_connected',
+            'old_mss_connected',
+            'region',
             'location:ntext',
-            'bcu_id',
             'status',
             'log_date',
             'remark:ntext',

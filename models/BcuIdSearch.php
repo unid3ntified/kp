@@ -18,7 +18,7 @@ class BcuIdSearch extends BcuId
     public function rules()
     {
         return [
-            [['name_mgw', 'pool', 'vendor', 'provinsi', 'location', 'bcu_id', 'status', 'log_date', 'remark'], 'safe'],
+            [['mgw_name', 'new_mss_connected', 'old_mss_connected', 'region', 'location', 'status', 'log_date', 'remark'], 'safe'],
         ];
     }
 
@@ -58,12 +58,11 @@ class BcuIdSearch extends BcuId
             'log_date' => $this->log_date,
         ]);
 
-        $query->andFilterWhere(['like', 'name_mgw', $this->name_mgw])
-            ->andFilterWhere(['like', 'pool', $this->pool])
-            ->andFilterWhere(['like', 'vendor', $this->vendor])
-            ->andFilterWhere(['like', 'provinsi', $this->provinsi])
+        $query->andFilterWhere(['like', 'mgw_name', $this->mgw_name])
+            ->andFilterWhere(['like', 'new_mss_connected', $this->new_mss_connected])
+            ->andFilterWhere(['like', 'old_mss_connected', $this->old_mss_connected])
+            ->andFilterWhere(['like', 'region', $this->region])
             ->andFilterWhere(['like', 'location', $this->location])
-            ->andFilterWhere(['like', 'bcu_id', $this->bcu_id])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'remark', $this->remark]);
 

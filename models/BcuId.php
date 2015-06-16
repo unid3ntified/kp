@@ -7,15 +7,18 @@ use Yii;
 /**
  * This is the model class for table "bcu_id".
  *
- * @property string $name_mgw
- * @property string $pool
- * @property string $vendor
- * @property string $provinsi
+ * @property string $mgw_name
+ * @property string $new_mss_connected
+ * @property string $old_mss_connected
+ * @property string $region
  * @property string $location
- * @property string $bcu_id
  * @property string $status
  * @property string $log_date
  * @property string $remark
+ *
+ * @property MgwBcuId $mgwBcu
+ * @property RncReference[] $rncReferences
+ * @property TrunkVoip[] $trunkVoips
  */
 class BcuId extends \yii\db\ActiveRecord
 {
@@ -33,11 +36,11 @@ class BcuId extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name_mgw', 'pool', 'vendor', 'provinsi', 'location', 'bcu_id', 'status', 'log_date'], 'required'],
-            [['pool', 'location', 'remark'], 'string'],
-            [['log_date'], 'date', 'format' => 'yyyy-M-d', 'message' => 'Date format yyyy-MM-dd'],
-            [['name_mgw', 'vendor', 'provinsi', 'bcu_id'], 'string', 'max' => 32],
-            [['status'], 'safe'],
+            [['mgw_name', 'region', 'location', 'log_date'], 'required'],
+            [['location', 'remark'], 'string'],
+            [['log_date'], 'safe'],
+            [['mgw_name', 'new_mss_connected', 'old_mss_connected', 'region'], 'string', 'max' => 32],
+            [['status'], 'string', 'max' => 50]
         ];
     }
 
@@ -47,15 +50,38 @@ class BcuId extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'name_mgw' => 'Name Mgw',
-            'pool' => 'Pool',
-            'vendor' => 'Vendor',
-            'provinsi' => 'Provinsi',
+            'mgw_name' => 'Mgw Name',
+            'new_mss_connected' => 'New Mss Connected',
+            'old_mss_connected' => 'Old Mss Connected',
+            'region' => 'Region',
             'location' => 'Location',
-            'bcu_id' => 'Bcu ID',
             'status' => 'Status',
             'log_date' => 'Log Date',
             'remark' => 'Remark',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMgwBcu()
+    {
+        return $this->hasOne(MgwBcuId::className(), ['mgw_name' => 'mgw_name']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRncReferences()
+    {
+        return $this->hasMany(RncReference::className(), ['mgw_name' => 'mgw_name']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getTrunkVoips()
+    {
+        return $this->hasMany(TrunkVoip::className(), ['mgw_name' => 'mgw_name']);
     }
 }

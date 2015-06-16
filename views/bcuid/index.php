@@ -25,14 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'name_mgw',
-            'pool:ntext',
-            'vendor',
-            'provinsi',
+            'mgw_name',
+            //'new_mss_connected',
+            //'old_mss_connected',
+            'region',
             'location:ntext',
-            // 'bcu_id',
-            // 'status',
-            // 'log_date',
+            'status',
+            'log_date',
             // 'remark:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],

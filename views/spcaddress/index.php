@@ -26,7 +26,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'network_id',
-            'desc_network:ntext',
             'location:ntext',
             'provinsi',
             'vendor',
@@ -37,8 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'fifth_OPC',
             // 'sixth_OPC',
             // 'INAT0',
-            // 'status',
-            // 'log_date',
+            'status',
+            'log_date',
             // 'remark:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],

@@ -36,8 +36,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'status')->dropDownList($option, ['prompt'=>'Pilih Status']) ?>
 
-    <?= $form->field($model, 'log_date')->textInput() ?>
-
     <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">

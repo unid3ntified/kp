@@ -261,6 +261,8 @@ class SpcaddressController extends Controller
                     break;
             }
 
+            $model->log_date = date('Y-m-d');
+
             $model->save();
 
     }

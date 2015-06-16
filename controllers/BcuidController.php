@@ -64,18 +64,24 @@ class BcuidController extends Controller
         $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
 
         if ($model->load(Yii::$app->request->post())) {
-            $temp = $model->status;
-            $model->status = "";
-            if (in_array("1", $temp))
-                $model->status = $model->status."Dismantle";
-            if (in_array("2", $temp))
-                $model->status = $model->status."In service";
-            if (in_array("3", $temp))
-                $model->status = $model->status."Plan";
-            if (in_array("4", $temp))
-                $model->status = $model->status."Trial";
+            switch($model->status)
+            {
+                case ("1"):
+                    $model->status = "Dismantle";
+                    break;
+                case ("2"):
+                    $model->status = "In service";
+                    break;
+                case ("3"):
+                    $model->status = "Plan";
+                    break;
+                case ("4"):
+                    $model->status = "Trial";
+                    break;
+            }
+            $model->log_date = date('Y-m-d');
             $model->save();
-            return $this->redirect(['view', 'id' => $model->name_mgw]);
+            return $this->redirect(['view', 'id' => $model->mgw_name]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -93,21 +99,27 @@ class BcuidController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $option = ['Dismentle', 'Inservice', 'Plan', 'Trial'];
+        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
 
-       if ($model->load(Yii::$app->request->post())) {
-            $temp = $model->status;
-            $model->status = "";
-            if (in_array("1", $temp))
-                $model->status = $model->status."Dismentle, ";
-            if (in_array("2", $temp))
-                $model->status = $model->status."Inservice, ";
-            if (in_array("3", $temp))
-                $model->status = $model->status."Plan, ";
-            if (in_array("4", $temp))
-                $model->status = $model->status."Trial, ";
+        if ($model->load(Yii::$app->request->post())) {
+            switch($model->status)
+            {
+                case ("1"):
+                    $model->status = "Dismantle";
+                    break;
+                case ("2"):
+                    $model->status = "In service";
+                    break;
+                case ("3"):
+                    $model->status = "Plan";
+                    break;
+                case ("4"):
+                    $model->status = "Trial";
+                    break;
+            }
+            $model->log_date = date('Y-m-d');
             $model->save();
-            return $this->redirect(['view', 'id' => $model->name_mgw]);
+            return $this->redirect(['view', 'id' => $model->mgw_name]);
         } else {
             return $this->render('update', [
                 'model' => $model,
