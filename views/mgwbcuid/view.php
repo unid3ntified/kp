@@ -4,37 +4,34 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\BcuId */
+/* @var $model app\models\MgwBcuId */
 
 $this->title = $model->mgw_name;
-$this->params['breadcrumbs'][] = ['label' => 'Bcu Ids', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Mgw Bcu Ids', 'url' => ['index', 'mgw_name' => $model->mgw_name]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="bcu-id-view">
+<div class="mgw-bcu-id-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->mgw_name], ['class' => 'btn btn-default']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->mgw_name], [
+        <?= Html::a('Update', ['update', 'bcu_id' => $model->bcu_id, 'mgw_name' => $model->mgw_name], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'bcu_id' => $model->bcu_id, 'mgw_name' => $model->mgw_name], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
         ]) ?>
-        <?= Html::a('Manage BCU ID', ['/mgwbcuid/index', 'mgw_name' => $model->mgw_name], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'mgw_name',
-            'region',
-            'location:ntext',
-            'status',
-            'log_date',
-            'remark:ntext',
+            'bcu_id',
+            'old_mss_connected',
+            'new_mss_connected',
         ],
     ]) ?>
 

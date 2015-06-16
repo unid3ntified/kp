@@ -4,21 +4,19 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\BcuId */
+/* @var $model app\models\MgwBcuId */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="bcu-id-form">
+<div class="mgw-bcu-id-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'mgw_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'bcu_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'region')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'old_mss_connected')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'location')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'status')->dropDownList($option, ['prompt'=>'Pilih Status']) ?>
+    <?= $form->field($model, 'new_mss_connected')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 

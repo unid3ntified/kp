@@ -39,7 +39,8 @@ class BcuId extends \yii\db\ActiveRecord
             [['mgw_name', 'region', 'location', 'log_date'], 'required'],
             [['location', 'remark'], 'string'],
             [['log_date'], 'safe'],
-            [['mgw_name', 'new_mss_connected', 'old_mss_connected', 'region'], 'string', 'max' => 32],
+            [['mgw_name'], 'string', 'max' => 32],
+            [['region'], 'string', 'max' => 255],
             [['status'], 'string', 'max' => 50]
         ];
     }

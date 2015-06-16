@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\BcuId;
+use app\models\MgwBcuId;
 
 /**
- * BcuIdSearch represents the model behind the search form about `app\models\BcuId`.
+ * MgwBcuIdSearch represents the model behind the search form about `app\models\MgwBcuId`.
  */
-class BcuIdSearch extends BcuId
+class MgwBcuIdSearch extends MgwBcuId
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class BcuIdSearch extends BcuId
     public function rules()
     {
         return [
-            [['mgw_name', 'region', 'location', 'status', 'log_date', 'remark'], 'safe'],
+            [['mgw_name', 'bcu_id', 'old_mss_connected', 'new_mss_connected'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class BcuIdSearch extends BcuId
      */
     public function search($params)
     {
-        $query = BcuId::find();
+         $query = MgwBcuId::find()->where(['mgw_name' => $params]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -54,15 +54,10 @@ class BcuIdSearch extends BcuId
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'log_date' => $this->log_date,
-        ]);
-
         $query->andFilterWhere(['like', 'mgw_name', $this->mgw_name])
-            ->andFilterWhere(['like', 'region', $this->region])
-            ->andFilterWhere(['like', 'location', $this->location])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'remark', $this->remark]);
+            ->andFilterWhere(['like', 'bcu_id', $this->bcu_id])
+            ->andFilterWhere(['like', 'old_mss_connected', $this->old_mss_connected])
+            ->andFilterWhere(['like', 'new_mss_connected', $this->new_mss_connected]);
 
         return $dataProvider;
     }
