@@ -26,7 +26,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'cap_value')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->dropDownList($option, ['prompt'=>'Pilih Status']) ?>
+    <?= $form->field($model, 'status')->checkBoxList($option, array('separator' => '<br>')) ?>
 
     <?= $form->field($model, 'log_date')->textInput() ?>
 

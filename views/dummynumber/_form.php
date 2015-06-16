@@ -18,9 +18,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'dummy_number')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->dropDownList($option, ['prompt'=>'Pilih Status']) ?>
-
-    <?= $form->field($model, 'log_date')->textInput() ?>
+    <?= $form->field($model, 'status')->checkBoxList($option, array('separator' => '<br>')) ?>
 
     <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 

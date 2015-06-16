@@ -15,9 +15,9 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'network_element') ?>
+    <?= $form->field($model, 'network_id') ?>
 
-    <?= $form->field($model, 'pool') ?>
+    <?= $form->field($model, 'desc_network') ?>
 
     <?= $form->field($model, 'location') ?>
 
@@ -25,13 +25,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'vendor') ?>
 
-    <?php // echo $form->field($model, 'sc_address') ?>
-
     <?php // echo $form->field($model, 'gtt') ?>
-
-    <?php // echo $form->field($model, 'opc_nat1') ?>
-
-    <?php // echo $form->field($model, 'opc_nat0') ?>
 
     <?php // echo $form->field($model, 'second_OPC') ?>
 

@@ -61,9 +61,20 @@ class BcuidController extends Controller
     public function actionCreate()
     {
         $model = new BcuId();
-        $option = ['Dismentle', 'Inservice', 'Plan', 'Trial'];
+        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $temp = $model->status;
+            $model->status = "";
+            if (in_array("1", $temp))
+                $model->status = $model->status."Dismantle";
+            if (in_array("2", $temp))
+                $model->status = $model->status."In service";
+            if (in_array("3", $temp))
+                $model->status = $model->status."Plan";
+            if (in_array("4", $temp))
+                $model->status = $model->status."Trial";
+            $model->save();
             return $this->redirect(['view', 'id' => $model->name_mgw]);
         } else {
             return $this->render('create', [
@@ -84,7 +95,18 @@ class BcuidController extends Controller
         $model = $this->findModel($id);
         $option = ['Dismentle', 'Inservice', 'Plan', 'Trial'];
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+       if ($model->load(Yii::$app->request->post())) {
+            $temp = $model->status;
+            $model->status = "";
+            if (in_array("1", $temp))
+                $model->status = $model->status."Dismentle, ";
+            if (in_array("2", $temp))
+                $model->status = $model->status."Inservice, ";
+            if (in_array("3", $temp))
+                $model->status = $model->status."Plan, ";
+            if (in_array("4", $temp))
+                $model->status = $model->status."Trial, ";
+            $model->save();
             return $this->redirect(['view', 'id' => $model->name_mgw]);
         } else {
             return $this->render('update', [

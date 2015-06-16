@@ -41,12 +41,12 @@ class TrunkInterkoneksi extends \yii\db\ActiveRecord
             [['trunk', 'partner', 'poi', 'connection', 'direction', 'vendor', 'mss', 'mgw', 'opc', 'dpc', 'e1_capacity', 'status', 'log_date'], 'required'],
             [['partner', 'connection', 'remark'], 'string'],
             [['e1_capacity'], 'integer'],
-            [['log_date'], 'safe'],
+            [['log_date'], 'date', 'format' => 'yyyy-M-d', 'message' => 'Date format yyyy-MM-dd'],
             [['trunk', 'direction'], 'string', 'max' => 8],
             [['poi'], 'string', 'max' => 64],
             [['vendor', 'mss', 'mgw'], 'string', 'max' => 32],
             [['opc', 'dpc'], 'string', 'max' => 5],
-            [['status'], 'string', 'max' => 15]
+            [['status'], 'safe'],
         ];
     }
 

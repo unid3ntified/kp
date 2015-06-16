@@ -25,15 +25,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'network_element',
-            'pool:ntext',
+            'network_id',
+            'desc_network:ntext',
             'location:ntext',
             'provinsi',
             'vendor',
-            // 'sc_address',
             // 'gtt',
-            // 'opc_nat1',
-            // 'opc_nat0',
             // 'second_OPC',
             // 'third_OPC',
             // 'fourth_OPC',

@@ -30,6 +30,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'name_msc',
             'nri_msc',
+            'spcAddress.pool',
+            'spcAddress.vendor',
+            'spcAddress.provinsi',
+            'spcAddress.location',
+            'spcAddress.sc_address',
+            'spcAddress.opc_nat1',
             'nri',
             'null_nri',
             'non_broadcastLAI',

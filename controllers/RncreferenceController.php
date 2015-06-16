@@ -63,8 +63,20 @@ class RncreferenceController extends Controller
         $model = new RncReference();
         $option = ['Dismentle', 'Inservice', 'Plan', 'Trial'];
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->msc_name]);
+        if ($model->load(Yii::$app->request->post())) {
+            $temp = $model->status;
+            $model->status = "";
+            if (in_array("1", $temp))
+                $model->status = $model->status."Dismentle, ";
+            if (in_array("2", $temp))
+                $model->status = $model->status."Inservice, ";
+            if (in_array("3", $temp))
+                $model->status = $model->status."Plan, ";
+            if (in_array("4", $temp))
+                $model->status = $model->status."Trial, ";
+            
+            $model->save();
+            //return $this->redirect(['view', 'id' => $model->msc_name]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -84,7 +96,18 @@ class RncreferenceController extends Controller
         $model = $this->findModel($id);
         $option = ['Dismentle', 'Inservice', 'Plan', 'Trial'];
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $temp = $model->status;
+            $model->status = "";
+            if (in_array("1", $temp))
+                $model->status = $model->status."Dismentle, ";
+            if (in_array("2", $temp))
+                $model->status = $model->status."Inservice, ";
+            if (in_array("3", $temp))
+                $model->status = $model->status."Plan, ";
+            if (in_array("4", $temp))
+                $model->status = $model->status."Trial, ";
+            $model->save();
             return $this->redirect(['view', 'id' => $model->msc_name]);
         } else {
             return $this->render('update', [

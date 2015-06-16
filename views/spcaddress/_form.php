@@ -12,23 +12,15 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'network_element')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'pool')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'network_id')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'location')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'provinsi')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'provinsi')->dropDownList($prov, ['prompt'=>'Pilih Provinsi']) ?>
 
     <?= $form->field($model, 'vendor')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'sc_address')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'gtt')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'opc_nat1')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'opc_nat0')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'second_OPC')->textInput(['maxlength' => true]) ?>
 

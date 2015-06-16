@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\SpcAddress */
 
-$this->title = $model->network_element;
+$this->title = $model->network_id;
 $this->params['breadcrumbs'][] = ['label' => 'Spc Addresses', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->network_element], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->network_element], [
+        <?= Html::a('Update', ['update', 'id' => $model->network_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->network_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -28,15 +28,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'network_element',
-            'pool:ntext',
+            'network_id',
+            'desc_network:ntext',
             'location:ntext',
             'provinsi',
             'vendor',
-            'sc_address',
             'gtt',
-            'opc_nat1',
-            'opc_nat0',
             'second_OPC',
             'third_OPC',
             'fourth_OPC',

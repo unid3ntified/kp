@@ -35,9 +35,9 @@ class BcuId extends \yii\db\ActiveRecord
         return [
             [['name_mgw', 'pool', 'vendor', 'provinsi', 'location', 'bcu_id', 'status', 'log_date'], 'required'],
             [['pool', 'location', 'remark'], 'string'],
-            [['log_date'], 'safe'],
+            [['log_date'], 'date', 'format' => 'yyyy-M-d', 'message' => 'Date format yyyy-MM-dd'],
             [['name_mgw', 'vendor', 'provinsi', 'bcu_id'], 'string', 'max' => 32],
-            [['status'], 'string', 'max' => 15]
+            [['status'], 'safe'],
         ];
     }
 

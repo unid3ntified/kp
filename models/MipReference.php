@@ -35,11 +35,11 @@ class MipReference extends \yii\db\ActiveRecord
     {
         return [
             [['name_msc', 'nri_msc', 'nri', 'null_nri', 'cnid', 'status', 'log_date'], 'required'],
-            [['log_date'], 'safe'],
+            [['log_date'], 'date', 'format' => 'yyyy-M-d', 'message' => 'Date format yyyy-MM-dd'],
             [['remark'], 'string'],
             [['name_msc', 'nri_msc', 'null_nri', 'non_broadcastLAI', 'cnid', 'cap_value'], 'string', 'max' => 32],
             [['nri'], 'string', 'max' => 6],
-            [['status'], 'string', 'max' => 15]
+            [['status'], 'safe'],
         ];
     }
 
@@ -53,12 +53,17 @@ class MipReference extends \yii\db\ActiveRecord
             'nri_msc' => 'Nri Msc',
             'nri' => 'Nri',
             'null_nri' => 'Null Nri',
-            'non_broadcastLAI' => 'Non Broadcast Lai',
+            'non_broadcastLAI' => 'Non Broadcast LAI',
             'cnid' => 'Cnid',
             'cap_value' => 'Cap Value',
             'status' => 'Status',
             'log_date' => 'Log Date',
             'remark' => 'Remark',
         ];
+    }
+
+    public function getSpcAddress()
+    {
+        return $this->hasOne(SpcAddress::className(), ['network_element' => 'name_msc']);
     }
 }

@@ -7,15 +7,12 @@ use Yii;
 /**
  * This is the model class for table "spc_address".
  *
- * @property string $network_element
- * @property string $pool
+ * @property string $network_id
+ * @property string $desc_network
  * @property string $location
  * @property string $provinsi
  * @property string $vendor
- * @property string $sc_address
  * @property string $gtt
- * @property string $opc_nat1
- * @property string $opc_nat0
  * @property string $second_OPC
  * @property string $third_OPC
  * @property string $fourth_OPC
@@ -25,6 +22,11 @@ use Yii;
  * @property string $status
  * @property string $log_date
  * @property string $remark
+ *
+ * @property DummyNumber $dummyNumber
+ * @property MipReference[] $mipReferences
+ * @property RncReference[] $rncReferences
+ * @property SpcAddressDetail[] $spcAddressDetails
  */
 class SpcAddress extends \yii\db\ActiveRecord
 {
@@ -42,15 +44,13 @@ class SpcAddress extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['network_element', 'location', 'provinsi', 'vendor', 'opc_nat1', 'status', 'log_date'], 'required'],
-            [['pool', 'location', 'remark'], 'string'],
+            [['network_id', 'location', 'vendor', 'status', 'log_date'], 'required'],
+            [['location', 'remark'], 'string'],
             [['log_date'], 'safe'],
-            [['network_element', 'provinsi', 'vendor'], 'string', 'max' => 32],
-            [['sc_address'], 'string', 'max' => 255],
-            [['gtt', 'status'], 'string', 'max' => 15],
-            [['opc_nat1', 'opc_nat0', 'second_OPC', 'third_OPC', 'fourth_OPC', 'fifth_OPC', 'sixth_OPC', 'INAT0'], 'string', 'max' => 5],
-            [['opc_nat1'], 'unique'],
-            [['sc_address'], 'unique']
+            [['network_id', 'provinsi', 'vendor'], 'string', 'max' => 32],
+            [['gtt'], 'string', 'max' => 15],
+            [['second_OPC', 'third_OPC', 'fourth_OPC', 'fifth_OPC', 'sixth_OPC', 'INAT0'], 'string', 'max' => 5],
+            [['status'], 'string', 'max' => 50]
         ];
     }
 
@@ -60,15 +60,11 @@ class SpcAddress extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'network_element' => 'Network Element',
-            'pool' => 'Pool',
+            'network_id' => 'Network ID',
             'location' => 'Location',
             'provinsi' => 'Provinsi',
             'vendor' => 'Vendor',
-            'sc_address' => 'Sc Address',
             'gtt' => 'Gtt',
-            'opc_nat1' => 'Opc Nat1',
-            'opc_nat0' => 'Opc Nat0',
             'second_OPC' => 'Second  Opc',
             'third_OPC' => 'Third  Opc',
             'fourth_OPC' => 'Fourth  Opc',
@@ -79,5 +75,37 @@ class SpcAddress extends \yii\db\ActiveRecord
             'log_date' => 'Log Date',
             'remark' => 'Remark',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDummyNumber()
+    {
+        return $this->hasOne(DummyNumber::className(), ['name_msc' => 'network_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMipReferences()
+    {
+        return $this->hasMany(MipReference::className(), ['msc_name' => 'network_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRncReferences()
+    {
+        return $this->hasMany(RncReference::className(), ['msc_name' => 'network_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getSpcAddressDetails()
+    {
+        return $this->hasMany(SpcAddressDetail::className(), ['network_id' => 'network_id']);
     }
 }

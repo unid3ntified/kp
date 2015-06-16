@@ -43,12 +43,12 @@ class TrunkVoip extends \yii\db\ActiveRecord
             [['trunk', 'partner', 'voip_gateway', 'connection', 'direction', 'vendor', 'mss', 'mgw', 'ip_partner', 'ip_xl', 'ip_realm', 'sa_name', 'e1_capacity', 'status', 'log_date'], 'required'],
             [['partner', 'remark'], 'string'],
             [['ip_realm', 'e1_capacity'], 'integer'],
-            [['log_date'], 'safe'],
+            [['log_date'], 'date', 'format' => 'yyyy-M-d', 'message' => 'Date format yyyy-MM-dd'],
             [['trunk', 'direction'], 'string', 'max' => 8],
             [['voip_gateway', 'vendor', 'sa_name'], 'string', 'max' => 64],
             [['connection', 'mss', 'mgw'], 'string', 'max' => 32],
             [['ip_partner', 'ip_xl'], 'string', 'max' => 5],
-            [['status'], 'string', 'max' => 15]
+            [['status'], 'safe'],
         ];
     }
 

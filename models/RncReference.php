@@ -38,11 +38,11 @@ class RncReference extends \yii\db\ActiveRecord
         return [
             [['msc_name', 'mgw_name', 'rnc_name', 'spc_nat0', 'trunk_name', 'rnc_description', 'rnc_location', 'provinsi', 'status', 'log_date'], 'required'],
             [['rnc_description', 'rnc_location', 'remark'], 'string'],
-            [['log_date'], 'safe'],
+            [['log_date'], 'date', 'format' => 'yyyy-M-d', 'message' => 'Date format yyyy-MM-dd'],
             [['msc_name', 'mgw_name', 'rnc_name', 'vendor_rnc', 'provinsi'], 'string', 'max' => 32],
             [['spc_nat0'], 'string', 'max' => 5],
             [['trunk_name'], 'string', 'max' => 8],
-            [['status'], 'string', 'max' => 15]
+            [['status'], 'safe'],
         ];
     }
 

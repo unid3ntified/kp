@@ -18,7 +18,7 @@ class SpcAddressSearch extends SpcAddress
     public function rules()
     {
         return [
-            [['network_element', 'pool', 'location', 'provinsi', 'vendor', 'sc_address', 'gtt', 'opc_nat1', 'opc_nat0', 'second_OPC', 'third_OPC', 'fourth_OPC', 'fifth_OPC', 'sixth_OPC', 'INAT0', 'status', 'log_date', 'remark'], 'safe'],
+            [['network_id', 'location', 'provinsi', 'vendor', 'gtt', 'second_OPC', 'third_OPC', 'fourth_OPC', 'fifth_OPC', 'sixth_OPC', 'INAT0', 'status', 'log_date', 'remark'], 'safe'],
         ];
     }
 
@@ -58,15 +58,11 @@ class SpcAddressSearch extends SpcAddress
             'log_date' => $this->log_date,
         ]);
 
-        $query->andFilterWhere(['like', 'network_element', $this->network_element])
-            ->andFilterWhere(['like', 'pool', $this->pool])
+        $query->andFilterWhere(['like', 'network_id', $this->network_id])
             ->andFilterWhere(['like', 'location', $this->location])
             ->andFilterWhere(['like', 'provinsi', $this->provinsi])
             ->andFilterWhere(['like', 'vendor', $this->vendor])
-            ->andFilterWhere(['like', 'sc_address', $this->sc_address])
             ->andFilterWhere(['like', 'gtt', $this->gtt])
-            ->andFilterWhere(['like', 'opc_nat1', $this->opc_nat1])
-            ->andFilterWhere(['like', 'opc_nat0', $this->opc_nat0])
             ->andFilterWhere(['like', 'second_OPC', $this->second_OPC])
             ->andFilterWhere(['like', 'third_OPC', $this->third_OPC])
             ->andFilterWhere(['like', 'fourth_OPC', $this->fourth_OPC])

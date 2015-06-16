@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\SpcAddress */
 
-$this->title = 'Update Spc Address: ' . ' ' . $model->network_element;
+$this->title = 'Update Spc Address: ' . ' ' . $model->network_id;
 $this->params['breadcrumbs'][] = ['label' => 'Spc Addresses', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->network_element, 'url' => ['view', 'id' => $model->network_element]];
+$this->params['breadcrumbs'][] = ['label' => $model->network_id, 'url' => ['view', 'id' => $model->network_id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="spc-address-update">
@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = 'Update';
     <?= $this->render('_form', [
         'model' => $model,
         'option' => $option,
+        'prov' => $prov,
     ]) ?>
 
 </div>

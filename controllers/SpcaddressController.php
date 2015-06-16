@@ -41,6 +41,8 @@ class SpcaddressController extends Controller
         ]);
     }
 
+    
+
     /**
      * Displays a single SpcAddress model.
      * @param string $id
@@ -61,14 +63,20 @@ class SpcaddressController extends Controller
     public function actionCreate()
     {
         $model = new SpcAddress();
-        $option = ['Dismentle', 'Inservice', 'Plan', 'Trial'];
+        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
+        $prov = ['Aceh', 'Sumatera Utara', 'Sumatera Barat', 'Riau', 'Kep. Riau', 'Jambi', 'Sumatera Selatan', 'Kep. Bangka Belitung', 'Bengkulu', 
+        'Lampung', 'DKI Jakarta', 'Banten', 'Jawa Barat', 'Jawa Tengah', 'DI Yogyakarta', 'Jawa Timur', 'Bali', 'NTB', 'NTT', 'Kalimantan Barat', 
+        'Kalimantan Tengah', 'Kalimantan Selatan', 'Kalimantan Timur', 'Kalimantan Utara', 'Sulawesi Utara', 'Gorontalo', 'Sulawesi Tengah', 
+        'Sulawesi Barat', 'Sulawesi Selatan', 'Sulawesi Tenggara', 'Maluku', 'Maluku Utara', 'Papua Barat', 'Papua'];
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->network_element]);
+        if ($model->load(Yii::$app->request->post())) {
+            fillModel($model);
+            return $this->redirect(['view', 'id' => $model->network_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
                 'option' => $option,
+                'prov' => $prov,
             ]);
         }
     }
@@ -82,14 +90,20 @@ class SpcaddressController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $option = ['Dismentle', 'Inservice', 'Plan', 'Trial'];
+        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
+        $prov = ['Aceh', 'Sumatera Utara', 'Sumatera Barat', 'Riau', 'Kep. Riau', 'Jambi', 'Sumatera Selatan', 'Kep. Bangka Belitung', 'Bengkulu', 
+        'Lampung', 'DKI Jakarta', 'Banten', 'Jawa Barat', 'Jawa Tengah', 'DI Yogyakarta', 'Jawa Timur', 'Bali', 'NTB', 'NTT', 'Kalimantan Barat', 
+        'Kalimantan Tengah', 'Kalimantan Selatan', 'Kalimantan Timur', 'Kalimantan Utara', 'Sulawesi Utara', 'Gorontalo', 'Sulawesi Tengah', 
+        'Sulawesi Barat', 'Sulawesi Selatan', 'Sulawesi Tenggara', 'Maluku', 'Maluku Utara', 'Papua Barat', 'Papua'];
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->network_element]);
+       if ($model->load(Yii::$app->request->post())) {
+            fillModel($model);
+            return $this->redirect(['view', 'id' => $model->network_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
                 'option' => $option,
+                'prov' => $prov,
             ]);
         }
     }
@@ -121,5 +135,133 @@ class SpcaddressController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function fillModel($model)
+    {
+            switch($model->status)
+            {
+                case ("1"):
+                    $model->status = "Dismantle";
+                    break;
+                case ("2"):
+                    $model->status = "In service";
+                    break;
+                case ("3"):
+                    $model->status = "Plan";
+                    break;
+                case ("4"):
+                    $model->status = "Trial";
+                    break;
+            }
+
+            switch($model->provinsi)
+            {
+                case ("1"):
+                    $model->provinsi = "Aceh";
+                    break;
+                case ("2"):
+                    $model->provinsi = "Sumatera Utara";
+                    break;
+                case ("3"):
+                    $model->provinsi = "Sumatera Barat";
+                    break;
+                case ("4"):
+                    $model->provinsi = "Riau";
+                    break;
+                case ("5"):
+                    $model->provinsi = "Kep. Riau";
+                    break;
+                case ("6"):
+                    $model->provinsi = "Jambi";
+                    break;
+                case ("7"):
+                    $model->provinsi = "Sumatera Selatan";
+                    break;
+                case ("8"):
+                    $model->provinsi = "Kep. Bangka Belitung";
+                    break;
+                case ("9"):
+                    $model->provinsi = "Bengkulu";
+                    break;
+                case ("10"):
+                    $model->provinsi = "Lampung";
+                    break;
+                case ("11"):
+                    $model->provinsi = "DKI Jakarta";
+                    break;
+                case ("12"):
+                    $model->provinsi = "Banten";
+                    break;
+                case ("13"):
+                    $model->provinsi = "Jawa Barat";
+                    break;
+                case ("14"):
+                    $model->provinsi = "Jawa Tengah";
+                    break;
+                case ("15"):
+                    $model->provinsi = "DI Yogyakarta";
+                    break;
+                case ("16"):
+                    $model->provinsi = "Jawa Timur";
+                    break;
+                case ("17"):
+                    $model->provinsi = "Bali";
+                    break;
+                case ("18"):
+                    $model->provinsi = "NTB";
+                    break;
+                case ("19"):
+                    $model->provinsi = "NTT";
+                    break;
+                case ("20"):
+                    $model->provinsi = "Kalimantan Barat";
+                    break;
+                case ("21"):
+                    $model->provinsi = "Kalimantan Tengah";
+                    break;
+                case ("22"):
+                    $model->provinsi = "Kalimantan Selatan";
+                    break;
+                case ("23"):
+                    $model->provinsi = "Kalimantan TImur";
+                    break;
+                case ("24"):
+                    $model->provinsi = "Kalimantan Utara";
+                    break;
+                case ("25"):
+                    $model->provinsi = "Sulawesi Utara";
+                    break;
+                case ("26"):
+                    $model->provinsi = "Gorontalo";
+                    break;
+                case ("27"):
+                    $model->provinsi = "Sulawesi Tengah";
+                    break;
+                case ("28"):
+                    $model->provinsi = "Sulawesi Barat";
+                    break;
+                case ("29"):
+                    $model->provinsi = "Sulawesi Selatan";
+                    break;
+                case ("30"):
+                    $model->provinsi = "Sulawesi Tenggara";
+                    break;
+                case ("31"):
+                    $model->provinsi = "Maluku";
+                    break;
+                case ("32"):
+                    $model->provinsi = "Maluku Utara";
+                    break;
+                case ("33"):
+                    $model->provinsi = "Papua Barat";
+                    break;
+                case ("34"):
+                    $model->provinsi = "Papua";
+                    break;
+            }
+
+            $model->save();
+
     }
 }
