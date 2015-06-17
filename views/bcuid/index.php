@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Create MGW', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('BCU list (view only)', ['/mgwbcuid/bcuindex'], ['class' => 'btn btn-danger']) ?>
     </p>
 
     <?= GridView::widget([
@@ -29,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'region',
             'location:ntext',
             'status',
-            'log_date',
+            //'log_date',
             // 'remark:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],

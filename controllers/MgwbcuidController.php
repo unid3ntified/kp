@@ -44,15 +44,25 @@ class MgwbcuidController extends Controller
         ]);
     }
 
+    public function actionBcuindex()
+    {
+        $searchModel = new MgwBcuIdSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('bcuindex', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
     /**
      * Displays a single mgw_nameBcuId model.
      * @param string $bcu_id
      * @return mixed
      */
-    public function actionView($mgw_name,$bcu_id)
+    public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($mgw_name,$bcu_id),
+            'model' => $this->findModel($id),
         ]);
     }
 
@@ -70,7 +80,7 @@ class MgwbcuidController extends Controller
             $temp = BcuId::findOne($mgw_name);
             $temp->log_date = date('Y-m-d');
             $temp->save();
-            return $this->redirect(['view', 'bcu_id' => $model->bcu_id, 'mgw_name' => $model->mgw_name]);
+            return $this->redirect(['view', 'id' => $model->bcu_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -84,16 +94,15 @@ class MgwbcuidController extends Controller
      * @param string $bcu_id
      * @return mixed
      */
-    public function actionUpdate($mgw_name,$bcu_id)
+    public function actionUpdate($id)
     {
-        $model = $this->findModel($mgw_name,$bcu_id);
-        $model->mgw_name = $mgw_name;
+        $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $temp = BcuId::findOne($mgw_name);
+            $temp = BcuId::findOne($model->mgw_name);
             $temp->log_date = date('Y-m-d');
             $temp->save();
-            return $this->redirect(['view', 'bcu_id' => $model->bcu_id, 'mgw_name' => $model->mgw_name]);
+            return $this->redirect(['view', 'id' => $model->bcu_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -107,9 +116,10 @@ class MgwbcuidController extends Controller
      * @param string $bcu_id
      * @return mixed
      */
-    public function actionDelete($mgw_name,$bcu_id)
+    public function actionDelete($id)
     {
-        $this->findModel($mgw_name,$bcu_id)->delete();
+        $mgw_name = $this->findModel($id)->mgw_name;
+        $this->findModel($id)->delete();
 
         return $this->redirect(['index', 'mgw_name' => $mgw_name]);
     }
@@ -121,9 +131,9 @@ class MgwbcuidController extends Controller
      * @return mgw_nameBcuId the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($mgw_name,$bcu_id)
+    protected function findModel($bcu_id)
     {
-        if (($model = MgwBcuId::findOne($mgw_name,$bcu_id)) !== null) {
+        if (($model = MgwBcuId::findOne($bcu_id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

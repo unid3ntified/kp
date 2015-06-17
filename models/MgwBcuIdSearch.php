@@ -40,7 +40,10 @@ class MgwBcuIdSearch extends MgwBcuId
      */
     public function search($params)
     {
-         $query = MgwBcuId::find()->where(['mgw_name' => $params]);
+        if (is_array($params) or is_numeric($params))
+            $query = MgwBcuId::find();
+        else 
+            $query = MgwBcuId::find()->where(['mgw_name' => $params]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,

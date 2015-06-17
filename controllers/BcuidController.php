@@ -63,7 +63,7 @@ class BcuidController extends Controller
         $model = new BcuId();
         $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
 
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             switch($model->status)
             {
                 case ("1"):

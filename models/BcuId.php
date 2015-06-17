@@ -36,12 +36,13 @@ class BcuId extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['mgw_name', 'region', 'location', 'log_date'], 'required'],
+            ['mgw_name', 'unique', 'targetClass' => 'app\models\BcuId', 'targetAttribute' => 'mgw_name'],
+            [['mgw_name', 'region', 'location'], 'required'],
             [['location', 'remark'], 'string'],
             [['log_date'], 'safe'],
             [['mgw_name'], 'string', 'max' => 32],
             [['region'], 'string', 'max' => 255],
-            [['status'], 'string', 'max' => 50]
+            [['status'], 'string', 'max' => 50],          
         ];
     }
 

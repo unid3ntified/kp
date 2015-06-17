@@ -11,6 +11,7 @@ use Yii;
  * @property string $bcu_id
  * @property string $old_mss_connected
  * @property string $new_mss_connected
+ * @property string $remark
  *
  * @property BcuId $mgwName
  */
@@ -31,8 +32,9 @@ class MgwBcuId extends \yii\db\ActiveRecord
     {
         return [
             [['mgw_name', 'bcu_id'], 'required'],
-            [['mgw_name', 'bcu_id', 'old_mss_connected', 'new_mss_connected'], 'string', 'max' => 32],
             [['remark'], 'string'],
+            [['mgw_name', 'bcu_id', 'old_mss_connected', 'new_mss_connected'], 'string', 'max' => 32],
+            [['bcu_id'], 'unique', 'targetClass' => 'app\models\MgwBcuId'],
         ];
     }
 

@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\BcuId */
 
 $this->title = 'Update MGW: ' . ' ' . $model->mgw_name;
-$this->params['breadcrumbs'][] = ['label' => 'Bcu Ids', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'MGW list', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->mgw_name, 'url' => ['view', 'id' => $model->mgw_name]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
