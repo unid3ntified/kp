@@ -42,7 +42,7 @@ AppAsset::register($this);
                     ['label' => 'BCU ID', 'url' => ['/bcuid/index']],
                     ['label' => 'Dummy Number', 'url' => ['/dummynumber/index']],
                     ['label' => 'MIP Reference', 'url' => ['/mipreference/index']],
-                    ['label' => 'SPC Address', 'url' => ['/spcaddress/index']],
+                    ['label' => 'Network Element', 'url' => ['/networkelement/index']],
                     ['label' => 'Trunk Interkoneksi', 'url' => ['/trunkinterkoneksi/index']],
                     ['label' => 'Trunk VOIP', 'url' => ['/trunkvoip/index']],
 
