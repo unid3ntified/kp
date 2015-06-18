@@ -5,20 +5,21 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "3g_rnc_reference".
+ * This is the model class for table "rnc_reference".
  *
+ * @property string $rnc_name
  * @property string $msc_name
  * @property string $mgw_name
- * @property string $rnc_name
  * @property string $vendor_rnc
  * @property string $spc_nat0
  * @property string $trunk_name
- * @property string $rnc_description
  * @property string $rnc_location
- * @property string $provinsi
  * @property string $status
  * @property string $log_date
  * @property string $remark
+ *
+ * @property Msc $mscName
+ * @property NetworkElement $mgwName
  */
 class RncReference extends \yii\db\ActiveRecord
 {
@@ -27,7 +28,7 @@ class RncReference extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '3g_rnc_reference';
+        return 'rnc_reference';
     }
 
     /**
@@ -36,13 +37,15 @@ class RncReference extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['msc_name', 'mgw_name', 'rnc_name', 'spc_nat0', 'trunk_name', 'rnc_description', 'rnc_location', 'provinsi', 'status', 'log_date'], 'required'],
-            [['rnc_description', 'rnc_location', 'remark'], 'string'],
-            [['log_date'], 'date', 'format' => 'yyyy-M-d', 'message' => 'Date format yyyy-MM-dd'],
-            [['msc_name', 'mgw_name', 'rnc_name', 'vendor_rnc', 'provinsi'], 'string', 'max' => 32],
-            [['spc_nat0'], 'string', 'max' => 5],
-            [['trunk_name'], 'string', 'max' => 8],
-            [['status'], 'safe'],
+            [['rnc_name', 'msc_name', 'mgw_name', 'vendor_rnc', 'spc_nat0', 'trunk_name', 'rnc_location', 'status'], 'required'],
+            [['log_date'], 'safe'],
+            [['remark'], 'string'],
+            [['rnc_name', 'msc_name', 'mgw_name', 'trunk_name'], 'string', 'max' => 20],
+            [['vendor_rnc'], 'string', 'max' => 100],
+            [['rnc_location'], 'string', 'max' => 80],
+            [['status'], 'string', 'max' => 30],
+            [['spc_nat0'], 'match', 'pattern' => '/^[\*0-9]{3,5}$/', 'message' => 'Must contain 3 to 5 numeric characters.'],
+            [['rnc_name', 'mgw_name'], 'unique', 'targetAttribute' => ['rnc_name', 'mgw_name'], 'message' => 'The combination of RNC Name and MGW name has already been taken.'],
         ];
     }
 
@@ -52,18 +55,32 @@ class RncReference extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'rnc_name' => 'Rnc Name',
             'msc_name' => 'Msc Name',
             'mgw_name' => 'Mgw Name',
-            'rnc_name' => 'Rnc Name',
             'vendor_rnc' => 'Vendor Rnc',
             'spc_nat0' => 'Spc Nat0',
             'trunk_name' => 'Trunk Name',
-            'rnc_description' => 'Rnc Description',
             'rnc_location' => 'Rnc Location',
-            'provinsi' => 'Provinsi',
             'status' => 'Status',
             'log_date' => 'Log Date',
             'remark' => 'Remark',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMscName()
+    {
+        return $this->hasOne(Msc::className(), ['msc_name' => 'msc_name']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMgwName()
+    {
+        return $this->hasOne(NetworkElement::className(), ['network_id' => 'mgw_name']);
     }
 }

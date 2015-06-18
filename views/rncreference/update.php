@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\RncReference */
 
-$this->title = 'Update Rnc Reference: ' . ' ' . $model->msc_name;
+$this->title = 'Update Rnc Reference: ' . ' ' . $model->rnc_name;
 $this->params['breadcrumbs'][] = ['label' => 'Rnc References', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->msc_name, 'url' => ['view', 'id' => $model->msc_name]];
+$this->params['breadcrumbs'][] = ['label' => $model->rnc_name, 'url' => ['view', 'rnc_name' => $model->rnc_name, 'mgw_name' => $model->mgw_name]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="rnc-reference-update">
@@ -16,6 +16,7 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'listData' => $listData,
         'option' => $option,
     ]) ?>
 

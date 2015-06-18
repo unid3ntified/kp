@@ -13,22 +13,18 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'network_id')->textInput(['maxlength' => true]) ?>
-	
-	<?= $form->field($model, 'sc_address')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'sc_address')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'location')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'provinsi')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'provinsi')->dropDownList($prov, ['prompt'=>'Choose Provinsi']) ?>
 
     <?= $form->field($model, 'vendor')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'gtt')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'inat0')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'log_date')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList($option, ['prompt'=>'Choose Status']) ?>
 
     <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 

@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\NetworkElement;
+use app\models\DescNetwork;
 
 /**
- * NetworkElementSearch represents the model behind the search form about `app\models\NetworkElement`.
+ * DescNetworkSearch represents the model behind the search form about `app\models\DescNetwork`.
  */
-class NetworkElementSearch extends NetworkElement
+class DescNetworkSearch extends DescNetwork
 {
     /**
      * @inheritdoc
@@ -18,7 +18,8 @@ class NetworkElementSearch extends NetworkElement
     public function rules()
     {
         return [
-            [['network_id', 'sc_address', 'location', 'provinsi', 'vendor', 'gtt', 'status', 'log_date', 'remark'], 'safe'],
+            [['id'], 'integer'],
+            [['network_id', 'opc_nat0', 'opc_nat1', 'desc_network', 'inat0', 'second_opc', 'third_opc', 'fourth_opc', 'fifth_opc', 'sixth_opc'], 'safe'],
         ];
     }
 
@@ -40,7 +41,7 @@ class NetworkElementSearch extends NetworkElement
      */
     public function search($params)
     {
-        $query = NetworkElement::find();
+        $query = DescNetwork::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -55,18 +56,19 @@ class NetworkElementSearch extends NetworkElement
         }
 
         $query->andFilterWhere([
-            'log_date' => $this->log_date,
+            'id' => $this->id,
         ]);
 
         $query->andFilterWhere(['like', 'network_id', $this->network_id])
-            ->andFilterWhere(['like', 'sc_address', $this->sc_address])
-            ->andFilterWhere(['like', 'location', $this->location])
-            ->andFilterWhere(['like', 'provinsi', $this->provinsi])
-            ->andFilterWhere(['like', 'vendor', $this->vendor])
-            ->andFilterWhere(['like', 'gtt', $this->gtt])
-         //   ->andFilterWhere(['like', 'inat0', $this->inat0])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'remark', $this->remark]);
+            ->andFilterWhere(['like', 'opc_nat0', $this->opc_nat0])
+            ->andFilterWhere(['like', 'opc_nat1', $this->opc_nat1])
+            ->andFilterWhere(['like', 'desc_network', $this->desc_network])
+            ->andFilterWhere(['like', 'inat0', $this->inat0])
+            ->andFilterWhere(['like', 'second_opc', $this->second_opc])
+            ->andFilterWhere(['like', 'third_opc', $this->third_opc])
+            ->andFilterWhere(['like', 'fourth_opc', $this->fourth_opc])
+            ->andFilterWhere(['like', 'fifth_opc', $this->fifth_opc])
+            ->andFilterWhere(['like', 'sixth_opc', $this->sixth_opc]);
 
         return $dataProvider;
     }

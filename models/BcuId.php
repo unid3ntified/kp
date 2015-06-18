@@ -7,18 +7,16 @@ use Yii;
 /**
  * This is the model class for table "bcu_id".
  *
+ * @property string $bcu_id
  * @property string $mgw_name
- * @property string $new_mss_connected
- * @property string $old_mss_connected
  * @property string $region
- * @property string $location
+ * @property string $old_mss_connected
+ * @property string $new_mss_connected
  * @property string $status
  * @property string $log_date
  * @property string $remark
  *
- * @property MgwBcuId $mgwBcu
- * @property RncReference[] $rncReferences
- * @property TrunkVoip[] $trunkVoips
+ * @property NetworkElement $mgwName
  */
 class BcuId extends \yii\db\ActiveRecord
 {
@@ -36,13 +34,14 @@ class BcuId extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            ['mgw_name', 'unique', 'targetClass' => 'app\models\BcuId', 'targetAttribute' => 'mgw_name'],
-            [['mgw_name', 'region', 'location'], 'required'],
-            [['location', 'remark'], 'string'],
-            [['log_date'], 'safe'],
-            [['mgw_name'], 'string', 'max' => 32],
-            [['region'], 'string', 'max' => 255],
-            [['status'], 'string', 'max' => 50],          
+            [['bcu_id', 'mgw_name', 'region', 'status'], 'required'],
+            [['log_date'], 'date', 'format' => 'yyyy-M-d'],
+            [['remark'], 'string'],
+            [['mgw_name', 'old_mss_connected', 'new_mss_connected'], 'string', 'max' => 20],
+            [['region'], 'string', 'max' => 80],
+            [['status'], 'string', 'max' => 30],
+            [['bcu_id'], 'match', 'pattern' => '/^[\*0-9]{3,5}$/', 'message' => 'Must contain 3 to 5 numeric characters.'],
+            [['bcu_id'], 'unique', 'targetClass' => 'app\models\BcuId'],
         ];
     }
 
@@ -52,11 +51,11 @@ class BcuId extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'bcu_id' => 'Bcu ID',
             'mgw_name' => 'Mgw Name',
-            'new_mss_connected' => 'New Mss Connected',
-            'old_mss_connected' => 'Old Mss Connected',
             'region' => 'Region',
-            'location' => 'Location',
+            'old_mss_connected' => 'Old Mss Connected',
+            'new_mss_connected' => 'New Mss Connected',
             'status' => 'Status',
             'log_date' => 'Log Date',
             'remark' => 'Remark',
@@ -66,24 +65,8 @@ class BcuId extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMgwBcu()
+    public function getMgwName()
     {
-        return $this->hasOne(MgwBcuId::className(), ['mgw_name' => 'mgw_name']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getRncReferences()
-    {
-        return $this->hasMany(RncReference::className(), ['mgw_name' => 'mgw_name']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTrunkVoips()
-    {
-        return $this->hasMany(TrunkVoip::className(), ['mgw_name' => 'mgw_name']);
+        return $this->hasOne(NetworkElement::className(), ['network_id' => 'mgw_name']);
     }
 }

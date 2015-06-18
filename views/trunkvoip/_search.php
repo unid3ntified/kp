@@ -15,31 +15,27 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'trunk') ?>
+    <?= $form->field($model, 'trunk_id') ?>
 
-    <?= $form->field($model, 'partner') ?>
+    <?= $form->field($model, 'dummy_no') ?>
 
-    <?= $form->field($model, 'voip_gateway') ?>
+    <?= $form->field($model, 'mgw_name') ?>
 
-    <?= $form->field($model, 'connection') ?>
+    <?= $form->field($model, 'detaill') ?>
 
     <?= $form->field($model, 'direction') ?>
 
-    <?php // echo $form->field($model, 'vendor') ?>
+    <?php // echo $form->field($model, 'konfigurasi') ?>
 
-    <?php // echo $form->field($model, 'mss') ?>
+    <?php // echo $form->field($model, 'partner') ?>
 
-    <?php // echo $form->field($model, 'mgw') ?>
+    <?php // echo $form->field($model, 'e1') ?>
 
-    <?php // echo $form->field($model, 'ip_partner') ?>
+    <?php // echo $form->field($model, 'opc_mss') ?>
 
-    <?php // echo $form->field($model, 'ip_xl') ?>
+    <?php // echo $form->field($model, 'dpc') ?>
 
-    <?php // echo $form->field($model, 'ip_realm') ?>
-
-    <?php // echo $form->field($model, 'sa_name') ?>
-
-    <?php // echo $form->field($model, 'e1_capacity') ?>
+    <?php // echo $form->field($model, 'voip_gateway') ?>
 
     <?php // echo $form->field($model, 'status') ?>
 

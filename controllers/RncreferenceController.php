@@ -5,12 +5,15 @@ namespace app\controllers;
 use Yii;
 use app\models\RncReference;
 use app\models\RncReferenceSearch;
+use app\models\NetworkElement;
+use app\models\NetworkElementSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
- * RncReferenceController implements the CRUD actions for RncReference model.
+ * RncreferenceController implements the CRUD actions for RncReference model.
  */
 class RncreferenceController extends Controller
 {
@@ -43,13 +46,14 @@ class RncreferenceController extends Controller
 
     /**
      * Displays a single RncReference model.
-     * @param string $id
+     * @param string $rnc_name
+     * @param string $mgw_name
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($rnc_name, $mgw_name)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($rnc_name, $mgw_name),
         ]);
     }
 
@@ -61,25 +65,32 @@ class RncreferenceController extends Controller
     public function actionCreate()
     {
         $model = new RncReference();
-        $option = ['Dismentle', 'Inservice', 'Plan', 'Trial'];
+        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
+        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_id', 'network_id');
 
-        if ($model->load(Yii::$app->request->post())) {
-            $temp = $model->status;
-            $model->status = "";
-            if (in_array("1", $temp))
-                $model->status = $model->status."Dismentle, ";
-            if (in_array("2", $temp))
-                $model->status = $model->status."Inservice, ";
-            if (in_array("3", $temp))
-                $model->status = $model->status."Plan, ";
-            if (in_array("4", $temp))
-                $model->status = $model->status."Trial, ";
-            
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->log_date = date('Y-m-d');
+            switch($model->status)
+            {
+                case ("0"):
+                    $model->status = "Dismantle";
+                    break;
+                case ("1"):
+                    $model->status = "In service";
+                    break;
+                case ("2"):
+                    $model->status = "Plan";
+                    break;
+                case ("3"):
+                    $model->status = "Trial";
+                    break;
+            }
             $model->save();
-            //return $this->redirect(['view', 'id' => $model->msc_name]);
+            return $this->redirect(['view', 'rnc_name' => $model->rnc_name, 'mgw_name' => $model->mgw_name]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'listData' => $listData,
                 'option' => $option,
             ]);
         }
@@ -88,30 +99,39 @@ class RncreferenceController extends Controller
     /**
      * Updates an existing RncReference model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $id
+     * @param string $rnc_name
+     * @param string $mgw_name
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($rnc_name, $mgw_name)
     {
-        $model = $this->findModel($id);
-        $option = ['Dismentle', 'Inservice', 'Plan', 'Trial'];
+        $model = $this->findModel($rnc_name, $mgw_name);
+        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
+        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_id', 'network_id');
 
-        if ($model->load(Yii::$app->request->post())) {
-            $temp = $model->status;
-            $model->status = "";
-            if (in_array("1", $temp))
-                $model->status = $model->status."Dismentle, ";
-            if (in_array("2", $temp))
-                $model->status = $model->status."Inservice, ";
-            if (in_array("3", $temp))
-                $model->status = $model->status."Plan, ";
-            if (in_array("4", $temp))
-                $model->status = $model->status."Trial, ";
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->log_date = date('Y-m-d');
+            switch($model->status)
+            {
+                case ("0"):
+                    $model->status = "Dismantle";
+                    break;
+                case ("1"):
+                    $model->status = "In service";
+                    break;
+                case ("2"):
+                    $model->status = "Plan";
+                    break;
+                case ("3"):
+                    $model->status = "Trial";
+                    break;
+            }
             $model->save();
-            return $this->redirect(['view', 'id' => $model->msc_name]);
+            return $this->redirect(['view', 'rnc_name' => $model->rnc_name, 'mgw_name' => $model->mgw_name]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'listData' => $listData,
                 'option' => $option,
             ]);
         }
@@ -120,12 +140,13 @@ class RncreferenceController extends Controller
     /**
      * Deletes an existing RncReference model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
+     * @param string $rnc_name
+     * @param string $mgw_name
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete($rnc_name, $mgw_name)
     {
-        $this->findModel($id)->delete();
+        $this->findModel($rnc_name, $mgw_name)->delete();
 
         return $this->redirect(['index']);
     }
@@ -133,13 +154,14 @@ class RncreferenceController extends Controller
     /**
      * Finds the RncReference model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $id
+     * @param string $rnc_name
+     * @param string $mgw_name
      * @return RncReference the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($rnc_name, $mgw_name)
     {
-        if (($model = RncReference::findOne($id)) !== null) {
+        if (($model = RncReference::findOne(['rnc_name' => $rnc_name, 'mgw_name' => $mgw_name])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

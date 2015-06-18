@@ -4,18 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\MgwBcuIdSearch */
+/* @var $searchModel app\models\DescNetworkSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Bcu List';
+$this->title = 'OPCs';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="mgw-bcu-id-index">
+<div class="desc-network-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-    <p>
-        <?= Html::a('MGW list', ['bcuid/index'], ['class' => 'btn btn-success']) ?>
+
+    <p align = right>
+        <?= Html::a('Assign OPC', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -24,11 +25,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'mgw_name',
-            'bcu_id',
-            'old_mss_connected',
-            'new_mss_connected',
+            //'id',
+            'network_id',
+            'opc_nat0',
+            'opc_nat1',
+            //'desc_network:ntext',
+            'second_opc',
+            'third_opc',
+            'fourth_opc',
+            // 'fifth_opc',
+            // 'sixth_opc',
 
+            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

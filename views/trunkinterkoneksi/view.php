@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\TrunkInterkoneksi */
 
-$this->title = $model->trunk;
+$this->title = $model->trunk_id;
 $this->params['breadcrumbs'][] = ['label' => 'Trunk Interkoneksis', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->trunk], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->trunk], [
+        <?= Html::a('Update', ['update', 'id' => $model->trunk_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->trunk_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -28,17 +28,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'trunk',
-            'partner:ntext',
-            'poi',
-            'connection:ntext',
+            'trunk_id',
+            'dummy_no',
             'direction',
             'vendor',
-            'mss',
-            'mgw',
             'opc',
             'dpc',
             'e1_capacity',
+            'POI',
+            'connection:ntext',
+            'trunk_group',
             'status',
             'log_date',
             'remark:ntext',

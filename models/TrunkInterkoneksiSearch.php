@@ -18,7 +18,7 @@ class TrunkInterkoneksiSearch extends TrunkInterkoneksi
     public function rules()
     {
         return [
-            [['trunk', 'partner', 'poi', 'connection', 'direction', 'vendor', 'mss', 'mgw', 'opc', 'dpc', 'status', 'log_date', 'remark'], 'safe'],
+            [['trunk_id', 'dummy_no', 'direction', 'vendor', 'opc', 'dpc', 'POI', 'connection', 'trunk_group', 'status', 'log_date', 'remark'], 'safe'],
             [['e1_capacity'], 'integer'],
         ];
     }
@@ -60,16 +60,15 @@ class TrunkInterkoneksiSearch extends TrunkInterkoneksi
             'log_date' => $this->log_date,
         ]);
 
-        $query->andFilterWhere(['like', 'trunk', $this->trunk])
-            ->andFilterWhere(['like', 'partner', $this->partner])
-            ->andFilterWhere(['like', 'poi', $this->poi])
-            ->andFilterWhere(['like', 'connection', $this->connection])
+        $query->andFilterWhere(['like', 'trunk_id', $this->trunk_id])
+            ->andFilterWhere(['like', 'dummy_no', $this->dummy_no])
             ->andFilterWhere(['like', 'direction', $this->direction])
             ->andFilterWhere(['like', 'vendor', $this->vendor])
-            ->andFilterWhere(['like', 'mss', $this->mss])
-            ->andFilterWhere(['like', 'mgw', $this->mgw])
             ->andFilterWhere(['like', 'opc', $this->opc])
             ->andFilterWhere(['like', 'dpc', $this->dpc])
+            ->andFilterWhere(['like', 'POI', $this->POI])
+            ->andFilterWhere(['like', 'connection', $this->connection])
+            ->andFilterWhere(['like', 'trunk_group', $this->trunk_group])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'remark', $this->remark]);
 

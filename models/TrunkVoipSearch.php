@@ -18,8 +18,8 @@ class TrunkVoipSearch extends TrunkVoip
     public function rules()
     {
         return [
-            [['trunk', 'partner', 'voip_gateway', 'connection', 'direction', 'vendor', 'mss', 'mgw', 'ip_partner', 'ip_xl', 'sa_name', 'status', 'log_date', 'remark'], 'safe'],
-            [['ip_realm', 'e1_capacity'], 'integer'],
+            [['trunk_id', 'dummy_no', 'mgw_name', 'detaill', 'direction', 'konfigurasi', 'partner', 'opc_mss', 'dpc', 'voip_gateway', 'status', 'log_date', 'remark'], 'safe'],
+            [['e1'], 'integer'],
         ];
     }
 
@@ -56,22 +56,20 @@ class TrunkVoipSearch extends TrunkVoip
         }
 
         $query->andFilterWhere([
-            'ip_realm' => $this->ip_realm,
-            'e1_capacity' => $this->e1_capacity,
+            'e1' => $this->e1,
             'log_date' => $this->log_date,
         ]);
 
-        $query->andFilterWhere(['like', 'trunk', $this->trunk])
-            ->andFilterWhere(['like', 'partner', $this->partner])
-            ->andFilterWhere(['like', 'voip_gateway', $this->voip_gateway])
-            ->andFilterWhere(['like', 'connection', $this->connection])
+        $query->andFilterWhere(['like', 'trunk_id', $this->trunk_id])
+            ->andFilterWhere(['like', 'dummy_no', $this->dummy_no])
+            ->andFilterWhere(['like', 'mgw_name', $this->mgw_name])
+            ->andFilterWhere(['like', 'detaill', $this->detaill])
             ->andFilterWhere(['like', 'direction', $this->direction])
-            ->andFilterWhere(['like', 'vendor', $this->vendor])
-            ->andFilterWhere(['like', 'mss', $this->mss])
-            ->andFilterWhere(['like', 'mgw', $this->mgw])
-            ->andFilterWhere(['like', 'ip_partner', $this->ip_partner])
-            ->andFilterWhere(['like', 'ip_xl', $this->ip_xl])
-            ->andFilterWhere(['like', 'sa_name', $this->sa_name])
+            ->andFilterWhere(['like', 'konfigurasi', $this->konfigurasi])
+            ->andFilterWhere(['like', 'partner', $this->partner])
+            ->andFilterWhere(['like', 'opc_mss', $this->opc_mss])
+            ->andFilterWhere(['like', 'dpc', $this->dpc])
+            ->andFilterWhere(['like', 'voip_gateway', $this->voip_gateway])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'remark', $this->remark]);
 

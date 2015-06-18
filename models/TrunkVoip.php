@@ -7,22 +7,23 @@ use Yii;
 /**
  * This is the model class for table "trunk_voip".
  *
- * @property string $trunk
- * @property string $partner
- * @property string $voip_gateway
- * @property string $connection
+ * @property string $trunk_id
+ * @property string $dummy_no
+ * @property string $mgw_name
+ * @property string $detaill
  * @property string $direction
- * @property string $vendor
- * @property string $mss
- * @property string $mgw
- * @property string $ip_partner
- * @property string $ip_xl
- * @property integer $ip_realm
- * @property string $sa_name
- * @property integer $e1_capacity
+ * @property string $konfigurasi
+ * @property string $partner
+ * @property integer $e1
+ * @property string $opc_mss
+ * @property string $dpc
+ * @property string $voip_gateway
  * @property string $status
  * @property string $log_date
  * @property string $remark
+ *
+ * @property Msc $dummyNo
+ * @property NetworkElement $mgwName
  */
 class TrunkVoip extends \yii\db\ActiveRecord
 {
@@ -40,15 +41,14 @@ class TrunkVoip extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['trunk', 'partner', 'voip_gateway', 'connection', 'direction', 'vendor', 'mss', 'mgw', 'ip_partner', 'ip_xl', 'ip_realm', 'sa_name', 'e1_capacity', 'status', 'log_date'], 'required'],
-            [['partner', 'remark'], 'string'],
-            [['ip_realm', 'e1_capacity'], 'integer'],
-            [['log_date'], 'date', 'format' => 'yyyy-M-d', 'message' => 'Date format yyyy-MM-dd'],
-            [['trunk', 'direction'], 'string', 'max' => 8],
-            [['voip_gateway', 'vendor', 'sa_name'], 'string', 'max' => 64],
-            [['connection', 'mss', 'mgw'], 'string', 'max' => 32],
-            [['ip_partner', 'ip_xl'], 'string', 'max' => 5],
-            [['status'], 'safe'],
+            [['trunk_id', 'partner', 'voip_gateway', 'status'], 'required'],
+            [['detaill', 'konfigurasi', 'remark'], 'string'],
+            [['e1'], 'integer'],
+            [['log_date'], 'safe'],
+            [['trunk_id', 'dummy_no', 'mgw_name', 'direction', 'opc_mss', 'dpc', 'status'], 'string', 'max' => 20],
+            [['partner'], 'string', 'max' => 50],
+            [['voip_gateway'], 'string', 'max' => 80],
+            [['trunk_id'], 'unique', 'targetClass' => 'app\models\TrunkVoip'],
         ];
     }
 
@@ -58,22 +58,36 @@ class TrunkVoip extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'trunk' => 'Trunk',
-            'partner' => 'Partner',
-            'voip_gateway' => 'Voip Gateway',
-            'connection' => 'Connection',
+            'trunk_id' => 'Trunk ID',
+            'dummy_no' => 'Dummy No',
+            'mgw_name' => 'Mgw Name',
+            'detaill' => 'Detail',
             'direction' => 'Direction',
-            'vendor' => 'Vendor',
-            'mss' => 'Mss',
-            'mgw' => 'Mgw',
-            'ip_partner' => 'Ip Partner',
-            'ip_xl' => 'Ip Xl',
-            'ip_realm' => 'Ip Realm',
-            'sa_name' => 'Sa Name',
-            'e1_capacity' => 'E1 Capacity',
+            'konfigurasi' => 'Konfigurasi',
+            'partner' => 'Partner',
+            'e1' => 'E1',
+            'opc_mss' => 'Opc Mss',
+            'dpc' => 'Dpc',
+            'voip_gateway' => 'Voip Gateway',
             'status' => 'Status',
             'log_date' => 'Log Date',
             'remark' => 'Remark',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDummyNo()
+    {
+        return $this->hasOne(Msc::className(), ['dummy_number' => 'dummy_no']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getMgwName()
+    {
+        return $this->hasOne(NetworkElement::className(), ['network_id' => 'mgw_name']);
     }
 }

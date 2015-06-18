@@ -3,17 +3,19 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\MgwBcuId;
-use app\models\BcuId;
-use app\models\MgwBcuIdSearch;
+use app\models\DescNetwork;
+use app\models\DescNetworkSearch;
+use app\models\Networkelement;
+use app\models\NetworkElementSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
- * mgw_nameBcuIdController implements the CRUD actions for mgw_nameBcuId model.
+ * DescnetworkController implements the CRUD actions for DescNetwork model.
  */
-class MgwbcuidController extends Controller
+class DescnetworkController extends Controller
 {
     public function behaviors()
     {
@@ -28,35 +30,23 @@ class MgwbcuidController extends Controller
     }
 
     /**
-     * Lists all mgw_nameBcuId models.
+     * Lists all DescNetwork models.
      * @return mixed
      */
-    public function actionIndex($mgw_name)
+    public function actionIndex()
     {
-        $searchModel = new MgwBcuIdSearch();
-        //$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider = $searchModel->search($mgw_name);
+        $searchModel = new DescNetworkSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-            'mgw_name' => $mgw_name,
-        ]);
-    }
-
-    public function actionBcuindex()
-    {
-        $searchModel = new MgwBcuIdSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        return $this->render('bcuindex', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single mgw_nameBcuId model.
-     * @param string $bcu_id
+     * Displays a single DescNetwork model.
+     * @param integer $id
      * @return mixed
      */
     public function actionView($id)
@@ -67,73 +57,69 @@ class MgwbcuidController extends Controller
     }
 
     /**
-     * Creates a new mgw_nameBcuId model.
+     * Creates a new DescNetwork model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate($mgw_name)
+    public function actionCreate()
     {
-        $model = new MgwBcuId();
-        $model->mgw_name = $mgw_name;
+        $model = new DescNetwork();
+        $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_id', 'network_id');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $temp = BcuId::findOne($mgw_name);
-            $temp->log_date = date('Y-m-d');
-            $temp->save();
-            return $this->redirect(['view', 'id' => $model->bcu_id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'listData' => $listData,
             ]);
         }
     }
 
     /**
-     * Updates an existing mgw_nameBcuId model.
+     * Updates an existing DescNetwork model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $bcu_id
+     * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_id', 'network_id');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $temp = BcuId::findOne($model->mgw_name);
-            $temp->log_date = date('Y-m-d');
-            $temp->save();
-            return $this->redirect(['view', 'id' => $model->bcu_id]);
+            return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'listData' => $listData,
             ]);
         }
     }
 
     /**
-     * Deletes an existing mgw_nameBcuId model.
+     * Deletes an existing DescNetwork model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $bcu_id
+     * @param integer $id
      * @return mixed
      */
     public function actionDelete($id)
     {
-        $mgw_name = $this->findModel($id)->mgw_name;
         $this->findModel($id)->delete();
 
-        return $this->redirect(['index', 'mgw_name' => $mgw_name]);
+        return $this->redirect(['index']);
     }
 
     /**
-     * Finds the mgw_nameBcuId model based on its primary key value.
+     * Finds the DescNetwork model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $bcu_id
-     * @return mgw_nameBcuId the loaded model
+     * @param integer $id
+     * @return DescNetwork the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($bcu_id)
+    protected function findModel($id)
     {
-        if (($model = MgwBcuId::findOne($bcu_id)) !== null) {
+        if (($model = DescNetwork::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

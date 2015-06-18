@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Network Element', ['create'], ['class' => 'btn btn-success']) ?>
+    <p align="right">
+        <?= Html::a('Create New', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -28,10 +28,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'network_id',
             'sc_address',
             'location:ntext',
-            'provinsi',
+            //'provinsi',
             'vendor',
-            // 'gtt',
-            // 'inat0',
+            'gtt',
+            //'inat0',
             // 'status',
             // 'log_date',
             // 'remark:ntext',

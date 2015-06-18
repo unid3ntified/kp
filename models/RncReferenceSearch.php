@@ -18,7 +18,7 @@ class RncReferenceSearch extends RncReference
     public function rules()
     {
         return [
-            [['msc_name', 'mgw_name', 'rnc_name', 'vendor_rnc', 'spc_nat0', 'trunk_name', 'rnc_description', 'rnc_location', 'provinsi', 'status', 'log_date', 'remark'], 'safe'],
+            [['rnc_name', 'msc_name', 'mgw_name', 'vendor_rnc', 'spc_nat0', 'trunk_name', 'rnc_location', 'status', 'log_date', 'remark'], 'safe'],
         ];
     }
 
@@ -58,15 +58,13 @@ class RncReferenceSearch extends RncReference
             'log_date' => $this->log_date,
         ]);
 
-        $query->andFilterWhere(['like', 'msc_name', $this->msc_name])
+        $query->andFilterWhere(['like', 'rnc_name', $this->rnc_name])
+            ->andFilterWhere(['like', 'msc_name', $this->msc_name])
             ->andFilterWhere(['like', 'mgw_name', $this->mgw_name])
-            ->andFilterWhere(['like', 'rnc_name', $this->rnc_name])
             ->andFilterWhere(['like', 'vendor_rnc', $this->vendor_rnc])
             ->andFilterWhere(['like', 'spc_nat0', $this->spc_nat0])
             ->andFilterWhere(['like', 'trunk_name', $this->trunk_name])
-            ->andFilterWhere(['like', 'rnc_description', $this->rnc_description])
             ->andFilterWhere(['like', 'rnc_location', $this->rnc_location])
-            ->andFilterWhere(['like', 'provinsi', $this->provinsi])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'remark', $this->remark]);
 

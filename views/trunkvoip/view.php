@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\TrunkVoip */
 
-$this->title = $model->trunk;
+$this->title = $model->trunk_id;
 $this->params['breadcrumbs'][] = ['label' => 'Trunk Voips', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->trunk], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->trunk], [
+        <?= Html::a('Update', ['update', 'id' => $model->trunk_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->trunk_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -28,19 +28,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'trunk',
-            'partner:ntext',
-            'voip_gateway',
-            'connection',
+            'trunk_id',
+            'dummy_no',
+            'mgw_name',
+            'detaill:ntext',
             'direction',
-            'vendor',
-            'mss',
-            'mgw',
-            'ip_partner',
-            'ip_xl',
-            'ip_realm',
-            'sa_name',
-            'e1_capacity',
+            'konfigurasi:ntext',
+            'partner',
+            'e1',
+            'opc_mss',
+            'dpc',
+            'voip_gateway',
             'status',
             'log_date',
             'remark:ntext',

@@ -36,13 +36,13 @@ AppAsset::register($this);
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
                     ['label' => 'Home', 'url' => ['/site/index']],
-                    ['label' => 'Contact', 'url' => ['/site/contact']],
+                    //['label' => 'Contact', 'url' => ['/site/contact']],
                     ['label' => 'Download', 'url' => ['/site/download']],
-                    ['label' => '3G RNC Reference', 'url' => ['/rncreference/index']],
-                    ['label' => 'BCU ID', 'url' => ['/bcuid/index']],
-                    ['label' => 'Dummy Number', 'url' => ['/dummynumber/index']],
-                    ['label' => 'MIP Reference', 'url' => ['/mipreference/index']],
                     ['label' => 'Network Element', 'url' => ['/networkelement/index']],
+                    ['label' => 'MSC', 'url' => ['/msc/index']],
+                    ['label' => 'BCU ID', 'url' => ['/bcuid/index']],
+                    ['label' => '3G RNC Reference', 'url' => ['/rncreference/index']],                    
+                    ['label' => 'OPC', 'url' => ['/descnetwork/index']],
                     ['label' => 'Trunk Interkoneksi', 'url' => ['/trunkinterkoneksi/index']],
                     ['label' => 'Trunk VOIP', 'url' => ['/trunkvoip/index']],
 

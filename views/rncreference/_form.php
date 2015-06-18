@@ -10,13 +10,18 @@ use yii\widgets\ActiveForm;
 
 <div class="rnc-reference-form">
 
+    <p>
+    <h4>* Jika MGW Name tidak ada dalam drop down list, silahkan buat network element baru di <?= Html::a('sini', ['/networkelement/index']) ?></h4>
+    </p>
+    <br>
+
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'msc_name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'mgw_name')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'rnc_name')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'msc_name')->dropDownList($listData, ['prompt' => 'Choose MSC']) ?>
+
+    <?= $form->field($model, 'mgw_name')->dropDownList($listData, ['prompt' => 'Choose MGW']) ?>
 
     <?= $form->field($model, 'vendor_rnc')->textInput(['maxlength' => true]) ?>
 
@@ -24,15 +29,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'trunk_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'rnc_description')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'rnc_location')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'rnc_location')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'provinsi')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'status')->checkBoxList($option, array('separator' => '<br>')) ?>
-
-    <?= $form->field($model, 'log_date')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList($option, ['prompt' => 'Choose Status']) ?>
 
     <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 

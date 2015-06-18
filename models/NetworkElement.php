@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "network_element".
  *
  * @property string $network_id
- * @property string $sc-_address
+ * @property string $sc_address
  * @property string $location
  * @property string $provinsi
  * @property string $vendor
@@ -40,15 +40,16 @@ class NetworkElement extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['network_id', 'location', 'provinsi', 'vendor', 'status', 'log_date'], 'required'],
+            [['network_id', 'location', 'provinsi', 'vendor', 'status'], 'required'],
             [['location', 'remark'], 'string'],
-            [['log_date'], 'date', 'format' => 'yyyy-M-d', 'message' => 'Date format yyyy-MM-dd'],
-            [['network_id', 'vendor', 'status'], 'string', 'max' => 20],
+            [['log_date'], 'date', 'format' => 'yyyy-M-d'],
+            [['network_id', 'sc_address', 'vendor', 'gtt', 'status'], 'string', 'max' => 20],
             [['provinsi'], 'string', 'max' => 40],
-            [['inat0'], 'string', 'max' => 10],
+            //[['inat0'], 'string', 'max' => 10],
             [['sc_address'], 'unique', 'targetClass' => 'app\models\NetworkElement'],
             [['gtt'], 'unique', 'targetClass' => 'app\models\NetworkElement'],
-			[['sc_address', 'gtt'], 'match', 'pattern' => '/^[\*0-9]{10,15}$/', 'message' => 'Must contain 10 to 15 numeric characters']
+            [['network_id'], 'unique', 'targetClass' => 'app\models\NetworkElement'],
+            [['sc_address', 'gtt'], 'match', 'pattern' => '/^[\*0-9]{10,15}$/', 'message' => 'Must contain 10 to 15 numeric characters.'],
         ];
     }
 
@@ -59,12 +60,12 @@ class NetworkElement extends \yii\db\ActiveRecord
     {
         return [
             'network_id' => 'Network ID',
-            'sc_address' => 'Sc  Address',
+            'sc_address' => 'Sc Address',
             'location' => 'Location',
             'provinsi' => 'Provinsi',
             'vendor' => 'Vendor',
             'gtt' => 'Gtt',
-            'inat0' => 'Inat0',
+            //'inat0' => 'Inat0',
             'status' => 'Status',
             'log_date' => 'Log Date',
             'remark' => 'Remark',
