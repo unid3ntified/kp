@@ -15,8 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create Rnc Reference', ['create'], ['class' => 'btn btn-success']) ?>
+    <p align = right>
+        <?= Html::a('Create New', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -25,15 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
+            'rnc_name',
             'msc_name',
             'mgw_name',
-            'rnc_name',
-            'vendor_rnc',
+            //'vendor_rnc',
             'spc_nat0',
-            // 'trunk_name',
-            // 'rnc_description:ntext',
-            // 'rnc_location:ntext',
-            // 'provinsi',
+            'trunk_name',
+            // 'rnc_location',
             // 'status',
             // 'log_date',
             // 'remark:ntext',

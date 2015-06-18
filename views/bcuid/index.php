@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\BcuIdSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'MGW list';
+$this->title = 'Bcu Ids';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bcu-id-index">
@@ -15,9 +15,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p>
-        <?= Html::a('Create MGW', ['create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('BCU list (view only)', ['/mgwbcuid/bcuindex'], ['class' => 'btn btn-danger']) ?>
+    <p align = right>
+        <?= Html::a('Create New', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -26,11 +25,13 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
+            'bcu_id',
             'mgw_name',
             'region',
-            'location:ntext',
-            'status',
-            //'log_date',
+            'old_mss_connected',
+            'new_mss_connected',
+            // 'status',
+            // 'log_date',
             // 'remark:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],

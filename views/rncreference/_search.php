@@ -15,11 +15,11 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
+    <?= $form->field($model, 'rnc_name') ?>
+
     <?= $form->field($model, 'msc_name') ?>
 
     <?= $form->field($model, 'mgw_name') ?>
-
-    <?= $form->field($model, 'rnc_name') ?>
 
     <?= $form->field($model, 'vendor_rnc') ?>
 
@@ -27,11 +27,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'trunk_name') ?>
 
-    <?php // echo $form->field($model, 'rnc_description') ?>
-
     <?php // echo $form->field($model, 'rnc_location') ?>
-
-    <?php // echo $form->field($model, 'provinsi') ?>
 
     <?php // echo $form->field($model, 'status') ?>
 

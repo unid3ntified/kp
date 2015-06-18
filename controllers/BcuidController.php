@@ -5,9 +5,12 @@ namespace app\controllers;
 use Yii;
 use app\models\BcuId;
 use app\models\BcuIdSearch;
+use app\models\NetworkElement;
+use app\models\NetworkElementSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * BcuidController implements the CRUD actions for BcuId model.
@@ -62,29 +65,31 @@ class BcuidController extends Controller
     {
         $model = new BcuId();
         $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
+        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_id', 'network_id');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->log_date = date('Y-m-d');
             switch($model->status)
             {
-                case ("1"):
+                case ("0"):
                     $model->status = "Dismantle";
                     break;
-                case ("2"):
+                case ("1"):
                     $model->status = "In service";
                     break;
-                case ("3"):
+                case ("2"):
                     $model->status = "Plan";
                     break;
-                case ("4"):
+                case ("3"):
                     $model->status = "Trial";
                     break;
             }
-            $model->log_date = date('Y-m-d');
             $model->save();
-            return $this->redirect(['view', 'id' => $model->mgw_name]);
+            return $this->redirect(['view', 'id' => $model->bcu_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'listData' => $listData,
                 'option' => $option,
             ]);
         }
@@ -100,29 +105,31 @@ class BcuidController extends Controller
     {
         $model = $this->findModel($id);
         $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
+        $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_id', 'network_id');
 
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->log_date = date('Y-m-d');
             switch($model->status)
             {
-                case ("1"):
+                case ("0"):
                     $model->status = "Dismantle";
                     break;
-                case ("2"):
+                case ("1"):
                     $model->status = "In service";
                     break;
-                case ("3"):
+                case ("2"):
                     $model->status = "Plan";
                     break;
-                case ("4"):
+                case ("3"):
                     $model->status = "Trial";
                     break;
             }
-            $model->log_date = date('Y-m-d');
             $model->save();
-            return $this->redirect(['view', 'id' => $model->mgw_name]);
+            return $this->redirect(['view', 'id' => $model->bcu_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'listData' => $listData,
                 'option' => $option,
             ]);
         }

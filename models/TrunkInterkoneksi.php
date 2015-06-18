@@ -7,20 +7,21 @@ use Yii;
 /**
  * This is the model class for table "trunk_interkoneksi".
  *
- * @property string $trunk
- * @property string $partner
- * @property string $poi
- * @property string $connection
+ * @property string $trunk_id
+ * @property string $dummy_no
  * @property string $direction
  * @property string $vendor
- * @property string $mss
- * @property string $mgw
  * @property string $opc
  * @property string $dpc
  * @property integer $e1_capacity
+ * @property string $POI
+ * @property string $connection
+ * @property string $trunk_group
  * @property string $status
  * @property string $log_date
  * @property string $remark
+ *
+ * @property Msc $dummyNo
  */
 class TrunkInterkoneksi extends \yii\db\ActiveRecord
 {
@@ -38,15 +39,13 @@ class TrunkInterkoneksi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['trunk', 'partner', 'poi', 'connection', 'direction', 'vendor', 'mss', 'mgw', 'opc', 'dpc', 'e1_capacity', 'status', 'log_date'], 'required'],
-            [['partner', 'connection', 'remark'], 'string'],
+            [['trunk_id', 'dummy_no', 'direction', 'vendor', 'opc', 'dpc', 'e1_capacity', 'POI', 'connection', 'trunk_group', 'status', 'log_date'], 'required'],
             [['e1_capacity'], 'integer'],
-            [['log_date'], 'date', 'format' => 'yyyy-M-d', 'message' => 'Date format yyyy-MM-dd'],
-            [['trunk', 'direction'], 'string', 'max' => 8],
-            [['poi'], 'string', 'max' => 64],
-            [['vendor', 'mss', 'mgw'], 'string', 'max' => 32],
-            [['opc', 'dpc'], 'string', 'max' => 5],
-            [['status'], 'safe'],
+            [['connection', 'remark'], 'string'],
+            [['log_date'], 'safe'],
+            [['trunk_id', 'dummy_no', 'direction', 'vendor', 'opc', 'dpc'], 'string', 'max' => 20],
+            [['POI', 'trunk_group'], 'string', 'max' => 50],
+            [['status'], 'string', 'max' => 30]
         ];
     }
 
@@ -56,20 +55,27 @@ class TrunkInterkoneksi extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'trunk' => 'Trunk',
-            'partner' => 'Partner',
-            'poi' => 'Poi',
-            'connection' => 'Connection',
+            'trunk_id' => 'Trunk ID',
+            'dummy_no' => 'Dummy No',
             'direction' => 'Direction',
             'vendor' => 'Vendor',
-            'mss' => 'Mss',
-            'mgw' => 'Mgw',
             'opc' => 'Opc',
             'dpc' => 'Dpc',
             'e1_capacity' => 'E1 Capacity',
+            'POI' => 'Poi',
+            'connection' => 'Connection',
+            'trunk_group' => 'Trunk Group',
             'status' => 'Status',
             'log_date' => 'Log Date',
             'remark' => 'Remark',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDummyNo()
+    {
+        return $this->hasOne(Msc::className(), ['dummy_number' => 'dummy_no']);
     }
 }

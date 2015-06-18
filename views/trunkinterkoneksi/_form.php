@@ -12,21 +12,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'trunk')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'trunk_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'partner')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'poi')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'connection')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'dummy_no')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'direction')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'vendor')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'mss')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'mgw')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'opc')->textInput(['maxlength' => true]) ?>
 
@@ -34,7 +26,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'e1_capacity')->textInput() ?>
 
-    <?= $form->field($model, 'status')->checkBoxList($option, array('separator' => '<br>')) ?>
+    <?= $form->field($model, 'POI')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'connection')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'trunk_group')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'log_date')->textInput() ?>
 

@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\BcuId */
 
-$this->title = $model->mgw_name;
-$this->params['breadcrumbs'][] = ['label' => 'MGW list', 'url' => ['index']];
+$this->title = $model->bcu_id;
+$this->params['breadcrumbs'][] = ['label' => 'Bcu Ids', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bcu-id-view">
@@ -15,23 +15,24 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->mgw_name], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->mgw_name], [
+        <?= Html::a('Update', ['update', 'id' => $model->bcu_id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->bcu_id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
         ]) ?>
-        <?= Html::a('Manage BCU ID', ['/mgwbcuid/index', 'mgw_name' => $model->mgw_name], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+            'bcu_id',
             'mgw_name',
             'region',
-            'location:ntext',
+            'old_mss_connected',
+            'new_mss_connected',
             'status',
             'log_date',
             'remark:ntext',

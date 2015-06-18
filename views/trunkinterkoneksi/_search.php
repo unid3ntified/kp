@@ -15,27 +15,25 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'trunk') ?>
+    <?= $form->field($model, 'trunk_id') ?>
 
-    <?= $form->field($model, 'partner') ?>
-
-    <?= $form->field($model, 'poi') ?>
-
-    <?= $form->field($model, 'connection') ?>
+    <?= $form->field($model, 'dummy_no') ?>
 
     <?= $form->field($model, 'direction') ?>
 
-    <?php // echo $form->field($model, 'vendor') ?>
+    <?= $form->field($model, 'vendor') ?>
 
-    <?php // echo $form->field($model, 'mss') ?>
-
-    <?php // echo $form->field($model, 'mgw') ?>
-
-    <?php // echo $form->field($model, 'opc') ?>
+    <?= $form->field($model, 'opc') ?>
 
     <?php // echo $form->field($model, 'dpc') ?>
 
     <?php // echo $form->field($model, 'e1_capacity') ?>
+
+    <?php // echo $form->field($model, 'POI') ?>
+
+    <?php // echo $form->field($model, 'connection') ?>
+
+    <?php // echo $form->field($model, 'trunk_group') ?>
 
     <?php // echo $form->field($model, 'status') ?>
 
