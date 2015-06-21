@@ -72,4 +72,38 @@ class DescNetworkSearch extends DescNetwork
 
         return $dataProvider;
     }
+
+     public function searchId($params, $id)
+    {
+        $query = DescNetwork::find()->onCondition(['network_id' => $id]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'id' => $this->id,
+        ]);
+
+        $query->andFilterWhere(['like', 'network_id', $this->network_id])
+            ->andFilterWhere(['like', 'opc_nat0', $this->opc_nat0])
+            ->andFilterWhere(['like', 'opc_nat1', $this->opc_nat1])
+            ->andFilterWhere(['like', 'desc_network', $this->desc_network])
+            ->andFilterWhere(['like', 'inat0', $this->inat0])
+            ->andFilterWhere(['like', 'second_opc', $this->second_opc])
+            ->andFilterWhere(['like', 'third_opc', $this->third_opc])
+            ->andFilterWhere(['like', 'fourth_opc', $this->fourth_opc])
+            ->andFilterWhere(['like', 'fifth_opc', $this->fifth_opc])
+            ->andFilterWhere(['like', 'sixth_opc', $this->sixth_opc]);
+
+        return $dataProvider;
+    }
 }

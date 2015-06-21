@@ -17,9 +17,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'bcu_id')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'mgw_name')->dropDownList($listData, ['prompt' => 'Choose MGW']) ?>
+
+    <?= $form->field($model, 'bcu_id')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'region')->textInput(['maxlength' => true]) ?>
 

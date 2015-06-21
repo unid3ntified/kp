@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\MscSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Mscs';
+$this->title = 'MSC List';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="msc-index">

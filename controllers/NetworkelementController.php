@@ -5,8 +5,12 @@ namespace app\controllers;
 use Yii;
 use app\models\NetworkElement;
 use app\models\NetworkElementSearch;
-//use app\models\DescNetwork;
-//use app\models\DescNetworkSearch;
+use app\models\DescNetwork;
+use app\models\DescNetworkSearch;
+use app\models\BcuId;
+use app\models\BcuIdSearch;
+use app\models\Msc;
+use app\models\MscSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -50,8 +54,33 @@ class NetworkelementController extends Controller
      */
     public function actionView($id)
     {
+        $OpcSearchModel = new DescNetworkSearch();
+        $OpcDataProvider = $OpcSearchModel->searchId(Yii::$app->request->queryParams, $id);
+        $MscSearchModel = new MscSearch();
+        $MscDataProvider = $MscSearchModel->searchId(Yii::$app->request->queryParams, $id);
+        $BcuidSearchModel = new BcuIdSearch();
+        $BcuidDataProvider = $BcuidSearchModel->searchId(Yii::$app->request->queryParams, $id);
+        $dataprovider;
+        $flag;
+        //var_dump($MscDataProvider);die;   
+        if ($MscDataProvider->totalCount==0)
+        {
+            $dataprovider = $BcuidDataProvider;
+            $flag = 'BCU ID List';
+        }
+        else
+        {
+            $dataprovider = $MscDataProvider;
+            $flag = 'MSC Spec';
+        }
+
         return $this->render('view', [
             'model' => $this->findModel($id),
+            //'OpcSearchModel' => $OpcSearchModel,
+            'OpcDataProvider' => $OpcDataProvider,
+            'dataProvider' => $dataprovider,
+            'flag' => $flag,
+
         ]);
     }
 

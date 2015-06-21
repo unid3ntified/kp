@@ -68,8 +68,8 @@ class Msc extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'msc_name' => 'Msc Name',
-            'cnid' => 'Cnid',
+            'msc_name' => 'MSC Name',
+            'cnid' => 'CNID',
             'dummy_number' => 'Dummy Number',
             'pool' => 'Pool',
             'non_broadcast_lai' => 'Non Broadcast Lai',
@@ -79,8 +79,8 @@ class Msc extends \yii\db\ActiveRecord
             'cap_value' => 'Cap Value',
             'nb_lai' => 'Nb Lai',
             'msc_index' => 'Msc Index',
-            'msc_IP_sigtran1' => 'Msc  Ip Sigtran1',
-            'msc_IP_sigtran2' => 'Msc  Ip Sigtran2',
+            'msc_IP_sigtran1' => 'Msc Ip Sigtran #1',
+            'msc_IP_sigtran2' => 'Msc Ip Sigtran #2',
             'mgw_proxyA_flex' => 'Mgw Proxy A Flex',
             'mgw_managerA_circuit' => 'Mgw Manager A Circuit',
             'status' => 'Status',

@@ -5,9 +5,9 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\DescNetwork */
 
-$this->title = 'Update OPC: ' . ' ' . $model->id;
+$this->title = 'Update OPC: ' . $model->network_id;
 $this->params['breadcrumbs'][] = ['label' => 'OPCs', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->network_id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="desc-network-update">
@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = 'Update';
     <?= $this->render('_form', [
         'model' => $model,
         'listData' => $listData,
+        'err' => $err,
     ]) ?>
 
 </div>

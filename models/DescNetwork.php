@@ -38,10 +38,9 @@ class DescNetwork extends \yii\db\ActiveRecord
         return [
             [['network_id'], 'required'],
             [['desc_network'], 'string'],
-            [['network_id', 'opc_nat0', 'opc_nat1', 'second_opc', 'third_opc', 'fourth_opc', 'fifth_opc', 'sixth_opc', 'inat0'], 'string', 'max' => 20],
+            [['opc_nat0', 'opc_nat1', 'second_opc', 'third_opc', 'fourth_opc', 'fifth_opc', 'sixth_opc', 'inat0'], 'match', 'pattern' => '/^[\*0-9]{3,5}$/', 'message' => 'Must contain 3 to 5 numeric characters.'],
+            [['network_id'], 'string', 'max' => 20]
             //[['opc_nat0', 'opc_nat1'], 'unique', 'targetAttribute' => ['opc_nat0', 'opc_nat1'], 'message' => 'The combination of Opc Nat0 and Opc Nat1 has already been taken.']
-            [['opc_nat0'], 'unique', 'targetAttribute' => ['opc_nat0']],
-            [['opc_nat1'], 'unique', 'targetAttribute' => ['opc_nat1']],
         ];
     }
 

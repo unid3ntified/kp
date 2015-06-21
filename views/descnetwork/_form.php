@@ -13,6 +13,9 @@ use yii\widgets\ActiveForm;
     <p>
     <h4>* Jika network id tidak ada dalam drop down list, silahkan buat network element baru di <?= Html::a('sini', ['/networkelement/index']) ?></h4>
     </p>
+    <p>
+        <font color="red"><?= $err ?></font>
+    </p>
     <br>
 
     <?php $form = ActiveForm::begin(); ?>

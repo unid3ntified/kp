@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
-
+    
     <?= $form->field($model, 'network_id') ?>
 
     <?= $form->field($model, 'sc_address') ?>

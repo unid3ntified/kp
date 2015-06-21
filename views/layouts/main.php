@@ -40,7 +40,7 @@ AppAsset::register($this);
                     ['label' => 'Download', 'url' => ['/site/download']],
                     ['label' => 'Network Element', 'url' => ['/networkelement/index']],
                     ['label' => 'MSC', 'url' => ['/msc/index']],
-                    ['label' => 'BCU ID', 'url' => ['/bcuid/index']],
+                    ['label' => 'MGW', 'url' => ['/bcuid/index']],
                     ['label' => '3G RNC Reference', 'url' => ['/rncreference/index']],                    
                     ['label' => 'OPC', 'url' => ['/descnetwork/index']],
                     ['label' => 'Trunk Interkoneksi', 'url' => ['/trunkinterkoneksi/index']],

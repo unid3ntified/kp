@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\TrunkInterkoneksi */
 
 $this->title = 'Create Trunk Interkoneksi';
-$this->params['breadcrumbs'][] = ['label' => 'Trunk Interkoneksis', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Trunk Interkoneksi List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="trunk-interkoneksi-create">

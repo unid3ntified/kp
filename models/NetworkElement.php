@@ -59,12 +59,12 @@ class NetworkElement extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'network_id' => 'Network ID',
-            'sc_address' => 'Sc Address',
+            'network_id' => 'NE ID',
+            'sc_address' => 'GT',
             'location' => 'Location',
             'provinsi' => 'Provinsi',
             'vendor' => 'Vendor',
-            'gtt' => 'Gtt',
+            'gtt' => 'GTT',
             //'inat0' => 'Inat0',
             'status' => 'Status',
             'log_date' => 'Log Date',
