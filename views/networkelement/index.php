@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\NetworkElementSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Network Elements';
+$this->title = 'Network Element List';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="network-element-index">
@@ -23,10 +23,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
+
             ['class' => 'yii\grid\SerialColumn'],
 
-            'network_id',
-            'sc_address',
+            'network_element_id',
+            'gt_address',
             'location:ntext',
             //'provinsi',
             'vendor',

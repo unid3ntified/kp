@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\RncReference;
+use app\models\Poi;
 
 /**
- * RncReferenceSearch represents the model behind the search form about `app\models\RncReference`.
+ * PoiSearch represents the model behind the search form about `app\models\Poi`.
  */
-class RncReferenceSearch extends RncReference
+class PoiSearch extends Poi
 {
     /**
      * @inheritdoc
@@ -18,7 +18,7 @@ class RncReferenceSearch extends RncReference
     public function rules()
     {
         return [
-            [['rnc_id', 'rnc_name', 'pool', 'mgw_name', 'vendor_rnc', 'spc_nat0', 'trunk_name', 'rnc_location', 'status', 'log_date', 'remark'], 'safe'],
+            [['poi', 'msc_name', 'address', 'MSRN', 'dummy_number', 'log_date', 'remark'], 'safe'],
         ];
     }
 
@@ -40,7 +40,7 @@ class RncReferenceSearch extends RncReference
      */
     public function search($params)
     {
-        $query = RncReference::find();
+        $query = Poi::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,15 +58,11 @@ class RncReferenceSearch extends RncReference
             'log_date' => $this->log_date,
         ]);
 
-        $query->andFilterWhere(['like', 'rnc_id', $this->rnc_id])
-            ->andFilterWhere(['like', 'rnc_name', $this->rnc_name])
-            ->andFilterWhere(['like', 'pool', $this->pool])
-            ->andFilterWhere(['like', 'mgw_name', $this->mgw_name])
-            ->andFilterWhere(['like', 'vendor_rnc', $this->vendor_rnc])
-            ->andFilterWhere(['like', 'spc_nat0', $this->spc_nat0])
-            ->andFilterWhere(['like', 'trunk_name', $this->trunk_name])
-            ->andFilterWhere(['like', 'rnc_location', $this->rnc_location])
-            ->andFilterWhere(['like', 'status', $this->status])
+        $query->andFilterWhere(['like', 'poi', $this->poi])
+            ->andFilterWhere(['like', 'msc_name', $this->msc_name])
+            ->andFilterWhere(['like', 'address', $this->address])
+            ->andFilterWhere(['like', 'MSRN', $this->MSRN])
+            ->andFilterWhere(['like', 'dummy_number', $this->dummy_number])
             ->andFilterWhere(['like', 'remark', $this->remark]);
 
         return $dataProvider;

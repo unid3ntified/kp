@@ -51,14 +51,15 @@ class Msc extends \yii\db\ActiveRecord
             [['pool', 'remark'], 'string'],
             [['cap_value', 'msc_index'], 'integer'],
             [['mgw_proxyA_flex', 'mgw_managerA_circuit'], 'safe'],
-            [['msc_name', 'non_broadcast_lai', 'null_nri', 'nri_msc', 'spc_msc', 'nb_lai', 'cnid'], 'string', 'max' => 20],
+            [['msc_name', 'nb_lai', 'null_nri', 'nri_msc', 'spc_msc', 'nb_lai', 'cnid'], 'string', 'max' => 20],
             [['msc_IP_sigtran1', 'msc_IP_sigtran2'], 'string', 'max' => 60],
-            [['dummy_number'], 'match', 'pattern' => '/^[\*0-9]{10,15}$/', 'message' => 'Must contain 10 to 15 numeric characters.'],
+            [['cnid', 'spc_msc', ], 'match', 'pattern' => '/^[\*0-9]{3,6}$/', 'message' => 'Must contain 3 to 6 numeric characters.'],
+            [['nb_lai', 'null_nri', 'nri_msc'], 'match', 'pattern' => '/^[\*0-9]$/', 'message' => 'Must contain numeric characters.'],
             [['status'], 'string', 'max' => 30],
             [['log_date'], 'date', 'format' => 'yyyy-M-d'],
             [['cnid'], 'unique', 'targetClass' => 'app\models\Msc'],
-            [['dummy_number'], 'unique', 'targetClass' => 'app\models\Msc'],
             [['msc_name'], 'unique', 'targetClass' => 'app\models\Msc'],
+            [['spc_msc'], 'unique', 'targetClass' => 'app\models\Msc'],
         ];
     }
 
@@ -68,19 +69,19 @@ class Msc extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'msc_name' => 'Msc Name',
-            'cnid' => 'Cnid',
-            'dummy_number' => 'Dummy Number',
+            'msc_name' => 'MSC Name',
+            'cnid' => 'CNID',
+            //'dummy_number' => 'Dummy Number',
             'pool' => 'Pool',
             'non_broadcast_lai' => 'Non Broadcast Lai',
             'null_nri' => 'Null Nri',
             'nri_msc' => 'Nri Msc',
             'spc_msc' => 'Spc Msc',
             'cap_value' => 'Cap Value',
-            'nb_lai' => 'Nb Lai',
+            'nb_lai' => 'Non Broadcast Lai',
             'msc_index' => 'Msc Index',
-            'msc_IP_sigtran1' => 'Msc  Ip Sigtran1',
-            'msc_IP_sigtran2' => 'Msc  Ip Sigtran2',
+            'msc_IP_sigtran1' => 'Msc Ip Sigtran #1',
+            'msc_IP_sigtran2' => 'Msc Ip Sigtran #2',
             'mgw_proxyA_flex' => 'Mgw Proxy A Flex',
             'mgw_managerA_circuit' => 'Mgw Manager A Circuit',
             'status' => 'Status',
@@ -94,7 +95,7 @@ class Msc extends \yii\db\ActiveRecord
      */
     public function getMscName()
     {
-        return $this->hasOne(NetworkElement::className(), ['network_id' => 'msc_name']);
+        return $this->hasOne(NetworkElement::className(), ['network_element_id' => 'msc_name']);
     }
 
     /**

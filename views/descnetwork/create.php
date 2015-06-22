@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\DescNetwork */
 
 $this->title = 'Assign OPC';
-$this->params['breadcrumbs'][] = ['label' => 'OPC', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'OPC List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="desc-network-create">
@@ -17,6 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form', [
         'model' => $model,
         'listData' => $listData,
+        'err' => $err,
     ]) ?>
 
 </div>

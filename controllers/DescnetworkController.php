@@ -64,14 +64,34 @@ class DescnetworkController extends Controller
     public function actionCreate()
     {
         $model = new DescNetwork();
-        $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_id', 'network_id');
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
+       
+        if ($model->load(Yii::$app->request->post())) {
+            $valid = $this->fillModel($model);
+                        //var_dump($valid);die;
+            if ($valid == 0)
+            {
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+            else
+            {
+                if ($valid == 1)
+                    $err = 'There are 2 or more OPC that has same value.';
+                else
+                    $err = 'OPC has been taken.';
+                return $this->render('create', [
+                    'model' => $model,
+                    'listData' => $listData,
+                    'err' => $err,
+                ]);
+            }
+        } 
+        else {
             return $this->render('create', [
                 'model' => $model,
                 'listData' => $listData,
+                'err' => '',
             ]);
         }
     }
@@ -85,14 +105,33 @@ class DescnetworkController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_id', 'network_id');
+        $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($model->load(Yii::$app->request->post())) {
+            $valid = $this->fillModel($model);
+            if ($valid == 0)
+            {
+                $model->save();
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+            else
+            {
+                if ($valid == 1)
+                    $err = 'There are 2 or more OPC that has same value.';
+                else
+                    $err = 'OPC has been taken.';
+                return $this->render('update', [
+                    'model' => $model,
+                    'listData' => $listData,
+                    'err' => $err,
+                ]);
+            }
+
         } else {
             return $this->render('update', [
                 'model' => $model,
                 'listData' => $listData,
+                'err' => '',
             ]);
         }
     }
@@ -124,5 +163,102 @@ class DescnetworkController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function loadOpc()
+    {
+        $opc_nat0 = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'opc_nat0');        
+        $opc_nat1 = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'opc_nat1');
+        $inat0 = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'inat0');
+        $second_opc = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'second_opc');
+        $third_opc = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'third_opc');
+        $fourth_opc = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'fourth_opc');
+        $fifth_opc = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'fifth_opc');
+        $sixth_opc = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'sixth_opc');
+
+        $array = array_filter(array_merge($opc_nat0, $opc_nat1, $inat0, $second_opc, $third_opc, $fourth_opc, $fifth_opc, $sixth_opc));
+        return $array;
+    }
+
+    public function fillModel($model)
+    {
+        if ($model->opc_nat0 == '')
+            $model->opc_nat0 = NULL;
+        if ($model->opc_nat1 == '')
+            $model->opc_nat1 = NULL;
+        if ($model->inat0 == '')
+            $model->inat0 = NULL;
+        if ($model->second_opc == '')
+            $model->second_opc = NULL;
+        if ($model->third_opc == '')
+            $model->third_opc = NULL;
+        if ($model->fourth_opc == '')
+            $model->fourth_opc = NULL;
+        if ($model->fifth_opc == '')
+            $model->fifth_opc = NULL;
+        if ($model->sixth_opc == '')
+            $model->sixth_opc = NULL;
+
+        return $this->compareOpc($model);
+    }
+
+    public function compareOpc($model)
+    {
+        $valid = 0;
+
+        //compare input with each other
+        $input = array_filter([$model->opc_nat0, $model->opc_nat1, $model->inat0, $model->second_opc, $model->third_opc, 
+            $model->fourth_opc, $model->fifth_opc, $model->sixth_opc]);
+        for($i = 0; $i < count($input) - 1; $i++)
+            for($j = $i + 1; $j < count($input); $j++)
+                if ($input[$i] !== NULL && $input[$j] !== NULL && $input[$i] == $input[$j])
+                    $valid = 1;    
+
+        //compare input with database
+        $listOpc = $this->loadOpc();
+        for($i = 0; $i < count($listOpc); $i++)
+        {
+            if ($model->opc_nat0 == $listOpc[$i])
+            {
+                $model->opc_nat0 = NULL;
+                $valid = 2;
+            }
+            if ($model->opc_nat1 == $listOpc[$i])
+            {
+                $model->opc_nat1 = NULL;
+                $valid = 2;
+            }
+            if ($model->inat0 == $listOpc[$i])
+            {
+                $model->inat0 = NULL;
+                $valid = 2;
+            }
+            if ($model->second_opc == $listOpc[$i])
+            {
+                $model->second_opc = NULL;
+                $valid = 2;
+            }
+            if ($model->third_opc == $listOpc[$i])
+            {
+                $model->third_opc = NULL;
+                $valid = 2;
+            }
+            if ($model->fourth_opc == $listOpc[$i])
+            {
+                $model->fourth_opc = NULL;
+                $valid = 2;
+            }
+            if ($model->fifth_opc == $listOpc[$i])
+            {
+                $model->fifth_opc = NULL;
+                $valid = 2;
+            }
+            if ($model->sixth_opc == $listOpc[$i])
+            {
+                $model->sixth_opc = NULL;
+                $valid = 2;
+            }
+        }
+        return $valid;
     }
 }

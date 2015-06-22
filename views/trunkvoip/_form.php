@@ -9,16 +9,21 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="trunk-voip-form">
+    
+    <p>
+    <h4>* Jika MGW atau MSS Name tidak ada dalam drop down list, silahkan buat network element baru di <?= Html::a('sini', ['/networkelement/index']) ?></h4>
+    </p>
+    <br>
 
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'trunk_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'dummy_no')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'mgw')->dropDownList($listData, ['prompt' => 'Choose MGW']) ?>
 
-    <?= $form->field($model, 'mgw_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'mss')->dropDownList($listData, ['prompt' => 'Choose MSS']) ?>
 
-    <?= $form->field($model, 'detaill')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'detail')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'direction')->textInput(['maxlength' => true]) ?>
 
@@ -34,9 +39,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'voip_gateway')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'log_date')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList($option, ['prompt' => 'Choose Status']) ?>
 
     <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 

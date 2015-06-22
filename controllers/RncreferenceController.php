@@ -50,10 +50,10 @@ class RncreferenceController extends Controller
      * @param string $mgw_name
      * @return mixed
      */
-    public function actionView($rnc_name, $mgw_name)
+    public function actionView($rnc_id, $mgw_name)
     {
         return $this->render('view', [
-            'model' => $this->findModel($rnc_name, $mgw_name),
+            'model' => $this->findModel($rnc_id, $mgw_name),
         ]);
     }
 
@@ -66,27 +66,11 @@ class RncreferenceController extends Controller
     {
         $model = new RncReference();
         $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
-        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_id', 'network_id');
+        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->log_date = date('Y-m-d');
-            switch($model->status)
-            {
-                case ("0"):
-                    $model->status = "Dismantle";
-                    break;
-                case ("1"):
-                    $model->status = "In service";
-                    break;
-                case ("2"):
-                    $model->status = "Plan";
-                    break;
-                case ("3"):
-                    $model->status = "Trial";
-                    break;
-            }
-            $model->save();
-            return $this->redirect(['view', 'rnc_name' => $model->rnc_name, 'mgw_name' => $model->mgw_name]);
+            $this->fillModel($model);
+            return $this->redirect(['view', 'rnc_id' => $model->rnc_id, 'mgw_name' => $model->mgw_name]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -103,31 +87,16 @@ class RncreferenceController extends Controller
      * @param string $mgw_name
      * @return mixed
      */
-    public function actionUpdate($rnc_name, $mgw_name)
+    public function actionUpdate($rnc_id, $mgw_name)
     {
-        $model = $this->findModel($rnc_name, $mgw_name);
+        $model = $this->findModel($rnc_id, $mgw_name);
         $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
-        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_id', 'network_id');
+        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
+        $this->convertDropDown($model);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->log_date = date('Y-m-d');
-            switch($model->status)
-            {
-                case ("0"):
-                    $model->status = "Dismantle";
-                    break;
-                case ("1"):
-                    $model->status = "In service";
-                    break;
-                case ("2"):
-                    $model->status = "Plan";
-                    break;
-                case ("3"):
-                    $model->status = "Trial";
-                    break;
-            }
-            $model->save();
-            return $this->redirect(['view', 'rnc_name' => $model->rnc_name, 'mgw_name' => $model->mgw_name]);
+            $this->fillModel($model);
+            return $this->redirect(['view', 'rnc_id' => $model->rnc_id, 'mgw_name' => $model->mgw_name]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -144,9 +113,9 @@ class RncreferenceController extends Controller
      * @param string $mgw_name
      * @return mixed
      */
-    public function actionDelete($rnc_name, $mgw_name)
+    public function actionDelete($rnc_id, $mgw_name)
     {
-        $this->findModel($rnc_name, $mgw_name)->delete();
+        $this->findModel($rnc_id, $mgw_name)->delete();
 
         return $this->redirect(['index']);
     }
@@ -159,12 +128,52 @@ class RncreferenceController extends Controller
      * @return RncReference the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($rnc_name, $mgw_name)
+    protected function findModel($rnc_id, $mgw_name)
     {
-        if (($model = RncReference::findOne(['rnc_name' => $rnc_name, 'mgw_name' => $mgw_name])) !== null) {
+        if (($model = RncReference::findOne(['rnc_id' => $rnc_id, 'mgw_name' => $mgw_name])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    public function fillModel($model)
+    {
+        switch($model->status)
+        {
+            case ("0"):
+                $model->status = "Dismantle";
+                break;
+            case ("1"):
+                $model->status = "In service";
+                break;
+            case ("2"):
+                $model->status = "Plan";
+                break;
+            case ("3"):
+                $model->status = "Trial";
+                break;
+        }
+        $model->log_date = date('Y-m-d');
+        $model->save();
+    }
+
+    public function convertDropDown($model)
+    {
+         switch($model->status)
+        {
+            case ("Dismantle"):
+                $model->status = "0";
+                break;
+            case ("In service"):
+                $model->status = "1";
+                break;
+            case ("Plan"):
+                $model->status = "2";
+                break;
+            case ("Trial"):
+                $model->status = "3";
+                break;
         }
     }
 }

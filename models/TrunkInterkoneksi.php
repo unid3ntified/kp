@@ -39,13 +39,15 @@ class TrunkInterkoneksi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['trunk_id', 'dummy_no', 'direction', 'vendor', 'opc', 'dpc', 'e1_capacity', 'POI', 'connection', 'trunk_group', 'status', 'log_date'], 'required'],
+            [['trunk_id', 'direction', 'vendor', 'POI', 'connection', 't_group', 'status'], 'required'],
             [['e1_capacity'], 'integer'],
             [['connection', 'remark'], 'string'],
             [['log_date'], 'safe'],
-            [['trunk_id', 'dummy_no', 'direction', 'vendor', 'opc', 'dpc'], 'string', 'max' => 20],
-            [['POI', 'trunk_group'], 'string', 'max' => 50],
-            [['status'], 'string', 'max' => 30]
+            [['trunk_id', 'direction', 'vendor', 'opc', 'dpc'], 'string', 'max' => 20],
+            [['POI', 't_group'], 'string', 'max' => 50],
+            [['status'], 'string', 'max' => 30],
+            [['trunk_id'], 'unique', 'targetClass' => 'app\models\TrunkInterkoneksi'],
+            [['opc', 'dpc'], 'match', 'pattern' => '/^[\*0-9]{3,6}$/', 'message' => 'Must contain 3 to 6 numeric characters.'],
         ];
     }
 
@@ -56,26 +58,17 @@ class TrunkInterkoneksi extends \yii\db\ActiveRecord
     {
         return [
             'trunk_id' => 'Trunk ID',
-            'dummy_no' => 'Dummy No',
             'direction' => 'Direction',
             'vendor' => 'Vendor',
-            'opc' => 'Opc',
-            'dpc' => 'Dpc',
+            'opc' => 'OPC',
+            'dpc' => 'DPC',
             'e1_capacity' => 'E1 Capacity',
-            'POI' => 'Poi',
+            'POI' => 'POI',
             'connection' => 'Connection',
-            'trunk_group' => 'Trunk Group',
+            't_group' => 'Trunk Group',
             'status' => 'Status',
             'log_date' => 'Log Date',
             'remark' => 'Remark',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getDummyNo()
-    {
-        return $this->hasOne(Msc::className(), ['dummy_number' => 'dummy_no']);
     }
 }

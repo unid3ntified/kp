@@ -64,35 +64,16 @@ class MscController extends Controller
     public function actionCreate()
     {
         $model = new Msc();
-        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
-        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_id', 'network_id');
+        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->log_date = date('Y-m-d');
-            switch($model->status)
-            {
-                case ("0"):
-                    $model->status = "Dismantle";
-                    break;
-                case ("1"):
-                    $model->status = "In service";
-                    break;
-                case ("2"):
-                    $model->status = "Plan";
-                    break;
-                case ("3"):
-                    $model->status = "Trial";
-                    break;
-            }
-            if ($model->dummy_number == '')
-                $model->dummy_number = NULL;
-            $model->save();
+            $this->fillModel($model);
             return $this->redirect(['view', 'id' => $model->msc_name]);
-        } else {
+        } 
+        else {
             return $this->render('create', [
                 'model' => $model,
                 'listData' => $listData,
-                'option' => $option,
             ]);
         }
     }
@@ -106,35 +87,18 @@ class MscController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
-        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_id', 'network_id');
+        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
+        $this->convertDropDown($model);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->log_date = date('Y-m-d');
-            switch($model->status)
-            {
-                case ("0"):
-                    $model->status = "Dismantle";
-                    break;
-                case ("1"):
-                    $model->status = "In service";
-                    break;
-                case ("2"):
-                    $model->status = "Plan";
-                    break;
-                case ("3"):
-                    $model->status = "Trial";
-                    break;
-            }
-            if ($model->dummy_number == '')
-                $model->dummy_number = NULL;
-            $model->save();
+            $this->fillModel($model);
             return $this->redirect(['view', 'id' => $model->msc_name]);
-        } else {
+        } 
+        else {
             return $this->render('update', [
                 'model' => $model,
+                //'model2' => $model2,
                 'listData' => $listData,
-                'option' => $option,
             ]);
         }
     }
@@ -167,4 +131,48 @@ class MscController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    public function fillModel($model)
+    {
+        switch($model->status)
+        {
+            case ("0"):
+                $model->status = "Dismantle";
+                break;
+            case ("1"):
+                $model->status = "In service";
+                break;
+            case ("2"):
+                $model->status = "Plan";
+                break;
+            case ("3"):
+                $model->status = "Trial";
+                break;
+        }
+        if ($model->cnid == '')
+                $model->cnid = NULL;
+        $model->log_date = date('Y-m-d');
+        $model->save();
+    }
+
+    public function convertDropDown($model)
+    {
+         switch($model->status)
+        {
+            case ("Dismantle"):
+                $model->status = "0";
+                break;
+            case ("In service"):
+                $model->status = "1";
+                break;
+            case ("Plan"):
+                $model->status = "2";
+                break;
+            case ("Trial"):
+                $model->status = "3";
+                break;
+        }
+    }
+
+
 }

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\BcuIdSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Bcu Ids';
+$this->title = 'MGW List';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bcu-id-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p align = right>
-        <?= Html::a('Create New', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Manage MGW', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([

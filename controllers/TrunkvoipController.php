@@ -5,9 +5,12 @@ namespace app\controllers;
 use Yii;
 use app\models\TrunkVoip;
 use app\models\TrunkVoipSearch;
+use app\models\NetworkElement;
+use app\models\NetworkElementSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * TrunkvoipController implements the CRUD actions for TrunkVoip model.
@@ -61,12 +64,17 @@ class TrunkvoipController extends Controller
     public function actionCreate()
     {
         $model = new TrunkVoip();
+        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
+        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $this->fillmodel($model);
             return $this->redirect(['view', 'id' => $model->trunk_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'listData' => $listData,
+                'option' => $option,
             ]);
         }
     }
@@ -81,11 +89,17 @@ class TrunkvoipController extends Controller
     {
         $model = $this->findModel($id);
 
+        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
+        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
+        $this->convertDropDown($model);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $this->fillmodel($model);
             return $this->redirect(['view', 'id' => $model->trunk_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'listData' => $listData,
+                'option' => $option,
             ]);
         }
     }
@@ -116,6 +130,46 @@ class TrunkvoipController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    public function fillModel($model)
+    {
+        switch($model->status)
+        {
+            case ("0"):
+                $model->status = "Dismantle";
+                break;
+            case ("1"):
+                $model->status = "In service";
+                break;
+            case ("2"):
+                $model->status = "Plan";
+                break;
+            case ("3"):
+                $model->status = "Trial";
+                break;
+        }
+        $model->log_date = date('Y-m-d');
+        $model->save();
+    }
+
+    public function convertDropDown($model)
+    {
+         switch($model->status)
+        {
+            case ("Dismantle"):
+                $model->status = "0";
+                break;
+            case ("In service"):
+                $model->status = "1";
+                break;
+            case ("Plan"):
+                $model->status = "2";
+                break;
+            case ("Trial"):
+                $model->status = "3";
+                break;
         }
     }
 }

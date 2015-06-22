@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\TrunkVoip */
 
-$this->title = 'Update Trunk Voip: ' . ' ' . $model->trunk_id;
-$this->params['breadcrumbs'][] = ['label' => 'Trunk Voips', 'url' => ['index']];
+$this->title = 'Update Trunk VOIP: ' . ' ' . $model->trunk_id;
+$this->params['breadcrumbs'][] = ['label' => 'Trunk VOIP List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->trunk_id, 'url' => ['view', 'id' => $model->trunk_id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+        'option' => $option,
+        'listData' => $listData,
     ]) ?>
 
 </div>

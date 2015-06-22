@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\TrunkInterkoneksi */
 
 $this->title = $model->trunk_id;
-$this->params['breadcrumbs'][] = ['label' => 'Trunk Interkoneksis', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Trunk Interkoneksi List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="trunk-interkoneksi-view">
@@ -29,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'trunk_id',
-            'dummy_no',
             'direction',
             'vendor',
             'opc',
@@ -37,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'e1_capacity',
             'POI',
             'connection:ntext',
-            'trunk_group',
+            't_group',
             'status',
             'log_date',
             'remark:ntext',

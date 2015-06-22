@@ -21,8 +21,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'cnid')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'dummy_number')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'pool')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'non_broadcast_lai')->textInput(['maxlength' => true]) ?>
@@ -47,7 +45,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'mgw_managerA_circuit')->textInput() ?>
 
-    <?= $form->field($model, 'status')->dropDownList($option, ['prompt' => 'Choose Status']) ?>
+    <?= $form->field($model, 'status')->dropDownList(['Dismantle', 'In service', 'Plan', 'Trial'], ['prompt' => 'Choose Status']) ?>
 
     <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 

@@ -18,7 +18,7 @@ class TrunkInterkoneksiSearch extends TrunkInterkoneksi
     public function rules()
     {
         return [
-            [['trunk_id', 'dummy_no', 'direction', 'vendor', 'opc', 'dpc', 'POI', 'connection', 'trunk_group', 'status', 'log_date', 'remark'], 'safe'],
+            [['trunk_id', 'direction', 'vendor', 'opc', 'dpc', 'POI', 'connection', 't_group', 'status', 'log_date', 'remark'], 'safe'],
             [['e1_capacity'], 'integer'],
         ];
     }
@@ -61,14 +61,13 @@ class TrunkInterkoneksiSearch extends TrunkInterkoneksi
         ]);
 
         $query->andFilterWhere(['like', 'trunk_id', $this->trunk_id])
-            ->andFilterWhere(['like', 'dummy_no', $this->dummy_no])
             ->andFilterWhere(['like', 'direction', $this->direction])
             ->andFilterWhere(['like', 'vendor', $this->vendor])
             ->andFilterWhere(['like', 'opc', $this->opc])
             ->andFilterWhere(['like', 'dpc', $this->dpc])
             ->andFilterWhere(['like', 'POI', $this->POI])
             ->andFilterWhere(['like', 'connection', $this->connection])
-            ->andFilterWhere(['like', 'trunk_group', $this->trunk_group])
+            ->andFilterWhere(['like', 't_group', $this->t_group])
             ->andFilterWhere(['like', 'status', $this->status])
             ->andFilterWhere(['like', 'remark', $this->remark]);
 

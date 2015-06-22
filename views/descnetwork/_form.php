@@ -4,20 +4,23 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\DescNetwork */
+/* @var $model app\models\Descnetwork */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="desc-network-form">
 
     <p>
-    <h4>* Jika network id tidak ada dalam drop down list, silahkan buat network element baru di <?= Html::a('sini', ['/networkelement/index']) ?></h4>
+    <h4>* Jika network_element id tidak ada dalam drop down list, silahkan buat network_element element baru di <?= Html::a('sini', ['/networkelement/index']) ?></h4>
+    </p>
+    <p>
+        <font color="red"><?= $err ?></font>
     </p>
     <br>
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'network_id')->dropDownList($listData, ['prompt'=>'Choose Network ID']) ?>
+    <?= $form->field($model, 'network_element_id')->dropDownList($listData, ['prompt'=>'Choose Network ID']) ?>
 
     <?= $form->field($model, 'opc_nat0')->textInput(['maxlength' => true]) ?>
 

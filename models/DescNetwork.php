@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "desc_network".
  *
  * @property integer $id
- * @property string $network_id
+ * @property string $network_element_id
  * @property string $opc_nat0
  * @property string $opc_nat1
  * @property string $desc_network
@@ -36,12 +36,11 @@ class DescNetwork extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['network_id'], 'required'],
+            [['network_element_id'], 'required'],
             [['desc_network'], 'string'],
-            [['network_id', 'opc_nat0', 'opc_nat1', 'second_opc', 'third_opc', 'fourth_opc', 'fifth_opc', 'sixth_opc', 'inat0'], 'string', 'max' => 20],
+            [['opc_nat0', 'opc_nat1', 'second_opc', 'third_opc', 'fourth_opc', 'fifth_opc', 'sixth_opc', 'inat0'], 'match', 'pattern' => '/^[\*0-9]{3,5}$/', 'message' => 'Must contain 3 to 5 numeric characters.'],
+            [['network_element_id'], 'string', 'max' => 20],
             //[['opc_nat0', 'opc_nat1'], 'unique', 'targetAttribute' => ['opc_nat0', 'opc_nat1'], 'message' => 'The combination of Opc Nat0 and Opc Nat1 has already been taken.']
-            [['opc_nat0'], 'unique', 'targetAttribute' => ['opc_nat0']],
-            [['opc_nat1'], 'unique', 'targetAttribute' => ['opc_nat1']],
         ];
     }
 
@@ -52,16 +51,16 @@ class DescNetwork extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'network_id' => 'Network ID',
-            'opc_nat0' => 'Opc Nat0',
-            'opc_nat1' => 'Opc Nat1',
+            'network_element_id' => 'Network ID',
+            'opc_nat0' => 'OPC NAT0',
+            'opc_nat1' => 'OPC NAT1',
             'desc_network' => 'Desc Network',
             'inat0' => 'INAT0',
-            'second_opc' => 'Second Opc',
-            'third_opc' => 'Third Opc',
-            'fourth_opc' => 'Fourth Opc',
-            'fifth_opc' => 'Fifth Opc',
-            'sixth_opc' => 'Sixth Opc',
+            'second_opc' => 'Second OPC',
+            'third_opc' => 'Third OPC',
+            'fourth_opc' => 'Fourth OPC',
+            'fifth_opc' => 'Fifth OPC',
+            'sixth_opc' => 'Sixth OPC',
         ];
     }
 
@@ -70,6 +69,6 @@ class DescNetwork extends \yii\db\ActiveRecord
      */
     public function getNetwork()
     {
-        return $this->hasOne(NetworkElement::className(), ['network_id' => 'network_id']);
+        return $this->hasOne(NetworkElement::className(), ['network_element_id' => 'network_element_id']);
     }
 }

@@ -68,4 +68,35 @@ class BcuIdSearch extends BcuId
 
         return $dataProvider;
     }
+
+    public function searchId($params, $id)
+    {
+        $query = BcuId::find()->onCondition(['mgw_name' => $id]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'log_date' => $this->log_date,
+        ]);
+
+        $query->andFilterWhere(['like', 'bcu_id', $this->bcu_id])
+            ->andFilterWhere(['like', 'mgw_name', $this->mgw_name])
+            ->andFilterWhere(['like', 'region', $this->region])
+            ->andFilterWhere(['like', 'old_mss_connected', $this->old_mss_connected])
+            ->andFilterWhere(['like', 'new_mss_connected', $this->new_mss_connected])
+            ->andFilterWhere(['like', 'status', $this->status])
+            ->andFilterWhere(['like', 'remark', $this->remark]);
+
+        return $dataProvider;
+    }
 }

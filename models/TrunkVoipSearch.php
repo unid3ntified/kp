@@ -18,7 +18,7 @@ class TrunkVoipSearch extends TrunkVoip
     public function rules()
     {
         return [
-            [['trunk_id', 'dummy_no', 'mgw_name', 'detaill', 'direction', 'konfigurasi', 'partner', 'opc_mss', 'dpc', 'voip_gateway', 'status', 'log_date', 'remark'], 'safe'],
+            [['trunk_id','mgw', 'mss', 'detail', 'direction', 'konfigurasi', 'partner', 'opc_mss', 'dpc', 'voip_gateway', 'status', 'log_date', 'remark'], 'safe'],
             [['e1'], 'integer'],
         ];
     }
@@ -61,9 +61,9 @@ class TrunkVoipSearch extends TrunkVoip
         ]);
 
         $query->andFilterWhere(['like', 'trunk_id', $this->trunk_id])
-            ->andFilterWhere(['like', 'dummy_no', $this->dummy_no])
-            ->andFilterWhere(['like', 'mgw_name', $this->mgw_name])
-            ->andFilterWhere(['like', 'detaill', $this->detaill])
+            ->andFilterWhere(['like', 'mss', $this->mss])
+            ->andFilterWhere(['like', 'mgw', $this->mgw])
+            ->andFilterWhere(['like', 'detail', $this->detail])
             ->andFilterWhere(['like', 'direction', $this->direction])
             ->andFilterWhere(['like', 'konfigurasi', $this->konfigurasi])
             ->andFilterWhere(['like', 'partner', $this->partner])

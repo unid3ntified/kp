@@ -17,9 +17,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'bcu_id')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'mgw_name')->dropDownList($listData, ['prompt' => 'Choose MGW']) ?>
+
+    <?= $form->field($model, 'bcu_id')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'region')->textInput(['maxlength' => true]) ?>
 
@@ -27,7 +27,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'new_mss_connected')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->dropDownList($option, ['prompt' => 'Choose Status']) ?>
+    <?= $form->field($model, 'status')->dropDownList(['Dismantle', 'In service', 'Plan', 'Trial'], ['prompt' => 'Choose Status']) ?>
 
     <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 
