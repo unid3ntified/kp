@@ -4,32 +4,26 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\NetworkElementSearch */
+/* @var $model app\models\PoiSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="network-element-search">
+<div class="poi-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
         'method' => 'get',
     ]); ?>
-    
-    <?= $form->field($model, 'network_element_id') ?>
 
-    <?= $form->field($model, 'gt_address') ?>
+    <?= $form->field($model, 'poi') ?>
 
-    <?= $form->field($model, 'location') ?>
+    <?= $form->field($model, 'msc_name') ?>
 
-    <?= $form->field($model, 'provinsi') ?>
+    <?= $form->field($model, 'address') ?>
 
-    <?= $form->field($model, 'vendor') ?>
+    <?= $form->field($model, 'MSRN') ?>
 
-    <?php // echo $form->field($model, 'gtt') ?>
-
-    <?php // echo $form->field($model, 'inat0') ?>
-
-    <?php // echo $form->field($model, 'status') ?>
+    <?= $form->field($model, 'dummy_number') ?>
 
     <?php // echo $form->field($model, 'log_date') ?>
 

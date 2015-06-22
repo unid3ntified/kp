@@ -64,7 +64,7 @@ class DescnetworkController extends Controller
     public function actionCreate()
     {
         $model = new DescNetwork();
-        $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_id', 'network_id');
+        $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
        
         if ($model->load(Yii::$app->request->post())) {
             $valid = $this->fillModel($model);
@@ -105,7 +105,7 @@ class DescnetworkController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_id', 'network_id');
+        $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 
         if ($model->load(Yii::$app->request->post())) {
             $valid = $this->fillModel($model);
@@ -207,10 +207,10 @@ class DescnetworkController extends Controller
         $valid = 0;
 
         //compare input with each other
-        $input = [$model->opc_nat0, $model->opc_nat1, $model->inat0, $model->second_opc, $model->third_opc, 
-            $model->fourth_opc, $model->fifth_opc, $model->sixth_opc];
+        $input = array_filter([$model->opc_nat0, $model->opc_nat1, $model->inat0, $model->second_opc, $model->third_opc, 
+            $model->fourth_opc, $model->fifth_opc, $model->sixth_opc]);
         for($i = 0; $i < count($input) - 1; $i++)
-            for($j = $i; $j < count($input); $j++)
+            for($j = $i + 1; $j < count($input); $j++)
                 if ($input[$i] !== NULL && $input[$j] !== NULL && $input[$i] == $input[$j])
                     $valid = 1;    
 

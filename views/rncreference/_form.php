@@ -11,15 +11,17 @@ use yii\widgets\ActiveForm;
 <div class="rnc-reference-form">
 
     <p>
-    <h4>* Jika MGW Name tidak ada dalam drop down list, silahkan buat network element baru di <?= Html::a('sini', ['/networkelement/index']) ?></h4>
+    <h4>* Jika MGW atau MSC Name tidak ada dalam drop down list, silahkan buat network element baru di <?= Html::a('sini', ['/networkelement/index']) ?></h4>
     </p>
     <br>
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($model, 'rnc_id')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'rnc_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'msc_name')->dropDownList($listData, ['prompt' => 'Choose MSC']) ?>
+    <?= $form->field($model, 'pool')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'mgw_name')->dropDownList($listData, ['prompt' => 'Choose MGW']) ?>
 

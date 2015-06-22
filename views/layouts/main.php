@@ -35,9 +35,9 @@ AppAsset::register($this);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
-                    ['label' => 'Home', 'url' => ['/site/index']],
+                    //['label' => 'Home', 'url' => ['/site/index']],
                     //['label' => 'Contact', 'url' => ['/site/contact']],
-                    ['label' => 'Download', 'url' => ['/site/download']],
+                    //['label' => 'Download', 'url' => ['/site/download']],
                     ['label' => 'Network Element', 'url' => ['/networkelement/index']],
                     ['label' => 'MSC', 'url' => ['/msc/index']],
                     ['label' => 'MGW', 'url' => ['/bcuid/index']],
@@ -45,12 +45,13 @@ AppAsset::register($this);
                     ['label' => 'OPC', 'url' => ['/descnetwork/index']],
                     ['label' => 'Trunk Interkoneksi', 'url' => ['/trunkinterkoneksi/index']],
                     ['label' => 'Trunk VOIP', 'url' => ['/trunkvoip/index']],
+                    ['label' => 'POI', 'url' => ['/poi/index']],
 
-                    Yii::$app->user->isGuest ?
+                    /*Yii::$app->user->isGuest ?
                         ['label' => 'Login', 'url' => ['/site/login']] :
                         ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
                             'url' => ['/site/logout'],
-                            'linkOptions' => ['data-method' => 'post']],
+                            'linkOptions' => ['data-method' => 'post']],*/
                 ],
             ]);
             NavBar::end();

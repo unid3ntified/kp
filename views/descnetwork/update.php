@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\DescNetwork */
 
 $this->title = 'Update OPC: ' . $model->network_id;
-$this->params['breadcrumbs'][] = ['label' => 'OPCs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'OPC List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->network_id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>

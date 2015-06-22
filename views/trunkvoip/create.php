@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\TrunkVoip */
 
 $this->title = 'Create Trunk Voip';
-$this->params['breadcrumbs'][] = ['label' => 'Trunk Voips', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Trunk VOIP List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="trunk-voip-create">
@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'option' => $option,
+        'listData' => $listData,
     ]) ?>
 
 </div>

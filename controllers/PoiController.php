@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\TrunkInterkoneksi;
-use app\models\TrunkInterkoneksiSearch;
+use app\models\Poi;
+use app\models\PoiSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TrunkinterkoneksiController implements the CRUD actions for TrunkInterkoneksi model.
+ * PoiController implements the CRUD actions for Poi model.
  */
-class TrunkinterkoneksiController extends Controller
+class PoiController extends Controller
 {
     public function behaviors()
     {
@@ -27,12 +27,12 @@ class TrunkinterkoneksiController extends Controller
     }
 
     /**
-     * Lists all TrunkInterkoneksi models.
+     * Lists all Poi models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TrunkInterkoneksiSearch();
+        $searchModel = new PoiSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -42,7 +42,7 @@ class TrunkinterkoneksiController extends Controller
     }
 
     /**
-     * Displays a single TrunkInterkoneksi model.
+     * Displays a single Poi model.
      * @param string $id
      * @return mixed
      */
@@ -54,28 +54,25 @@ class TrunkinterkoneksiController extends Controller
     }
 
     /**
-     * Creates a new TrunkInterkoneksi model.
+     * Creates a new Poi model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new TrunkInterkoneksi();
-        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
+        $model = new Poi();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->fillmodel($model);
-            return $this->redirect(['view', 'id' => $model->trunk_id]);
+            return $this->redirect(['view', 'id' => $model->poi]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'option' => $option,
             ]);
         }
     }
 
     /**
-     * Updates an existing TrunkInterkoneksi model.
+     * Updates an existing Poi model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -83,22 +80,18 @@ class TrunkinterkoneksiController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $this->convertDropDown($model);
-        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->fillmodel($model);
-            return $this->redirect(['view', 'id' => $model->trunk_id]);
+            return $this->redirect(['view', 'id' => $model->poi]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'option' => $option,
             ]);
         }
     }
 
     /**
-     * Deletes an existing TrunkInterkoneksi model.
+     * Deletes an existing Poi model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -111,59 +104,18 @@ class TrunkinterkoneksiController extends Controller
     }
 
     /**
-     * Finds the TrunkInterkoneksi model based on its primary key value.
+     * Finds the Poi model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return TrunkInterkoneksi the loaded model
+     * @return Poi the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = TrunkInterkoneksi::findOne($id)) !== null) {
+        if (($model = Poi::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
-
-    public function fillModel($model)
-    {
-        switch($model->status)
-        {
-            case ("0"):
-                $model->status = "Dismantle";
-                break;
-            case ("1"):
-                $model->status = "In service";
-                break;
-            case ("2"):
-                $model->status = "Plan";
-                break;
-            case ("3"):
-                $model->status = "Trial";
-                break;
-        }
-
-        $model->log_date = date('Y-m-d');
-        $model->save();
-    }
-
-    public function convertDropDown($model)
-    {
-         switch($model->status)
-        {
-            case ("Dismantle"):
-                $model->status = "0";
-                break;
-            case ("In service"):
-                $model->status = "1";
-                break;
-            case ("Plan"):
-                $model->status = "2";
-                break;
-            case ("Trial"):
-                $model->status = "3";
-                break;
         }
     }
 }

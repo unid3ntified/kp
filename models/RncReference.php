@@ -37,15 +37,15 @@ class RncReference extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['rnc_name', 'msc_name', 'mgw_name', 'vendor_rnc', 'spc_nat0', 'trunk_name', 'rnc_location', 'status'], 'required'],
+            [['rnc_id', 'pool', 'mgw_name', 'vendor_rnc', 'spc_nat0', 'trunk_name', 'rnc_location', 'status'], 'required'],
             [['log_date'], 'safe'],
-            [['remark'], 'string'],
-            [['rnc_name', 'msc_name', 'mgw_name', 'trunk_name'], 'string', 'max' => 20],
+            [['remark', 'mgw_name', 'trunk_name'], 'string', 'max' => 20],
             [['vendor_rnc'], 'string', 'max' => 100],
             [['rnc_location'], 'string', 'max' => 80],
             [['status'], 'string', 'max' => 30],
             [['spc_nat0'], 'match', 'pattern' => '/^[\*0-9]{3,5}$/', 'message' => 'Must contain 3 to 5 numeric characters.'],
-            [['rnc_name', 'mgw_name'], 'unique', 'targetAttribute' => ['rnc_name', 'mgw_name'], 'message' => 'The combination of RNC Name and MGW name has already been taken.'],
+            [['rnc_id', 'mgw_name'], 'unique', 'targetAttribute' => ['rnc_id', 'mgw_name'], 'message' => 'The combination of RNC Name and MGW name has already been taken.'],
+            [['rnc_name', 'pool'], 'string', 'max' => 100],
         ];
     }
 
@@ -55,13 +55,13 @@ class RncReference extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'rnc_name' => 'Rnc Name',
-            'msc_name' => 'Msc Name',
-            'mgw_name' => 'Mgw Name',
-            'vendor_rnc' => 'Vendor Rnc',
-            'spc_nat0' => 'Spc Nat0',
+            'rnc_name' => 'RNC Name',
+            'pool' => 'Pool',
+            'mgw_name' => 'MGW Name',
+            'vendor_rnc' => 'Vendor RNC',
+            'spc_nat0' => 'SPC NAT0',
             'trunk_name' => 'Trunk Name',
-            'rnc_location' => 'Rnc Location',
+            'rnc_location' => 'RNC Location',
             'status' => 'Status',
             'log_date' => 'Log Date',
             'remark' => 'Remark',
@@ -71,16 +71,8 @@ class RncReference extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMscName()
-    {
-        return $this->hasOne(Msc::className(), ['msc_name' => 'msc_name']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getMgwName()
     {
-        return $this->hasOne(NetworkElement::className(), ['network_id' => 'mgw_name']);
+        return $this->hasOne(NetworkElement::className(), ['network_element_id' => 'mgw_name']);
     }
 }

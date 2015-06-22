@@ -29,7 +29,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'trunk_id',
-            'dummy_no',
             'direction',
             'vendor',
             'opc',
@@ -37,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'e1_capacity',
             'POI',
             'connection:ntext',
-            'trunk_group',
+            't_group',
             'status',
             'log_date',
             'remark:ntext',

@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'msc_name',
             'cnid',
-            'dummy_number',
+            //'dummy_number',
             'pool:ntext',
             'non_broadcast_lai',
             'null_nri',

@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\NetworkElement */
 
 $this->title = 'Create Network Element';
-$this->params['breadcrumbs'][] = ['label' => 'Network Elements', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Network Element List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="network-element-create">
@@ -17,8 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= $this->render('_form', [
         'model' => $model,
         //'model2' => $model2,
-        'option' => $option,
-        'prov' => $prov,
+        //'option' => $option,
+        //'prov' => $prov,
     ]) ?>
 
 </div>

@@ -25,7 +25,7 @@ class BcuId extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return 'bcu_id';
+        return 'mgw';
     }
 
     /**
@@ -51,11 +51,11 @@ class BcuId extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'bcu_id' => 'Bcu ID',
-            'mgw_name' => 'Mgw Name',
+            'bcu_id' => 'BCU ID',
+            'mgw_name' => 'MGW Name',
             'region' => 'Region',
-            'old_mss_connected' => 'Old Mss Connected',
-            'new_mss_connected' => 'New Mss Connected',
+            'old_mss_connected' => 'Old MSS Connected',
+            'new_mss_connected' => 'New MSS Connected',
             'status' => 'Status',
             'log_date' => 'Log Date',
             'remark' => 'Remark',
@@ -67,6 +67,6 @@ class BcuId extends \yii\db\ActiveRecord
      */
     public function getMgwName()
     {
-        return $this->hasOne(NetworkElement::className(), ['network_id' => 'mgw_name']);
+        return $this->hasOne(NetworkElement::className(), ['network_element_id' => 'mgw_name']);
     }
 }

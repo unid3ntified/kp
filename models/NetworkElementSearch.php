@@ -18,7 +18,7 @@ class NetworkElementSearch extends NetworkElement
     public function rules()
     {
         return [
-            [['network_id', 'sc_address', 'location', 'provinsi', 'vendor', 'gtt', 'status', 'log_date', 'remark'], 'safe'],
+            [['network_element_id', 'gt_address', 'location', 'provinsi', 'vendor', 'gtt', 'status', 'log_date', 'remark'], 'safe'],
         ];
     }
 
@@ -58,8 +58,8 @@ class NetworkElementSearch extends NetworkElement
             'log_date' => $this->log_date,
         ]);
 
-        $query->andFilterWhere(['like', 'network_id', $this->network_id])
-            ->andFilterWhere(['like', 'sc_address', $this->sc_address])
+        $query->andFilterWhere(['like', 'network_element_id', $this->network_element_id])
+            ->andFilterWhere(['like', 'gt_address', $this->gt_address])
             ->andFilterWhere(['like', 'location', $this->location])
             ->andFilterWhere(['like', 'provinsi', $this->provinsi])
             ->andFilterWhere(['like', 'vendor', $this->vendor])

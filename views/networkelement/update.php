@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\NetworkElement */
 
 $this->title = 'Update Network Element: ' . ' ' . $model->network_id;
-$this->params['breadcrumbs'][] = ['label' => 'Network Elements', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Network Element List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->network_id, 'url' => ['view', 'id' => $model->network_id]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
@@ -16,8 +16,6 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
-        'option' => $option,
-        'prov' => $prov,
     ]) ?>
 
 </div>

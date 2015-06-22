@@ -18,7 +18,7 @@ class MscSearch extends Msc
     public function rules()
     {
         return [
-            [['msc_name', 'cnid', 'dummy_number', 'pool', 'non_broadcast_lai', 'null_nri', 'nri_msc', 'spc_msc', 'nb_lai', 'msc_IP_sigtran1', 'msc_IP_sigtran2', 'status', 'remark'], 'safe'],
+            [['msc_name', 'cnid', 'pool', 'non_broadcast_lai', 'null_nri', 'nri_msc', 'spc_msc', 'nb_lai', 'msc_IP_sigtran1', 'msc_IP_sigtran2', 'status', 'remark'], 'safe'],
             [['cap_value', 'msc_index', 'mgw_proxyA_flex', 'mgw_managerA_circuit', 'log_date'], 'integer'],
         ];
     }
@@ -65,7 +65,6 @@ class MscSearch extends Msc
 
         $query->andFilterWhere(['like', 'msc_name', $this->msc_name])
             ->andFilterWhere(['like', 'cnid', $this->cnid])
-            ->andFilterWhere(['like', 'dummy_number', $this->dummy_number])
             ->andFilterWhere(['like', 'pool', $this->pool])
             ->andFilterWhere(['like', 'non_broadcast_lai', $this->non_broadcast_lai])
             ->andFilterWhere(['like', 'null_nri', $this->null_nri])
@@ -106,7 +105,6 @@ class MscSearch extends Msc
 
         $query->andFilterWhere(['like', 'msc_name', $this->msc_name])
             ->andFilterWhere(['like', 'cnid', $this->cnid])
-            ->andFilterWhere(['like', 'dummy_number', $this->dummy_number])
             ->andFilterWhere(['like', 'pool', $this->pool])
             ->andFilterWhere(['like', 'non_broadcast_lai', $this->non_broadcast_lai])
             ->andFilterWhere(['like', 'null_nri', $this->null_nri])

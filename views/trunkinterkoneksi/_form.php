@@ -14,8 +14,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'trunk_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'dummy_no')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'direction')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'vendor')->textInput(['maxlength' => true]) ?>
@@ -30,11 +28,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'connection')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'trunk_group')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 't_group')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'log_date')->textInput() ?>
+    <?= $form->field($model, 'status')->dropDownList($option, ['prompt' => 'Choose Status']) ?>
 
     <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 

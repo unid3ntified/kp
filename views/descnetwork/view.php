@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\DescNetwork */
 
-$this->title = $model->network_id;
-$this->params['breadcrumbs'][] = ['label' => 'OPCs', 'url' => ['index']];
+$this->title = $model->network_element_id;
+$this->params['breadcrumbs'][] = ['label' => 'OPC List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="desc-network-view">
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             //'id',
-            'network_id',
+            'network_element_id',
             'opc_nat0',
             'opc_nat1',
             'desc_network:ntext',

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\DescNetworkSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'OPCs';
+$this->title = 'OPC List';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="desc-network-index">
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id',
-            'network_id',
+            'network_element_id',
             'opc_nat0',
             'opc_nat1',
             //'desc_network:ntext',

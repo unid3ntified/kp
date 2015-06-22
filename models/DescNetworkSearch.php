@@ -19,7 +19,7 @@ class DescNetworkSearch extends DescNetwork
     {
         return [
             [['id'], 'integer'],
-            [['network_id', 'opc_nat0', 'opc_nat1', 'desc_network', 'inat0', 'second_opc', 'third_opc', 'fourth_opc', 'fifth_opc', 'sixth_opc'], 'safe'],
+            [['network_element_id', 'opc_nat0', 'opc_nat1', 'desc_network', 'inat0', 'second_opc', 'third_opc', 'fourth_opc', 'fifth_opc', 'sixth_opc'], 'safe'],
         ];
     }
 
@@ -59,7 +59,7 @@ class DescNetworkSearch extends DescNetwork
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'network_id', $this->network_id])
+        $query->andFilterWhere(['like', 'network_element_id', $this->network_element_id])
             ->andFilterWhere(['like', 'opc_nat0', $this->opc_nat0])
             ->andFilterWhere(['like', 'opc_nat1', $this->opc_nat1])
             ->andFilterWhere(['like', 'desc_network', $this->desc_network])
@@ -75,7 +75,7 @@ class DescNetworkSearch extends DescNetwork
 
      public function searchId($params, $id)
     {
-        $query = DescNetwork::find()->onCondition(['network_id' => $id]);
+        $query = DescNetwork::find()->onCondition(['network_element_id' => $id]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -93,7 +93,7 @@ class DescNetworkSearch extends DescNetwork
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'network_id', $this->network_id])
+        $query->andFilterWhere(['like', 'network_element_id', $this->network_element_id])
             ->andFilterWhere(['like', 'opc_nat0', $this->opc_nat0])
             ->andFilterWhere(['like', 'opc_nat1', $this->opc_nat1])
             ->andFilterWhere(['like', 'desc_network', $this->desc_network])
