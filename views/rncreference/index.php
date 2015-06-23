@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use kartik\export\ExportMenu;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\RncReferenceSearch */
@@ -15,9 +16,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <p align = right>
-        <?= Html::a('Create New', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+    <div class="panel panel-green" align = right>
+    <h4>
+        <?php
+            echo 'Download Table: '.ExportMenu::widget([
+                'dataProvider' => $dataProvider,
+            ]).' '.Html::a('Create New', ['create'], ['class' => 'btn btn-success']) ;
+        ?>
+    </h4>
+    </div>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

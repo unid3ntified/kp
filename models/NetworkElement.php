@@ -42,14 +42,15 @@ class NetworkElement extends \yii\db\ActiveRecord
         return [
             [['network_element_id', 'location', 'provinsi', 'vendor', 'status'], 'required'],
             [['location', 'remark'], 'string'],
-            [['log_date'], 'date', 'format' => 'yyyy-M-d'],
-            [['network_element_id', 'gt_address', 'vendor', 'gtt', 'status'], 'string', 'max' => 20],
+            [['log_date'], 'safe'],
+            [['gt_address', 'vendor', 'gtt', 'status'], 'string', 'max' => 20],
+            [['network_element_id'], 'string', 'max' => 100],
             [['provinsi'], 'string', 'max' => 40],
             //[['inat0'], 'string', 'max' => 10],
             [['gt_address'], 'unique', 'targetClass' => 'app\models\NetworkElement'],
             [['gtt'], 'unique', 'targetClass' => 'app\models\NetworkElement'],
             [['network_element_id'], 'unique', 'targetClass' => 'app\models\NetworkElement'],
-            [['gt_address', 'gtt'], 'match', 'pattern' => '/^[\*0-9]{10,15}$/', 'message' => 'Must contain 10 to 15 numeric characters.'],
+            [['gt_address', 'gtt'], 'match', 'pattern' => '/^[\*0-9]{10,13}$/', 'message' => 'Must contain 10 to 13 numeric characters.'],
         ];
     }
 

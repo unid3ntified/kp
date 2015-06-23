@@ -35,9 +35,10 @@ class BcuId extends \yii\db\ActiveRecord
     {
         return [
             [['bcu_id', 'mgw_name', 'region', 'status'], 'required'],
-            [['log_date'], 'date', 'format' => 'yyyy-M-d'],
+            [['log_date'], 'safe'],
             [['remark'], 'string'],
-            [['mgw_name', 'old_mss_connected', 'new_mss_connected'], 'string', 'max' => 20],
+            [['old_mss_connected', 'new_mss_connected'], 'string', 'max' => 20],
+            [['mgw_name'], 'string', 'max' => 100],
             [['region'], 'string', 'max' => 80],
             [['status'], 'string', 'max' => 30],
             [['bcu_id'], 'match', 'pattern' => '/^[\*0-9]{3,5}$/', 'message' => 'Must contain 3 to 5 numeric characters.'],
