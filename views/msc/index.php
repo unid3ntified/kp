@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'spc_msc',
             // 'cap_value',
             // 'nb_lai',
-            'msc_index',
+            //'msc_index',
             // 'msc_IP_sigtran1',
             // 'msc_IP_sigtran2',
             // 'mgw_proxyA_flex',

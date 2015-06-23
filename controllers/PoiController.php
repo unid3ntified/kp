@@ -5,9 +5,12 @@ namespace app\controllers;
 use Yii;
 use app\models\Poi;
 use app\models\PoiSearch;
+use app\models\Networkelement;
+use app\models\NetworkElementSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
 
 /**
  * PoiController implements the CRUD actions for Poi model.
@@ -61,12 +64,15 @@ class PoiController extends Controller
     public function actionCreate()
     {
         $model = new Poi();
+        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $this->fillModel($model);
             return $this->redirect(['view', 'id' => $model->poi]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'listData' => $listData,
             ]);
         }
     }
@@ -80,12 +86,15 @@ class PoiController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $this->fillModel($model);
             return $this->redirect(['view', 'id' => $model->poi]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+                'listData' => $listData,
             ]);
         }
     }
@@ -117,5 +126,11 @@ class PoiController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+     public function fillModel($model)
+    {
+        $model->log_date = date('Y-m-d');
+        $model->save();
     }
 }

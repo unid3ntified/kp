@@ -37,7 +37,7 @@ AppAsset::register($this);
                 'items' => [
                     //['label' => 'Home', 'url' => ['/site/index']],
                     //['label' => 'Contact', 'url' => ['/site/contact']],
-                    //['label' => 'Download', 'url' => ['/site/download']],
+                    ['label' => 'Download', 'url' => ['/site/download']],
                     ['label' => 'Network Element', 'url' => ['/networkelement/index']],
                     ['label' => 'MSC', 'url' => ['/msc/index']],
                     ['label' => 'MGW', 'url' => ['/bcuid/index']],

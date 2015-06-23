@@ -151,6 +151,15 @@ class MscController extends Controller
         }
         if ($model->cnid == '')
                 $model->cnid = NULL;
+        if($model->mgw_proxyA_flex == 0)
+            $model->mgw_proxyA_flex = 'No';
+        else
+            $model->mgw_proxyA_flex = 'Yes';
+
+        if($model->mgw_managerA_circuit == 0)
+            $model->mgw_managerA_circuit = 'No';
+        else
+            $model->mgw_managerA_circuit = 'Yes';
         $model->log_date = date('Y-m-d');
         $model->save();
     }
@@ -172,6 +181,15 @@ class MscController extends Controller
                 $model->status = "3";
                 break;
         }
+        if($model->mgw_proxyA_flex == 'No')
+            $model->mgw_proxyA_flex = 0;
+        else
+            $model->mgw_proxyA_flex = 1;
+
+        if($model->mgw_managerA_circuit == 'No')
+            $model->mgw_managerA_circuit = 0;
+        else
+            $model->mgw_managerA_circuit = 1;
     }
 
 

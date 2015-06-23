@@ -7,11 +7,11 @@ body {
     min-height: 100%;
     height: auto;
     margin: 0 auto -60px;
-    padding: 0 0 60px;
+    padding: 0 0 20px;
 }
 
 .wrap > .container {
-    padding: 70px 15px 20px;
+    padding: 20px 15px 10px;
 }
 
 .footer {
@@ -74,6 +74,7 @@ a.desc:after {
 
 .grid-view th {
     white-space: nowrap;
+	width: 35px;
 }
 
 .hint-block {

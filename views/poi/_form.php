@@ -12,17 +12,20 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+    <p>
+    <h4>* Jika MSC Name tidak ada dalam drop down list, silahkan buat network element baru di <?= Html::a('sini', ['/networkelement/index']) ?></h4>
+    </p>
+    <p>
+
     <?= $form->field($model, 'poi')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'msc_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'msc_name')->dropDownList($listData, ['prompt'=>'Choose MSC']) ?>
 
     <?= $form->field($model, 'address')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'MSRN')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'dummy_number')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'log_date')->textInput() ?>
 
     <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 
