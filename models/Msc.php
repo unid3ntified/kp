@@ -9,7 +9,6 @@ use Yii;
  *
  * @property string $msc_name
  * @property string $cnid
- * @property string $dummy_number
  * @property string $pool
  * @property string $non_broadcast_lai
  * @property string $null_nri
@@ -51,12 +50,12 @@ class Msc extends \yii\db\ActiveRecord
             [['pool', 'remark'], 'string'],
             [['cap_value', 'msc_index'], 'integer'],
             [['mgw_proxyA_flex', 'mgw_managerA_circuit'], 'safe'],
-            [['msc_name', 'nb_lai', 'null_nri', 'nri_msc', 'spc_msc', 'nb_lai', 'cnid'], 'string', 'max' => 20],
-            [['msc_IP_sigtran1', 'msc_IP_sigtran2'], 'string', 'max' => 60],
+            [['nb_lai', 'null_nri', 'nri_msc', 'spc_msc', 'nb_lai', 'cnid'], 'string', 'max' => 20],
+            [['msc_IP_sigtran1', 'msc_IP_sigtran2', 'msc_name'], 'string', 'max' => 60],
             [['cnid', 'spc_msc', ], 'match', 'pattern' => '/^[\*0-9]{3,6}$/', 'message' => 'Must contain 3 to 6 numeric characters.'],
             [['nb_lai', 'null_nri', 'nri_msc'], 'match', 'pattern' => '/^[\*0-9]$/', 'message' => 'Must contain numeric characters.'],
             [['status'], 'string', 'max' => 30],
-            [['log_date'], 'date', 'format' => 'yyyy-M-d'],
+            [['log_date'], 'safe'],
             [['cnid'], 'unique', 'targetClass' => 'app\models\Msc'],
             [['msc_name'], 'unique', 'targetClass' => 'app\models\Msc'],
             [['spc_msc'], 'unique', 'targetClass' => 'app\models\Msc'],

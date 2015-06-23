@@ -28,6 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'fourth_opc',
             'fifth_opc',
             'sixth_opc',
+            'log_date',
+            'remark',
         ],
     ]) ?>
 

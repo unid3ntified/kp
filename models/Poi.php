@@ -37,7 +37,7 @@ class Poi extends \yii\db\ActiveRecord
             [['address', 'remark'], 'string'],
             [['log_date'], 'safe'],
             [['poi'], 'string', 'max' => 50],
-            [['msc_name', 'dummy_number'], 'string', 'max' => 20],
+            [['msc_name', 'dummy_number'], 'string', 'max' => 100],
             [['MSRN'], 'string', 'max' => 30],
             [['poi'], 'unique', 'targetClass' => 'app\models\Poi'],
             [['msc_name'], 'unique', 'targetClass' => 'app\models\Poi'],

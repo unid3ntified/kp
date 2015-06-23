@@ -109,7 +109,23 @@ class DescnetworkController extends Controller
         $model2 = NetworkElement::findOne($model->network_element_id);
 
         if ($model->load(Yii::$app->request->post())) {
-            $valid = $this->fillModel($model);
+            $temp = new DescNetwork();
+            $temp->id = $model->id;
+            $temp->network_element_id = $model->network_element_id;
+            $temp->desc_network = $model->desc_network;
+            $temp->opc_nat0 = $model->opc_nat0;
+            $temp->opc_nat1 = $model->opc_nat1;
+            $temp->inat0 = $model->inat0;
+            $temp->second_opc = $model->second_opc;
+            $temp->third_opc = $model->third_opc;
+            $temp->fourth_opc = $model->fourth_opc;
+            $temp->fifth_opc = $model->fifth_opc;
+            $temp->sixth_opc = $model->sixth_opc;
+            $temp->remark = $model->remark;
+            $model->delete();
+
+            $valid = $this->fillModel($temp);
+
             if ($valid == 0)
             {
                 $model2->log_date = date('Y-m-d');
@@ -170,16 +186,16 @@ class DescnetworkController extends Controller
 
     public function loadOpc()
     {
-        $opc_nat0 = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'opc_nat0');        
-        $opc_nat1 = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'opc_nat1');
-        $inat0 = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'inat0');
-        $second_opc = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'second_opc');
-        $third_opc = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'third_opc');
-        $fourth_opc = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'fourth_opc');
-        $fifth_opc = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'fifth_opc');
-        $sixth_opc = ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'sixth_opc');
+        $opc_nat0 = array_filter(ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'opc_nat0'));        
+        $opc_nat1 = array_filter(ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'opc_nat1'));
+        $inat0 = array_filter(ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'inat0'));
+        $second_opc = array_filter(ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'second_opc'));
+        $third_opc = array_filter(ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'third_opc'));
+        $fourth_opc = array_filter(ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'fourth_opc'));
+        $fifth_opc = array_filter(ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'fifth_opc'));
+        $sixth_opc = array_filter(ArrayHelper::getColumn(DescNetwork::find()->asArray()->all(), 'sixth_opc'));
 
-        $array = array_filter(array_merge($opc_nat0, $opc_nat1, $inat0, $second_opc, $third_opc, $fourth_opc, $fifth_opc, $sixth_opc));
+        $array = array_merge($opc_nat0, $opc_nat1, $inat0, $second_opc, $third_opc, $fourth_opc, $fifth_opc, $sixth_opc);
         return $array;
     }
 
@@ -202,6 +218,8 @@ class DescnetworkController extends Controller
         if ($model->sixth_opc == '')
             $model->sixth_opc = NULL;
 
+        $model->log_date = date('Y-m-d');
+        
         return $this->compareOpc($model);
     }
 
