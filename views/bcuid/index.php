@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'bcu_id',
             'mgw_name',
-            'region',
+            //'region',
             'old_mss_connected',
             'new_mss_connected',
             // 'status',

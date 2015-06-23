@@ -38,7 +38,10 @@ class Poi extends \yii\db\ActiveRecord
             [['log_date'], 'safe'],
             [['poi'], 'string', 'max' => 50],
             [['msc_name', 'dummy_number'], 'string', 'max' => 20],
-            [['MSRN'], 'string', 'max' => 30]
+            [['MSRN'], 'string', 'max' => 30],
+            [['poi'], 'unique', 'targetClass' => 'app\models\Poi'],
+            [['msc_name'], 'unique', 'targetClass' => 'app\models\Poi'],
+            [['dummy_number'], 'match', 'pattern' => '/^[\*0-9]{10,13}$/', 'message' => 'Must contain 10 to 13 numeric characters.'],
         ];
     }
 
@@ -49,7 +52,7 @@ class Poi extends \yii\db\ActiveRecord
     {
         return [
             'poi' => 'Poi',
-            'msc_name' => 'Msc Name',
+            'msc_name' => 'MSC Name',
             'address' => 'Address',
             'MSRN' => 'Msrn',
             'dummy_number' => 'Dummy Number',

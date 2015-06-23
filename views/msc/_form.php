@@ -41,9 +41,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'msc_IP_sigtran2')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'mgw_proxyA_flex')->textInput() ?>
+    <?= $form->field($model, 'mgw_proxyA_flex')->checkbox(['MGW Proxy A Flex']) ?>
 
-    <?= $form->field($model, 'mgw_managerA_circuit')->textInput() ?>
+    <?= $form->field($model, 'mgw_managerA_circuit')->checkbox(['MGW Manager A Circuit']) ?>
 
     <?= $form->field($model, 'status')->dropDownList(['Dismantle', 'In service', 'Plan', 'Trial'], ['prompt' => 'Choose Status']) ?>
 

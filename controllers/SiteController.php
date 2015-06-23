@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use yii\data\SqlDataProvider;
 
 class SiteController extends Controller
 {
@@ -91,6 +92,70 @@ class SiteController extends Controller
 
     public function actionDownload()
     {
-        return $this->render('download');
+        /* gather network element data */
+        $count = Yii::$app->db->createCommand('SELECT COUNT(*) FROM network_element')->queryScalar();
+        $NEdataProvider = new SqlDataProvider([
+            'sql' => 'SELECT *  FROM network_element',
+            'totalCount' => $count,
+            'pagination' => ['pageSize' => $count,],
+        ]);
+
+        /* gather opc data */
+        $count = Yii::$app->db->createCommand('SELECT COUNT(*) FROM desc_network')->queryScalar();
+        $OPCdataProvider = new SqlDataProvider([
+            'sql' => 'SELECT *  FROM desc_network',
+            'totalCount' => $count,
+            'pagination' => ['pageSize' => $count,],
+        ]);
+
+        /* gather msc data */
+        $count = Yii::$app->db->createCommand('SELECT COUNT(*) FROM msc')->queryScalar();
+        $MSCdataProvider = new SqlDataProvider([
+            'sql' => 'SELECT *  FROM msc',
+            'totalCount' => $count,
+            'pagination' => ['pageSize' => $count,],
+        ]);
+
+        /* gather mgw data */
+        $count = Yii::$app->db->createCommand('SELECT COUNT(*) FROM mgw')->queryScalar();
+        $MGWdataProvider = new SqlDataProvider([
+            'sql' => 'SELECT *  FROM mgw',
+            'totalCount' => $count,
+            'pagination' => ['pageSize' => $count,],
+        ]);
+
+        /* gather rnc data */
+        $count = Yii::$app->db->createCommand('SELECT COUNT(*) FROM rnc_reference')->queryScalar();
+        $RNCdataProvider = new SqlDataProvider([
+            'sql' => 'SELECT *  FROM rnc_reference',
+            'totalCount' => $count,
+            'pagination' => ['pageSize' => $count,],
+        ]);
+
+         /* gather trunk voip data */
+        $count = Yii::$app->db->createCommand('SELECT COUNT(*) FROM trunk_voip')->queryScalar();
+        $TVdataProvider = new SqlDataProvider([
+            'sql' => 'SELECT *  FROM trunk_voip',
+            'totalCount' => $count,
+            'pagination' => ['pageSize' => $count,],
+        ]);
+
+         /* gather trunk interkoneksi data */
+        $count = Yii::$app->db->createCommand('SELECT COUNT(*) FROM trunk_interkoneksi')->queryScalar();
+        $TIdataProvider = new SqlDataProvider([
+            'sql' => 'SELECT *  FROM trunk_interkoneksi',
+            'totalCount' => $count,
+            'pagination' => ['pageSize' => $count,],
+        ]);
+
+        return $this->render('download', [
+            'NEdataProvider' => $NEdataProvider,
+            'OPCdataProvider' => $OPCdataProvider,
+            'MSCdataProvider' => $MSCdataProvider,
+            'MGWdataProvider' => $MGWdataProvider,
+            'RNCdataProvider' => $RNCdataProvider,
+            'TIdataProvider' => $TIdataProvider,
+            'TVdataProvider' => $TVdataProvider,
+        ]);
     }
 }

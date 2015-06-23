@@ -23,21 +23,21 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-
+            //'header' => '<div style="width:150pk;"></div>',
             ['class' => 'yii\grid\SerialColumn'],
-
             'network_element_id',
+            //['value' => , 'contentOptions'=>['style'=>'max-width: 100px;']],
             'gt_address',
             'location:ntext',
             //'provinsi',
-            'vendor',
+            //'vendor',
             'gtt',
-            //'inat0',
             // 'status',
             // 'log_date',
             // 'remark:ntext',
 
             ['class' => 'yii\grid\ActionColumn'],
+
         ],
     ]); ?>
 

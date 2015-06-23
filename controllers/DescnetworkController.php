@@ -106,11 +106,14 @@ class DescnetworkController extends Controller
     {
         $model = $this->findModel($id);
         $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
+        $model2 = NetworkElement::findOne($model->network_element_id);
 
         if ($model->load(Yii::$app->request->post())) {
             $valid = $this->fillModel($model);
             if ($valid == 0)
             {
+                $model2->log_date = date('Y-m-d');
+                $model2->save();
                 $model->save();
                 return $this->redirect(['view', 'id' => $model->id]);
             }
