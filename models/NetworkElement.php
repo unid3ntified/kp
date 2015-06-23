@@ -50,7 +50,7 @@ class NetworkElement extends \yii\db\ActiveRecord
             [['gt_address'], 'unique', 'targetClass' => 'app\models\NetworkElement'],
             [['gtt'], 'unique', 'targetClass' => 'app\models\NetworkElement'],
             [['network_element_id'], 'unique', 'targetClass' => 'app\models\NetworkElement'],
-            [['gt_address', 'gtt'], 'match', 'pattern' => '/^[\*0-9]{10,15}$/', 'message' => 'Must contain 10 to 15 numeric characters.'],
+            [['gt_address', 'gtt'], 'match', 'pattern' => '/^[\*0-9]{10,13}$/', 'message' => 'Must contain 10 to 13 numeric characters.'],
         ];
     }
 
