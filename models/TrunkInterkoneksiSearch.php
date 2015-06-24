@@ -73,4 +73,39 @@ class TrunkInterkoneksiSearch extends TrunkInterkoneksi
 
         return $dataProvider;
     }
+
+     public function search($params, $id)
+    {
+        $query = TrunkInterkoneksi::find()->onCondition(['poi' => $id]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'e1_capacity' => $this->e1_capacity,
+            'log_date' => $this->log_date,
+        ]);
+
+        $query->andFilterWhere(['like', 'trunk_id', $this->trunk_id])
+            ->andFilterWhere(['like', 'direction', $this->direction])
+            ->andFilterWhere(['like', 'vendor', $this->vendor])
+            ->andFilterWhere(['like', 'opc', $this->opc])
+            ->andFilterWhere(['like', 'dpc', $this->dpc])
+            ->andFilterWhere(['like', 'POI', $this->POI])
+            ->andFilterWhere(['like', 'connection', $this->connection])
+            ->andFilterWhere(['like', 't_group', $this->t_group])
+            ->andFilterWhere(['like', 'status', $this->status])
+            ->andFilterWhere(['like', 'remark', $this->remark]);
+
+        return $dataProvider;
+    }
 }

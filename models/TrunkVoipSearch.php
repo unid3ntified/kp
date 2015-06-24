@@ -75,4 +75,41 @@ class TrunkVoipSearch extends TrunkVoip
 
         return $dataProvider;
     }
+
+    public function searchId($params, $id)
+    {
+        $query = TrunkVoip::find()->onCondition(['mss' => $id])->orOnCondition(['mgw' => $id]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'e1' => $this->e1,
+            'log_date' => $this->log_date,
+        ]);
+
+        $query->andFilterWhere(['like', 'trunk_id', $this->trunk_id])
+            ->andFilterWhere(['like', 'mss', $this->mss])
+            ->andFilterWhere(['like', 'mgw', $this->mgw])
+            ->andFilterWhere(['like', 'detail', $this->detail])
+            ->andFilterWhere(['like', 'direction', $this->direction])
+            ->andFilterWhere(['like', 'konfigurasi', $this->konfigurasi])
+            ->andFilterWhere(['like', 'partner', $this->partner])
+            ->andFilterWhere(['like', 'opc_mss', $this->opc_mss])
+            ->andFilterWhere(['like', 'dpc', $this->dpc])
+            ->andFilterWhere(['like', 'voip_gateway', $this->voip_gateway])
+            ->andFilterWhere(['like', 'status', $this->status])
+            ->andFilterWhere(['like', 'remark', $this->remark]);
+
+        return $dataProvider;
+    }
 }

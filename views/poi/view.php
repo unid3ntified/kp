@@ -37,4 +37,27 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
+
+    <h3><?= Html::encode('Trunk Interkoneksi List') ?></h3>
+   
+    <?= GridView::widget([
+        'dataProvider' => $TIDataProvider,
+        //'filterModel' => $OpcSearchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'trunk_id',
+            'direction',
+            'vendor',
+            'opc',
+            'dpc',
+            'e1_capacity',
+            'POI',
+            'connection:ntext',
+            't_group',
+        ],
+    ]); ?> 
+    <p align=right>
+        <?= Html::a('Create Trunk', ['/trunkinterkoneksi/create'], ['class' => 'btn btn-primary']) ?>
+    </p>
 </div>

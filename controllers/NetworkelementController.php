@@ -11,6 +11,10 @@ use app\models\BcuId;
 use app\models\BcuIdSearch;
 use app\models\Msc;
 use app\models\MscSearch;
+use app\models\TrunkVoip;
+use app\models\TrunkVoipSearch;
+use app\models\TrunkInterkoneksi;
+use app\models\TrunkInterkoneksiSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -60,6 +64,9 @@ class NetworkelementController extends Controller
         $MscDataProvider = $MscSearchModel->searchId(Yii::$app->request->queryParams, $id);
         $BcuidSearchModel = new BcuIdSearch();
         $BcuidDataProvider = $BcuidSearchModel->searchId(Yii::$app->request->queryParams, $id);
+        $TVSearchModel = new TrunkVoipSearch();
+        $TVDataProvider = $TVSearchModel->searchId(Yii::$app->request->queryParams, $id);
+
         $dataprovider = null;
         $flag = null;
         $mscmodel = null;
@@ -74,7 +81,6 @@ class NetworkelementController extends Controller
             $dataprovider = $MscDataProvider;
             $flag = 'MSC Spec';
             $mscmodel = Msc::findOne($id);
-
         }
 
         return $this->render('view', [
@@ -84,6 +90,7 @@ class NetworkelementController extends Controller
             'dataProvider' => $dataprovider,
             'flag' => $flag,
             'mscmodel' => $mscmodel,
+            'TVDataProvider' => $TVDataProvider,
         ]);
     }
 

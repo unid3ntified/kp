@@ -65,7 +65,6 @@ class MscController extends Controller
     {
         $model = new Msc();
         $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
-        $temp = new Msc();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->fillModel($model);
@@ -75,7 +74,6 @@ class MscController extends Controller
             return $this->render('create', [
                 'model' => $model,
                 'listData' => $listData,
-                'temp' => $temp,
             ]);
         }
     }
@@ -101,7 +99,6 @@ class MscController extends Controller
                 'model' => $model,
                 //'model2' => $model2,
                 'listData' => $listData,
-                'temp' => $temp,
             ]);
         }
     }

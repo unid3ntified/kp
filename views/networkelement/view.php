@@ -90,7 +90,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'msc_IP_sigtran2',
                     'mgw_proxyA_flex',
                     'mgw_managerA_circuit',
-
                 ],
             ]);
 
@@ -100,6 +99,7 @@ $this->params['breadcrumbs'][] = $this->title;
         } 
         else if ($flag == 'BCU ID List')
         {
+
             echo GridView::widget([
                 'dataProvider' => $dataProvider,
                 //'filterModel' => $OpcSearchModel,
@@ -116,6 +116,29 @@ $this->params['breadcrumbs'][] = $this->title;
 
             echo "<p align=right>";
             echo Html::a('Assign BCU', ['/bcuid/create'], ['class' => 'btn btn-primary']);
+            echo "</p>";
+        }
+        if ($flag == 'MSC Spec' || $flag == 'BCU ID List')
+        {
+            echo "<h3>Trunk VOIP List</h3>";
+            echo GridView::widget([
+                'dataProvider' => $TVdataProvider,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    'trunk_id',
+                    'detail:ntext',
+                    'direction',
+                    'konfigurasi:ntext',
+                    'partner',
+                    'e1',
+                    'opc_mss',
+                    'dpc',
+                    'voip_gateway',
+                ],
+            ]);
+
+            echo "<p align=right>";
+            echo Html::a('Assign Trunk VOIP', ['/trunkvoip/create'], ['class' => 'btn btn-primary']);
             echo "</p>";
         }
     ?><br>

@@ -7,6 +7,8 @@ use app\models\Poi;
 use app\models\PoiSearch;
 use app\models\Networkelement;
 use app\models\NetworkElementSearch;
+use app\models\TrunkInterkoneksi;
+use app\models\TrunkInterkoneksiSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -51,8 +53,11 @@ class PoiController extends Controller
      */
     public function actionView($id)
     {
+        $TISearchModel = new TrunkInterkoneksiSearch();
+        $TIDataProvider = $TISearchModel->searchId(Yii::$app->request->queryParams, $id);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'TIDataProvider' = $TIDataProvider,
         ]);
     }
 
