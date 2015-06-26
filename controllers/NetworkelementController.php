@@ -108,7 +108,6 @@ class NetworkelementController extends Controller
 
         return $this->render('view', [
             'model' => $this->findModel($id),
-            //'OpcSearchModel' => $OpcSearchModel,
             'OpcDataProvider' => $OpcDataProvider,
             'dataProvider' => $dataprovider,
             'flag' => $flag,
