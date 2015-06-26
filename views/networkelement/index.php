@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\NetworkElement;
 use kartik\export\ExportMenu;
 use kartik\select2\Select2;
 
@@ -30,9 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        //'filterModel' => Html::activeTextInput($searchModel, 'params', ['placeholder' => 'Search']),
+        //'filterRowOptions' => ['class' => 'filters', 'placeholder' => 'Search', 'value' => 'Search'],
         'filterModel' => $searchModel,
-
-
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             

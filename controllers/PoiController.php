@@ -52,6 +52,7 @@ class PoiController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'data';
         $searchModel = new PoiSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -68,6 +69,7 @@ class PoiController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = 'data';
         $TISearchModel = new TrunkInterkoneksiSearch();
         $TIDataProvider = $TISearchModel->searchId(Yii::$app->request->queryParams, $id);
         return $this->render('view', [
@@ -83,6 +85,7 @@ class PoiController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout = 'data';
         $model = new Poi();
         $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 
@@ -105,6 +108,7 @@ class PoiController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = 'data';
         $model = $this->findModel($id);
         $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 

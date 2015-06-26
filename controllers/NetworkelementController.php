@@ -21,7 +21,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use yii\helpers\ArrayHelper;
+
 /**
  * NetworkelementController implements the CRUD actions for NetworkElement model.
  */
@@ -59,14 +59,13 @@ class NetworkelementController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'data';
         $searchModel = new NetworkElementSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $data = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'data' => $data,
         ]);
     }
 
@@ -77,6 +76,7 @@ class NetworkelementController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = 'data';
         $OpcSearchModel = new DescNetworkSearch();
         $OpcDataProvider = $OpcSearchModel->searchId(Yii::$app->request->queryParams, $id);
         $MscSearchModel = new MscSearch();
@@ -126,6 +126,7 @@ class NetworkelementController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout = 'data';
         $model = new NetworkElement();
         //$model2 = new DescNetwork();
 
@@ -150,6 +151,7 @@ class NetworkelementController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = 'data';
         $model = $this->findModel($id);
         $this->convertDropDown($model);
         //$model2 = new DescNetwork();

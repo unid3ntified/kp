@@ -50,6 +50,7 @@ class DescnetworkController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'data';
         $searchModel = new DescNetworkSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -66,6 +67,7 @@ class DescnetworkController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = 'data';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -78,6 +80,7 @@ class DescnetworkController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout = 'data';
         $model = new DescNetwork();
         $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
        
@@ -119,6 +122,7 @@ class DescnetworkController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = 'data';
         $model = $this->findModel($id);
         $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
         $model2 = NetworkElement::findOne($model->network_element_id);
