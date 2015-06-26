@@ -18,6 +18,7 @@ use app\models\TrunkInterkoneksiSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * NetworkelementController implements the CRUD actions for NetworkElement model.
@@ -27,6 +28,20 @@ class NetworkelementController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['create', 'update', 'index', 'view', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['view','index'],
+                        'allow' => true,
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -42,6 +57,7 @@ class NetworkelementController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'data';
         $searchModel = new NetworkElementSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -58,6 +74,7 @@ class NetworkelementController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = 'data';
         $OpcSearchModel = new DescNetworkSearch();
         $OpcDataProvider = $OpcSearchModel->searchId(Yii::$app->request->queryParams, $id);
         $MscSearchModel = new MscSearch();
@@ -101,6 +118,7 @@ class NetworkelementController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout = 'data';
         $model = new NetworkElement();
         //$model2 = new DescNetwork();
 
@@ -125,6 +143,7 @@ class NetworkelementController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = 'data';
         $model = $this->findModel($id);
         $this->convertDropDown($model);
         //$model2 = new DescNetwork();

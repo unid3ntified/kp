@@ -10,6 +10,11 @@ use yii\widgets\ActiveForm;
 
 <div class="trunk-interkoneksi-form">
 
+    <p>
+    <h4>* Jika POI tidak ada dalam drop down list, silahkan buat POI baru di <?= Html::a('sini', ['/poi/create']) ?></h4>
+    </p>
+    <br>
+
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'trunk_id')->textInput(['maxlength' => true]) ?>
@@ -24,7 +29,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'e1_capacity')->textInput() ?>
 
-    <?= $form->field($model, 'POI')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'POI')->dropDownList($listData, ['prompt' => 'Choose POI']) ?>
 
     <?= $form->field($model, 'connection')->textarea(['rows' => 6]) ?>
 

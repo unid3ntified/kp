@@ -13,6 +13,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
 
 /**
  * PoiController implements the CRUD actions for Poi model.
@@ -22,6 +23,20 @@ class PoiController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['create', 'update', 'index', 'view', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['view','index'],
+                        'allow' => true,
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -37,6 +52,7 @@ class PoiController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'data';
         $searchModel = new PoiSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -53,11 +69,12 @@ class PoiController extends Controller
      */
     public function actionView($id)
     {
+        $this->layout = 'data';
         $TISearchModel = new TrunkInterkoneksiSearch();
         $TIDataProvider = $TISearchModel->searchId(Yii::$app->request->queryParams, $id);
         return $this->render('view', [
             'model' => $this->findModel($id),
-            'TIDataProvider' = $TIDataProvider,
+            'TIDataProvider' => $TIDataProvider,
         ]);
     }
 
@@ -68,6 +85,7 @@ class PoiController extends Controller
      */
     public function actionCreate()
     {
+        $this->layout = 'data';
         $model = new Poi();
         $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 
@@ -90,6 +108,7 @@ class PoiController extends Controller
      */
     public function actionUpdate($id)
     {
+        $this->layout = 'data';
         $model = $this->findModel($id);
         $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 

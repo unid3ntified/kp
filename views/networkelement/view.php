@@ -122,7 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
         {
             echo "<h3>Trunk VOIP List</h3>";
             echo GridView::widget([
-                'dataProvider' => $TVdataProvider,
+                'dataProvider' => $TVDataProvider,
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     'trunk_id',
