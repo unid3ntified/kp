@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use app\models\NetworkElement;
 use kartik\export\ExportMenu;
+use kartik\select2\Select2;
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\NetworkElementSearch */
@@ -33,22 +35,45 @@ $this->params['breadcrumbs'][] = $this->title;
         //'filterRowOptions' => ['class' => 'filters', 'placeholder' => 'Search', 'value' => 'Search'],
         'filterModel' => $searchModel,
         'columns' => [
-            //'header' => '<div style="width:150pk;"></div>',
             ['class' => 'yii\grid\SerialColumn'],
-            'network_element_id',
-            //['value' => , 'contentOptions'=>['style'=>'max-width: 100px;']],
-            'gt_address',
-            'location:ntext',
-            //'provinsi',
-            //'vendor',
-            'gtt',
-            // 'status',
-            // 'log_date',
-            // 'remark:ntext',
+            
+            ['attribute'=>'network_element_id',
+                'value' => function ($model, $key, $index) { 
+                    return $model->network_element_id;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search NE here', ],
+
+            ],
+
+            ['attribute'=>'gt_address',
+                'value' => function ($model, $key, $index) { 
+                    return $model->gt_address;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search GT address here'],
+            ],
+
+            ['attribute'=>'location',
+                'value' => function ($model, $key, $index) { 
+                    return $model->location;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search location here'],
+            ],
+
+            ['attribute'=>'status',
+                'value' => function ($model, $key, $index) { 
+                    return $model->status;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search status here'],
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]); 
+    ?>
     
 </div>
 

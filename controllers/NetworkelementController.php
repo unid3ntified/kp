@@ -11,6 +11,8 @@ use app\models\BcuId;
 use app\models\BcuIdSearch;
 use app\models\Msc;
 use app\models\MscSearch;
+use app\models\RncReference;
+use app\models\RncReferenceSearch;
 use app\models\TrunkVoip;
 use app\models\TrunkVoipSearch;
 use app\models\TrunkInterkoneksi;
@@ -81,22 +83,26 @@ class NetworkelementController extends Controller
         $MscDataProvider = $MscSearchModel->searchId(Yii::$app->request->queryParams, $id);
         $BcuidSearchModel = new BcuIdSearch();
         $BcuidDataProvider = $BcuidSearchModel->searchId(Yii::$app->request->queryParams, $id);
+        $RncSearchModel = new RncReferenceSearch();
+        $RncDataProvider = $RncSearchModel->searchId(Yii::$app->request->queryParams, $id);
         $TVSearchModel = new TrunkVoipSearch();
         $TVDataProvider = $TVSearchModel->searchId(Yii::$app->request->queryParams, $id);
 
         $dataprovider = null;
         $flag = null;
         $mscmodel = null;
-  
+      
+
         if ($BcuidDataProvider->totalCount > 0)
         {
             $dataprovider = $BcuidDataProvider;
             $flag = 'BCU ID List';
         }
+
         else if ($MscDataProvider->totalCount > 0)
         {
             $dataprovider = $MscDataProvider;
-            $flag = 'MSC Spec';
+            $flag = 'MSC Specification';
             $mscmodel = Msc::findOne($id);
         }
 
@@ -108,7 +114,9 @@ class NetworkelementController extends Controller
             'flag' => $flag,
             'mscmodel' => $mscmodel,
             'TVDataProvider' => $TVDataProvider,
+            'RncDataProvider' => $RncDataProvider,
         ]);
+
     }
 
     /**

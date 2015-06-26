@@ -60,16 +60,21 @@ $this->params['breadcrumbs'][] = $this->title;
             'fourth_opc',
             'fifth_opc',
             'sixth_opc',
+
         ],
+
+
     ]); ?> 
+
+
     <p align=right>
-        <?= Html::a('Assign OPC', ['/descnetwork/create'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Assign OPC', ['/descnetwork/index'], ['class' => 'btn btn-primary']) ?>
     </p>
 
 
     <h3><?= Html::encode($flag) ?></h3>
     <?php 
-        if ($flag == 'MSC Spec')
+        if ($flag == 'MSC Specification')
         {
             echo DetailView::widget([
                 //'dataProvider' => $dataProvider,
@@ -94,9 +99,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ]);
 
             echo "<p align=right>";
-            echo Html::a('Assign BCU', ['/msc/create'], ['class' => 'btn btn-primary']);
+            echo Html::a('Assign BCU', ['/msc/index'], ['class' => 'btn btn-primary']);
             echo "</p>";
         } 
+
         else if ($flag == 'BCU ID List')
         {
 
@@ -111,13 +117,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'region',
                     'old_mss_connected',
                     'new_mss_connected',
+
                 ],
             ]);
 
             echo "<p align=right>";
-            echo Html::a('Assign BCU', ['/bcuid/create'], ['class' => 'btn btn-primary']);
+            echo Html::a('Assign BCU', ['/bcuid/index'], ['class' => 'btn btn-primary']);
             echo "</p>";
         }
+        
         if ($flag == 'MSC Spec' || $flag == 'BCU ID List')
         {
             echo "<h3>Trunk VOIP List</h3>";
@@ -138,9 +146,31 @@ $this->params['breadcrumbs'][] = $this->title;
             ]);
 
             echo "<p align=right>";
-            echo Html::a('Assign Trunk VOIP', ['/trunkvoip/create'], ['class' => 'btn btn-primary']);
+            echo Html::a('Assign Trunk VOIP', ['/trunkvoip/index'], ['class' => 'btn btn-primary']);
+            echo "</p>";
+
+            echo "<h3>RNC Reference</h3>"; 
+            echo GridView::widget([
+
+                'dataProvider' => $RncDataProvider,
+                //'filterModel' => $OpcSearchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+
+                    'rnc_id',
+                    //'mgw_name',
+                    'pool',
+                    'trunk_name',
+                    'rnc_location',
+                ],
+            ]);
+
+            echo "<p align=right>";
+            echo Html::a('Assign RNC', ['/rncreference/index'], ['class' => 'btn btn-primary']);
             echo "</p>";
         }
+
+        
     ?><br>
 
 </div>

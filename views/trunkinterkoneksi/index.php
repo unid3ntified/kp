@@ -8,7 +8,7 @@ use kartik\export\ExportMenu;
 /* @var $searchModel app\models\TrunkInterkoneksiSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Trunk Interkoneksi List';
+$this->title = 'Interconnection Trunk List';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="trunk-interkoneksi-index">

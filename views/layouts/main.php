@@ -37,14 +37,6 @@ AppAsset::register($this);
                     ['label' => 'Home', 'url' => ['/site/index']],               
                     ['label' => 'Download', 'url' => ['/site/download']],
                     ['label' => 'Data', 'url' => ['/site/data']],
-                    //['label' => 'Network Element', 'url' => ['/networkelement/index']],
-                    //['label' => 'MSC', 'url' => ['/msc/index']],
-                    //['label' => 'MGW', 'url' => ['/bcuid/index']],
-                    //['label' => '3G RNC Reference', 'url' => ['/rncreference/index']],                    
-                    //['label' => 'OPC', 'url' => ['/descnetwork/index']],
-                    //['label' => 'Trunk Interkoneksi', 'url' => ['/trunkinterkoneksi/index']],
-                    //['label' => 'Trunk VOIP', 'url' => ['/trunkvoip/index']],
-                    //['label' => 'POI', 'url' => ['/poi/index']],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Login', 'url' => ['/site/login']] :
                         ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
