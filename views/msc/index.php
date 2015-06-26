@@ -29,30 +29,46 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+            
+            ['attribute'=>'msc_name',
+                'value' => function ($model, $key, $index) { 
+                    return $model->msc_name;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search MSC name here', ],
 
-            'msc_name',
-            'cnid',
-            //'dummy_number',
-            'pool:ntext',
-            // 'non_broadcast_lai',
-            // 'null_nri',
-            // 'nri_msc',
-            'spc_msc',
-            // 'cap_value',
-            // 'nb_lai',
-            //'msc_index',
-            // 'msc_IP_sigtran1',
-            // 'msc_IP_sigtran2',
-            // 'mgw_proxyA_flex',
-            // 'mgw_managerA_circuit',
-            // 'status',
-            // 'log_date',
-            // 'remark:ntext',
+            ],
+
+            ['attribute'=>'cnid',
+                'value' => function ($model, $key, $index) { 
+                    return $model->cnid;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search CN id here'],
+            ],
+
+            ['attribute'=>'pool',
+                'value' => function ($model, $key, $index) { 
+                    return $model->pool;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search pool here'],
+            ],
+
+            ['attribute'=>'spc_msc',
+                'value' => function ($model, $key, $index) { 
+                    return $model->spc_msc;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search SPC MSC here'],
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
-
+    ]); 
+    ?>
 </div>

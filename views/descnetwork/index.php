@@ -26,25 +26,50 @@ $this->params['breadcrumbs'][] = $this->title;
     </h4>
     </div>
 
-    <?= GridView::widget([
+      <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+            
+            ['attribute'=>'network_element_id',
+                'value' => function ($model, $key, $index) { 
+                    return $model->network_element_id;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search NE id here', ],
 
-            //'id',
-            'network_element_id',
-            'opc_nat0',
-            'opc_nat1',
-            //'desc_network:ntext',
-            'second_opc',
-            'third_opc',
-            'fourth_opc',
-            // 'fifth_opc',
-            // 'sixth_opc',
+            ],
+
+            ['attribute'=>'opc_nat0',
+                'value' => function ($model, $key, $index) { 
+                    return $model->opc_nat0;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search OPC NAT0 here'],
+            ],
+
+            ['attribute'=>'opc_nat1',
+                'value' => function ($model, $key, $index) { 
+                    return $model->opc_nat1;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search OPC NAT1 here'],
+            ],
+
+            ['attribute'=>'second_opc',
+                'value' => function ($model, $key, $index) { 
+                    return $model->second_opc;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search second OPC here'],
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]); 
+    ?>
 
 </div>

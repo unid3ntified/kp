@@ -29,26 +29,48 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+            
+            ['attribute'=>'trunk_id',
+                'value' => function ($model, $key, $index) { 
+                    return $model->trunk_id;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search trunk id here', ],
 
-            'trunk_id',
-            'mgw',
-            'mss',
-            //'detail:ntext',
-            //'direction',
-            // 'konfigurasi:ntext',
-            // 'partner',
-            // 'e1',
-            'opc_mss',
-            'dpc',
-            // 'voip_gateway',
-            // 'status',
-            // 'log_date',
-            // 'remark:ntext',
+            ],
+
+            ['attribute'=>'mgw',
+                'value' => function ($model, $key, $index) { 
+                    return $model->mgw;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search MGW here'],
+            ],
+
+             ['attribute'=>'mss',
+                'value' => function ($model, $key, $index) { 
+                    return $model->mss;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search MSShere'],
+            ],
+
+            ['attribute'=>'opc_mss',
+                'value' => function ($model, $key, $index) { 
+                    return $model->opc_mss;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search OPC MSS here'],
+            ],
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]); 
+    ?>
 
 </div>

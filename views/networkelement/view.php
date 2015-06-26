@@ -126,7 +126,7 @@ $this->params['breadcrumbs'][] = $this->title;
             echo "</p>";
         }
         
-        if ($flag == 'MSC Spec' || $flag == 'BCU ID List')
+        if ($flag == 'MSC Specification' || $flag == 'BCU ID List')
         {
             echo "<h3>Trunk VOIP List</h3>";
             echo GridView::widget([
