@@ -26,23 +26,50 @@ $this->params['breadcrumbs'][] = $this->title;
     </h4>
     </div>
 
-    <?= GridView::widget([
+     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+            
+            ['attribute'=>'bcu_id',
+                'value' => function ($model, $key, $index) { 
+                    return $model->bcu_id;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search BCU id here', ],
 
-            'bcu_id',
-            'mgw_name',
-            //'region',
-            'old_mss_connected',
-            'new_mss_connected',
-            // 'status',
-            // 'log_date',
-            // 'remark:ntext',
+            ],
+
+            ['attribute'=>'mgw_name',
+                'value' => function ($model, $key, $index) { 
+                    return $model->mgw_name;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search MGW name here'],
+            ],
+
+            ['attribute'=>'old_mss_connected',
+                'value' => function ($model, $key, $index) { 
+                    return $model->old_mss_connected;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search old MSS here'],
+            ],
+
+            ['attribute'=>'new_mss_connected',
+                'value' => function ($model, $key, $index) { 
+                    return $model->new_mss_connected;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search new MSS here'],
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]); 
+    ?>
 
 </div>

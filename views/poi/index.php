@@ -26,22 +26,52 @@ $this->params['breadcrumbs'][] = $this->title;
     </h4>
     </div>
 
-    <?= GridView::widget([
+
+     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+            
+             ['attribute'=>'poi',
+                'value' => function ($model, $key, $index) { 
+                    return $model->poi;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search POI here', ],
 
-            'poi',
-            'msc_name',
-            'address:ntext',
-            'MSRN',
-            'dummy_number',
-            // 'log_date',
-            // 'remark:ntext',
+            ],
+
+            ['attribute'=>'msc_name',
+                'value' => function ($model, $key, $index) { 
+                    return $model->msc_name;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search MSC name here', ],
+
+            ],
+
+            ['attribute'=>'address',
+                'value' => function ($model, $key, $index) { 
+                    return $model->address;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search address here'],
+            ],
+
+            ['attribute'=>'dummy_number',
+                'value' => function ($model, $key, $index) { 
+                    return $model->dummy_number;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search dummy number here'],
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]); 
+    ?>
 
 </div>

@@ -26,27 +26,52 @@ $this->params['breadcrumbs'][] = $this->title;
     </h4>
     </div>
 
-    <?= GridView::widget([
+   
+      <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+            
+            ['attribute'=>'trunk_id',
+                'value' => function ($model, $key, $index) { 
+                    return $model->trunk_id;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search trunk id here', ],
 
-            'trunk_id',
-            //'direction',
-            //'vendor',
-            'opc',
-            'dpc',
-            // 'e1_capacity',
-            'POI',
-            // 'connection:ntext',
-            't_group',
-            // 'status',
-            // 'log_date',
-            // 'remark:ntext',
+            ],
+
+            ['attribute'=>'opc',
+                'value' => function ($model, $key, $index) { 
+                    return $model->opc;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search OPC here'],
+            ],
+
+             ['attribute'=>'dpc',
+                'value' => function ($model, $key, $index) { 
+                    return $model->dpc;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search DPC here'],
+            ],
+
+            ['attribute'=>'POI',
+                'value' => function ($model, $key, $index) { 
+                    return $model->POI;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search POI here'],
+            ],
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]); 
+    ?>
 
 </div>
