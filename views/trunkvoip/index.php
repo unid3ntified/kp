@@ -8,7 +8,7 @@ use kartik\export\ExportMenu;
 /* @var $searchModel app\models\TrunkVoipSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Trunk VOIP List';
+$this->title = 'VOIP Trunk List';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="trunk-voip-index">

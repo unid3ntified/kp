@@ -74,7 +74,7 @@ class TrunkInterkoneksiSearch extends TrunkInterkoneksi
         return $dataProvider;
     }
 
-     public function search($params, $id)
+     public function searchID($params, $id)
     {
         $query = TrunkInterkoneksi::find()->onCondition(['poi' => $id]);
 

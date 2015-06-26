@@ -5,9 +5,13 @@ namespace app\controllers;
 use Yii;
 use app\models\TrunkInterkoneksi;
 use app\models\TrunkInterkoneksiSearch;
+use app\models\Poi;
+use app\models\PoiSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl;
 
 /**
  * TrunkinterkoneksiController implements the CRUD actions for TrunkInterkoneksi model.
@@ -17,6 +21,20 @@ class TrunkinterkoneksiController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['create', 'update', 'index', 'view', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['view','index'],
+                        'allow' => true,
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -62,6 +80,7 @@ class TrunkinterkoneksiController extends Controller
     {
         $model = new TrunkInterkoneksi();
         $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
+        $listData = ArrayHelper::map(Poi::find()->asArray()->all(), 'poi', 'poi');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->fillmodel($model);
@@ -70,6 +89,7 @@ class TrunkinterkoneksiController extends Controller
             return $this->render('create', [
                 'model' => $model,
                 'option' => $option,
+                'listData' => $listData,
             ]);
         }
     }
@@ -85,6 +105,7 @@ class TrunkinterkoneksiController extends Controller
         $model = $this->findModel($id);
         $this->convertDropDown($model);
         $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
+        $listData = ArrayHelper::map(Poi::find()->asArray()->all(), 'poi', 'poi');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->fillmodel($model);
@@ -93,6 +114,7 @@ class TrunkinterkoneksiController extends Controller
             return $this->render('update', [
                 'model' => $model,
                 'option' => $option,
+                'listData' => $listData,
             ]);
         }
     }

@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 <div class="msc-form">
 
     <p>
-    <h4>* Jika MSC Name tidak ada dalam drop down list, silahkan buat network element baru di <?= Html::a('sini', ['/networkelement/index']) ?></h4>
+    <h4>* Jika MSC Name tidak ada dalam drop down list, silahkan buat network element baru di <?= Html::a('sini', ['/networkelement/create']) ?></h4>
     </p>
     <br>
 

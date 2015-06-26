@@ -2,12 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Poi */
 
 $this->title = $model->poi;
-$this->params['breadcrumbs'][] = ['label' => 'Poi List', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'POI List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="poi-view">
@@ -38,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <h3><?= Html::encode('Trunk Interkoneksi List') ?></h3>
+    <h3><?= Html::encode('Interconnection Trunk List') ?></h3>
    
     <?= GridView::widget([
         'dataProvider' => $TIDataProvider,

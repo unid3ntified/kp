@@ -8,7 +8,7 @@ use kartik\export\ExportMenu;
 /* @var $searchModel app\models\RncReferenceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Rnc References';
+$this->title = 'RNC References';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="rnc-reference-index">
@@ -26,26 +26,51 @@ $this->params['breadcrumbs'][] = $this->title;
     </h4>
     </div>
 
-    <?= GridView::widget([
+     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
+            
+            ['attribute'=>'rnc_id',
+                'value' => function ($model, $key, $index) { 
+                    return $model->rnc_id;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search RNC id here', ],
 
-            //'rnc_name',
-            'rnc_id',
-            'mgw_name',
-            //'vendor_rnc',
-            'pool',
-            'spc_nat0',
-            'trunk_name',
-            'rnc_location',
-            // 'status',
-            // 'log_date',
-            // 'remark:ntext',
+            ],
+
+            ['attribute'=>'pool',
+                'value' => function ($model, $key, $index) { 
+                    return $model->pool;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search pool here'],
+            ],
+
+             ['attribute'=>'trunk_name',
+                'value' => function ($model, $key, $index) { 
+                    return $model->trunk_name;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search trunk name here'],
+            ],
+
+            ['attribute'=>'rnc_location',
+                'value' => function ($model, $key, $index) { 
+                    return $model->rnc_location;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search RNC location here'],
+            ],
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]); 
+    ?>
 
 </div>

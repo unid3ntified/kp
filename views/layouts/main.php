@@ -21,7 +21,7 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body>
-
+<?= Html::csrfMetaTags() ?>
 <?php $this->beginBody() ?>
     <div class="wrap">
         <?php
@@ -38,17 +38,17 @@ AppAsset::register($this);
                     //['label' => 'Home', 'url' => ['/site/index']],
                     //['label' => 'Contact', 'url' => ['/site/contact']],
 
-                    /*Yii::$app->user->isGuest ?
+                    Yii::$app->user->isGuest ?
                         ['label' => 'Login', 'url' => ['/site/login']] :
                         ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
                             'url' => ['/site/logout'],
-                            'linkOptions' => ['data-method' => 'post']],*/
+                            'linkOptions' => ['data-method' => 'post']],
                     ['label' => 'Download', 'url' => ['/site/download']],
                     ['label' => 'Network Element', 'url' => ['/networkelement/index']],
-                    ['label' => 'MSC', 'url' => ['/msc/index']],
-                    ['label' => 'MGW', 'url' => ['/bcuid/index']],
+                    //['label' => 'MSC', 'url' => ['/msc/index']],
+                    //['label' => 'MGW', 'url' => ['/bcuid/index']],
                     ['label' => '3G RNC Reference', 'url' => ['/rncreference/index']],                    
-                    ['label' => 'OPC', 'url' => ['/descnetwork/index']],
+                    //['label' => 'OPC', 'url' => ['/descnetwork/index']],
                     ['label' => 'Trunk Interkoneksi', 'url' => ['/trunkinterkoneksi/index']],
                     ['label' => 'Trunk VOIP', 'url' => ['/trunkvoip/index']],
                     ['label' => 'POI', 'url' => ['/poi/index']],

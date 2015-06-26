@@ -8,7 +8,7 @@ use kartik\export\ExportMenu;
 /* @var $searchModel app\models\PoiSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Poi List';
+$this->title = 'POI List';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="poi-index">

@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\RncReference */
 
 $this->title = $model->rnc_id;
-$this->params['breadcrumbs'][] = ['label' => 'Rnc References', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'RNC References', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="rnc-reference-view">

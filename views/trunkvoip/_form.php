@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 <div class="trunk-voip-form">
     
     <p>
-    <h4>* Jika MGW atau MSS Name tidak ada dalam drop down list, silahkan buat network element baru di <?= Html::a('sini', ['/networkelement/index']) ?></h4>
+    <h4>* Jika MGW atau MSS Name tidak ada dalam drop down list, silahkan buat network element baru di <?= Html::a('sini', ['/networkelement/create']) ?></h4>
     </p>
     <br>
 

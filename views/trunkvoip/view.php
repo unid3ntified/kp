@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\TrunkVoip */
 
 $this->title = $model->trunk_id;
-$this->params['breadcrumbs'][] = ['label' => 'Trunk VOIP List', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'VOIP Trunk List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="trunk-voip-view">
