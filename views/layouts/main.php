@@ -36,7 +36,7 @@ AppAsset::register($this);
                 'items' => [
                     ['label' => 'Home', 'url' => ['/site/index']],               
                     ['label' => 'Download', 'url' => ['/site/download']],
-                    ['label' => 'Data', 'url' => ['/site/data']],
+                    ['label' => 'Network Data', 'url' => ['/site/data']],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Login', 'url' => ['/site/login']] :
                         ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',

@@ -11,7 +11,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="login">   
     <div class="col-lg-12">
-        <h2><?= Html::encode($this->title) ?></h2>
+        <h2><center><?= Html::encode($this->title) ?></center></h2>
+        <br>
         <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
             <?= $form->field($model, 'username') ?>
             <?= $form->field($model, 'password')->passwordInput() ?>
