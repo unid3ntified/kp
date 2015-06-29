@@ -57,7 +57,7 @@ class TrunkInterkoneksi extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'trunk_id' => 'Trunk ID',
+            'trunk_id' => 'Trunk Name',
             'direction' => 'Direction',
             'vendor' => 'Vendor',
             'opc' => 'OPC',
@@ -65,7 +65,7 @@ class TrunkInterkoneksi extends \yii\db\ActiveRecord
             'e1_capacity' => 'E1 Capacity',
             'POI' => 'POI',
             'connection' => 'Connection',
-            't_group' => 'Trunk Group',
+            't_group' => 'Partner',
             'status' => 'Status',
             'log_date' => 'Log Date',
             'remark' => 'Remark',

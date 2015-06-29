@@ -25,7 +25,6 @@ AppAsset::register($this);
 		<?= Html::a('<div class="sidebar-element text-right">Home</div>', ['site/index']) ?>
 		<?= Html::a('<div class="sidebar-element text-right">Dashboard</div>', ['site/data']) ?>
 		<?= Html::a('<div class="sidebar-element text-right">Network Element</div>', ['networkelement/index']) ?>
-		<?= Html::a('<div class="sidebar-element text-right">3G RNC Reference</div>', ['rncreference/index']) ?>
 		<?= Html::a('<div class="sidebar-element text-right">Trunk Interkoneksi</div>', ['trunkinterkoneksi/index']) ?>
 		<?= Html::a('<div class="sidebar-element text-right">Trunk VOIP</div>', ['trunkvoip/index']) ?>
 		<?= Html::a('<div class="sidebar-element text-right">POI</div>', ['poi/index']) ?>
