@@ -6,7 +6,7 @@ body {
 .wrap {
     min-height: 100%;
     height: auto;
-    margin: 0 auto 20px;
+    margin: 0 auto -10px;
     padding: 0 0 20px;
 }
 
@@ -16,15 +16,15 @@ body {
     width: 80%;
 }
 
-.login {
-    
+#login{
+    padding-bottom: -30px;
+    margin-bottom: -30px;
 }
 
 #login-title{
     font-size: 30pt;
     padding-bottom: 30px;
     margin-bottom: 30px;
-    margin-top: 50px;
     border-bottom: 1px #283578 solid;
     color: #283578;
 }
@@ -134,3 +134,5 @@ a.desc:after {
     padding: 40px 70px;
     color: #111;
 }
+
+

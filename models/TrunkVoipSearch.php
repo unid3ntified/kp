@@ -12,13 +12,15 @@ use app\models\TrunkVoip;
  */
 class TrunkVoipSearch extends TrunkVoip
 {
+    public $search;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['trunk_id','mgw', 'mss', 'detail', 'direction', 'konfigurasi', 'partner', 'opc_mss', 'dpc', 'voip_gateway', 'status', 'log_date', 'remark'], 'safe'],
+            [['search','trunk_id','mgw', 'mss', 'detail', 'direction', 'konfigurasi', 'partner', 'opc_mss', 'dpc', 'voip_gateway', 'status', 'log_date', 'remark'], 'safe'],
             [['e1'], 'integer'],
         ];
     }
@@ -55,7 +57,7 @@ class TrunkVoipSearch extends TrunkVoip
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
+        /* $query->andFilterWhere([
             'e1' => $this->e1,
             'log_date' => $this->log_date,
         ]);
@@ -71,7 +73,25 @@ class TrunkVoipSearch extends TrunkVoip
             ->andFilterWhere(['like', 'dpc', $this->dpc])
             ->andFilterWhere(['like', 'voip_gateway', $this->voip_gateway])
             ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'remark', $this->remark]);
+            ->andFilterWhere(['like', 'remark', $this->remark]); */
+
+        $query->orFilterWhere([
+            'e1' => $this->search,
+            'log_date' => $this->search,
+        ]);
+
+        $query->orFilterWhere(['like', 'trunk_id', $this->search])
+            ->orFilterWhere(['like', 'mss', $this->search])
+            ->orFilterWhere(['like', 'mgw', $this->search])
+            ->orFilterWhere(['like', 'detail', $this->search])
+            ->orFilterWhere(['like', 'direction', $this->search])
+            ->orFilterWhere(['like', 'konfigurasi', $this->search])
+            ->orFilterWhere(['like', 'partner', $this->search])
+            ->orFilterWhere(['like', 'opc_mss', $this->search])
+            ->orFilterWhere(['like', 'dpc', $this->search])
+            ->orFilterWhere(['like', 'voip_gateway', $this->search])
+            ->orFilterWhere(['like', 'status', $this->search])
+            ->orFilterWhere(['like', 'remark', $this->search]);
 
         return $dataProvider;
     }

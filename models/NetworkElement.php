@@ -46,7 +46,6 @@ class NetworkElement extends \yii\db\ActiveRecord
             [['gt_address', 'vendor', 'gtt', 'status'], 'string', 'max' => 20],
             [['network_element_id'], 'string', 'max' => 100],
             [['provinsi'], 'string', 'max' => 40],
-            //[['inat0'], 'string', 'max' => 10],
             [['gt_address'], 'unique', 'targetClass' => 'app\models\NetworkElement'],
             [['gtt'], 'unique', 'targetClass' => 'app\models\NetworkElement'],
             [['network_element_id'], 'unique', 'targetClass' => 'app\models\NetworkElement'],

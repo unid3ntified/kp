@@ -5,21 +5,21 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\NetworkElement;
+use app\models\User;
 
 /**
- * NetworkElementSearch represents the model behind the search form about `app\models\NetworkElement`.
+ * UserSearch represents the model behind the search form about `app\models\User`.
  */
-class NetworkElementSearch extends NetworkElement
+class UserSearch extends User
 {
-    public $search;
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['search', 'network_element_id', 'gt_address', 'location', 'provinsi', 'vendor', 'gtt', 'status', 'log_date', 'remark'], 'safe'],
+            [['ID', 'status'], 'integer'],
+            [['Username', 'Password_hash', 'password_reset_token', 'auth_key', 'Email', 'created_at', 'updated_at', 'Phone'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class NetworkElementSearch extends NetworkElement
      */
     public function search($params)
     {
-        $query = NetworkElement::find();
+        $query = User::find();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -55,18 +55,19 @@ class NetworkElementSearch extends NetworkElement
             return $dataProvider;
         }
 
-        $query->orFilterWhere([
-            'log_date' => $this->search,
+        $query->andFilterWhere([
+            'ID' => $this->ID,
+            'status' => $this->status,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ]);
 
-        $query->orFilterWhere(['like', 'network_element_id', $this->search])
-            ->orFilterWhere(['like', 'gt_address', $this->search])
-            ->orFilterWhere(['like', 'location', $this->search])
-            ->orFilterWhere(['like', 'provinsi', $this->search])
-            ->orFilterWhere(['like', 'vendor', $this->search])
-            ->orFilterWhere(['like', 'gtt', $this->search])
-            ->orFilterWhere(['like', 'status', $this->search])
-            ->orFilterWhere(['like', 'remark', $this->search]);
+        $query->andFilterWhere(['like', 'Username', $this->Username])
+            ->andFilterWhere(['like', 'Password_hash', $this->Password_hash])
+            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
+            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
+            ->andFilterWhere(['like', 'Email', $this->Email])
+            ->andFilterWhere(['like', 'Phone', $this->Phone]);
 
         return $dataProvider;
     }

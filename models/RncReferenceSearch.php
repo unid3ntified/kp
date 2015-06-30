@@ -12,13 +12,14 @@ use app\models\RncReference;
  */
 class RncReferenceSearch extends RncReference
 {
+    public $search;
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['rnc_id', 'rnc_name', 'pool', 'mgw_name', 'vendor_rnc', 'spc_nat0', 'trunk_name', 'rnc_location', 'status', 'log_date', 'remark'], 'safe'],
+            [['search', 'rnc_id', 'rnc_name', 'pool', 'mgw_name', 'vendor_rnc', 'spc_nat0', 'trunk_name', 'rnc_location', 'status', 'log_date', 'remark'], 'safe'],
         ];
     }
 
@@ -54,20 +55,20 @@ class RncReferenceSearch extends RncReference
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'log_date' => $this->log_date,
+        $query->orFilterWhere([
+            'log_date' => $this->search,
         ]);
 
-        $query->andFilterWhere(['like', 'rnc_id', $this->rnc_id])
-            ->andFilterWhere(['like', 'rnc_name', $this->rnc_name])
-            ->andFilterWhere(['like', 'pool', $this->pool])
-            ->andFilterWhere(['like', 'mgw_name', $this->mgw_name])
-            ->andFilterWhere(['like', 'vendor_rnc', $this->vendor_rnc])
-            ->andFilterWhere(['like', 'spc_nat0', $this->spc_nat0])
-            ->andFilterWhere(['like', 'trunk_name', $this->trunk_name])
-            ->andFilterWhere(['like', 'rnc_location', $this->rnc_location])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'remark', $this->remark]);
+        $query->orFilterWhere(['like', 'rnc_id', $this->search])
+            ->orFilterWhere(['like', 'rnc_name', $this->search])
+            ->orFilterWhere(['like', 'pool', $this->search])
+            ->orFilterWhere(['like', 'mgw_name', $this->search])
+            ->orFilterWhere(['like', 'vendor_rnc', $this->search])
+            ->orFilterWhere(['like', 'spc_nat0', $this->search])
+            ->orFilterWhere(['like', 'trunk_name', $this->search])
+            ->orFilterWhere(['like', 'rnc_location', $this->search])
+            ->orFilterWhere(['like', 'status', $this->search])
+            ->orFilterWhere(['like', 'remark', $this->search]);
 
         return $dataProvider;
     }

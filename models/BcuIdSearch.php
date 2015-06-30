@@ -12,13 +12,15 @@ use app\models\BcuId;
  */
 class BcuIdSearch extends BcuId
 {
+    public $search;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['bcu_id', 'mgw_name', 'region', 'old_mss_connected', 'new_mss_connected', 'status', 'log_date', 'remark'], 'safe'],
+            [['search','bcu_id', 'mgw_name', 'region', 'old_mss_connected', 'new_mss_connected', 'status', 'log_date', 'remark'], 'safe'],
         ];
     }
 
@@ -41,7 +43,6 @@ class BcuIdSearch extends BcuId
     public function search($params)
     {
         $query = BcuId::find();
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -54,17 +55,17 @@ class BcuIdSearch extends BcuId
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'log_date' => $this->log_date,
+        $query->orFilterWhere([
+            'log_date' => $this->search,
         ]);
 
-        $query->andFilterWhere(['like', 'bcu_id', $this->bcu_id])
-            ->andFilterWhere(['like', 'mgw_name', $this->mgw_name])
-            ->andFilterWhere(['like', 'region', $this->region])
-            ->andFilterWhere(['like', 'old_mss_connected', $this->old_mss_connected])
-            ->andFilterWhere(['like', 'new_mss_connected', $this->new_mss_connected])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'remark', $this->remark]);
+        $query->orFilterWhere(['like', 'bcu_id', $this->search])
+            ->orFilterWhere(['like', 'mgw_name', $this->search])
+            ->orFilterWhere(['like', 'region', $this->search])
+            ->orFilterWhere(['like', 'old_mss_connected', $this->search])
+            ->orFilterWhere(['like', 'new_mss_connected', $this->search])
+            ->orFilterWhere(['like', 'status', $this->search])
+            ->orFilterWhere(['like', 'remark', $this->search]);
 
         return $dataProvider;
     }

@@ -12,13 +12,15 @@ use app\models\TrunkInterkoneksi;
  */
 class TrunkInterkoneksiSearch extends TrunkInterkoneksi
 {
+    public $search;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['trunk_id', 'direction', 'vendor', 'opc', 'dpc', 'POI', 'connection', 't_group', 'status', 'log_date', 'remark'], 'safe'],
+            [['trunk_id', 'direction', 'vendor', 'opc', 'dpc', 'POI', 'connection', 't_group', 'status', 'log_date', 'remark', 'search'], 'safe'],
             [['e1_capacity'], 'integer'],
         ];
     }
@@ -55,7 +57,7 @@ class TrunkInterkoneksiSearch extends TrunkInterkoneksi
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
+        /* $query->andFilterWhere([
             'e1_capacity' => $this->e1_capacity,
             'log_date' => $this->log_date,
         ]);
@@ -69,8 +71,23 @@ class TrunkInterkoneksiSearch extends TrunkInterkoneksi
             ->andFilterWhere(['like', 'connection', $this->connection])
             ->andFilterWhere(['like', 't_group', $this->t_group])
             ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'remark', $this->remark]);
+            ->andFilterWhere(['like', 'remark', $this->remark]); */
 
+        $query->orFilterWhere([
+            'e1_capacity' => $this->search,
+            'log_date' => $this->search,
+        ]);
+
+        $query->orFilterWhere(['like', 'trunk_id', $this->search])
+            ->orFilterWhere(['like', 'direction', $this->search])
+            ->orFilterWhere(['like', 'vendor', $this->search])
+            ->orFilterWhere(['like', 'opc', $this->search])
+            ->orFilterWhere(['like', 'dpc', $this->search])
+            ->orFilterWhere(['like', 'POI', $this->search])
+            ->orFilterWhere(['like', 'connection', $this->search])
+            ->orFilterWhere(['like', 't_group', $this->search])
+            ->orFilterWhere(['like', 'status', $this->search])
+            ->orFilterWhere(['like', 'remark', $this->search]);
         return $dataProvider;
     }
 

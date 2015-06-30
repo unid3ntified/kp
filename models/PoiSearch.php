@@ -12,13 +12,14 @@ use app\models\Poi;
  */
 class PoiSearch extends Poi
 {
+    public $search;
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['poi', 'msc_name', 'address', 'MSRN', 'dummy_number', 'log_date', 'remark'], 'safe'],
+            [['search', 'poi', 'msc_name', 'address', 'MSRN', 'dummy_number', 'log_date', 'remark'], 'safe'],
         ];
     }
 
@@ -54,16 +55,16 @@ class PoiSearch extends Poi
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'log_date' => $this->log_date,
+        $query->orFilterWhere([
+            'log_date' => $this->search,
         ]);
 
-        $query->andFilterWhere(['like', 'poi', $this->poi])
-            ->andFilterWhere(['like', 'msc_name', $this->msc_name])
-            ->andFilterWhere(['like', 'address', $this->address])
-            ->andFilterWhere(['like', 'MSRN', $this->MSRN])
-            ->andFilterWhere(['like', 'dummy_number', $this->dummy_number])
-            ->andFilterWhere(['like', 'remark', $this->remark]);
+        $query->orFilterWhere(['like', 'poi', $this->search])
+            ->orFilterWhere(['like', 'msc_name', $this->search])
+            ->orFilterWhere(['like', 'address', $this->search])
+            ->orFilterWhere(['like', 'MSRN', $this->search])
+            ->orFilterWhere(['like', 'dummy_number', $this->search])
+            ->orFilterWhere(['like', 'remark', $this->search]);
 
         return $dataProvider;
     }

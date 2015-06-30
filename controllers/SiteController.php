@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use yii\data\SqlDataProvider;
+use app\models\CreateAdmin;
 
 class SiteController extends Controller
 {
@@ -19,12 +20,12 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['logout', 'error', 'index','download', 'data'],
+                        'actions' => ['logout', 'error', 'index','download', 'data', 'user'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['login','error','download', 'index', 'data'],
+                        'actions' => ['login','error','download', 'index', 'data', 'user'],
                         'allow' => true,
                     ],
                 ],
@@ -60,7 +61,6 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
-        //$this->layout = 'login';
         if (!\Yii::$app->user->isGuest) {
             return $this->goHome();
         }
@@ -79,6 +79,22 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
         return $this->goHome();
+    }
+
+    public function actionUser()
+    {
+        $model = new CreateAdmin();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                if (Yii::$app->getUser()->login($user)) {
+                    return $this->goHome();
+                }
+            }
+        }
+        
+        return $this->render('user', [
+            'model' => $model,
+        ]);
     }
 
     public function actionContact()

@@ -20,7 +20,8 @@
         "yiisoft/yii2-swiftmailer": "*",
 		"kartik-v/yii2-krajee-base": "dev-master",
         "kartik-v/yii2-export": "dev-master",
-		"kartik-v/yii2-widgets": "*"
+		"kartik-v/yii2-widgets": "*",
+		"sibilino/yii2-dygraphswidget": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

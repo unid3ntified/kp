@@ -12,6 +12,7 @@ use app\models\DescNetwork;
  */
 class DescNetworkSearch extends DescNetwork
 {
+    public $search;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class DescNetworkSearch extends DescNetwork
     {
         return [
             [['id'], 'integer'],
-            [['network_element_id', 'opc_nat0', 'opc_nat1', 'desc_network', 'inat0', 'second_opc', 'third_opc', 'fourth_opc', 'fifth_opc', 'sixth_opc'], 'safe'],
+            [['search', 'network_element_id', 'opc_nat0', 'opc_nat1', 'desc_network', 'inat0', 'second_opc', 'third_opc', 'fourth_opc', 'fifth_opc', 'sixth_opc'], 'safe'],
         ];
     }
 
@@ -55,20 +56,20 @@ class DescNetworkSearch extends DescNetwork
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'id' => $this->id,
+        $query->orFilterWhere([
+            'id' => $this->search,
         ]);
 
-        $query->andFilterWhere(['like', 'network_element_id', $this->network_element_id])
-            ->andFilterWhere(['like', 'opc_nat0', $this->opc_nat0])
-            ->andFilterWhere(['like', 'opc_nat1', $this->opc_nat1])
-            ->andFilterWhere(['like', 'desc_network', $this->desc_network])
-            ->andFilterWhere(['like', 'inat0', $this->inat0])
-            ->andFilterWhere(['like', 'second_opc', $this->second_opc])
-            ->andFilterWhere(['like', 'third_opc', $this->third_opc])
-            ->andFilterWhere(['like', 'fourth_opc', $this->fourth_opc])
-            ->andFilterWhere(['like', 'fifth_opc', $this->fifth_opc])
-            ->andFilterWhere(['like', 'sixth_opc', $this->sixth_opc]);
+        $query->orFilterWhere(['like', 'network_element_id', $this->search])
+            ->orFilterWhere(['like', 'opc_nat0', $this->search])
+            ->orFilterWhere(['like', 'opc_nat1', $this->search])
+            ->orFilterWhere(['like', 'desc_network', $this->search])
+            ->orFilterWhere(['like', 'inat0', $this->search])
+            ->orFilterWhere(['like', 'second_opc', $this->search])
+            ->orFilterWhere(['like', 'third_opc', $this->search])
+            ->orFilterWhere(['like', 'fourth_opc', $this->search])
+            ->orFilterWhere(['like', 'fifth_opc', $this->search])
+            ->orFilterWhere(['like', 'sixth_opc', $this->search]);
 
         return $dataProvider;
     }
