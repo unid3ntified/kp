@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2015 at 04:46 AM
+-- Generation Time: Jun 30, 2015 at 08:38 AM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.1
 
@@ -4525,6 +4525,87 @@ INSERT INTO `rnc_reference` (`rnc_id`, `mgw_name`, `rnc_name`, `pool`, `vendor_r
 ('RNYGY02', 'MGYG201', 'RNC Yogya 02', 'MSYG2', 'huawei', '8028', 'I/OWERY2', 'Yogya, Office', 'in service', NULL, NULL),
 ('RNYGY03', 'MGYG402 ', NULL, 'MIP CENTER JAVA', 'ericsson', '8134', 'not set', 'Yogya Office', 'in service', NULL, NULL),
 ('RNYGY04', 'MGYG201', 'RNC Yogyakarta-04', 'MIP CENTER JAVA', 'ericsson', '8155', 'I/ORYGY4', 'Yogya Office', 'in service', NULL, '2013');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sct_port_huawei`
+--
+
+CREATE TABLE IF NOT EXISTS `sct_port_huawei` (
+  `No` int(11) NOT NULL AUTO_INCREMENT,
+  `mss_huawei` varchar(100) NOT NULL,
+  `sctp_port` varchar(20) NOT NULL,
+  `last_counter` varchar(20) DEFAULT NULL,
+  `Remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `sct_port_huawei`
+--
+
+INSERT INTO `sct_port_huawei` (`No`, `mss_huawei`, `sctp_port`, `last_counter`, `Remark`) VALUES
+(1, 'M3UA internal MPP/MIP', '9500-9999', NULL, NULL),
+(2, 'H248(MGW)', '9000-9499', NULL, NULL),
+(3, 'POI (ITP / STP)', '5000 - 5999', '5006', NULL),
+(4, 'Others', '2000 -4999', NULL, NULL),
+(5, 'BSC', '1x50-1x99', NULL, 'per 2013 *min value 1024'),
+(6, 'RNC', '1x00-1x49', NULL, '*per 2013 *min value 1024');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `spc_ransharing`
+--
+
+CREATE TABLE IF NOT EXISTS `spc_ransharing` (
+  `No` int(11) NOT NULL AUTO_INCREMENT,
+  `SPC` varchar(20) NOT NULL,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+
+--
+-- Dumping data for table `spc_ransharing`
+--
+
+INSERT INTO `spc_ransharing` (`No`, `SPC`) VALUES
+(1, '4235'),
+(2, '4203'),
+(3, '4268'),
+(4, '8204'),
+(5, '6285'),
+(6, '4202');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `spc_rule`
+--
+
+CREATE TABLE IF NOT EXISTS `spc_rule` (
+  `No` int(11) NOT NULL AUTO_INCREMENT,
+  `Area` varchar(100) NOT NULL,
+  `SPC` varchar(50) NOT NULL,
+  `Jenis` varchar(20) NOT NULL,
+  `Last_counter` varchar(30) NOT NULL,
+  `Remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+
+--
+-- Dumping data for table `spc_rule`
+--
+
+INSERT INTO `spc_rule` (`No`, `Area`, `SPC`, `Jenis`, `Last_counter`, `Remark`) VALUES
+(1, 'Java, Bali Lombok', '7301 - 7959', 'MSS', '7566', 'old SPC : 9X01 – 9X49'),
+(2, 'Sumatera', '9X50 – 9X79', 'MSS', '9975', 'Next PC should be 9950'),
+(3, 'Sulawesi, Kalimantan, Papua', '9X80 – 9X99', 'MSS', '9689', NULL),
+(4, 'Java, Bali Lombok', '4X01 – 4X49', 'BSC', '4504', NULL),
+(5, 'Sumatera', '4X50 – 4X79', 'BSC', '4670', 'BSLK01\r\n'),
+(6, 'Sulawesi, Kalimantan, Papua', '4X80 – 4X99', 'BSC', '4388', 'Plan Trial(Ferry)BMMP04\r\n'),
+(7, 'All Area', '8X01 – 8X99', 'RNC', '8217', 'RNSMG10\r\n'),
+(8, 'All Area', '6X01 – 6X99', 'HLR/IN/VAS', '6464', 'SPSPOI2\r\n');
 
 -- --------------------------------------------------------
 
