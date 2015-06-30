@@ -128,6 +128,15 @@ a.desc:after {
     background-color: #202d4d;
 }
 
+.detail-1{
+    font-size: 16pt;
+}
+
+.detail-2{
+    margin-left: 30px;
+    font-size: 13pt;
+}
+
 #page-wrapper{
     position: inherit;
     margin: 0 0 0 200px;

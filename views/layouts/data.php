@@ -29,8 +29,8 @@ AppAsset::register($this);
 		<?= Html::a('<div class="sidebar-element text-right">Trunk VOIP</div>', ['trunkvoip/index']) ?>
 		<?= Html::a('<div class="sidebar-element text-right">POI</div>', ['poi/index']) ?>
 		<?php if (!Yii::$app->user->isGuest) echo Html::a('<div class="sidebar-element text-right">Create Admin</div>', ['site/user'], ['data-method' => 'post']); ?>
+		<?php if (!Yii::$app->user->isGuest) echo Html::a('<div class="sidebar-element text-right">Information</div>', ['site/info']); ?>
 		<?php if (!Yii::$app->user->isGuest) echo Html::a('<div class="sidebar-element text-right">Logout</div>', ['site/logout'], ['data-method' => 'post']); ?>
-		
 	</div>
 	<div id="page-wrapper">
 		<?= Breadcrumbs::widget([
