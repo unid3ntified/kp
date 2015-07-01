@@ -6,14 +6,8 @@ body {
 .wrap {
     min-height: 100%;
     height: auto;
-    margin: 0 auto -10px;
+    margin: auto 0px;
     padding: 0 0 20px;
-}
-
-.wrap > .container {
-    padding: 20px 15px 10px;
-    margin: 0 auto 20px;
-    width: 80%;
 }
 
 #login{
@@ -107,19 +101,37 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
+.navbar {
+    background-color: #283578;
+    background-image: none;
+    border-radius: 0px;
+    margin-bottom: 0px;
+    border: 0px;
+}
+
+.navbar .nav > li > a {
+    color: #FFF;
+}
+
+.navbar .nav > li > a:hover {
+    color: #FFF;
+    background-color: #202d4d;
+}
+
 #sidebar{
     position: fixed;
     background-color: #283578;
     width: 200px;
     height: 100%;
-    padding-top: 50px;
+    padding-top: 60px;
+    margin-top: -50px;
 }
 
 .sidebar-element{
     width: 100%;
-    font-size: 14pt;
+    font-size: 13pt;
     color:#ffffff;
-    padding: 10px 20px 10px 0;
+    padding: 5px 0px 5px 15px;
     background-color: transparent;
     transition: all .5s;
 }
@@ -132,9 +144,56 @@ a.desc:after {
     font-size: 16pt;
 }
 
-.detail-2{
-    margin-left: 30px;
-    font-size: 13pt;
+#item1{
+    padding-left: 25px;
+}
+
+#item2{
+    padding-left: 25px;
+}
+
+#item3{
+    padding-left: 25px;
+}
+
+#item4{
+    padding-left: 25px;
+}
+
+#item5{
+    padding-left: 25px;
+}
+
+#item6{
+    padding-left: 25px;
+}
+
+#item7{
+    padding-left: 25px;
+}
+
+#item8{
+    padding-left: 25px;
+}
+
+#item9{
+    padding-left: 25px;
+}
+
+#item10{
+    padding-left: 25px;
+}
+
+#item11{
+    padding-left: 25px;
+}
+
+#item12{
+    padding-left: 25px;
+}
+
+#item13{
+    padding-left: 25px;
 }
 
 #page-wrapper{

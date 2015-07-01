@@ -50,7 +50,6 @@ class TrunkinterkoneksiController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout = 'data';
         $searchModel = new TrunkInterkoneksiSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -67,7 +66,6 @@ class TrunkinterkoneksiController extends Controller
      */
     public function actionView($id)
     {
-        $this->layout = 'data';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -80,7 +78,6 @@ class TrunkinterkoneksiController extends Controller
      */
     public function actionCreate()
     {
-        $this->layout = 'data';
         $model = new TrunkInterkoneksi();
         $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
         $listData = ArrayHelper::map(Poi::find()->asArray()->all(), 'poi', 'poi');
@@ -105,7 +102,6 @@ class TrunkinterkoneksiController extends Controller
      */
     public function actionUpdate($id)
     {
-        $this->layout = 'data';
         $model = $this->findModel($id);
         $this->convertDropDown($model);
         $option = ['Dismantle', 'In service', 'Plan', 'Trial'];

@@ -50,7 +50,6 @@ class MscController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout = 'data';
         $searchModel = new MscSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -67,7 +66,6 @@ class MscController extends Controller
      */
     public function actionView($id)
     {
-        $this->layout = 'data';
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -80,7 +78,6 @@ class MscController extends Controller
      */
     public function actionCreate()
     {
-        $this->layout = 'data';
         $model = new Msc();
         $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 
@@ -104,7 +101,6 @@ class MscController extends Controller
      */
     public function actionUpdate($id)
     {
-        $this->layout = 'data';
         $model = $this->findModel($id);
         $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
         $this->convertDropDown($model);

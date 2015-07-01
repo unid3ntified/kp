@@ -12,6 +12,8 @@ use app\models\GtRule;
  */
 class GtRuleSearch extends GtRule
 {
+    public $search;
+
     /**
      * @inheritdoc
      */
@@ -55,16 +57,16 @@ class GtRuleSearch extends GtRule
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
+        $query->orFilterWhere([
             'No' => $this->No,
         ]);
 
-        $query->andFilterWhere(['like', 'STP', $this->STP])
-            ->andFilterWhere(['like', 'Area', $this->Area])
-            ->andFilterWhere(['like', 'Equipment', $this->Equipment])
-            ->andFilterWhere(['like', 'GT', $this->GT])
-            ->andFilterWhere(['like', 'Last_counter', $this->Last_counter])
-            ->andFilterWhere(['like', 'Remark', $this->Remark]);
+        $query->orFilterWhere(['like', 'STP', $this->search])
+            ->orFilterWhere(['like', 'Area', $this->search])
+            ->orFilterWhere(['like', 'Equipment', $this->search])
+            ->orFilterWhere(['like', 'GT', $this->search])
+            ->orFilterWhere(['like', 'Last_counter', $this->search])
+            ->orFilterWhere(['like', 'Remark', $this->search]);
 
         return $dataProvider;
     }

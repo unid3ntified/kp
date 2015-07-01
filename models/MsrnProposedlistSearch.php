@@ -12,6 +12,8 @@ use app\models\MsrnProposedlist;
  */
 class MsrnProposedlistSearch extends MsrnProposedlist
 {
+    public $search;
+
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class MsrnProposedlistSearch extends MsrnProposedlist
     {
         return [
             [['No'], 'integer'],
-            [['Regional', 'MSS', 'Existing_MSRN', 'New_MSRN', 'Status', 'Reserved_by', 'Updated', 'Remark'], 'safe'],
+            [['search', 'Regional', 'MSS', 'Existing_MSRN', 'New_MSRN', 'Status', 'Reserved_by', 'Updated', 'Remark'], 'safe'],
         ];
     }
 
@@ -55,18 +57,18 @@ class MsrnProposedlistSearch extends MsrnProposedlist
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
+        $query->orFilterWhere([
             'No' => $this->No,
         ]);
 
-        $query->andFilterWhere(['like', 'Regional', $this->Regional])
-            ->andFilterWhere(['like', 'MSS', $this->MSS])
-            ->andFilterWhere(['like', 'Existing_MSRN', $this->Existing_MSRN])
-            ->andFilterWhere(['like', 'New_MSRN', $this->New_MSRN])
-            ->andFilterWhere(['like', 'Status', $this->Status])
-            ->andFilterWhere(['like', 'Reserved_by', $this->Reserved_by])
-            ->andFilterWhere(['like', 'Updated', $this->Updated])
-            ->andFilterWhere(['like', 'Remark', $this->Remark]);
+        $query->orFilterWhere(['like', 'Regional', $this->search])
+            ->orFilterWhere(['like', 'MSS', $this->search])
+            ->orFilterWhere(['like', 'Existing_MSRN', $this->search])
+            ->orFilterWhere(['like', 'New_MSRN', $this->search])
+            ->orFilterWhere(['like', 'Status', $this->search])
+            ->orFilterWhere(['like', 'Reserved_by', $this->search])
+            ->orFilterWhere(['like', 'Updated', $this->search])
+            ->orFilterWhere(['like', 'Remark', $this->search]);
 
         return $dataProvider;
     }

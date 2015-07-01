@@ -12,6 +12,8 @@ use app\models\MsrnRouting;
  */
 class MsrnRoutingSearch extends MsrnRouting
 {
+    public $search;
+
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class MsrnRoutingSearch extends MsrnRouting
     {
         return [
             [['No'], 'integer'],
-            [['cluster', 'mss', 'first_route', 'second_route', 'remark'], 'safe'],
+            [['search', 'cluster', 'mss', 'first_route', 'second_route', 'remark'], 'safe'],
         ];
     }
 
@@ -55,15 +57,15 @@ class MsrnRoutingSearch extends MsrnRouting
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
+        $query->orFilterWhere([
             'No' => $this->No,
         ]);
 
-        $query->andFilterWhere(['like', 'cluster', $this->cluster])
-            ->andFilterWhere(['like', 'mss', $this->mss])
-            ->andFilterWhere(['like', 'first_route', $this->first_route])
-            ->andFilterWhere(['like', 'second_route', $this->second_route])
-            ->andFilterWhere(['like', 'remark', $this->remark]);
+        $query->orFilterWhere(['like', 'cluster', $this->search])
+            ->orFilterWhere(['like', 'mss', $this->search])
+            ->orFilterWhere(['like', 'first_route', $this->search])
+            ->orFilterWhere(['like', 'second_route', $this->search])
+            ->orFilterWhere(['like', 'remark', $this->search]);
 
         return $dataProvider;
     }

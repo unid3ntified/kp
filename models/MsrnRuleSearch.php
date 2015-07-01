@@ -12,13 +12,15 @@ use app\models\MsrnRule;
  */
 class MsrnRuleSearch extends MsrnRule
 {
+    public $search;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['cmn', 'area', 'equipment', 'new_msrn', 'last_counter', 'remark'], 'safe'],
+            [['search', 'cmn', 'area', 'equipment', 'new_msrn', 'last_counter', 'remark'], 'safe'],
         ];
     }
 
@@ -54,12 +56,12 @@ class MsrnRuleSearch extends MsrnRule
             return $dataProvider;
         }
 
-        $query->andFilterWhere(['like', 'cmn', $this->cmn])
-            ->andFilterWhere(['like', 'area', $this->area])
-            ->andFilterWhere(['like', 'equipment', $this->equipment])
-            ->andFilterWhere(['like', 'new_msrn', $this->new_msrn])
-            ->andFilterWhere(['like', 'last_counter', $this->last_counter])
-            ->andFilterWhere(['like', 'remark', $this->remark]);
+        $query->orFilterWhere(['like', 'cmn', $this->search])
+            ->orFilterWhere(['like', 'area', $this->search])
+            ->orFilterWhere(['like', 'equipment', $this->search])
+            ->orFilterWhere(['like', 'new_msrn', $this->search])
+            ->orFilterWhere(['like', 'last_counter', $this->search])
+            ->orFilterWhere(['like', 'remark', $this->search]);
 
         return $dataProvider;
     }

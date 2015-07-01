@@ -12,6 +12,7 @@ use app\models\SctPortHuawei;
  */
 class SctPortHuaweiSearch extends SctPortHuawei
 {
+    public $search;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class SctPortHuaweiSearch extends SctPortHuawei
     {
         return [
             [['No'], 'integer'],
-            [['mss_huawei', 'sctp_port', 'last_counter', 'Remark'], 'safe'],
+            [['search', 'mss_huawei', 'sctp_port', 'last_counter', 'Remark'], 'safe'],
         ];
     }
 
@@ -55,14 +56,14 @@ class SctPortHuaweiSearch extends SctPortHuawei
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
+        $query->orFilterWhere([
             'No' => $this->No,
         ]);
 
-        $query->andFilterWhere(['like', 'mss_huawei', $this->mss_huawei])
-            ->andFilterWhere(['like', 'sctp_port', $this->sctp_port])
-            ->andFilterWhere(['like', 'last_counter', $this->last_counter])
-            ->andFilterWhere(['like', 'Remark', $this->Remark]);
+        $query->orFilterWhere(['like', 'mss_huawei', $this->search])
+            ->orFilterWhere(['like', 'sctp_port', $this->search])
+            ->orFilterWhere(['like', 'last_counter', $this->search])
+            ->orFilterWhere(['like', 'Remark', $this->search]);
 
         return $dataProvider;
     }

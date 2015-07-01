@@ -12,6 +12,7 @@ use app\models\PabxInfo;
  */
 class PabxInfoSearch extends PabxInfo
 {
+    public $search;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class PabxInfoSearch extends PabxInfo
     {
         return [
             [['No'], 'integer'],
-            [['Regional', 'LAC', 'DN', 'Remark'], 'safe'],
+            [['search', 'Regional', 'LAC', 'DN', 'Remark'], 'safe'],
         ];
     }
 
@@ -55,14 +56,14 @@ class PabxInfoSearch extends PabxInfo
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
+        $query->orFilterWhere([
             'No' => $this->No,
         ]);
 
-        $query->andFilterWhere(['like', 'Regional', $this->Regional])
-            ->andFilterWhere(['like', 'LAC', $this->LAC])
-            ->andFilterWhere(['like', 'DN', $this->DN])
-            ->andFilterWhere(['like', 'Remark', $this->Remark]);
+        $query->orFilterWhere(['like', 'Regional', $this->search])
+            ->orFilterWhere(['like', 'LAC', $this->search])
+            ->orFilterWhere(['like', 'DN', $this->search])
+            ->orFilterWhere(['like', 'Remark', $this->search]);
 
         return $dataProvider;
     }

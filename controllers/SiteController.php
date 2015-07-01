@@ -29,7 +29,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['logout', 'error', 'index','download', 'data', 'user', 'info'],
+                        'actions' => ['logout', 'error', 'index','download', 'data', 'user'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -117,41 +117,6 @@ class SiteController extends Controller
                 'model' => $model,
             ]);
         }
-    }
-
-    public function actionInfo()
-    {
-        $this->layout = 'data';
-        $GRsearchModel = new GtRuleSearch();
-        $GRdataProvider = $GRsearchModel->search(Yii::$app->request->queryParams);
-        $GPsearchModel = new GtProposedlistSearch();
-        $GPdataProvider = $GPsearchModel->search(Yii::$app->request->queryParams);
-        $SRsearchModel = new SpcRuleSearch;
-        $SRdataProvider = $SRsearchModel->search(Yii::$app->request->queryParams);
-        $SRSsearchModel = new SpcRansharingSearch;
-        $SRSdataProvider = $SRSsearchModel->search(Yii::$app->request->queryParams);
-        $SPHsearchModel = new SctPortHuaweiSearch;
-        $SPHdataProvider = $SPHsearchModel->search(Yii::$app->request->queryParams);
-        $MRulesearchModel = new MsrnRuleSearch;
-        $MRuledataProvider = $MRulesearchModel->search(Yii::$app->request->queryParams);
-        $MRoutingsearchModel = new MsrnRoutingSearch;
-        $MRoutingdataProvider = $MRoutingsearchModel->search(Yii::$app->request->queryParams);
-        $MPsearchModel = new MsrnProposedlistSearch;
-        $MPdataProvider = $MPsearchModel->search(Yii::$app->request->queryParams);
-        $PIsearchModel = new PabxInfoSearch;
-        $PIdataProvider = $PIsearchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('info', [
-            'GRdataProvider' => $GRdataProvider,
-            'GPdataProvider' => $GPdataProvider,
-            'SRdataProvider' => $SRdataProvider,
-            'SRSdataProvider' => $SRSdataProvider,
-            'SPHdataProvider' => $SPHdataProvider,
-            'MRuledataProvider' => $MRuledataProvider,
-            'MRoutingdataProvider' => $MRoutingdataProvider,
-            'MPdataProvider' => $MPdataProvider,
-            'PIdataProvider' => $PIdataProvider,
-        ]);
     }
 
     public function actionDownload()

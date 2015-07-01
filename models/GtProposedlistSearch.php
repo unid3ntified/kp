@@ -12,6 +12,8 @@ use app\models\GtProposedlist;
  */
 class GtProposedlistSearch extends GtProposedlist
 {
+    public $search;
+
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class GtProposedlistSearch extends GtProposedlist
     {
         return [
             [['No'], 'integer'],
-            [['Regional', 'MSS', 'GT', 'new_GT', 'Status', 'Remark'], 'safe'],
+            [['search', 'Regional', 'MSS', 'GT', 'new_GT', 'Status', 'Remark'], 'safe'],
         ];
     }
 
@@ -55,16 +57,16 @@ class GtProposedlistSearch extends GtProposedlist
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
+        $query->orFilterWhere([
             'No' => $this->No,
         ]);
 
-        $query->andFilterWhere(['like', 'Regional', $this->Regional])
-            ->andFilterWhere(['like', 'MSS', $this->MSS])
-            ->andFilterWhere(['like', 'GT', $this->GT])
-            ->andFilterWhere(['like', 'new_GT', $this->new_GT])
-            ->andFilterWhere(['like', 'Status', $this->Status])
-            ->andFilterWhere(['like', 'Remark', $this->Remark]);
+        $query->orFilterWhere(['like', 'Regional', $this->search])
+            ->orFilterWhere(['like', 'MSS', $this->search])
+            ->orFilterWhere(['like', 'GT', $this->search])
+            ->orFilterWhere(['like', 'new_GT', $this->search])
+            ->orFilterWhere(['like', 'Status', $this->search])
+            ->orFilterWhere(['like', 'Remark', $this->search]);
 
         return $dataProvider;
     }
