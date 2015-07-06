@@ -231,3 +231,12 @@ body > div.wrap > ul > li:nth-child(18) > a:before
     content:"\e008 ";
     font-family: 'Glyphicons Halflings';
 }
+
+#bluebox
+{
+    background-color: #1191e4;
+    color: white;
+    font-family: 'Helvetica';
+    font-weight: bold;
+    padding-left: 20px;
+}

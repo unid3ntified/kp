@@ -50,7 +50,10 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $NEcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM network_element')->queryScalar();
+        return $this->render('index', [
+                'NEcount' => $NEcount,
+            ]);
     }
 
     public function actionLogin()

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "44b22bedf930d4f72ccdcb1d3aa22660",
+    "hash": "72e4aef66327b59d238592f20d18cecb",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -461,6 +461,51 @@
             "time": "2015-06-16 05:19:57"
         },
         {
+            "name": "miloschuman/yii2-highcharts-widget",
+            "version": "v4.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/miloschuman/yii2-highcharts.git",
+                "reference": "695ab0ed747d7dddcd59ab495f7ca8927aeeaa97"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/miloschuman/yii2-highcharts/zipball/695ab0ed747d7dddcd59ab495f7ca8927aeeaa97",
+                "reference": "695ab0ed747d7dddcd59ab495f7ca8927aeeaa97",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "miloschuman\\highcharts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Milo Schuman",
+                    "email": "miloschuman@gmail.com"
+                }
+            ],
+            "description": "Highcharts widget for Yii 2 Framework.",
+            "homepage": "https://github.com/miloschuman/yii2-highcharts",
+            "keywords": [
+                "extension",
+                "highcharts",
+                "highmaps",
+                "highstock",
+                "widget",
+                "yii2"
+            ],
+            "time": "2015-06-22 10:36:47"
+        },
+        {
             "name": "phpoffice/phpexcel",
             "version": "1.8.1",
             "source": {
@@ -516,50 +561,6 @@
                 "xlsx"
             ],
             "time": "2015-05-01 07:00:55"
-        },
-        {
-            "name": "sibilino/yii2-dygraphswidget",
-            "version": "v1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Sibilino/yii2-dygraphswidget.git",
-                "reference": "4c592ffba4c7bfda384901aa951278b018566ad7"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Sibilino/yii2-dygraphswidget/zipball/4c592ffba4c7bfda384901aa951278b018566ad7",
-                "reference": "4c592ffba4c7bfda384901aa951278b018566ad7",
-                "shasum": ""
-            },
-            "require": {
-                "yiisoft/yii2": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "sibilino\\y2dygraphs\\": "widget/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Luis Hernández Hernández",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Graphing and charting widget for Yii 2, based on Dygraphs.js",
-            "homepage": "https://github.com/Sibilino/yii2-dygraphswidget",
-            "keywords": [
-                "chart",
-                "dygraphs",
-                "graph",
-                "widget",
-                "yii"
-            ],
-            "time": "2015-04-10 08:21:52"
         },
         {
             "name": "yiisoft/yii2",
