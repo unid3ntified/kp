@@ -201,16 +201,33 @@ body > div.wrap > ul > li.active > a{
     color: #111;
 }
 
+body > div.wrap > ul > li:nth-child(1) > a:before
+{
+    content:"\e021 ";
+    font-family: 'Glyphicons Halflings';
+}
+
 body > div.wrap > ul > li:nth-child(2) > a:before
 {
-    content:"\e025";
+    content:"\e025 ";
+    font-family: 'Glyphicons Halflings';
+}
+
+body > div.wrap > ul > li:nth-child(3) > a:before
+{
+    content:"\e137";
     font-family: 'Glyphicons Halflings';
 }
 
 
-
-body > div.wrap > ul > li:nth-child(1) > a:before
+body > div.wrap > ul > li:nth-child(8) > a:before
 {
-    content:"\e021";
+    content:"\e086 ";
+    font-family: 'Glyphicons Halflings';
+}
+
+body > div.wrap > ul > li:nth-child(18) > a:before
+{
+    content:"\e008 ";
     font-family: 'Glyphicons Halflings';
 }

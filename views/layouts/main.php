@@ -4,7 +4,6 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
-use rmrevin\yii\fontawesome\FA;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -58,10 +57,10 @@ AppAsset::register($this);
             }
 
             $("#toggle1").click(function(){
-                $("#item1").toggle(120);
-                $("#item2").toggle(120);
-                $("#item3").toggle(120);
-                $("#item4").toggle(120);
+                $("#item1").toggle(320);
+                $("#item2").toggle(320);
+                $("#item3").toggle(320);
+                $("#item4").toggle(320);
                 if (sessionStorage.flag1=="0")
                     sessionStorage.flag1="1";
                 else
@@ -69,15 +68,15 @@ AppAsset::register($this);
             });
 
             $("#toggle2").click(function(){
-                $("#item5").toggle(120);
-                $("#item6").toggle(120);
-                $("#item7").toggle(120);
-                $("#item8").toggle(120);
-                $("#item9").toggle(120);
-                $("#item10").toggle(120);
-                $("#item11").toggle(120);
-                $("#item12").toggle(120);
-                $("#item13").toggle(120);
+                $("#item5").toggle(320);
+                $("#item6").toggle(320);
+                $("#item7").toggle(320);
+                $("#item8").toggle(320);
+                $("#item9").toggle(320);
+                $("#item10").toggle(320);
+                $("#item11").toggle(320);
+                $("#item12").toggle(320);
+                $("#item13").toggle(320);
                 if (sessionStorage.flag2=="0")
                     sessionStorage.flag2="1";
                 else
@@ -119,12 +118,12 @@ AppAsset::register($this);
                     'items' => [
                         ['label' => ' Home', 'url' => ['/site/index']],
                         ['label' => ' Download','url' => ['/site/download']],
-                        ['label' => 'Network Data', 'options' => ['id' => 'toggle1']],
+                        ['label' => ' Network Data', 'options' => ['id' => 'toggle1']],
                         ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
                         ['label' => 'Trunk Interkoneksi', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
                         ['label' => 'Trunk VOIP', 'url' => ['/trunkvoip/index'], 'options' => ['id' => 'item3']],
                         ['label' => 'POI', 'url' => ['/poi/index'], 'options' => ['id' => 'item4']],
-                        ['label' => 'Information', 'options' => ['id' => 'toggle2']],
+                        ['label' => ' Information', 'options' => ['id' => 'toggle2']],
                         ['label' => 'GT Rule', 'url' => ['/gtrule/index'], 'options' => ['id' => 'item13']],
                         ['label' => 'GT Proposed List', 'url' => ['/gtproposedlist/index'], 'options' => ['id' => 'item5']],
                         ['label' => 'SPC Rule', 'url' => ['/spcrule/index'], 'options' => ['id' => 'item6']],
@@ -134,7 +133,7 @@ AppAsset::register($this);
                         ['label' => 'MSRN Routing', 'url' => ['/msrnrouting/index'], 'options' => ['id' => 'item10']],
                         ['label' => 'MSRN Proposed List', 'url' => ['/msrnproposedlist/index'], 'options' => ['id' => 'item11']],
                         ['label' => 'PABX Info', 'url' => ['/pabxinfo/index'], 'options' => ['id' => 'item12']],
-                        ['label' => 'Create Admin', 'url' => ['/site/user']],
+                        ['label' => ' Create Admin', 'url' => ['/site/user']],
                     ],
                 ]);
             }
@@ -143,9 +142,9 @@ AppAsset::register($this);
                 echo Nav::widget([
                     'options' => ['class' => 'nav-pills nav-stacked'],
                     'items' => [            
-                        ['label' => 'Home', 'url' => ['/site/index']],
-                        ['label' => 'Download','url' => ['/site/download']],
-                        ['label' => 'Network Data', 'options' => ['id' => 'toggle1']],
+                        ['label' => ' Home', 'url' => ['/site/index']],
+                        ['label' => ' Download','url' => ['/site/download']],
+                        ['label' => ' Network Data', 'options' => ['id' => 'toggle1']],
                         ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
                         ['label' => 'Trunk Interkoneksi', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
                         ['label' => 'Trunk VOIP', 'url' => ['/trunkvoip/index'], 'options' => ['id' => 'item3']],
