@@ -21,7 +21,7 @@ class GtRuleSearch extends GtRule
     {
         return [
             [['No'], 'integer'],
-            [['STP', 'Area', 'Equipment', 'GT', 'Last_counter', 'Remark'], 'safe'],
+            [['search', 'STP', 'Area', 'Equipment', 'GT', 'Last_counter', 'Remark'], 'safe'],
         ];
     }
 

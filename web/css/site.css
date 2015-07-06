@@ -138,16 +138,16 @@ body > div.wrap > ul
 {
     position: fixed;
     background-color: #f2f2f2;
-    width: 200px;
-    height: 100%;
+    width: 240px;
+    height: 120%;
     padding-top: 60px;
-    margin-top: -50px;
+    margin-top: -55px;
 }
 
 #toggle1
 {
     width: 100%;
-    font-size: 13pt;   
+    font-size: 12pt;   
     color:#8490fe;
     padding: 5px 0px 5px 15px;
     transition: all .5s;
@@ -156,7 +156,7 @@ body > div.wrap > ul
 #toggle2
 {
     width: 100%;
-    font-size: 13pt;   
+    font-size: 12pt;   
     color:#8490fe;
     padding: 5px 0px 5px 15px;
     transition: all .5s;
@@ -165,7 +165,7 @@ body > div.wrap > ul
 body > div.wrap > ul > li > a
 {
     width: 100%;
-    font-size: 13pt;   
+    font-size: 12pt;   
     color:#8490fe;
     padding: 5px 0px 5px 15px;
     transition: all .5s;
