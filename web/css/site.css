@@ -11,8 +11,7 @@ body {
 }
 
 #login{
-    padding-bottom: -30px;
-    margin-bottom: -30px;
+    margin-top: 80px;
 }
 
 #login-title{
@@ -25,15 +24,14 @@ body {
 
 .footer {
     height: 45px;
-    background-color: #283578;
-    border-top: 1px solid #ddd;
+    background-color: #f2f2f2;
     margin-top: 30px;
 }
 
 body > footer > div > p.pull-center {
     padding-top: 10px;
     text-align: center;
-    color: #FFF;
+    color: #8490fe;
 }
 
 .jumbotron {
@@ -138,16 +136,16 @@ body > div.wrap > ul
 {
     position: fixed;
     background-color: #f2f2f2;
-    width: 200px;
-    height: 100%;
+    width: 240px;
+    height: 140%;
     padding-top: 60px;
-    margin-top: -50px;
+    margin-top: -60px;
 }
 
 #toggle1
 {
     width: 100%;
-    font-size: 13pt;   
+    font-size: 12pt;   
     color:#8490fe;
     padding: 5px 0px 5px 15px;
     transition: all .5s;
@@ -156,7 +154,7 @@ body > div.wrap > ul
 #toggle2
 {
     width: 100%;
-    font-size: 13pt;   
+    font-size: 12pt;   
     color:#8490fe;
     padding: 5px 0px 5px 15px;
     transition: all .5s;
@@ -165,7 +163,7 @@ body > div.wrap > ul
 body > div.wrap > ul > li > a
 {
     width: 100%;
-    font-size: 13pt;   
+    font-size: 12pt;   
     color:#8490fe;
     padding: 5px 0px 5px 15px;
     transition: all .5s;
@@ -177,8 +175,8 @@ body > div.wrap > ul > li > a:hover{
 }
 
 body > div.wrap > ul > li.active > a{
-    background-color: #e9e9e9;
-    color:#8490fe;
+    background-color: #337ab7;
+    color:#ffffff;
 }
 
 #toggle1 > a{
