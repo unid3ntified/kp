@@ -12,13 +12,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= //$form->field($model, 'Regional')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'Regional')->textInput(['maxlength' => true]) ?>
 
-    <?= //$form->field($model, 'MSS')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'MSS')->textInput(['maxlength' => true]) ?>
 
-    <?= //$form->field($model, 'Existing_MSRN')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'Existing_MSRN')->textarea(['rows' => 6]) ?>
 
-    <?= //$form->field($model, 'New_MSRN')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'New_MSRN')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'Status')->textInput(['maxlength' => true]) ?>
 

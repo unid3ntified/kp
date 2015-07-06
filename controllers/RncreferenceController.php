@@ -50,7 +50,6 @@ class RncreferenceController extends Controller
      */
     public function actionIndex()
     {
-        $this->layout = 'data';
         $searchModel = new RncReferenceSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -68,7 +67,6 @@ class RncreferenceController extends Controller
      */
     public function actionView($rnc_id, $mgw_name)
     {
-        $this->layout = 'data';
         return $this->render('view', [
             'model' => $this->findModel($rnc_id, $mgw_name),
         ]);
@@ -81,7 +79,6 @@ class RncreferenceController extends Controller
      */
     public function actionCreate()
     {
-        $this->layout = 'data';
         $model = new RncReference();
         $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
         $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
@@ -107,7 +104,6 @@ class RncreferenceController extends Controller
      */
     public function actionUpdate($rnc_id, $mgw_name)
     {
-        $this->layout = 'data';
         $model = $this->findModel($rnc_id, $mgw_name);
         $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
         $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
