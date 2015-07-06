@@ -47,6 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             //'No',
             'Regional',
             'MSS',
+            'Vendor',
             'Existing_MSRN:ntext',
             'New_MSRN',
             'Status',

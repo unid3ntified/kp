@@ -102,8 +102,8 @@ AppAsset::register($this);
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [            
                     Yii::$app->user->isGuest ?
-                        ['label' => FA::icon('sign-out').'Login', 'url' => ['/site/login']] :
-                        ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                        ['label' => ' Login', 'url' => ['/site/login']] :
+                        ['label' => ' Logout (' . Yii::$app->user->identity->username . ')',
                             'url' => ['/site/logout'],
                             'linkOptions' => ['data-method' => 'post']],
                 ],
@@ -111,28 +111,14 @@ AppAsset::register($this);
             NavBar::end();
         ?>
 
-
-        <?php
-
-            echo Nav::widget([
-                'options' => ['class' => 'nav-pills nav-stacked'],
-                'items' => [            
-                    ['label' => 'Home', 'url' => ['/site/index']],
-                    ['label' => 'Download','url' => ['/site/download']],
-                    ['label' => 'Network Data', 'options' => ['id' => 'toggle1']],
-                    ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
-                    ['label' => 'Trunk Interkoneksi', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
-                    ['label' => 'Trunk VOIP', 'url' => ['/trunkvoip/index'], 'options' => ['id' => 'item3']],
-                    ['label' => 'POI', 'url' => ['/poi/index'], 'options' => ['id' => 'item4']],            
-                ],
-            ]);
+        <?php       
             if (!Yii::$app->user->isGuest)
             {
                 echo Nav::widget([
                     'options' => ['class' => 'nav-pills nav-stacked'],
                     'items' => [
-                        ['label' => 'Home', 'url' => ['/site/index']],
-                        ['label' => 'Download','url' => ['/site/download']],
+                        ['label' => ' Home', 'url' => ['/site/index']],
+                        ['label' => ' Download','url' => ['/site/download']],
                         ['label' => 'Network Data', 'options' => ['id' => 'toggle1']],
                         ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
                         ['label' => 'Trunk Interkoneksi', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
@@ -152,32 +138,23 @@ AppAsset::register($this);
                     ],
                 ]);
             }
-
-        /*<ul class="nav nav-pills nav-stacked">
-            <?= Html::a('<li>Home</li>', ['site/index']) ?>
-            <p id="flag1"></p>
-            <li id="toggle1">Network Data</li>
-            <?= Html::a('<li id="item1">Network Element</li>', ['networkelement/index']) ?>
-            <?= Html::a('<li id="item2">Trunk Interkoneksi</li>', ['trunkinterkoneksi/index']) ?>
-            <?= Html::a('<li id="item3">Trunk VOIP</li>', ['trunkvoip/index']) ?>
-            <?= Html::a('<li id="item4">POI</li>', ['poi/index']) ?>
-            <?php if (!Yii::$app->user->isGuest) echo '<li id="toggle2">Information</li>'; ?>
-            <?php if (!Yii::$app->user->isGuest) echo Html::a('<li id="item13">GT Rule</li>', ['gtrule/index']) ?> 
-            <?php if (!Yii::$app->user->isGuest) echo Html::a('<li id="item5">GT Proposed List</li>', ['gtproposedlist/index']) ?> 
-            <?php if (!Yii::$app->user->isGuest) echo Html::a('<li id="item6">SPC Rule</li>', ['spcrule/index']) ?> 
-            <?php if (!Yii::$app->user->isGuest) echo Html::a('<li id="item7">SPC Ran Sharing</li>', ['spcransharing/index']) ?> 
-            <?php if (!Yii::$app->user->isGuest) echo Html::a('<li id="item8">SCT Port Huawei</li>', ['sctporthuawei/index']) ?> 
-            <?php if (!Yii::$app->user->isGuest) echo Html::a('<li id="item9">MSRN Rule</li>', ['msrnrule/index']) ?> 
-            <?php if (!Yii::$app->user->isGuest) echo Html::a('<li id="item10">MSRN Routing</li>', ['msrnrouting/index']) ?> 
-            <?php if (!Yii::$app->user->isGuest) echo Html::a('<li id="item11">MSRN Proposed List</li>', ['msrnproposedlist/index']) ?> 
-            <?php if (!Yii::$app->user->isGuest) echo Html::a('<li id="item12">PABX Info</li>', ['pabxinfo/index']) ?> 
-            <?php if (!Yii::$app->user->isGuest) echo Html::a('<li>Create Admin</li>', ['site/user'], ['data-method' => 'post']); ?>
-            <li class="active">
-                <?= Html::a('Download', ['site/download']) ?>
-            </li>
-
-        </ul>*/
+            else
+            {
+                echo Nav::widget([
+                    'options' => ['class' => 'nav-pills nav-stacked'],
+                    'items' => [            
+                        ['label' => 'Home', 'url' => ['/site/index']],
+                        ['label' => 'Download','url' => ['/site/download']],
+                        ['label' => 'Network Data', 'options' => ['id' => 'toggle1']],
+                        ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
+                        ['label' => 'Trunk Interkoneksi', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
+                        ['label' => 'Trunk VOIP', 'url' => ['/trunkvoip/index'], 'options' => ['id' => 'item3']],
+                        ['label' => 'POI', 'url' => ['/poi/index'], 'options' => ['id' => 'item4']],            
+                    ],
+                ]);
+            }
         ?>
+
         <div id="page-wrapper">
             <?= Breadcrumbs::widget([
                 'homeLink' => [

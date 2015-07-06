@@ -35,7 +35,7 @@ class MsrnProposedlist extends \yii\db\ActiveRecord
         return [
             [['Regional', 'MSS', 'Existing_MSRN', 'New_MSRN', 'Reserved_by', 'Updated'], 'required'],
             [['Existing_MSRN', 'Remark'], 'string'],
-            [['Regional'], 'string', 'max' => 100],
+            [['Regional', 'Vendor'], 'string', 'max' => 100],
             [['MSS'], 'string', 'max' => 10],
             [['New_MSRN', 'Updated'], 'string', 'max' => 20],
             [['Status', 'Reserved_by'], 'string', 'max' => 50]

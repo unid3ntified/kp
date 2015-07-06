@@ -33,7 +33,7 @@ class GtProposedlist extends \yii\db\ActiveRecord
         return [
             [['Regional'], 'required'],
             [['Remark'], 'string'],
-            [['Regional'], 'string', 'max' => 100],
+            [['Regional', 'Vendor'], 'string', 'max' => 100],
             [['MSS'], 'string', 'max' => 20],
             [['GT', 'new_GT'], 'string', 'max' => 30],
             [['Status'], 'string', 'max' => 50]

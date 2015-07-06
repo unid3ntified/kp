@@ -128,6 +128,12 @@ a.desc:after {
     background-color: #e9e9e9;
 }
 
+.navbar .nav > li > a:before
+{
+    content:"\e017";
+    font-family: "Glyphicons Halflings";
+}
+
 body > div.wrap > ul
 {
     position: fixed;
@@ -195,4 +201,16 @@ body > div.wrap > ul > li.active > a{
     color: #111;
 }
 
+body > div.wrap > ul > li:nth-child(2) > a:before
+{
+    content:"\e025";
+    font-family: 'Glyphicons Halflings';
+}
 
+
+
+body > div.wrap > ul > li:nth-child(1) > a:before
+{
+    content:"\e021";
+    font-family: 'Glyphicons Halflings';
+}
