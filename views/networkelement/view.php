@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 use yii\grid\GridView;
-//use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\NetworkElement */
@@ -27,12 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'network_element_id',
             'gt_address',
-
             [
                 'label' => 'MSRN',
                 'value' => $msrn,
             ],
-
             'location:ntext',
             'provinsi',
             'vendor',

@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use app\models\NetworkElement;
 use kartik\export\ExportMenu;
 use yii\widgets\ActiveForm;
+use yii\bootstrap\Modal;
 
 
 /* @var $this yii\web\View */
@@ -19,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <div class="row">
-        <div class="col-sm-6" align=left>
+        <div class="col-sm-4" align=left>
             <br>
             <?php $form = ActiveForm::begin([
                 'action' => ['index'],
@@ -28,13 +29,30 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($searchModel, 'search', ['inputOptions' => ['size' => '30']])?>
             <?php ActiveForm::end(); ?>
         </div>
-        <div class="col-sm-6" align=right>        
+        <div class="col-sm-4" align=center>        
             <h4>
                 <?php
                     echo 'Download Table: '.ExportMenu::widget([
                         'dataProvider' => $dataProvider,
-                    ]).' '.Html::a('Create New', ['create'], ['class' => 'btn btn-success']) ;
+                    ]);
                 ?>
+            </h4>
+        </div>
+        <div class="col-sm-4" align=right>
+            <h4>      
+            <?php
+                Modal::begin([
+                    'header' => '<h2><center>Warning<center></h2>',
+                    'toggleButton' => ['label' => 'Create New', 'class' => 'btn btn-success'],
+                ]);
+                
+                echo '<div align =center><p>Please make sure to read and update '. 
+                Html::a('GT Rule', ['gtrule/index']).', '.Html::a('SPC Rule', ['spcrule/index']).' and '.
+                Html::a('MSRN Rule', ['msrnrule/index']).', before creating new network element.</p><br>';             
+                echo Html::a('Continue', ['create'], ['class' => 'btn btn-success']);
+                echo '</div>';
+                Modal::end();
+            ?>
             </h4>
         </div>
     </div>

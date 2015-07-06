@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <div class="row">
-        <div class="col-sm-6" align=left>
+        <div class="col-sm-4" align=left>
             <br>
             <?php $form = ActiveForm::begin([
                 'action' => ['index'],
@@ -27,14 +27,17 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($searchModel, 'search', ['inputOptions' => ['size' => '30']])?>
             <?php ActiveForm::end(); ?>
         </div>
-        <div class="col-sm-6" align=right>
+        <div class="col-sm-4" align=center>
             <h4>
                 <?php
                     echo 'Download Table: '.ExportMenu::widget([
                         'dataProvider' => $dataProvider,
-                    ]).' '.Html::a('Create New', ['create'], ['class' => 'btn btn-success']) ;
+                    ]);
                 ?>
             </h4>
+        </div>
+        <div class="col-sm-4" align=right>
+            <h4><?= Html::a('Create New', ['create'], ['class' => 'btn btn-success']) ?></h4>
         </div>
     </div>
 

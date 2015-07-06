@@ -12,13 +12,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= //$form->field($model, 'cluster')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'cluster')->textInput(['maxlength' => true]) ?>
 
-    <?= //$form->field($model, 'mss')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'mss')->textInput(['maxlength' => true]) ?>
 
-    <?= //$form->field($model, 'first_route')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'first_route')->textInput(['maxlength' => true]) ?>
 
-    <?= //$form->field($model, 'second_route')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'second_route')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 
