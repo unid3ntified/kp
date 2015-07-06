@@ -137,9 +137,11 @@ body > div.wrap > ul
     position: fixed;
     background-color: #f2f2f2;
     width: 240px;
-    height: 140%;
+
+    height: 120%;
     padding-top: 60px;
     margin-top: -60px;
+
 }
 
 #toggle1
