@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "beaf71d57172e2bf1103c2f9e9a287eb",
+    "hash": "a90f1bbf0a95e9739988b5d120697129",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -54,6 +54,43 @@
                 "responsive",
                 "web"
             ]
+        },
+        {
+            "name": "bower-asset/fontawesome",
+            "version": "v4.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "reference": "41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0",
+                "reference": "41b9ed01103e6820c3cb043ba7ddab30ecd3f4c0",
+                "shasum": ""
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "./css/font-awesome.css",
+                    "./fonts/*"
+                ],
+                "bower-asset-ignore": [
+                    "*/.*",
+                    "*.json",
+                    "src",
+                    "*.yml",
+                    "Gemfile",
+                    "Gemfile.lock",
+                    "*.md"
+                ]
+            },
+            "license": [
+                "OFL-1.1",
+                "MIT",
+                "CC-BY-3.0"
+            ],
+            "description": "Font Awesome"
         },
         {
             "name": "bower-asset/jquery",
@@ -318,16 +355,16 @@
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
-            "version": "v4.2.2",
+            "version": "v4.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "963ab33aad3bceebe906437382e1a5aaa05ae754"
+                "reference": "1b30f372977efdb5aa1cc8b706d9e40be90ff904"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/963ab33aad3bceebe906437382e1a5aaa05ae754",
-                "reference": "963ab33aad3bceebe906437382e1a5aaa05ae754",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/1b30f372977efdb5aa1cc8b706d9e40be90ff904",
+                "reference": "1b30f372977efdb5aa1cc8b706d9e40be90ff904",
                 "shasum": ""
             },
             "type": "library",
@@ -362,7 +399,7 @@
                 "progress",
                 "upload"
             ],
-            "time": "2015-06-18 14:51:09"
+            "time": "2015-06-21 13:36:43"
         },
         {
             "name": "kartik-v/bootstrap-star-rating",
@@ -1594,35 +1631,35 @@
             "time": "2015-05-01 07:00:55"
         },
         {
-            "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.1",
+            "name": "rmrevin/yii2-fontawesome",
+            "version": "2.11.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "0697e6aa65c83edf97bb0f23d8763f94e3f11421"
+                "url": "https://github.com/rmrevin/yii2-fontawesome.git",
+                "reference": "8786dbfe1edfc0b25aed9e25461ec4e4e37a1d15"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/0697e6aa65c83edf97bb0f23d8763f94e3f11421",
-                "reference": "0697e6aa65c83edf97bb0f23d8763f94e3f11421",
+                "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/8786dbfe1edfc0b25aed9e25461ec4e4e37a1d15",
+                "reference": "8786dbfe1edfc0b25aed9e25461ec4e4e37a1d15",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "bower-asset/fontawesome": "4.3.*",
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "2.0.*"
             },
-            "require-dev": {
-                "mockery/mockery": "~0.9.1,<0.9.4"
-            },
-            "type": "library",
+            "type": "yii2-extension",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "5.4-dev"
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
                 }
             },
             "autoload": {
-                "files": [
-                    "lib/swift_required.php"
-                ]
+                "psr-4": {
+                    "rmrevin\\yii\\fontawesome\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1630,21 +1667,64 @@
             ],
             "authors": [
                 {
-                    "name": "Chris Corbyn"
-                },
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
+                    "name": "Roman Revin",
+                    "email": "xgismox@gmail.com",
+                    "homepage": "http://rmrevin.ru/"
                 }
             ],
-            "description": "Swiftmailer, free feature-rich PHP mailer",
-            "homepage": "http://swiftmailer.org",
+            "description": "Asset Bundle for Yii2 with Font Awesome",
             "keywords": [
-                "email",
-                "mail",
-                "mailer"
+                "asset",
+                "awesome",
+                "bundle",
+                "font",
+                "yii"
             ],
-            "time": "2015-06-06 14:19:39"
+            "time": "2015-06-29 09:47:23"
+        },
+        {
+            "name": "sibilino/yii2-dygraphswidget",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sibilino/yii2-dygraphswidget.git",
+                "reference": "4c592ffba4c7bfda384901aa951278b018566ad7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sibilino/yii2-dygraphswidget/zipball/4c592ffba4c7bfda384901aa951278b018566ad7",
+                "reference": "4c592ffba4c7bfda384901aa951278b018566ad7",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "sibilino\\y2dygraphs\\": "widget/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luis Hernández Hernández",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Graphing and charting widget for Yii 2, based on Dygraphs.js",
+            "homepage": "https://github.com/Sibilino/yii2-dygraphswidget",
+            "keywords": [
+                "chart",
+                "dygraphs",
+                "graph",
+                "widget",
+                "yii"
+            ],
+            "time": "2015-04-10 08:21:52"
         },
         {
             "name": "yiisoft/yii2",
@@ -1830,56 +1910,6 @@
                 "yii2"
             ],
             "time": "2015-03-01 06:22:44"
-        },
-        {
-            "name": "yiisoft/yii2-swiftmailer",
-            "version": "2.0.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yiisoft/yii2-swiftmailer.git",
-                "reference": "4ec435a89e30b203cea99770910fb5499cb3627a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/4ec435a89e30b203cea99770910fb5499cb3627a",
-                "reference": "4ec435a89e30b203cea99770910fb5499cb3627a",
-                "shasum": ""
-            },
-            "require": {
-                "swiftmailer/swiftmailer": "~5.0",
-                "yiisoft/yii2": ">=2.0.4"
-            },
-            "type": "yii2-extension",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "yii\\swiftmailer\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Paul Klimov",
-                    "email": "klimov.paul@gmail.com"
-                }
-            ],
-            "description": "The SwiftMailer integration for the Yii framework",
-            "keywords": [
-                "email",
-                "mail",
-                "mailer",
-                "swift",
-                "swiftmailer",
-                "yii2"
-            ],
-            "time": "2015-05-10 22:12:32"
         }
     ],
     "packages-dev": [

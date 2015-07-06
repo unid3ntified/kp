@@ -10,15 +10,6 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use yii\data\SqlDataProvider;
 use app\models\CreateAdmin;
-use app\models\GtProposedlistSearch;
-use app\models\GtRuleSearch;
-use app\models\SpcRuleSearch;
-use app\models\SpcRansharingSearch;
-use app\models\SctPortHuaweiSearch;
-use app\models\MsrnRuleSearch;
-use app\models\MsrnRoutingSearch;
-use app\models\MsrnProposedlistSearch;
-use app\models\PabxInfoSearch;
 
 class SiteController extends Controller
 {
@@ -29,12 +20,12 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['logout', 'error', 'index','download', 'data', 'user'],
+                        'actions' => ['logout', 'error', 'index','download', 'user', 'info'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['login','error','download', 'index', 'data', 'user'],
+                        'actions' => ['login','error','download', 'index'],
                         'allow' => true,
                     ],
                 ],
@@ -62,12 +53,6 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
-    public function actionData()
-    {
-        $this->layout = 'data';
-        return $this->render('data');
-    }
-
     public function actionLogin()
     {
         if (!\Yii::$app->user->isGuest) {
@@ -92,7 +77,6 @@ class SiteController extends Controller
 
     public function actionUser()
     {
-        $this->layout = 'data';
         $model = new CreateAdmin();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {

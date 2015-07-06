@@ -99,6 +99,14 @@ class NetworkElement extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getMsrn()
+    {
+        return $this->hasOne(MsrnProposedlist::className(), ['MSS' => 'network_element_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getRncReferences()
     {
         return $this->hasMany(RncReference::className(), ['mgw_name' => 'network_element_id']);

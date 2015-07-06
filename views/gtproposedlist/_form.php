@@ -12,13 +12,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'Regional')->textInput(['maxlength' => true]) ?>
+    <?= //$form->field($model, 'Regional')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'MSS')->textInput(['maxlength' => true]) ?>
+    <?= //$form->field($model, 'MSS')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'GT')->textInput(['maxlength' => true]) ?>
+    <?= //$form->field($model, 'GT')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'new_GT')->textInput(['maxlength' => true]) ?>
+    <?= //$form->field($model, 'new_GT')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'Status')->textInput(['maxlength' => true]) ?>
 

@@ -12,6 +12,7 @@ use app\models\SpcRansharing;
  */
 class SpcRansharingSearch extends SpcRansharing
 {
+    public $search;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class SpcRansharingSearch extends SpcRansharing
     {
         return [
             [['No'], 'integer'],
-            [['SPC'], 'safe'],
+            [['search', 'SPC'], 'safe'],
         ];
     }
 
@@ -55,11 +56,11 @@ class SpcRansharingSearch extends SpcRansharing
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
+        $query->orFilterWhere([
             'No' => $this->No,
         ]);
 
-        $query->andFilterWhere(['like', 'SPC', $this->SPC]);
+        $query->orFilterWhere(['like', 'SPC', $this->search]);
 
         return $dataProvider;
     }

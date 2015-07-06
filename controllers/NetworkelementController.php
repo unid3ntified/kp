@@ -17,6 +17,7 @@ use app\models\TrunkVoip;
 use app\models\TrunkVoipSearch;
 use app\models\TrunkInterkoneksi;
 use app\models\TrunkInterkoneksiSearch;
+use app\models\MsrnProposedlistSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -85,6 +86,12 @@ class NetworkelementController extends Controller
         $RncDataProvider = $RncSearchModel->searchId(Yii::$app->request->queryParams, $id);
         $TVSearchModel = new TrunkVoipSearch();
         $TVDataProvider = $TVSearchModel->searchId(Yii::$app->request->queryParams, $id);
+        $msrnSearchModel = new MsrnProposedlistSearch();
+
+        $model = $this->findModel($id);
+        $msrn = null;
+        if ($model->msrn !== null)
+            $msrn = $model->msrn->New_MSRN;
 
         $dataprovider = null;
         $flag = null;
@@ -105,7 +112,8 @@ class NetworkelementController extends Controller
         }
 
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'msrn' => $msrn,
             'OpcDataProvider' => $OpcDataProvider,
             'dataProvider' => $dataprovider,
             'flag' => $flag,

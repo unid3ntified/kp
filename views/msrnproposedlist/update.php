@@ -5,9 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\MsrnProposedlist */
 
-$this->title = 'Update Msrn Proposedlist: ' . ' ' . $model->No;
-$this->params['breadcrumbs'][] = ['label' => 'Msrn Proposedlists', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->No, 'url' => ['view', 'id' => $model->No]];
+$this->title = 'Update MSRN Proposed List: ' . ' ' . $model->MSS;
+$this->params['breadcrumbs'][] = ['label' => 'MSRN Proposed List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="msrn-proposedlist-update">

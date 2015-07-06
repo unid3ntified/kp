@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel app\models\GtProposedlistSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Gt Proposedlists';
+$this->title = 'GT Proposed List';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="gt-proposedlist-index">

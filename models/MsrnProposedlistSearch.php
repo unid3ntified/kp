@@ -72,4 +72,36 @@ class MsrnProposedlistSearch extends MsrnProposedlist
 
         return $dataProvider;
     }
+
+    public function searchId($params, $id)
+    {
+        $query = MsrnProposedlist::find()->onCondition(['MSS' => $id]);
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->orFilterWhere([
+            'No' => $this->No,
+        ]);
+
+        $query->orFilterWhere(['like', 'Regional', $this->search])
+            ->orFilterWhere(['like', 'MSS', $this->search])
+            ->orFilterWhere(['like', 'Existing_MSRN', $this->search])
+            ->orFilterWhere(['like', 'New_MSRN', $this->search])
+            ->orFilterWhere(['like', 'Status', $this->search])
+            ->orFilterWhere(['like', 'Reserved_by', $this->search])
+            ->orFilterWhere(['like', 'Updated', $this->search])
+            ->orFilterWhere(['like', 'Remark', $this->search]);
+
+        return $dataProvider;
+    }
 }

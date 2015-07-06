@@ -7,7 +7,6 @@ use yii\helpers\Html;
 
 $this->title = 'Update Msrn Rule: ' . ' ' . $model->cmn;
 $this->params['breadcrumbs'][] = ['label' => 'Msrn Rules', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->cmn, 'url' => ['view', 'cmn' => $model->cmn, 'new_msrn' => $model->new_msrn]];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="msrn-rule-update">

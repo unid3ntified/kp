@@ -27,6 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'network_element_id',
             'gt_address',
+
+            [
+                'label' => 'MSRN',
+                'value' => $msrn,
+            ],
+
             'location:ntext',
             'provinsi',
             'vendor',

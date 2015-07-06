@@ -5,9 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\GtProposedlist */
 
-$this->title = 'Update Gt Proposedlist: ' . ' ' . $model->No;
-$this->params['breadcrumbs'][] = ['label' => 'Gt Proposedlists', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->No, 'url' => ['view', 'id' => $model->No]];
+$this->title = 'Update GT Proposed List: ' . ' ' . $model->MSS;
+$this->params['breadcrumbs'][] = ['label' => 'GT Proposed List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="gt-proposedlist-update">

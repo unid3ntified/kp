@@ -12,6 +12,7 @@ use app\models\SpcRule;
  */
 class SpcRuleSearch extends SpcRule
 {
+    public $search;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class SpcRuleSearch extends SpcRule
     {
         return [
             [['No'], 'integer'],
-            [['Area', 'SPC', 'Jenis', 'Last_counter', 'Remark'], 'safe'],
+            [['search', 'Area', 'SPC', 'Jenis', 'Last_counter', 'Remark'], 'safe'],
         ];
     }
 
@@ -55,15 +56,15 @@ class SpcRuleSearch extends SpcRule
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
+        $query->orFilterWhere([
             'No' => $this->No,
         ]);
 
-        $query->andFilterWhere(['like', 'Area', $this->Area])
-            ->andFilterWhere(['like', 'SPC', $this->SPC])
-            ->andFilterWhere(['like', 'Jenis', $this->Jenis])
-            ->andFilterWhere(['like', 'Last_counter', $this->Last_counter])
-            ->andFilterWhere(['like', 'Remark', $this->Remark]);
+        $query->orFilterWhere(['like', 'Area', $this->search])
+            ->orFilterWhere(['like', 'SPC', $this->search])
+            ->orFilterWhere(['like', 'Jenis', $this->search])
+            ->orFilterWhere(['like', 'Last_counter', $this->search])
+            ->orFilterWhere(['like', 'Remark', $this->search]);
 
         return $dataProvider;
     }

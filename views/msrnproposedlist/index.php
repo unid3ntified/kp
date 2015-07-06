@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel app\models\MsrnProposedlistSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Msrn Proposedlists';
+$this->title = 'Msrn Proposed List';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="msrn-proposedlist-index">

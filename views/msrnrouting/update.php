@@ -6,8 +6,7 @@ use yii\helpers\Html;
 /* @var $model app\models\MsrnRouting */
 
 $this->title = 'Update Msrn Routing: ' . ' ' . $model->No;
-$this->params['breadcrumbs'][] = ['label' => 'Msrn Routings', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->No, 'url' => ['view', 'id' => $model->No]];
+$this->params['breadcrumbs'][] = ['label' => 'Msrn Routing', 'url' => ['index']];
 $this->params['breadcrumbs'][] = 'Update';
 ?>
 <div class="msrn-routing-update">
