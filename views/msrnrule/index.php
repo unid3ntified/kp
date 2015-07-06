@@ -41,23 +41,48 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            'cmn',
-            'area',
-            'equipment',
-            'new_msrn',
-            'last_counter',
-            'remark',
-
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{update}',
+            ['attribute'=>'cmn',
+                'value' => function ($model, $key, $index) { 
+                    return $model->cmn;
+                },
+               //'options' => ['style' => 'width:10%;'],
+                'format'=>'raw',
             ],
+
+            ['attribute'=>'area',
+                'value' => function ($model, $key, $index) { 
+                    return $model->area;
+                },
+                //'options' => ['style' => 'width:20%;'],
+                'format'=>'raw',
+            ],
+
+            ['attribute'=>'equipment',
+                'value' => function ($model, $key, $index) { 
+                    return $model->equipment;
+                },
+                //'options' => ['style' => 'width:10%;'],
+                'format'=>'raw',
+            ],
+
+            ['attribute'=>'new_msrn',
+                'value' => function ($model, $key, $index) { 
+                    return $model->new_msrn;
+                },
+                //'options' => ['style' => 'width:20%;'],
+                'format'=>'raw',
+            ],
+
+            ['class' => 'yii\grid\ActionColumn'],
+
         ],
-    ]); ?>
+    ]); 
+    ?>
 
 </div>

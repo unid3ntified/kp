@@ -53,14 +53,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'Vendor',
             'Existing_MSRN:ntext',
             'New_MSRN',
-            'Status',
+            
             'Reserved_by',
-            'Updated',
-            'Remark:ntext',
-
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{update}',
-            ],
+           
+             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

@@ -41,22 +41,49 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
+  
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            //'No',
-            'mss_huawei',
-            'sctp_port',
-            'last_counter',
-            'Remark:ntext',
-
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{update}',
+            ['attribute'=>'mss_huawei',
+                'value' => function ($model, $key, $index) { 
+                    return $model->mss_huawei;
+                },
+               //'options' => ['style' => 'width:10%;'],
+                'format'=>'raw',
             ],
+
+            ['attribute'=>'sctp_port',
+                'value' => function ($model, $key, $index) { 
+                    return $model->sctp_port;
+                },
+                //'options' => ['style' => 'width:20%;'],
+                'format'=>'raw',
+            ],
+
+            ['attribute'=>'last_counter',
+                'value' => function ($model, $key, $index) { 
+                    return $model->last_counter;
+                },
+                //'options' => ['style' => 'width:10%;'],
+                'format'=>'raw',
+            ],
+
+            ['attribute'=>'Remark',
+                'value' => function ($model, $key, $index) { 
+                    return $model->Remark;
+                },
+                //'options' => ['style' => 'width:20%;'],
+                'format'=>'raw',
+            ],
+
+            ['class' => 'yii\grid\ActionColumn'],
+
         ],
-    ]); ?>
+    ]); 
+    ?>
 
 </div>

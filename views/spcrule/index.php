@@ -54,9 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'Last_counter',
             'Remark:ntext',
 
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{update}',
-            ],
+           ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

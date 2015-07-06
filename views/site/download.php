@@ -8,8 +8,7 @@ $this->title = 'Download';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
-    <h1><?= Html::encode($this->title) ?></h1>
-    <br>
+   
 
     <div class="col-md-8">
  		<div class="panel panel-green">
@@ -21,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			?>	
  		</div>
  	</div>
-    
+ 	
  	<div class="col-md-8">
  		<div class="panel panel-green">
 			<h4>Download OPC Data:&nbsp;</h4>

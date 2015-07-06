@@ -41,25 +41,56 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            //'No',
-            'Regional',
-            'MSS',
-            'Vendor',
-            'GT',
-            'new_GT',
-            'Status',
-            'Remark:ntext',
-
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{update}',
+            ['attribute'=>'Regional',
+                'value' => function ($model, $key, $index) { 
+                    return $model->Regional;
+                },
+               //'options' => ['style' => 'width:10%;'],
+                'format'=>'raw',
             ],
+
+            ['attribute'=>'MSS',
+                'value' => function ($model, $key, $index) { 
+                    return $model->MSS;
+                },
+                //'options' => ['style' => 'width:20%;'],
+                'format'=>'raw',
+            ],
+
+            ['attribute'=>'Vendor',
+                'value' => function ($model, $key, $index) { 
+                    return $model->Vendor;
+                },
+                //'options' => ['style' => 'width:10%;'],
+                'format'=>'raw',
+            ],
+
+            ['attribute'=>'GT',
+                'value' => function ($model, $key, $index) { 
+                    return $model->GT;
+                },
+                //'options' => ['style' => 'width:20%;'],
+                'format'=>'raw',
+            ],
+
+            ['attribute'=>'new_GT',
+                'value' => function ($model, $key, $index) { 
+                    return $model->new_GT;
+                },
+                //'options' => ['style' => 'width:20%;'],
+                'format'=>'raw',
+            ],
+
+            ['class' => 'yii\grid\ActionColumn'],
+
         ],
-    ]); ?>
+    ]); 
+    ?>
 
 </div>

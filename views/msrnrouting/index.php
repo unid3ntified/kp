@@ -52,11 +52,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'mss',
             'first_route',
             'second_route',
-            'remark:ntext',
-
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{update}',
-            ],
+           
+            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 

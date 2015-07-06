@@ -41,19 +41,26 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
+    
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        //'filterModel' => $searchModel,
+
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-            //'No',
-            'SPC',
-
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{update}',
+            ['attribute'=>'SPC',
+                'value' => function ($model, $key, $index) { 
+                    return $model->SPC;
+                },
+               'options' => ['style' => 'width:80%;'],
+                'format'=>'raw',
             ],
+
+           
+            ['class' => 'yii\grid\ActionColumn'],
+
         ],
-    ]); ?>
+    ]); 
+    ?>
 
 </div>

@@ -51,11 +51,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'Regional',
             'LAC',
             'DN',
-            'Remark:ntext',
 
-            ['class' => 'yii\grid\ActionColumn',
-                'template' => '{update}',
-            ],
+
+             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
 
