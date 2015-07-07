@@ -51,9 +51,25 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $NEcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM network_element')->queryScalar();
+        $MSCcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM msc')->queryScalar();
+        $MGWcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM mgw')->queryScalar();
+        $Partnercount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM (select distinct partner from trunk_voip) as a')->queryScalar();
+        $PartnerPOIcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM (select distinct t_group from trunk_interkoneksi) as a')->queryScalar();
+        $SGSNcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM network_element WHERE network_element_id like "SGSN%" OR network_element_id like "%SGSN%" OR network_element_id like "%SGSN"')->queryScalar();
+        $HLRcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM network_element WHERE network_element_id like "HLR%" OR network_element_id like "%HLR%" OR network_element_id like "%HLR"')->queryScalar();
+        $POIcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM poi')->queryScalar();
+
         return $this->render('index', [
                 'NEcount' => $NEcount,
+                 'MSCcount' => $MSCcount,
+                  'MGWcount' => $MGWcount,
+                  'Partnercount' => $Partnercount,
+                  'PartnerPOIcount' => $PartnerPOIcount,
+                  'SGSNcount' => $SGSNcount,
+                  'HLRcount' => $HLRcount,
+                  'POIcount' => $POIcount,
             ]);
+
     }
 
     public function actionLogin()

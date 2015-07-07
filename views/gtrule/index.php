@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model, $key, $index) { 
                     return $model->STP;
                 },
-               'options' => ['style' => 'width:10%;'],
+               //'options' => ['style' => 'width:10%;'],
                 'format'=>'raw',
             ],
 
@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model, $key, $index) { 
                     return $model->Area;
                 },
-                'options' => ['style' => 'width:20%;'],
+                //'options' => ['style' => 'width:20%;'],
                 'format'=>'raw',
             ],
 
@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model, $key, $index) { 
                     return $model->Equipment;
                 },
-                'options' => ['style' => 'width:10%;'],
+                //'options' => ['style' => 'width:10%;'],
                 'format'=>'raw',
             ],
 
@@ -75,7 +75,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model, $key, $index) { 
                     return $model->GT;
                 },
-                'options' => ['style' => 'width:20%;'],
+                //'options' => ['style' => 'width:20%;'],
                 'format'=>'raw',
             ],
 
