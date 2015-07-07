@@ -62,8 +62,11 @@ class SiteController extends Controller
 
 
         
+        //convert sql query to dataprovider class
         $temp = Yii::$app->db->createCommand('SELECT vendor as name, COUNT(*) as count FROM network_element group by vendor')->queryAll();
+        //initialize array
         $vendorNE = array();
+        //map dataprovider to array
         foreach ($temp as $key => $value) {
             $vendorNE[$key] = [$value['name'], (int)$value['count']] ;
         }
@@ -81,11 +84,12 @@ class SiteController extends Controller
         }
 
         $temp = Yii::$app->db->createCommand('SELECT t_group as name, COUNT(*) as Trunk FROM trunk_interkoneksi group by t_group order by Trunk DESC')->queryAll();
-        $vendorMGW = array();
+        $partnerPOI = array();
         foreach ($temp as $key => $value) {
             $partnerPOI[$key] = [$value['name'], (int)$value['Trunk']] ;
         }
 
+        //passing all variable to view class
         return $this->render('index', [
                 'NEcount' => $NEcount,
                 'vendorNE' => $vendorNE,
