@@ -45,7 +45,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'mgw_managerA_circuit')->checkbox(['MGW Manager A Circuit']) ?>
 
-    <?= $form->field($model, 'status')->dropDownList(['Dismantle', 'In service', 'Plan', 'Trial'], ['prompt' => 'Choose Status']) ?>
+    <?= $form->field($model, 'status')->dropDownList(['Dismantle', 'In Service', 'Plan', 'Trial'], ['prompt' => 'Choose Status']) ?>
 
     <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 

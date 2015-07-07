@@ -209,7 +209,7 @@ class NetworkelementController extends Controller
                 $model->status = "Dismantle";
                 break;
             case ("1"):
-                $model->status = "In service";
+                $model->status = "In Service";
                 break;
             case ("2"):
                 $model->status = "Plan";
@@ -339,7 +339,7 @@ class NetworkelementController extends Controller
             case ("Dismantle"):
                 $model->status = "0";
                 break;
-            case ("In service"):
+            case ("In Service"):
                 $model->status = "1";
                 break;
             case ("Plan"):
