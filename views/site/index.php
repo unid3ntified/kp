@@ -1,5 +1,6 @@
 <?php
 use miloschuman\highcharts\Highcharts;
+use yii\web\JsExpression;
 
 /* @var $this yii\web\View */
 $this->title = 'Sistem Informasi Network Element';
@@ -19,21 +20,114 @@ $this->title = 'Sistem Informasi Network Element';
             <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
     	</div>
     </div>
- 	<div class="row">
- 		<div class="col-lg-7">
-			<?= Highcharts::widget([
+    <br>
+    <div class="row">
+    	<div class="col-lg-12">
+            <?= Highcharts::widget([
 			   	'options' => [
-			    	'title' => ['text' => 'Fruit Consumption'],
-			      	'xAxis' => [
-			         	'categories' => ['Apples', 'Bananas', 'Oranges']
+			    	'title' => ['text' => 'POI Partner'],
+			    	'xAxis' => [
+			         	'type' => 'category'
 			      	],
 			      	'yAxis' => [
-			         	'title' => ['text' => 'Fruit eaten']
+			         	'title' => ['text' => 'Total Trunk']
 			      	],
-			      	'series' => [
-			         	['name' => 'Jane', 'data' => [1, 0, 4]],
-			         	['name' => 'John', 'data' => [5, 7, 3]]
-			      	]
+			      	'series' => 
+			        [
+			         	[
+                			'type' => 'column',
+                			'name' => 'Trunk',
+                			'data' => $partnerPOI,
+			                'center' => [150, 90],
+			                'size' => 150,
+			                'showInLegend' => false,
+			                'dataLabels' => [
+			                    'enabled' => true,
+        					],
+            			],
+			      	],
+			      	'credits' => ['enabled' => false],
+			   	]
+			]);
+			?>
+    	</div>
+    </div>
+    <br>
+ 	<div class="row">
+ 		<div class="col-md-4">
+			<?= Highcharts::widget([
+			   	'options' => [
+			    	'title' => ['text' => 'Network Element Vendor'],
+			      	'yAxis' => [
+			         	'title' => ['text' => 'count']
+			      	],
+			      	'series' => 
+			        [
+			         	[
+                			'type' => 'pie',
+                			'name' => 'count',
+                			'data' => $vendorNE,
+			                'center' => [150, 90],
+			                'size' => 150,
+			                'showInLegend' => true,
+			                'dataLabels' => [
+			                    'enabled' => true,
+        					],
+            			],
+			      	],
+			      	'credits' => ['enabled' => false],
+			   	]
+			]);
+			?>
+		</div>
+		<div class="col-md-4">
+			<?= Highcharts::widget([
+			   	'options' => [
+			    	'title' => ['text' => 'MSC Vendor'],
+			      	'yAxis' => [
+			         	'title' => ['text' => 'count']
+			      	],
+			      	'series' => 
+			        [
+			         	[
+                			'type' => 'pie',
+                			'name' => 'count',
+                			'data' => $vendorMSC,
+			                'center' => [150, 90],
+			                'size' => 150,
+			                'showInLegend' => true,
+			                'dataLabels' => [
+			                    'enabled' => true,
+        					],
+            			],
+			      	],
+			      	'credits' => ['enabled' => false],
+			   	]
+			]);
+			?>
+		</div>
+		<div class="col-md-4">
+			<?= Highcharts::widget([
+			   	'options' => [
+			    	'title' => ['text' => 'MGW Vendor'],
+			      	'yAxis' => [
+			         	'title' => ['text' => 'count']
+			      	],
+			      	'series' => 
+			        [
+			         	[
+                			'type' => 'pie',
+                			'name' => 'count',
+                			'data' => $vendorMGW,
+			                'center' => [150, 90],
+			                'size' => 150,
+			                'showInLegend' => true,
+			                'dataLabels' => [
+			                    'enabled' => true,
+        					],
+            			],
+			      	],
+			      	'credits' => ['enabled' => false],
 			   	]
 			]);
 			?>

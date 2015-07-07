@@ -51,8 +51,37 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $NEcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM network_element')->queryScalar();
+        
+        $temp = Yii::$app->db->createCommand('SELECT vendor as name, COUNT(*) as count FROM network_element group by vendor')->queryAll();
+        $vendorNE = array();
+        foreach ($temp as $key => $value) {
+            $vendorNE[$key] = [$value['name'], (int)$value['count']] ;
+        }
+
+        $temp = Yii::$app->db->createCommand('SELECT vendor as name, COUNT(*) as count FROM network_element, msc where msc_name = network_element_id group by vendor')->queryAll();
+        $vendorMSC = array();
+        foreach ($temp as $key => $value) {
+            $vendorMSC[$key] = [$value['name'], (int)$value['count']] ;
+        }
+
+        $temp = Yii::$app->db->createCommand('SELECT vendor as name, COUNT(*) as count FROM network_element, mgw where mgw_name = network_element_id group by vendor')->queryAll();
+        $vendorMGW = array();
+        foreach ($temp as $key => $value) {
+            $vendorMGW[$key] = [$value['name'], (int)$value['count']] ;
+        }
+
+        $temp = Yii::$app->db->createCommand('SELECT t_group as name, COUNT(*) as Trunk FROM trunk_interkoneksi group by t_group order by Trunk DESC')->queryAll();
+        $vendorMGW = array();
+        foreach ($temp as $key => $value) {
+            $partnerPOI[$key] = [$value['name'], (int)$value['Trunk']] ;
+        }
+
         return $this->render('index', [
                 'NEcount' => $NEcount,
+                'vendorNE' => $vendorNE,
+                'vendorMSC' => $vendorMSC,
+                'vendorMGW' => $vendorMGW,
+                'partnerPOI' => $partnerPOI,
             ]);
     }
 
