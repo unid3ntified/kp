@@ -76,7 +76,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h3><?= Html::encode($flag) ?></h3>
     <?php
-        if ($flag == 'MSC Specification')
+        if ($flag == 'MSC Pool Specification')
         {
             echo DetailView::widget([
                 'model' => $mscmodel,
@@ -119,7 +119,7 @@ $this->params['breadcrumbs'][] = $this->title;
         }
 
         
-        if ($flag == 'MSC Specification' || $flag == 'BCU ID List')
+        if ($flag == 'MSC Pool Specification' || $flag == 'BCU ID List')
         {
             echo "<h3>Trunk VOIP List</h3>";
             echo GridView::widget([

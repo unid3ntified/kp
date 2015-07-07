@@ -107,7 +107,7 @@ class NetworkelementController extends Controller
         else if ($MscDataProvider->totalCount > 0)
         {
             $dataprovider = $MscDataProvider;
-            $flag = 'MSC Specification';
+            $flag = 'MSC Pool Specification';
             $mscmodel = Msc::findOne($id);
         }
 
