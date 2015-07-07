@@ -79,7 +79,7 @@ class TrunkinterkoneksiController extends Controller
     public function actionCreate()
     {
         $model = new TrunkInterkoneksi();
-        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
+        $option = ['Dismantle', 'In Service', 'Plan', 'Trial'];
         $listData = ArrayHelper::map(Poi::find()->asArray()->all(), 'poi', 'poi');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -104,7 +104,7 @@ class TrunkinterkoneksiController extends Controller
     {
         $model = $this->findModel($id);
         $this->convertDropDown($model);
-        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
+        $option = ['Dismantle', 'In Service', 'Plan', 'Trial'];
         $listData = ArrayHelper::map(Poi::find()->asArray()->all(), 'poi', 'poi');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -156,7 +156,7 @@ class TrunkinterkoneksiController extends Controller
                 $model->status = "Dismantle";
                 break;
             case ("1"):
-                $model->status = "In service";
+                $model->status = "In Service";
                 break;
             case ("2"):
                 $model->status = "Plan";
@@ -177,7 +177,7 @@ class TrunkinterkoneksiController extends Controller
             case ("Dismantle"):
                 $model->status = "0";
                 break;
-            case ("In service"):
+            case ("In Service"):
                 $model->status = "1";
                 break;
             case ("Plan"):

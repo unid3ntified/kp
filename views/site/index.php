@@ -1,6 +1,8 @@
 <?php
+
 use miloschuman\highcharts\Highcharts;
 use yii\web\JsExpression;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 $this->title = 'Sistem Informasi Network Element';
@@ -15,7 +17,7 @@ $this->title = 'Sistem Informasi Network Element';
             </div>
             
             <div id= "detailtext">
-            <a href="#" >View Details </a>
+            <?= Html::a('View Details ', ['networkelement/index']) ?>
             </div>
     	</div>
 
@@ -26,7 +28,7 @@ $this->title = 'Sistem Informasi Network Element';
             </div>
             
             <div id= "detailtextg">
-            <a href="#" >View Details </a>
+            <?= Html::a('View Details ', ['msc/index']) ?>
             </div>
     	</div>
     
@@ -38,7 +40,7 @@ $this->title = 'Sistem Informasi Network Element';
             </div>
             
             <div id= "detailtextr">
-            <a href="#" >View Details </a>
+            <?= Html::a('View Details ', ['bcuid/index']) ?>
             </div>
         </div>
 
@@ -49,7 +51,7 @@ $this->title = 'Sistem Informasi Network Element';
             </div>
             
             <div id= "detailtexto">
-            <a href="#" >View Details </a>
+            <?= Html::a('View Details ', ['networkelement/index']) ?>
             </div>
         </div>
 
@@ -73,7 +75,7 @@ $this->title = 'Sistem Informasi Network Element';
             </div>
             
             <div id= "detailtexty">
-            <a href="#" >View Details </a>
+            <?= Html::a('View Details ', ['poi/index']) ?>
             </div>
         </div>
 

@@ -80,7 +80,7 @@ class RncreferenceController extends Controller
     public function actionCreate()
     {
         $model = new RncReference();
-        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
+        $option = ['Dismantle', 'In Service', 'Plan', 'Trial'];
         $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -105,7 +105,7 @@ class RncreferenceController extends Controller
     public function actionUpdate($rnc_id, $mgw_name)
     {
         $model = $this->findModel($rnc_id, $mgw_name);
-        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
+        $option = ['Dismantle', 'In Service', 'Plan', 'Trial'];
         $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
         $this->convertDropDown($model);
 
@@ -160,7 +160,7 @@ class RncreferenceController extends Controller
                 $model->status = "Dismantle";
                 break;
             case ("1"):
-                $model->status = "In service";
+                $model->status = "In Service";
                 break;
             case ("2"):
                 $model->status = "Plan";
@@ -180,7 +180,7 @@ class RncreferenceController extends Controller
             case ("Dismantle"):
                 $model->status = "0";
                 break;
-            case ("In service"):
+            case ("In Service"):
                 $model->status = "1";
                 break;
             case ("Plan"):
