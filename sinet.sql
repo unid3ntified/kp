@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 30, 2015 at 08:38 AM
--- Server version: 5.6.11
--- PHP Version: 5.5.1
+-- Generation Time: Jul 07, 2015 at 02:10 PM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `sinet`
 --
-CREATE DATABASE IF NOT EXISTS `sinet` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `sinet`;
 
 -- --------------------------------------------------------
 
@@ -29,7 +27,7 @@ USE `sinet`;
 --
 
 CREATE TABLE IF NOT EXISTS `desc_network` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `network_element_id` varchar(100) NOT NULL,
   `opc_nat0` varchar(20) DEFAULT NULL,
   `opc_nat1` varchar(20) DEFAULT NULL,
@@ -41,10 +39,8 @@ CREATE TABLE IF NOT EXISTS `desc_network` (
   `fifth_opc` varchar(20) DEFAULT NULL,
   `sixth_opc` varchar(20) DEFAULT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`id`),
-  KEY `network_id` (`network_element_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15377 ;
+  `remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=15377 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `desc_network`
@@ -1628,146 +1624,143 @@ INSERT INTO `desc_network` (`id`, `network_element_id`, `opc_nat0`, `opc_nat1`, 
 --
 
 CREATE TABLE IF NOT EXISTS `gt_proposedlist` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
+`No` int(11) NOT NULL,
   `Regional` varchar(100) NOT NULL,
   `MSS` varchar(20) DEFAULT NULL,
+  `Vendor` varchar(100) DEFAULT NULL,
   `GT` varchar(30) DEFAULT NULL,
   `new_GT` varchar(30) DEFAULT NULL,
   `Status` varchar(50) DEFAULT NULL,
-  `Remark` text,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=126 ;
+  `Remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=248 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `gt_proposedlist`
 --
 
-INSERT INTO `gt_proposedlist` (`No`, `Regional`, `MSS`, `GT`, `new_GT`, `Status`, `Remark`) VALUES
-(1, 'Sumatra1', 'MSAC1(E)', '62818445794', '628184420300', 'done', ''),
-(2, 'Sumatra1', 'MSMD2 (E)', '62818445809', '628184420301', 'done', ''),
-(3, 'Sumatra1', 'MSBT1(E)', '62818445750', '628184420302', '', ''),
-(4, 'Sumatra1', 'MSMD3 (E)', '62818445749', '628184420303', 'done', ''),
-(5, 'Sumatra1', 'MSMD6(E)', '62818445751', '628184420307', '', ''),
-(6, 'Sumatra1', 'MSPK1 (E)', '62818445801', '628184420305', '', ''),
-(7, 'Sumatra1', 'SGSN Medan (H)', '62818449017', '628184420600', '', ''),
-(8, 'Sumatra1', 'MSMD4(E)', '62818441106', '628184420306', '', ''),
-(9, 'Sumatra1', 'MSPK2(E)', '62818441109', '628184420311', '', ''),
-(10, 'Sumatra1', 'MSMD5(E)', '62818441108', '628184420313', '', ''),
-(11, 'Sumatra1', 'MSPK3(E)', NULL, '628184420310', '', ''),
-(12, 'Sumatra1', 'MSPD3(H)', '62818441003', '628184420001', '', ''),
-(13, 'Sumatra1', 'MSMD7', NULL, '628184420312', '', ''),
-(14, 'Sumatra2', 'MSBB1(E)', '62818445795', '628184421300', '', ''),
-(15, 'Sumatra2', 'MSBK1(E)', '62818445753', '628184421301', '', ''),
-(16, 'Sumatra2', 'MSJB1(E)', '62818445752', '628184421302', '', ''),
-(17, 'Sumatra2', 'MSLP2(H)', '62818445908', '628184421000', 'done', ''),
-(18, 'Sumatra2', 'MSLP3(E)', '62818445796', '628184421303', '', ''),
-(19, 'Sumatra2', 'MSPB2(E)', '62818445807', '628184421304', '', ''),
-(20, 'Sumatra2', 'MSPB3(E)', '62818445840', '628184421305', '', ''),
-(21, 'Sumatra2', 'MSJB2 (H)', '62818440011', '628184421001', '', ''),
-(22, 'Sumatra2', 'MSBK2 (H)', '62818440013', '628184421002', '', ''),
-(23, 'Sumatra2', 'MSPB4 (H)', '62818440012', '628184421003', '', ''),
-(24, 'Sumatra2', 'MSBB2 (H)', '62818440014', '628184421004', 'done', ''),
-(25, 'Sumatra2', 'SGSNPLB01', '62818449018', '628184421600', '', ''),
-(26, 'Sumatra2', 'MSPB5(H)', '62818440023', '628184421007', '', ''),
-(27, 'Sumatra2', 'MSLP4(H)', '62818440103', '628184421008', '', ''),
-(28, 'Sumatra2', 'MSPB6(H)', NULL, '628184421005', '', ''),
-(29, 'Jakarta', 'MSJK9(E)', '62818445727', '628184422000', 'done', ''),
-(30, 'Jakarta', 'MSJK8(E)', '62818445629', '628184422001', 'done', ''),
-(31, 'Jakarta', 'MSJK6(E)', '62818445604', '628184422002', 'done', ''),
-(32, 'Jakarta', 'MSJK5(E)', '62818445601', '628184422003', 'done', ''),
-(33, 'Jakarta', 'MSJ18(E)', '62818445842', '628184422004', 'done', ''),
-(34, 'Jakarta', 'MSJ16(E)', '62818445793', '628184422005', 'done', ''),
-(35, 'Jakarta', 'MSJ15(E)', '62818445741', '628184422006', 'done', ''),
-(36, 'Jakarta', 'MSJ14(E)', '62818445740', '628184422007', 'done', ''),
-(37, 'Jakarta', 'MSJ13(E)', '62818445736', '628184422008', 'done', ''),
-(38, 'Jakarta', 'MSJ12(E)', '62818445733', '628184422009', 'done', ''),
-(39, 'Jakarta', 'MSJ10(E)', '62818445728', '628184422010', 'done', ''),
-(40, 'Jakarta', 'MSJ24(E)', '62818445933', '628184422011', 'done', ''),
-(41, 'Jakarta', 'MSJ23(E)', '62818440016', '628184422012', 'done', ''),
-(42, 'Jakarta', 'MSJ21(E)', '62818440006', '628184422016', 'done', ''),
-(43, 'Jakarta', 'TSJK7(E)', '62818445624', '628184422014', '', ''),
-(44, 'Jakarta', 'TSJ17(E)', '62818445797', '628184422015', '', ''),
-(45, 'Jakarta', 'SGSN Jakarta', '62818445005', '628184422600', '', ''),
-(46, 'Jakarta', 'SGSN Bintaro', '62818446005', '628184422601', '', ''),
-(47, 'Jakarta', 'TSJ19', '62818445931', '628184422300', '', ''),
-(48, 'Jakarta', 'TSJ20', '62818445932', '628184422301', '', ''),
-(49, 'Jakarta', '', NULL, '', '', ''),
-(50, 'Jakarta', '', NULL, '', '', ''),
-(51, 'Jakarta', '', NULL, '', '', ''),
-(52, 'Jakarta', 'MVMC', NULL, '628184422481', '', ''),
-(53, 'West Java', 'MSBD5(E)', '62818445737', '628184423300', 'done', ''),
-(54, 'West Java', 'MSBD4(E)', '62818445729', '628184423301', 'done', ''),
-(55, 'West Java', 'MSBD2(E)', '62818445606', '628184423302', 'done', ''),
-(56, 'West Java', 'MSBD6(E)', '62818440005', '628184423303', 'done', ''),
-(57, 'West Java', 'TSBD3(E)', '62818445619', '628184423304', 'done', ''),
-(58, 'West Java', 'SGSN Bandung', '62818445046', '628184423600', '', ''),
-(59, 'West Java', 'MSPW1(E)', '62818440001', '628184423305', 'done', ''),
-(60, 'West Java', 'MSJT1(E)', '62818445742', '628184423306', 'done', ''),
-(61, 'West Java', 'MSCI1(E)', '62818440007', '628184423311', 'done', ''),
-(62, 'West Java', 'MSCM1(E)', '62818445935', '628184423312', '', ''),
-(63, 'Sumatra1 (Huawei Swap Ericsson)', 'MSMD8', '628184420002', '', '', ''),
-(64, 'Sumatra1 (Huawei Swap Ericsson)', 'MSBT2', '628184420003', '', '', ''),
-(65, 'Sumatra1 (Huawei Swap Ericsson)', 'MSPK4', '628184420004', '', '', ''),
-(66, 'Sumatra1 (Huawei Swap Ericsson)', 'MSAC2', '628184420005', '', '', ''),
-(67, 'East Java', 'MSJE1(E)', '62818445744', '628184425300', 'done', ''),
-(68, 'East Java', 'MSJO1(E)', '62818445745', '628184425301', 'done', ''),
-(69, 'East Java', 'MSKI1(E)', '62818445839', '628184425302', 'done', ''),
-(70, 'East Java', 'MSML1(E)', '62818445734', '628184425303', 'done', ''),
-(71, 'East Java', 'MSPA1(E)', '62818440008', '628184425304', 'done', ''),
-(72, 'East Java', 'MSSB3(E)', '62818445612', '628184425305', '', ''),
-(73, 'East Java', 'MSSB5(E)', '62818445730', '628184425306', 'done', ''),
-(74, 'East Java', 'MSSP1(E)', '62818445746', '628184425307', 'done', ''),
-(75, 'East Java', 'MSSB6(E)', '62818440019', '628184425308', 'done', ''),
-(76, 'East Java', 'SGSB01', '62818445045', '628184425600', '', ''),
-(77, 'East Java', 'TSSB4(E)', '62818445627', '628184425309', '', ''),
-(78, 'East Java', 'MSKI2', '62818444121', '628184425310', 'done', ''),
-(79, 'East Java', 'TSSB7', '62818444122', '628184425311', 'done', ''),
-(80, 'East Java', 'MSSB8', NULL, '628184425312', 'done', ''),
-(81, 'East Java', 'MSSB9', '62818444006', '628184425309', '', ''),
-(82, 'East Java', 'MSB10', NULL, '628184425315', '', ''),
-(83, 'East Java', 'MSB11', NULL, '628184425316', '', ''),
-(84, 'Central Java', 'MSYG3(E)', '62818445738', '628184424300', 'done', ''),
-(85, 'Central Java', 'MSPL1(E)', '62818445726', '628184424301', 'done', ''),
-(86, 'Central Java', 'MSPO1(E)', '62818440004', '628184424302', 'done', ''),
-(87, 'Central Java', 'MSPR1(E)', '62818445743', '628184424303', 'done', ''),
-(88, 'Central Java', 'MSSM1(E)', '62818445641', '628184424304', 'done', ''),
-(89, 'Central Java', 'MSSO1(E)', '62818445841', '628184424305', 'done', ''),
-(90, 'Central Java', 'MSTG1(E)', '62818440003', '628184424306', 'done', ''),
-(91, 'Central Java', 'MSYG2(E)', '62818445609', '628184424307', 'done', ''),
-(92, 'Central Java', 'MSPR2(E)', NULL, '628184424314', '', ''),
-(93, 'Central Java', '', NULL, '', '', ''),
-(94, 'Central Java', 'MSYG4(E)', '62818440018', '628184424308', 'done', ''),
-(95, 'Central Java', 'MSYG5(E)', '62818444005', '628184424311', 'done', ''),
-(96, 'Central Java', 'SGYG01', '62818446036', '628184424600', '', ''),
-(97, 'Balomsum', 'MSSU1(E)', '62818445747', '628184426300', 'done', ''),
-(98, 'Balomsum', 'MSDP2(E)', '62818445615', '628184426301', 'done', ''),
-(99, 'Balomsum', 'MSDP3(E)', '62818445731', '628184426302', 'done', ''),
-(100, 'Balomsum', 'MSKU2(H)', '62818445854', '628184426000', '', ''),
-(101, 'Balomsum', 'MSRK1(E)', '62818445748', '628184426303', 'done', ''),
-(102, 'Balomsum', 'MSSG2(E)', '62818445735', '628184426304', 'done', ''),
-(103, 'Balomsum', 'MSGG3 (E)', '62818440021', '628184426308', 'done', ''),
-(104, 'Balomsum', 'MSDP4 (E)', '62818440020', '628184426306', 'done', ''),
-(105, 'Sulawesi', 'MSMK2(E)', '62818445902', '628184428300', '', ''),
-(106, 'Sulawesi', 'MSMO2(H)', '62818445850', '628184428000', '', ''),
-(107, 'Sulawesi', 'MSMK3(H)', '62818445847', '628184428001', '', ''),
-(108, 'Sulawesi', 'MSPU1(H)', '62818445849', '628184428002', '', ''),
-(109, 'Sulawesi', 'MSBM1(H)', '62818445848', '628184428003', '', ''),
-(110, 'Sulawesi', 'SGSNMKS', '62818449019', '628184428600', '', ''),
-(111, 'Sulawesi', 'SGSNMKS', '62818449020', '628184428601', '', ''),
-(112, 'Kalimantan', 'MSBP2(E)', '62818445789', '628184427300', '', ''),
-(113, 'Kalimantan', 'MSBP3(H)', '62818445845', '628184427000', '', ''),
-(114, 'Kalimantan', 'MSBJ1(E)', '62818445901', '628184427301', '', ''),
-(115, 'Kalimantan', 'MSBJ2(H)', '62818445843', '628184427001', '', ''),
-(116, 'Kalimantan', 'MSPT1(H)', '62818445846', '628184427002', '', ''),
-(117, 'Kalimantan', 'MSPY1(H)', '62818445851', '628184427003', '', ''),
-(118, 'Kalimantan', 'MSST1(H)', '62818445844', '628184427004', '', ''),
-(119, 'Kalimantan', 'SGSNBLP', '62818449020', '628184427600', '', ''),
-(120, 'Jayapura', 'MSJY1(H)', '62818445853', '628184428005', '', ''),
-(121, 'Jayapura', 'MSAB1(H)', '62818445852', '628184428004', '', ''),
-(122, 'HLR', 'HLR-FE-JKT', '628184429901', 'HUAWEI', '', ''),
-(123, 'HLR', 'HLR-FE-SBY', '628184429902', 'HUAWEI', '', ''),
-(124, 'HLR', 'HLR-BE-JKT', '628184429900', 'HUAWEI', '', ''),
-(125, 'HLR', 'HLR-BE-SBY', '628184429900', 'HUAWEI', '', '');
+INSERT INTO `gt_proposedlist` (`No`, `Regional`, `MSS`, `Vendor`, `GT`, `new_GT`, `Status`, `Remark`) VALUES
+(126, 'Sumatra1', 'MSAC1', 'Ericsson', '62818445794', '628184420300', 'done', ''),
+(127, 'Sumatra1', 'MSMD2', 'Ericsson', '62818445809', '628184420301', 'done', ''),
+(128, 'Sumatra1', 'MSBT1', 'Ericsson', '62818445750', '628184420302', '', ''),
+(129, 'Sumatra1', 'MSMD3', 'Ericsson', '62818445749', '628184420303', 'done', ''),
+(130, 'Sumatra1', 'MSMD6', 'Ericsson', '62818445751', '628184420307', '', ''),
+(131, 'Sumatra1', 'MSPK1', 'Ericsson', '62818445801', '628184420305', '', ''),
+(132, 'Sumatra1', 'SGSN Medan', 'Huawei', '62818449017', '628184420600', '', ''),
+(133, 'Sumatra1', 'MSMD4', 'Ericsson', '62818441106', '628184420306', '', ''),
+(134, 'Sumatra1', 'MSPK2', 'Ericsson', '62818441109', '628184420311', '', ''),
+(135, 'Sumatra1', 'MSMD5', 'Ericsson', '62818441108', '628184420313', '', ''),
+(136, 'Sumatra1', 'MSPK3', 'Ericsson', '', '628184420310', '', ''),
+(137, 'Sumatra1', 'MSPD3', 'Huawei', '62818441003', '628184420001', '', ''),
+(138, 'Sumatra1', 'MSMD7', '', '', '628184420312', '', ''),
+(139, 'Sumatra2', 'MSBB1', 'Ericsson', '62818445795', '628184421300', '', ''),
+(140, 'Sumatra2', 'MSBK1', 'Ericsson', '62818445753', '628184421301', '', ''),
+(141, 'Sumatra2', 'MSJB1', 'Ericsson', '62818445752', '628184421302', '', ''),
+(142, 'Sumatra2', 'MSLP2', 'Huawei', '62818445908', '628184421000', 'done', ''),
+(143, 'Sumatra2', 'MSLP3', 'Ericsson', '62818445796', '628184421303', '', ''),
+(144, 'Sumatra2', 'MSPB2', 'Ericsson', '62818445807', '628184421304', '', ''),
+(145, 'Sumatra2', 'MSPB3', 'Ericsson', '62818445840', '628184421305', '', ''),
+(146, 'Sumatra2', 'MSJB2', 'Huawei', '62818440011', '628184421001', '', ''),
+(147, 'Sumatra2', 'MSBK2', 'Huawei', '62818440013', '628184421002', '', ''),
+(148, 'Sumatra2', 'MSPB4', 'Huawei', '62818440012', '628184421003', '', ''),
+(149, 'Sumatra2', 'MSBB2', 'Huawei', '62818440014', '628184421004', 'done', ''),
+(150, 'Sumatra2', 'SGSNPLB01', '', '62818449018', '628184421600', '', ''),
+(151, 'Sumatra2', 'MSPB5', 'Huawei', '62818440023', '628184421007', '', ''),
+(152, 'Sumatra2', 'MSLP4', 'Huawei', '62818440103', '628184421008', '', ''),
+(153, 'Sumatra2', 'MSPB6', 'Huawei', '', '628184421005', '', ''),
+(154, 'Jakarta', 'MSJK9', 'Ericsson', '62818445727', '628184422000', 'done', ''),
+(155, 'Jakarta', 'MSJK8', 'Ericsson', '62818445629', '628184422001', 'done', ''),
+(156, 'Jakarta', 'MSJK6', 'Ericsson', '62818445604', '628184422002', 'done', ''),
+(157, 'Jakarta', 'MSJK5', 'Ericsson', '62818445601', '628184422003', 'done', ''),
+(158, 'Jakarta', 'MSJ18', 'Ericsson', '62818445842', '628184422004', 'done', ''),
+(159, 'Jakarta', 'MSJ16', 'Ericsson', '62818445793', '628184422005', 'done', ''),
+(160, 'Jakarta', 'MSJ15', 'Ericsson', '62818445741', '628184422006', 'done', ''),
+(161, 'Jakarta', 'MSJ14', 'Ericsson', '62818445740', '628184422007', 'done', ''),
+(162, 'Jakarta', 'MSJ13', 'Ericsson', '62818445736', '628184422008', 'done', ''),
+(163, 'Jakarta', 'MSJ12', 'Ericsson', '62818445733', '628184422009', 'done', ''),
+(164, 'Jakarta', 'MSJ10', 'Ericsson', '62818445728', '628184422010', 'done', ''),
+(165, 'Jakarta', 'MSJ24', 'Ericsson', '62818445933', '628184422011', 'done', ''),
+(166, 'Jakarta', 'MSJ23', 'Ericsson', '62818440016', '628184422012', 'done', ''),
+(167, 'Jakarta', 'MSJ21', 'Ericsson', '62818440006', '628184422016', 'done', ''),
+(168, 'Jakarta', 'TSJK7', 'Ericsson', '62818445624', '628184422014', '', ''),
+(169, 'Jakarta', 'TSJ17', 'Ericsson', '62818445797', '628184422015', '', ''),
+(170, 'Jakarta', 'SGSN Jakarta', '', '62818445005', '628184422600', '', ''),
+(171, 'Jakarta', 'SGSN  Bintaro', '', '62818446005', '628184422601', '', ''),
+(172, 'Jakarta', 'TSJ19', '', '62818445931', '628184422300', '', ''),
+(173, 'Jakarta', 'TSJ20', '', '62818445932', '628184422301', '', ''),
+(174, 'Jakarta', 'MVMC', '', '', '628184422481', '', ''),
+(175, 'West Java', 'MSBD5', 'Ericsson', '62818445737', '628184423300', 'done', ''),
+(176, 'West Java', 'MSBD4', 'Ericsson', '62818445729', '628184423301', 'done', ''),
+(177, 'West Java', 'MSBD2', 'Ericsson', '62818445606', '628184423302', 'done', ''),
+(178, 'West Java', 'MSBD6', 'Ericsson', '62818440005', '628184423303', 'done', ''),
+(179, 'West Java', 'TSBD3', 'Ericsson', '62818445619', '628184423304', 'done', ''),
+(180, 'West Java', 'SGSN Bandung', '', '62818445046', '628184423600', '', ''),
+(181, 'West Java', 'MSPW1', 'Ericsson', '62818440001', '628184423305', 'done', ''),
+(182, 'West Java', 'MSJT1', 'Ericsson', '62818445742', '628184423306', 'done', ''),
+(183, 'West Java', 'MSCI1', 'Ericsson', '62818440007', '628184423311', 'done', ''),
+(184, 'West Java', 'MSCM1', 'Ericsson', '62818445935', '628184423312', '', ''),
+(185, 'Sumatra1', 'MSMD8', 'Huawei Swap Ericsson', '628184420002', '', '', ''),
+(186, 'Sumatra1', 'MSBT2', 'Huawei Swap Ericsson', '628184420003', '', '', ''),
+(187, 'Sumatra1', 'MSPK4', 'Huawei Swap Ericsson', '628184420004', '', '', ''),
+(188, 'Sumatra1', 'MSAC2', 'Huawei Swap Ericsson', '628184420005', '', '', ''),
+(189, 'East Java', 'MSJE1', 'Ericsson', '62818445744', '628184425300', 'done', ''),
+(190, 'East Java', 'MSJO1', 'Ericsson', '62818445745', '628184425301', 'done', ''),
+(191, 'East Java', 'MSKI1', 'Ericsson', '62818445839', '628184425302', 'done', ''),
+(192, 'East Java', 'MSML1', 'Ericsson', '62818445734', '628184425303', 'done', ''),
+(193, 'East Java', 'MSPA1', 'Ericsson', '62818440008', '628184425304', 'done', ''),
+(194, 'East Java', 'MSSB3', 'Ericsson', '62818445612', '628184425305', '', ''),
+(195, 'East Java', 'MSSB5', 'Ericsson', '62818445730', '628184425306', 'done', ''),
+(196, 'East Java', 'MSSP1', 'Ericsson', '62818445746', '628184425307', 'done', ''),
+(197, 'East Java', 'MSSB6', 'Ericsson', '62818440019', '628184425308', 'done', ''),
+(198, 'East Java', 'SGSB01', '', '62818445045', '628184425600', '', ''),
+(199, 'East Java', 'TSSB4', 'Ericsson', '62818445627', '628184425309', '', ''),
+(200, 'East Java', 'MSKI2', '', '62818444121', '628184425310', 'done', ''),
+(201, 'East Java', 'TSSB7', '', '62818444122', '628184425311', 'done', ''),
+(202, 'East Java', 'MSSB8', '', '', '628184425312', 'done', ''),
+(203, 'East Java', 'MSSB9', '', '62818444006', '628184425309', '', ''),
+(204, 'East Java', 'MSB10', '', '', '628184425315', '', ''),
+(205, 'East Java', 'MSB11', '', '', '628184425316', '', ''),
+(206, 'Central Java', 'MSYG3', 'Ericsson', '62818445738', '628184424300', 'done', ''),
+(207, 'Central Java', 'MSPL1', 'Ericsson', '62818445726', '628184424301', 'done', ''),
+(208, 'Central Java', 'MSPO1', 'Ericsson', '62818440004', '628184424302', 'done', ''),
+(209, 'Central Java', 'MSPR1', 'Ericsson', '62818445743', '628184424303', 'done', ''),
+(210, 'Central Java', 'MSSM1', 'Ericsson', '62818445641', '628184424304', 'done', ''),
+(211, 'Central Java', 'MSSO1', 'Ericsson', '62818445841', '628184424305', 'done', ''),
+(212, 'Central Java', 'MSTG1', 'Ericsson', '62818440003', '628184424306', 'done', ''),
+(213, 'Central Java', 'MSYG2', 'Ericsson', '62818445609', '628184424307', 'done', ''),
+(214, 'Central Java', 'MSPR2', 'Ericsson', '', '628184424314', '', ''),
+(215, 'Central Java', '', '', '', '', '', ''),
+(216, 'Central Java', 'MSYG4', 'Ericsson', '62818440018', '628184424308', 'done', ''),
+(217, 'Central Java', 'MSYG5', 'Ericsson', '62818444005', '628184424311', 'done', ''),
+(218, 'Central Java', 'SGYG01', '', '62818446036', '628184424600', '', ''),
+(219, 'Balomsum', 'MSSU1', 'Ericsson', '62818445747', '628184426300', 'done', ''),
+(220, 'Balomsum', 'MSDP2', 'Ericsson', '62818445615', '628184426301', 'done', ''),
+(221, 'Balomsum', 'MSDP3', 'Ericsson', '62818445731', '628184426302', 'done', ''),
+(222, 'Balomsum', 'MSKU2', 'Huawei', '62818445854', '628184426000', '', ''),
+(223, 'Balomsum', 'MSRK1', 'Ericsson', '62818445748', '628184426303', 'done', ''),
+(224, 'Balomsum', 'MSSG2', 'Ericsson', '62818445735', '628184426304', 'done', ''),
+(225, 'Balomsum', 'MSGG3', 'Ericsson', '62818440021', '628184426308', 'done', ''),
+(226, 'Balomsum', 'MSDP4', 'Ericsson', '62818440020', '628184426306', 'done', ''),
+(227, 'Sulawesi', 'MSMK2', 'Ericsson', '62818445902', '628184428300', '', ''),
+(228, 'Sulawesi', 'MSMO2', 'Huawei', '62818445850', '628184428000', '', ''),
+(229, 'Sulawesi', 'MSMK3', 'Huawei', '62818445847', '628184428001', '', ''),
+(230, 'Sulawesi', 'MSPU1', 'Huawei', '62818445849', '628184428002', '', ''),
+(231, 'Sulawesi', 'MSBM1', 'Huawei', '62818445848', '628184428003', '', ''),
+(232, 'Sulawesi', 'SGSNMKS', '', '62818449019', '628184428600', '', ''),
+(233, 'Sulawesi', 'SGSNMKS', '', '62818449020', '628184428601', '', ''),
+(234, 'Kalimantan', 'MSBP2', 'Ericsson', '62818445789', '628184427300', '', ''),
+(235, 'Kalimantan', 'MSBP3', 'Huawei', '62818445845', '628184427000', '', ''),
+(236, 'Kalimantan', 'MSBJ1', 'Ericsson', '62818445901', '628184427301', '', ''),
+(237, 'Kalimantan', 'MSBJ2', 'Huawei', '62818445843', '628184427001', '', ''),
+(238, 'Kalimantan', 'MSPT1', 'Huawei', '62818445846', '628184427002', '', ''),
+(239, 'Kalimantan', 'MSPY1', 'Huawei', '62818445851', '628184427003', '', ''),
+(240, 'Kalimantan', 'MSST1', 'Huawei', '62818445844', '628184427004', '', ''),
+(241, 'Kalimantan', 'SGSNBLP', '', '62818449020', '628184427600', '', ''),
+(242, 'Jayapura', 'MSJY1', 'Huawei', '62818445853', '628184428005', '', ''),
+(243, 'Jayapura', 'MSAB1', 'Huawei', '62818445852', '628184428004', '', ''),
+(244, 'HLR', 'HLR-FE-JKT', 'Huawei', '628184429901', '', '', ''),
+(245, 'HLR', 'HLR-FE-SBY', 'Huawei', '628184429902', '', '', ''),
+(246, 'HLR', 'HLR-BE-JKT', 'Huawei', '628184429900', '', '', ''),
+(247, 'HLR', 'HLR-BE-SBY', 'Huawei', '628184429900', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1776,15 +1769,14 @@ INSERT INTO `gt_proposedlist` (`No`, `Regional`, `MSS`, `GT`, `new_GT`, `Status`
 --
 
 CREATE TABLE IF NOT EXISTS `gt_rule` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
+`No` int(11) NOT NULL,
   `STP` text NOT NULL,
   `Area` text NOT NULL,
   `Equipment` varchar(100) DEFAULT NULL,
   `GT` text NOT NULL,
   `Last_counter` varchar(30) DEFAULT NULL,
-  `Remark` text,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=71 ;
+  `Remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `gt_rule`
@@ -1876,9 +1868,7 @@ CREATE TABLE IF NOT EXISTS `mgw` (
   `new_mss_connected` varchar(20) DEFAULT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`bcu_id`),
-  KEY `mgw_name` (`mgw_name`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2201,9 +2191,7 @@ CREATE TABLE IF NOT EXISTS `msc` (
   `mgw_managerA_circuit` varchar(10) DEFAULT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`msc_name`),
-  UNIQUE KEY `cnid` (`cnid`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2323,136 +2311,136 @@ INSERT INTO `msc` (`msc_name`, `cnid`, `pool`, `non_broadcast_lai`, `null_nri`, 
 --
 
 CREATE TABLE IF NOT EXISTS `msrn_proposedlist` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
+`No` int(11) NOT NULL,
   `Regional` varchar(100) NOT NULL,
   `MSS` varchar(10) NOT NULL,
+  `Vendor` varchar(100) DEFAULT NULL,
   `Existing_MSRN` text NOT NULL,
   `New_MSRN` varchar(20) NOT NULL,
   `Status` varchar(50) DEFAULT NULL,
   `Reserved_by` varchar(50) NOT NULL,
   `Updated` varchar(20) NOT NULL,
-  `Remark` text,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=114 ;
+  `Remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=227 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `msrn_proposedlist`
 --
 
-INSERT INTO `msrn_proposedlist` (`No`, `Regional`, `MSS`, `Existing_MSRN`, `New_MSRN`, `Status`, `Reserved_by`, `Updated`, `Remark`) VALUES
-(1, 'Sumatra1-2', 'MSAC1(E)', '628180156abc', '62819000300abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(2, 'Sumatra1-2', 'MSMD2 (E)', '628180128abcd', '62819000301abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(3, 'Sumatra1-2', 'MSMD3 (E)', '628180148abc', '62819000302abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(4, 'Sumatra1-2', 'MSMD4(E)', '628180015abc', '62819000303abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(5, 'Sumatra1-2', 'MSMD5(E)', '628180051abc, 628180052abc, 628180053abc, 628180054abc', '62819000304abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(6, 'Sumatra1-2', 'MSMD6 (E)', '628180068abc, 628180069abc, 628180070abc, 628180071abc, 628180072abc', '62819000305abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(7, 'Sumatra1-2', 'MSMD7 (E)', '628180073abc, 628180074abc, 628180075abc, 628180076abc, 628180077abc', '62819000306abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(8, 'Sumatra1-2', 'MSPD3(H)', '628180033abc', '62819000307abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(9, 'Sumatra1-2', 'MSPK1 (E)', '628180112abc', '62819000308abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(10, 'Sumatra1-2', 'MSPK2(E)', '628180055abc, 628180056abc, 628180057abc, 628180058abc', '62819000309abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(11, 'Sumatra1-2', 'MSPK3(E)', '628180082abc', '62819000310abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(12, 'Sumatra1-2', 'MSBT1(E)', '628180149abc', '62819000311abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(13, 'Sumatra3-4', 'MSBB2(H)', '628180004abc', '62819000400abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(14, 'Sumatra3-4', 'MSBB3(H)', '628180049abc', '62819000401abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(15, 'Sumatra3-4', 'MSBK2(H)', '628180003abc', '62819000402abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(16, 'Sumatra3-4', 'MSJB2(H)', '628180001abc', '62819000403abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(17, 'Sumatra3-4', 'MSPB4 (H)', '628180002abc', '62819000404abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(18, 'Sumatra3-4', 'MSPB5(H)', '628180032abc', '62819000405abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(19, 'Sumatra3-4', 'MSPB6(H)', '628180084abc', '62819000406abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(20, 'Sumatra3-4', 'MSLP2(H)', '628180099abc', '62819000407abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(21, 'Sumatra3-4', 'MSLP4(H)', '628180036abc', '62819000408abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(22, 'Sumatra3-4', 'MSLP5(H)', '628180050abc', '62819000409abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(23, 'Jabotabek', 'MSJK5(E)', '628180105abc', '62819000500abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(24, 'Jabotabek', 'MSJK8(E)', '628180117abc', '62819000501abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(25, 'Jabotabek', 'MSJK9(E)', '628180118abc', '62819000502abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(26, 'Jabotabek', 'MSJ10(E)', '628180119abc', '62819000503abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(27, 'Jabotabek', 'MSJ12(E)', '628180129abcd', '62819000504abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(28, 'Jabotabek', 'MSJ13(E)', '628180135abcd', '62819000505abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(29, 'Jabotabek', 'MSJ14(E)', '628180138abc', '62819000506abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(30, 'Jabotabek', 'MSJ16(E)', '628180157abc', '62819000507abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(31, 'Jabotabek', 'MSJ18(E)', '628180166abc', '62819000508abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(32, 'Jabotabek', 'MSJ21(E)', '628180193abc', '62819000510abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(33, 'Jabotabek', 'MSJ23(E)', '628180007abc', '62819000511abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(34, 'Jabotabek', 'MSJ24(E)', '628180008abc, 628180020abc, 628180021abc, 628180022abc, 628180023abc', '62819000512abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(35, 'Jabotabek', 'MSJ25(E)', '628180064abc, 628180065abc, 628180066abc, 628180067abc,', '62819000513abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(36, 'Jabotabek', 'MSJ26(E)', '6281900001abc, 6281900002abc, 6281900003abc, 6281900004abc, 6281900005abc', '62819000514abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(37, 'Jabotabek', 'MSJ28(E)', '6281900006abc, 6281900007abc, 6281900008abc, 6281900009abc, 6281900010abc', '62819000515abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(38, 'Jabotabek', 'MSJ29(E)', '628180150abc, 628180151abc, 628180152abc, 628180153abc, 628180154abc', '62819000516abcd', '', 'BambangSH', 'W21 2012', NULL),
-(39, 'Jabotabek', 'MSJ30(E)', '628180155abc, 628180158abc, 628180161abc, 628180162abc, 628180163abc', '62819000517abcd', '', 'BambangSH', 'W21 2012', NULL),
-(40, 'Jabotabek', 'VSP (MOVIR', '', '62819000518abcd', '', 'Bintar', 'W47 2014', NULL),
-(41, 'Jabotabek', 'VMC (Taqua', '', '62819000519abcd', '', 'Bintar', 'W18 2015', NULL),
-(42, 'Jabotabek', 'MSJ35 (rel', '', '62819000520abcd', '', 'Bintar', 'W23 2015', NULL),
-(43, 'West Java', 'MSBD2(E)', '628180107abc', '62819000600abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(44, 'West Java', 'MSBD4(E)', '628180121abc', '62819000601abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(45, 'West Java', 'MSBD5(E)', '628180133abcd', '62819000602abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(46, 'West Java', 'MSBD6(E)', '628180189abc', '62819000603abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(47, 'West Java', 'MSBD7(E)', '628180037abc, 628180038abc, 628180039abc, 628180040abc', '62819000604abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(48, 'West Java', 'MSBD8(E)', '6281900011abc, 6281900012abc, 6281900013abc, 6281900014abc, 6281900015abc', '62819000605abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(49, 'West Java', 'MSPW1(E)', '628180190abc', '62819000606abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(50, 'West Java', 'MSJT1(E)', '628180142abc', '62819000607abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(51, 'West Java', 'MSCI1(E)', '628180192abc', '62819000608abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(52, 'West Java', 'MSCI2(E)', '6281900017abc, 6281900018abc, 6281900019abc, 6281900020abc, 6281900021abc', '62819000609abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(53, 'West Java', 'MSCH1(E)', '6281900022abc, 6281900023abc, 6281900024abc, 6281900025abc, 6281900026abc', '62819000610abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(54, 'West Java', 'MSCM1(E)', '628180034abc', '62819000611abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(55, 'West Java', 'MSSK1 (E)', '628180141abc', '62819000612abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(56, 'West Java', 'MSBD9 (E)', '628180100abc, 628180101abc, 628180102abc, 628180103abc, 628180106abc', '62819000613abcd', '', 'BambangSH', 'W21 2012', NULL),
-(57, 'Sumatra1 (Huawei Swap Ericsson)', 'MSMD8', '', '62819000312abcd', '', 'FerrySH', '', NULL),
-(58, 'Sumatra1 (Huawei Swap Ericsson)', 'MSBT2', '', '62819000313abcd', '', 'FerrySH', '', NULL),
-(59, 'Sumatra1 (Huawei Swap Ericsson)', 'MSPK4', '', '62819000314abcd', '', 'FerrySH', '', NULL),
-(60, 'Sumatra1 (Huawei Swap Ericsson)', 'MSAC2', '', '62819000315abcd', '', 'FerrySH', '', NULL),
-(61, 'Central Java', 'MSYG2(E)', '628180108abc', '62819000700abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(62, 'Central Java', 'MSYG3(E)', '628180134abcd', '62819000701abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(63, 'Central Java', 'MSYG4(E)', '628180012abc', '62819000702abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(64, 'Central Java', 'MSYG5(E)', '628180024abc, 628180025abc, 628180026abc, 628180027abc', '62819000703abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(65, 'Central Java', 'MSPL1(E)', '628180131abcd', '62819000704abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(66, 'Central Java', 'MSPO1(E)', '628180188abc', '62819000705abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(67, 'Central Java', 'MSPR1(E)', '628180143abc', '62819000706abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(68, 'Central Java', 'MSSM1(E)', '628180122abc', '62819000707abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(69, 'Central Java', 'MSSO1(E)', '628180165abc', '62819000708abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(70, 'Central Java', 'MSTG1(E)', '628180187abc', '62819000709abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(71, 'Central Java', 'MSTG2(E)', '628180041abc, 628180042abc, 628180043abc, 628180044abc', '62819000710abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(72, 'Central Java', 'MSPR2(E)', '628180095abc', '62819000711abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(73, 'Central Java', 'MSWL1 (E)', '628180085abc, 628180086abc, 628180087abc, 628180088abc, 628180089abc', '62819000712abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(74, 'Central Java', 'MSYG6 (E)', '628180010abc, 628180014abc, 628180016abc, 628180017abc, 628180018abc', '62819000713abcd', '', 'BambangSH', 'W21 2012', NULL),
-(75, 'Central Java', 'MSSM2', '', '62819000714abcd', '', 'Bintar', 'W2 2015', NULL),
-(76, 'Central Java', 'MSYK7', '', '62819000715abcd', '', 'Bintar', 'W2 2015', NULL),
-(77, 'East Java', 'MSJE1(E)', '628180139abc', '62819000800abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(78, 'East Java', 'MSJO1(E)', '628180160abc', '62819000801abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(79, 'East Java', 'MSKI1(E)', '628180145abc', '62819000802abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(80, 'East Java', 'MSKI2(E)', '628180013abc', '62819000803abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(81, 'East Java', 'MSML1(E)', '628180132abc', '62819000804abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(82, 'East Java', 'MSPA1(E)', '628180194abc', '62819000805abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(83, 'East Java', 'MSSB5(E)', '628180123abc', '62819000807abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(84, 'East Java', 'MSSP1(E)', '628180146abc', '62819000808abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(85, 'East Java', 'MSSB6(E)', '628180011ab', '62819000809abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(86, 'East Java', 'MSSB8', '628180019abc', '62819000811abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(87, 'East Java', 'MSSB9', '628180028abc, 628180029abc, 628180030abc, 628180031abc', '62819000812abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(88, 'East Java', 'MSB10', '628180083abc', '62819000813abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(89, 'East Java', 'MSB11', '6281900027abc, 6281900028abc, 6281900029abc, 6281900030abc, 6281900031abc', '62819000814abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(90, 'East Java', 'MSB12', '628180110abc, 628180113abc, 628180114abc, 628180115abc, 628180116abc', '62819000815abcd', '', 'BambangSH', 'W21 2012', NULL),
-(91, 'East Java', 'MSMA1', '', '62819000816abcd', '', 'Bintar', 'W2 2015', NULL),
-(92, 'East Java', 'MSJE2', '', '62819000817abcd', '', 'Bintar', 'W2 2015', NULL),
-(93, 'Balomsum', 'MSSU1(E)', '628180140abc', '62819000900abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(94, 'Balomsum', 'MSDP2(E)', '628180111abc', '62819000901abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(95, 'Balomsum', 'MSDP3(E)', '628180124abc', '62819000902abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(96, 'Balomsum', 'MSDP4 (E)', '628180006abc', '62819000903abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(97, 'Balomsum', 'MSDP5 (E)', '628180090abc, 628180091abc, 628180092abc, 628180093abc, 628180094abc', '62819000904abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(98, 'Balomsum', 'MSKU2(H)', '628180185abc', '62819000905abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(99, 'Balomsum', 'MSRK1(E)', '628180147abc', '62819000906abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(100, 'Balomsum', 'MSSG2(E)', '628180136abcd', '62819000907abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(101, 'Balomsum', 'MSSG3 (E)', '628180045abc , 628180046abc,  628180047abc, 628180048abc', '62819000908abcd', '', 'LukmanHM', 'W7 2012', NULL),
-(102, 'Balomsum', 'MSDP6 (E)', '628180191abc, 628180195abc, 628180196abc, 628180197abc, 628180199abc', '62819000909abcd', '', 'BambangSH', 'W21 2012', NULL),
-(103, 'Kalimantan', 'MSBP3(H)', '628180170abc', '62819000100abcd', '', 'LukmanHM', 'W16 2012', NULL),
-(104, 'Kalimantan', 'MSBJ2(H)', '628180167abc', '62819000101abcd', '', 'LukmanHM', 'W16 2012', NULL),
-(105, 'Kalimantan', 'MSPT1(H)', '628180169abc', '62819000102abcd', '', 'LukmanHM', 'W16 2012', NULL),
-(106, 'Kalimantan', 'MSPY1(H)', '628180175abc', '62819000103abcd', '', 'LukmanHM', 'W16 2012', NULL),
-(107, 'Kalimantan', 'MSST1(H)', '628180168abc', '62819000104abcd', '', 'LukmanHM', 'W16 2012', NULL),
-(108, 'Sulawesi', 'MSMK3(E)', '628180176abc', '62819000000abcd', '', 'LukmanHM', 'W16 2012', NULL),
-(109, 'Sulawesi', 'MSMO2(H)', '628180182abc', '62819000001abcd', '', 'LukmanHM', 'W16 2012', NULL),
-(110, 'Sulawesi', 'MSPU1(H)', '628180177abc', '62819000002abcd', '', 'LukmanHM', 'W16 2012', NULL),
-(111, 'Sulawesi', 'MSBM1(H)', '628180183abc', '62819000003abcd', '', 'LukmanHM', 'W16 2012', NULL),
-(112, 'Jayapura', 'MSJY1(H)', '628180186abc', '62819000004abcd', '', 'LukmanHM', 'W16 2012', NULL),
-(113, 'Jayapura', 'MSAB1(H)', '628180184abc', '62819000005abcd', '', 'LukmanHM', 'W16 2012', NULL);
+INSERT INTO `msrn_proposedlist` (`No`, `Regional`, `MSS`, `Vendor`, `Existing_MSRN`, `New_MSRN`, `Status`, `Reserved_by`, `Updated`, `Remark`) VALUES
+(114, 'Sumatra1-2', 'MSAC1', 'Ericsson', '628180156abc', '62819000300abcd', '', 'LukmanHM', 'W7 2012', ''),
+(115, 'Sumatra1-2', 'MSMD2', 'Ericsson', '628180128abcd', '62819000301abcd', '', 'LukmanHM', 'W7 2012', ''),
+(116, 'Sumatra1-2', 'MSMD3', 'Ericsson', '628180148abc', '62819000302abcd', '', 'LukmanHM', 'W7 2012', ''),
+(117, 'Sumatra1-2', 'MSMD4', 'Ericsson', '628180015abc', '62819000303abcd', '', 'LukmanHM', 'W7 2012', ''),
+(118, 'Sumatra1-2', 'MSMD5', 'Ericsson', '628180051abc, 628180052abc, 628180053abc, 628180054abc', '62819000304abcd', '', 'LukmanHM', 'W7 2012', ''),
+(119, 'Sumatra1-2', 'MSMD6', 'Ericsson', '628180068abc, 628180069abc, 628180070abc, 628180071abc, 628180072abc', '62819000305abcd', '', 'LukmanHM', 'W7 2012', ''),
+(120, 'Sumatra1-2', 'MSMD7', 'Ericsson', '628180073abc, 628180074abc, 628180075abc, 628180076abc, 628180077abc', '62819000306abcd', '', 'LukmanHM', 'W7 2012', ''),
+(121, 'Sumatra1-2', 'MSPD3', 'Huawei', '628180033abc', '62819000307abcd', '', 'LukmanHM', 'W7 2012', ''),
+(122, 'Sumatra1-2', 'MSPK1', 'Ericsson', '628180112abc', '62819000308abcd', '', 'LukmanHM', 'W7 2012', ''),
+(123, 'Sumatra1-2', 'MSPK2', 'Ericsson', '628180055abc, 628180056abc, 628180057abc, 628180058abc', '62819000309abcd', '', 'LukmanHM', 'W7 2012', ''),
+(124, 'Sumatra1-2', 'MSPK3', 'Ericsson', '628180082abc', '62819000310abcd', '', 'LukmanHM', 'W7 2012', ''),
+(125, 'Sumatra1-2', 'MSBT1', 'Ericsson', '628180149abc', '62819000311abcd', '', 'LukmanHM', 'W7 2012', ''),
+(126, 'Sumatra3-4', 'MSBB2', 'Huawei', '628180004abc', '62819000400abcd', '', 'LukmanHM', 'W7 2012', ''),
+(127, 'Sumatra3-4', 'MSBB3', 'Huawei', '628180049abc', '62819000401abcd', '', 'LukmanHM', 'W7 2012', ''),
+(128, 'Sumatra3-4', 'MSBK2', 'Huawei', '628180003abc', '62819000402abcd', '', 'LukmanHM', 'W7 2012', ''),
+(129, 'Sumatra3-4', 'MSJB2', 'Huawei', '628180001abc', '62819000403abcd', '', 'LukmanHM', 'W7 2012', ''),
+(130, 'Sumatra3-4', 'MSPB4', 'Huawei', '628180002abc', '62819000404abcd', '', 'LukmanHM', 'W7 2012', ''),
+(131, 'Sumatra3-4', 'MSPB5', 'Huawei', '628180032abc', '62819000405abcd', '', 'LukmanHM', 'W7 2012', ''),
+(132, 'Sumatra3-4', 'MSPB6', 'Huawei', '628180084abc', '62819000406abcd', '', 'LukmanHM', 'W7 2012', ''),
+(133, 'Sumatra3-4', 'MSLP2', 'Huawei', '628180099abc', '62819000407abcd', '', 'LukmanHM', 'W7 2012', ''),
+(134, 'Sumatra3-4', 'MSLP4', 'Huawei', '628180036abc', '62819000408abcd', '', 'LukmanHM', 'W7 2012', ''),
+(135, 'Sumatra3-4', 'MSLP5', 'Huawei', '628180050abc', '62819000409abcd', '', 'LukmanHM', 'W7 2012', ''),
+(136, 'Jabotabek', 'MSJK5', 'Ericsson', '628180105abc', '62819000500abcd', '', 'LukmanHM', 'W7 2012', ''),
+(137, 'Jabotabek', 'MSJK8', 'Ericsson', '628180117abc', '62819000501abcd', '', 'LukmanHM', 'W7 2012', ''),
+(138, 'Jabotabek', 'MSJK9', 'Ericsson', '628180118abc', '62819000502abcd', '', 'LukmanHM', 'W7 2012', ''),
+(139, 'Jabotabek', 'MSJ10', 'Ericsson', '628180119abc', '62819000503abcd', '', 'LukmanHM', 'W7 2012', ''),
+(140, 'Jabotabek', 'MSJ12', 'Ericsson', '628180129abcd', '62819000504abcd', '', 'LukmanHM', 'W7 2012', ''),
+(141, 'Jabotabek', 'MSJ13', 'Ericsson', '628180135abcd', '62819000505abcd', '', 'LukmanHM', 'W7 2012', ''),
+(142, 'Jabotabek', 'MSJ14', 'Ericsson', '628180138abc', '62819000506abcd', '', 'LukmanHM', 'W7 2012', ''),
+(143, 'Jabotabek', 'MSJ16', 'Ericsson', '628180157abc', '62819000507abcd', '', 'LukmanHM', 'W7 2012', ''),
+(144, 'Jabotabek', 'MSJ18', 'Ericsson', '628180166abc', '62819000508abcd', '', 'LukmanHM', 'W7 2012', ''),
+(145, 'Jabotabek', 'MSJ21', 'Ericsson', '628180193abc', '62819000510abcd', '', 'LukmanHM', 'W7 2012', ''),
+(146, 'Jabotabek', 'MSJ23', 'Ericsson', '628180007abc', '62819000511abcd', '', 'LukmanHM', 'W7 2012', ''),
+(147, 'Jabotabek', 'MSJ24', 'Ericsson', '628180008abc, 628180020abc, 628180021abc, 628180022abc, 628180023abc', '62819000512abcd', '', 'LukmanHM', 'W7 2012', ''),
+(148, 'Jabotabek', 'MSJ25', 'Ericsson', '628180064abc, 628180065abc, 628180066abc, 628180067abc,', '62819000513abcd', '', 'LukmanHM', 'W7 2012', ''),
+(149, 'Jabotabek', 'MSJ26', 'Ericsson', '6281900001abc, 6281900002abc, 6281900003abc, 6281900004abc, 6281900005abc', '62819000514abcd', '', 'LukmanHM', 'W7 2012', ''),
+(150, 'Jabotabek', 'MSJ28', 'Ericsson', '6281900006abc, 6281900007abc, 6281900008abc, 6281900009abc, 6281900010abc', '62819000515abcd', '', 'LukmanHM', 'W7 2012', ''),
+(151, 'Jabotabek', 'MSJ29', 'Ericsson', '628180150abc, 628180151abc, 628180152abc, 628180153abc, 628180154abc', '62819000516abcd', '', 'BambangSH', 'W21 2012', ''),
+(152, 'Jabotabek', 'MSJ30', 'Ericsson', '628180155abc, 628180158abc, 628180161abc, 628180162abc, 628180163abc', '62819000517abcd', '', 'BambangSH', 'W21 2012', ''),
+(153, 'Jabotabek', 'VSP', 'MOVIRTU', '', '62819000518abcd', '', 'Bintar', 'W47 2014', ''),
+(154, 'Jabotabek', 'VMC', 'Taqua Vowifi', '', '62819000519abcd', '', 'Bintar', 'W18 2015', ''),
+(155, 'Jabotabek', 'MSJ35', 'Reloc MSMD7 Ericsson', '', '62819000520abcd', '', 'Bintar', 'W23 2015', ''),
+(156, 'West Java', 'MSBD2', 'Ericsson', '628180107abc', '62819000600abcd', '', 'LukmanHM', 'W7 2012', ''),
+(157, 'West Java', 'MSBD4', 'Ericsson', '628180121abc', '62819000601abcd', '', 'LukmanHM', 'W7 2012', ''),
+(158, 'West Java', 'MSBD5', 'Ericsson', '628180133abcd', '62819000602abcd', '', 'LukmanHM', 'W7 2012', ''),
+(159, 'West Java', 'MSBD6', 'Ericsson', '628180189abc', '62819000603abcd', '', 'LukmanHM', 'W7 2012', ''),
+(160, 'West Java', 'MSBD7', 'Ericsson', '628180037abc, 628180038abc, 628180039abc, 628180040abc', '62819000604abcd', '', 'LukmanHM', 'W7 2012', ''),
+(161, 'West Java', 'MSBD8', 'Ericsson', '6281900011abc, 6281900012abc, 6281900013abc, 6281900014abc, 6281900015abc', '62819000605abcd', '', 'LukmanHM', 'W7 2012', ''),
+(162, 'West Java', 'MSPW1', 'Ericsson', '628180190abc', '62819000606abcd', '', 'LukmanHM', 'W7 2012', ''),
+(163, 'West Java', 'MSJT1', 'Ericsson', '628180142abc', '62819000607abcd', '', 'LukmanHM', 'W7 2012', ''),
+(164, 'West Java', 'MSCI1', 'Ericsson', '628180192abc', '62819000608abcd', '', 'LukmanHM', 'W7 2012', ''),
+(165, 'West Java', 'MSCI2', 'Ericsson', '6281900017abc, 6281900018abc, 6281900019abc, 6281900020abc, 6281900021abc', '62819000609abcd', '', 'LukmanHM', 'W7 2012', ''),
+(166, 'West Java', 'MSCH1', 'Ericsson', '6281900022abc, 6281900023abc, 6281900024abc, 6281900025abc, 6281900026abc', '62819000610abcd', '', 'LukmanHM', 'W7 2012', ''),
+(167, 'West Java', 'MSCM1', 'Ericsson', '628180034abc', '62819000611abcd', '', 'LukmanHM', 'W7 2012', ''),
+(168, 'West Java', 'MSSK1', 'Ericsson', '628180141abc', '62819000612abcd', '', 'LukmanHM', 'W7 2012', ''),
+(169, 'West Java', 'MSBD9', 'Ericsson', '628180100abc, 628180101abc, 628180102abc, 628180103abc, 628180106abc', '62819000613abcd', '', 'BambangSH', 'W21 2012', ''),
+(170, 'Sumatra1', 'MSMD8', 'Huawei Swap Ericsson', '', '62819000312abcd', '', 'FerrySH', '', ''),
+(171, 'Sumatra1', 'MSBT2', 'Huawei Swap Ericsson', '', '62819000313abcd', '', 'FerrySH', '', ''),
+(172, 'Sumatra1', 'MSPK4', 'Huawei Swap Ericsson', '', '62819000314abcd', '', 'FerrySH', '', ''),
+(173, 'Sumatra2', 'MSAC2', 'Huawei Swap Ericsson', '', '62819000315abcd', '', 'FerrySH', '', ''),
+(174, 'Central Java', 'MSYG2', 'Ericsson', '628180108abc', '62819000700abcd', '', 'LukmanHM', 'W7 2012', ''),
+(175, 'Central Java', 'MSYG3', 'Ericsson', '628180134abcd', '62819000701abcd', '', 'LukmanHM', 'W7 2012', ''),
+(176, 'Central Java', 'MSYG4', 'Ericsson', '628180012abc', '62819000702abcd', '', 'LukmanHM', 'W7 2012', ''),
+(177, 'Central Java', 'MSYG5', 'Ericsson', '628180024abc, 628180025abc, 628180026abc, 628180027abc', '62819000703abcd', '', 'LukmanHM', 'W7 2012', ''),
+(178, 'Central Java', 'MSPL1', 'Ericsson', '628180131abcd', '62819000704abcd', '', 'LukmanHM', 'W7 2012', ''),
+(179, 'Central Java', 'MSPO1', 'Ericsson', '628180188abc', '62819000705abcd', '', 'LukmanHM', 'W7 2012', ''),
+(180, 'Central Java', 'MSPR1', 'Ericsson', '628180143abc', '62819000706abcd', '', 'LukmanHM', 'W7 2012', ''),
+(181, 'Central Java', 'MSSM1', 'Ericsson', '628180122abc', '62819000707abcd', '', 'LukmanHM', 'W7 2012', ''),
+(182, 'Central Java', 'MSSO1', 'Ericsson', '628180165abc', '62819000708abcd', '', 'LukmanHM', 'W7 2012', ''),
+(183, 'Central Java', 'MSTG1', 'Ericsson', '628180187abc', '62819000709abcd', '', 'LukmanHM', 'W7 2012', ''),
+(184, 'Central Java', 'MSTG2', 'Ericsson', '628180041abc, 628180042abc, 628180043abc, 628180044abc', '62819000710abcd', '', 'LukmanHM', 'W7 2012', ''),
+(185, 'Central Java', 'MSPR2', 'Ericsson', '628180095abc', '62819000711abcd', '', 'LukmanHM', 'W7 2012', ''),
+(186, 'Central Java', 'MSWL1', 'Ericsson', '628180085abc, 628180086abc, 628180087abc, 628180088abc, 628180089abc', '62819000712abcd', '', 'LukmanHM', 'W7 2012', ''),
+(187, 'Central Java', 'MSYG6', 'Ericsson', '628180010abc, 628180014abc, 628180016abc, 628180017abc, 628180018abc', '62819000713abcd', '', 'BambangSH', 'W21 2012', ''),
+(188, 'Central Java', 'MSSM2', '', '', '62819000714abcd', '', 'Bintar', 'W2 2015', ''),
+(189, 'Central Java', 'MSYK7', '', '', '62819000715abcd', '', 'Bintar', 'W2 2015', ''),
+(190, 'East Java', 'MSJE1', 'Ericsson', '628180139abc', '62819000800abcd', '', 'LukmanHM', 'W7 2012', ''),
+(191, 'East Java', 'MSJO1', 'Ericsson', '628180160abc', '62819000801abcd', '', 'LukmanHM', 'W7 2012', ''),
+(192, 'East Java', 'MSKI1', 'Ericsson', '628180145abc', '62819000802abcd', '', 'LukmanHM', 'W7 2012', ''),
+(193, 'East Java', 'MSKI2', 'Ericsson', '628180013abc', '62819000803abcd', '', 'LukmanHM', 'W7 2012', ''),
+(194, 'East Java', 'MSML1', 'Ericsson', '628180132abc', '62819000804abcd', '', 'LukmanHM', 'W7 2012', ''),
+(195, 'East Java', 'MSPA1', 'Ericsson', '628180194abc', '62819000805abcd', '', 'LukmanHM', 'W7 2012', ''),
+(196, 'East Java', 'MSSB5', 'Ericsson', '628180123abc', '62819000807abcd', '', 'LukmanHM', 'W7 2012', ''),
+(197, 'East Java', 'MSSP1', 'Ericsson', '628180146abc', '62819000808abcd', '', 'LukmanHM', 'W7 2012', ''),
+(198, 'East Java', 'MSSB6', 'Ericsson', '628180011ab', '62819000809abcd', '', 'LukmanHM', 'W7 2012', ''),
+(199, 'East Java', 'MSSB8', '', '628180019abc', '62819000811abcd', '', 'LukmanHM', 'W7 2012', ''),
+(200, 'East Java', 'MSSB9', '', '628180028abc, 628180029abc, 628180030abc, 628180031abc', '62819000812abcd', '', 'LukmanHM', 'W7 2012', ''),
+(201, 'East Java', 'MSB10', '', '628180083abc', '62819000813abcd', '', 'LukmanHM', 'W7 2012', ''),
+(202, 'East Java', 'MSB11', '', '6281900027abc, 6281900028abc, 6281900029abc, 6281900030abc, 6281900031abc', '62819000814abcd', '', 'LukmanHM', 'W7 2012', ''),
+(203, 'East Java', 'MSB12', '', '628180110abc, 628180113abc, 628180114abc, 628180115abc, 628180116abc', '62819000815abcd', '', 'BambangSH', 'W21 2012', ''),
+(204, 'East Java', 'MSMA1', '', '', '62819000816abcd', '', 'Bintar', 'W2 2015', ''),
+(205, 'East Java', 'MSJE2', '', '', '62819000817abcd', '', 'Bintar', 'W2 2015', ''),
+(206, 'Balomsum', 'MSSU1', 'Ericsson', '628180140abc', '62819000900abcd', '', 'LukmanHM', 'W7 2012', ''),
+(207, 'Balomsum', 'MSDP2', 'Ericsson', '628180111abc', '62819000901abcd', '', 'LukmanHM', 'W7 2012', ''),
+(208, 'Balomsum', 'MSDP3', 'Ericsson', '628180124abc', '62819000902abcd', '', 'LukmanHM', 'W7 2012', ''),
+(209, 'Balomsum', 'MSDP4', 'Ericsson', '628180006abc', '62819000903abcd', '', 'LukmanHM', 'W7 2012', ''),
+(210, 'Balomsum', 'MSDP5', 'Ericsson', '628180090abc, 628180091abc, 628180092abc, 628180093abc, 628180094abc', '62819000904abcd', '', 'LukmanHM', 'W7 2012', ''),
+(211, 'Balomsum', 'MSKU2', 'Huawei', '628180185abc', '62819000905abcd', '', 'LukmanHM', 'W7 2012', ''),
+(212, 'Balomsum', 'MSRK1', 'Ericsson', '628180147abc', '62819000906abcd', '', 'LukmanHM', 'W7 2012', ''),
+(213, 'Balomsum', 'MSSG2', 'Ericsson', '628180136abcd', '62819000907abcd', '', 'LukmanHM', 'W7 2012', ''),
+(214, 'Balomsum', 'MSSG3', 'Ericsson', '628180045abc , 628180046abc,  628180047abc, 628180048abc', '62819000908abcd', '', 'LukmanHM', 'W7 2012', ''),
+(215, 'Balomsum', 'MSDP6', 'Ericsson', '628180191abc, 628180195abc, 628180196abc, 628180197abc, 628180199abc', '62819000909abcd', '', 'BambangSH', 'W21 2012', ''),
+(216, 'Kalimantan', 'MSBP3', 'Huawei', '628180170abc', '62819000100abcd', '', 'LukmanHM', 'W16 2012', ''),
+(217, 'Kalimantan', 'MSBJ2', 'Huawei', '628180167abc', '62819000101abcd', '', 'LukmanHM', 'W16 2012', ''),
+(218, 'Kalimantan', 'MSPT1', 'Huawei', '628180169abc', '62819000102abcd', '', 'LukmanHM', 'W16 2012', ''),
+(219, 'Kalimantan', 'MSPY1', 'Huawei', '628180175abc', '62819000103abcd', '', 'LukmanHM', 'W16 2012', ''),
+(220, 'Kalimantan', 'MSST1', 'Huawei', '628180168abc', '62819000104abcd', '', 'LukmanHM', 'W16 2012', ''),
+(221, 'Sulawesi', 'MSMK3', 'Ericsson', '628180176abc', '62819000000abcd', '', 'LukmanHM', 'W16 2012', ''),
+(222, 'Sulawesi', 'MSMO2', 'Huawei', '628180182abc', '62819000001abcd', '', 'LukmanHM', 'W16 2012', ''),
+(223, 'Sulawesi', 'MSPU1', 'Huawei', '628180177abc', '62819000002abcd', '', 'LukmanHM', 'W16 2012', ''),
+(224, 'Sulawesi', 'MSBM1', 'Huawei', '628180183abc', '62819000003abcd', '', 'LukmanHM', 'W16 2012', ''),
+(225, 'Jayapura', 'MSJY1', 'Huawei', '628180186abc', '62819000004abcd', '', 'LukmanHM', 'W16 2012', ''),
+(226, 'Jayapura', 'MSAB1', 'Huawei', '628180184abc', '62819000005abcd', '', 'LukmanHM', 'W16 2012', '');
 
 -- --------------------------------------------------------
 
@@ -2461,14 +2449,13 @@ INSERT INTO `msrn_proposedlist` (`No`, `Regional`, `MSS`, `Existing_MSRN`, `New_
 --
 
 CREATE TABLE IF NOT EXISTS `msrn_routing` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
+`No` int(11) NOT NULL,
   `cluster` varchar(100) NOT NULL,
   `mss` varchar(20) NOT NULL,
   `first_route` varchar(30) NOT NULL,
   `second_route` varchar(20) NOT NULL,
-  `remark` text,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;
+  `remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `msrn_routing`
@@ -2547,8 +2534,7 @@ CREATE TABLE IF NOT EXISTS `msrn_rule` (
   `equipment` varchar(100) NOT NULL,
   `new_msrn` varchar(20) NOT NULL,
   `last_counter` varchar(20) NOT NULL,
-  `remark` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`cmn`,`new_msrn`)
+  `remark` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2581,10 +2567,7 @@ CREATE TABLE IF NOT EXISTS `network_element` (
   `gtt` varchar(20) DEFAULT NULL,
   `status` varchar(20) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`network_element_id`),
-  UNIQUE KEY `sc-_address` (`gt_address`),
-  UNIQUE KEY `gtt` (`gtt`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -3684,7 +3667,7 @@ INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `
 ('Relocation LRN System', '628184422819', 'not set', 'not set', 'not set', NULL, 'Trial', NULL, NULL),
 ('Relocation USSD LRN', '628184422820', 'not set', 'not set', 'not set', NULL, 'Trial', NULL, NULL),
 ('Relocation VHE', '628184422821', 'not set', 'not set', 'not set', NULL, 'Trial', NULL, NULL),
-('RESERVE for FURTHER SMSC 1', NULL, 'not set', 'not set', '', NULL, '', NULL, NULL),
+('RESERVE for FURTHER SMSC 1', NULL, 'not set', 'not set', 'not set', NULL, 'Reserve', NULL, NULL),
 ('RESERVE for FURTHER SMSC 10', '62818445656', 'not set', 'not set', 'not set', NULL, 'Plan', '0000-00-00', NULL),
 ('RESERVE for FURTHER SMSC 11', '62818445657', 'not set', 'not set', 'not set', NULL, 'Plan', '0000-00-00', NULL),
 ('RESERVE for FURTHER SMSC 14', '62818445660', 'not set', 'not set', 'not set', NULL, 'Plan', '0000-00-00', 'RESERVE'),
@@ -4107,13 +4090,12 @@ INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `
 --
 
 CREATE TABLE IF NOT EXISTS `pabx_info` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
+`No` int(11) NOT NULL,
   `Regional` varchar(100) NOT NULL,
   `LAC` varchar(15) NOT NULL,
   `DN` varchar(15) DEFAULT NULL,
-  `Remark` text,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=72 ;
+  `Remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pabx_info`
@@ -4183,9 +4165,7 @@ CREATE TABLE IF NOT EXISTS `poi` (
   `MSRN` varchar(30) DEFAULT NULL,
   `dummy_number` varchar(20) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`poi`),
-  KEY `msc_name` (`msc_name`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -4239,10 +4219,7 @@ CREATE TABLE IF NOT EXISTS `rnc_reference` (
   `rnc_location` varchar(80) NOT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`rnc_id`,`mgw_name`),
-  KEY `msc_name` (`pool`),
-  KEY `mgw_name` (`mgw_name`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -4533,13 +4510,12 @@ INSERT INTO `rnc_reference` (`rnc_id`, `mgw_name`, `rnc_name`, `pool`, `vendor_r
 --
 
 CREATE TABLE IF NOT EXISTS `sct_port_huawei` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
+`No` int(11) NOT NULL,
   `mss_huawei` varchar(100) NOT NULL,
   `sctp_port` varchar(20) NOT NULL,
   `last_counter` varchar(20) DEFAULT NULL,
-  `Remark` text,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+  `Remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sct_port_huawei`
@@ -4560,10 +4536,9 @@ INSERT INTO `sct_port_huawei` (`No`, `mss_huawei`, `sctp_port`, `last_counter`, 
 --
 
 CREATE TABLE IF NOT EXISTS `spc_ransharing` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
-  `SPC` varchar(20) NOT NULL,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+`No` int(11) NOT NULL,
+  `SPC` varchar(20) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `spc_ransharing`
@@ -4584,14 +4559,13 @@ INSERT INTO `spc_ransharing` (`No`, `SPC`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `spc_rule` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
+`No` int(11) NOT NULL,
   `Area` varchar(100) NOT NULL,
   `SPC` varchar(50) NOT NULL,
   `Jenis` varchar(20) NOT NULL,
   `Last_counter` varchar(30) NOT NULL,
-  `Remark` text,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+  `Remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `spc_rule`
@@ -4625,9 +4599,7 @@ CREATE TABLE IF NOT EXISTS `trunk_interkoneksi` (
   `e1_capacity` int(11) DEFAULT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`trunk_id`),
-  KEY `POI` (`POI`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -4924,10 +4896,7 @@ CREATE TABLE IF NOT EXISTS `trunk_voip` (
   `voip_gateway` varchar(80) NOT NULL,
   `status` varchar(20) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`trunk_id`),
-  KEY `mgw_name` (`mgw`),
-  KEY `mss` (`mss`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -5054,6 +5023,198 @@ INSERT INTO `trunk_voip` (`trunk_id`, `mss`, `mgw`, `detail`, `direction`, `konf
 ('TXGHRU', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro NGT no CLI', 'TERMINASI', NULL, 'GAHARU', 71, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-7983'),
 ('TXIPBO', 'TSJ20', 'MGJ2002', 'TSJ20 - VoIP PABX Via Dugem', 'ORIGINASI', NULL, 'PABX', 1, '9453', '3699', 'Direct', 'inservice', NULL, NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
+`ID` int(10) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `password_reset_token` varchar(32) DEFAULT NULL,
+  `auth_key` varchar(32) DEFAULT NULL,
+  `email` varchar(30) NOT NULL,
+  `status` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `Phone` varchar(12) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`ID`, `username`, `password_hash`, `password_reset_token`, `auth_key`, `email`, `status`, `created_at`, `updated_at`, `Phone`) VALUES
+(17, 'admin', '$2y$13$2Jpvuobfxs/c9lX3BhTlA.HNyBSgtGy1aAbyU4so0K87FnKfVrYf6', NULL, 'Uxgyfo8tKfeAR3WyqfKVKhwvJAMIBHJN', 'admin@example.com', 10, '2015-06-30 06:05:02', '2015-06-30 06:05:02', NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `desc_network`
+--
+ALTER TABLE `desc_network`
+ ADD PRIMARY KEY (`id`), ADD KEY `network_id` (`network_element_id`);
+
+--
+-- Indexes for table `gt_proposedlist`
+--
+ALTER TABLE `gt_proposedlist`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `gt_rule`
+--
+ALTER TABLE `gt_rule`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `mgw`
+--
+ALTER TABLE `mgw`
+ ADD PRIMARY KEY (`bcu_id`), ADD KEY `mgw_name` (`mgw_name`);
+
+--
+-- Indexes for table `msc`
+--
+ALTER TABLE `msc`
+ ADD PRIMARY KEY (`msc_name`), ADD UNIQUE KEY `cnid` (`cnid`);
+
+--
+-- Indexes for table `msrn_proposedlist`
+--
+ALTER TABLE `msrn_proposedlist`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `msrn_routing`
+--
+ALTER TABLE `msrn_routing`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `msrn_rule`
+--
+ALTER TABLE `msrn_rule`
+ ADD PRIMARY KEY (`cmn`,`new_msrn`);
+
+--
+-- Indexes for table `network_element`
+--
+ALTER TABLE `network_element`
+ ADD PRIMARY KEY (`network_element_id`), ADD UNIQUE KEY `sc-_address` (`gt_address`), ADD UNIQUE KEY `gtt` (`gtt`);
+
+--
+-- Indexes for table `pabx_info`
+--
+ALTER TABLE `pabx_info`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `poi`
+--
+ALTER TABLE `poi`
+ ADD PRIMARY KEY (`poi`), ADD KEY `msc_name` (`msc_name`);
+
+--
+-- Indexes for table `rnc_reference`
+--
+ALTER TABLE `rnc_reference`
+ ADD PRIMARY KEY (`rnc_id`,`mgw_name`), ADD KEY `msc_name` (`pool`), ADD KEY `mgw_name` (`mgw_name`);
+
+--
+-- Indexes for table `sct_port_huawei`
+--
+ALTER TABLE `sct_port_huawei`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `spc_ransharing`
+--
+ALTER TABLE `spc_ransharing`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `spc_rule`
+--
+ALTER TABLE `spc_rule`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `trunk_interkoneksi`
+--
+ALTER TABLE `trunk_interkoneksi`
+ ADD PRIMARY KEY (`trunk_id`), ADD KEY `POI` (`POI`);
+
+--
+-- Indexes for table `trunk_voip`
+--
+ALTER TABLE `trunk_voip`
+ ADD PRIMARY KEY (`trunk_id`), ADD KEY `mgw_name` (`mgw`), ADD KEY `mss` (`mss`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Username` (`username`), ADD KEY `User_ID` (`ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `desc_network`
+--
+ALTER TABLE `desc_network`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15377;
+--
+-- AUTO_INCREMENT for table `gt_proposedlist`
+--
+ALTER TABLE `gt_proposedlist`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=248;
+--
+-- AUTO_INCREMENT for table `gt_rule`
+--
+ALTER TABLE `gt_rule`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=71;
+--
+-- AUTO_INCREMENT for table `msrn_proposedlist`
+--
+ALTER TABLE `msrn_proposedlist`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=227;
+--
+-- AUTO_INCREMENT for table `msrn_routing`
+--
+ALTER TABLE `msrn_routing`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=60;
+--
+-- AUTO_INCREMENT for table `pabx_info`
+--
+ALTER TABLE `pabx_info`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=72;
+--
+-- AUTO_INCREMENT for table `sct_port_huawei`
+--
+ALTER TABLE `sct_port_huawei`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `spc_ransharing`
+--
+ALTER TABLE `spc_ransharing`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT for table `spc_rule`
+--
+ALTER TABLE `spc_rule`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 --
 -- Constraints for dumped tables
 --
@@ -5062,44 +5223,44 @@ INSERT INTO `trunk_voip` (`trunk_id`, `mss`, `mgw`, `detail`, `direction`, `konf
 -- Constraints for table `desc_network`
 --
 ALTER TABLE `desc_network`
-  ADD CONSTRAINT `desc_network_ibfk_1` FOREIGN KEY (`network_element_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `desc_network_ibfk_1` FOREIGN KEY (`network_element_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `mgw`
 --
 ALTER TABLE `mgw`
-  ADD CONSTRAINT `mgw_ibfk_1` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `mgw_ibfk_1` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `msc`
 --
 ALTER TABLE `msc`
-  ADD CONSTRAINT `msc_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `msc_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `poi`
 --
 ALTER TABLE `poi`
-  ADD CONSTRAINT `poi_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `poi_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `rnc_reference`
 --
 ALTER TABLE `rnc_reference`
-  ADD CONSTRAINT `rnc_reference_ibfk_2` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `rnc_reference_ibfk_2` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `trunk_interkoneksi`
 --
 ALTER TABLE `trunk_interkoneksi`
-  ADD CONSTRAINT `trunk_interkoneksi_ibfk_1` FOREIGN KEY (`POI`) REFERENCES `poi` (`poi`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `trunk_interkoneksi_ibfk_1` FOREIGN KEY (`POI`) REFERENCES `poi` (`poi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `trunk_voip`
 --
 ALTER TABLE `trunk_voip`
-  ADD CONSTRAINT `trunk_voip_ibfk_3` FOREIGN KEY (`mss`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `trunk_voip_ibfk_4` FOREIGN KEY (`mgw`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `trunk_voip_ibfk_3` FOREIGN KEY (`mss`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `trunk_voip_ibfk_4` FOREIGN KEY (`mgw`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

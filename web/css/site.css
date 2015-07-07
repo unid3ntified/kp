@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    font-size: 10pt;
 }
 
 .wrap {
@@ -147,7 +148,7 @@ body > div.wrap > ul
 #toggle1
 {
     width: 100%;
-    font-size: 12pt;   
+  
     color:#8490fe;
     padding: 5px 0px 5px 15px;
     transition: all .5s;
@@ -156,7 +157,7 @@ body > div.wrap > ul
 #toggle2
 {
     width: 100%;
-    font-size: 12pt;   
+  
     color:#8490fe;
     padding: 5px 0px 5px 15px;
     transition: all .5s;
@@ -165,7 +166,7 @@ body > div.wrap > ul
 body > div.wrap > ul > li > a
 {
     width: 100%;
-    font-size: 12pt;   
+   
     color:#8490fe;
     padding: 5px 0px 5px 15px;
     transition: all .5s;

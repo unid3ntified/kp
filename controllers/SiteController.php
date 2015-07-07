@@ -52,8 +52,11 @@ class SiteController extends Controller
     {
         $NEcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM network_element')->queryScalar();
         
+        //convert sql query to dataprovider class
         $temp = Yii::$app->db->createCommand('SELECT vendor as name, COUNT(*) as count FROM network_element group by vendor')->queryAll();
+        //initialize array
         $vendorNE = array();
+        //map dataprovider to array
         foreach ($temp as $key => $value) {
             $vendorNE[$key] = [$value['name'], (int)$value['count']] ;
         }
@@ -76,6 +79,7 @@ class SiteController extends Controller
             $partnerPOI[$key] = [$value['name'], (int)$value['Trunk']] ;
         }
 
+        //passing all variable to view class
         return $this->render('index', [
                 'NEcount' => $NEcount,
                 'vendorNE' => $vendorNE,
