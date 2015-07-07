@@ -101,61 +101,7 @@ $this->title = 'Sistem Informasi Network Element';
 
     </div>
    
-    <br>
- 	<div class="row">
- 		<div class="col-md-6">
-			<?= Highcharts::widget([
-			   	'options' => [
-			    	'title' => ['text' => 'Network Element Vendor'],
-			      	'yAxis' => [
-			         	'title' => ['text' => 'count']
-			      	],
-			      	'series' => 
-			        [
-			         	[
-                			'type' => 'pie',
-                			'name' => 'count',
-                			'data' => $vendorNE,
-			                'center' => [300, 90],
-			                'size' => 180,
-			                'showInLegend' => true,
-			                'dataLabels' => [
-			                    'enabled' => false,
-        					],
-            			],
-			      	],
-			      	'credits' => ['enabled' => false],
-			   	]
-			]);
-			?>
-		</div>
-		<div class="col-md-6">
-			<?= Highcharts::widget([
-			   	'options' => [
-			    	'title' => ['text' => 'MSC Vendor'],
-			      	'yAxis' => [
-			         	'title' => ['text' => 'count']
-			      	],
-			      	'series' => 
-			        [
-			         	[
-                			'type' => 'pie',
-                			'name' => 'count',
-                			'data' => $vendorMSC,
-			                'center' => [300, 90],
-			                'size' => 180,
-			                'showInLegend' => true,
-			                'dataLabels' => [
-			                    'enabled' => false,
-        					],
-            			],
-			      	],
-			      	'credits' => ['enabled' => false],
-			   	]
-			]);
-			?>
-		</div>
-	</div>
+    
 
 	<br>
     <div class="row">
@@ -188,4 +134,60 @@ $this->title = 'Sistem Informasi Network Element';
 
 		</div>
 	</div>
+
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <?= Highcharts::widget([
+                'options' => [
+                    'title' => ['text' => 'Network Element Vendor'],
+                    'yAxis' => [
+                        'title' => ['text' => 'count']
+                    ],
+                    'series' => 
+                    [
+                        [
+                            'type' => 'pie',
+                            'name' => 'count',
+                            'data' => $vendorNE,
+                            'center' => [300, 90],
+                            'size' => 180,
+                            'showInLegend' => true,
+                            'dataLabels' => [
+                                'enabled' => false,
+                            ],
+                        ],
+                    ],
+                    'credits' => ['enabled' => false],
+                ]
+            ]);
+            ?>
+        </div>
+        <div class="col-md-6">
+            <?= Highcharts::widget([
+                'options' => [
+                    'title' => ['text' => 'MSC Vendor'],
+                    'yAxis' => [
+                        'title' => ['text' => 'count']
+                    ],
+                    'series' => 
+                    [
+                        [
+                            'type' => 'pie',
+                            'name' => 'count',
+                            'data' => $vendorMSC,
+                            'center' => [300, 90],
+                            'size' => 180,
+                            'showInLegend' => true,
+                            'dataLabels' => [
+                                'enabled' => false,
+                            ],
+                        ],
+                    ],
+                    'credits' => ['enabled' => false],
+                ]
+            ]);
+            ?>
+        </div>
+    </div>
 </div>
