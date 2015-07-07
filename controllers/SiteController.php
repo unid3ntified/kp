@@ -71,7 +71,7 @@ class SiteController extends Controller
         }
 
         $temp = Yii::$app->db->createCommand('SELECT t_group as name, COUNT(*) as Trunk FROM trunk_interkoneksi group by t_group order by Trunk DESC')->queryAll();
-        $vendorMGW = array();
+        $partnerPOI = array();
         foreach ($temp as $key => $value) {
             $partnerPOI[$key] = [$value['name'], (int)$value['Trunk']] ;
         }
