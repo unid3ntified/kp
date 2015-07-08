@@ -515,8 +515,13 @@ body > div.wrap > ul > li:nth-child(18) > a:before
     margin-left: -5px;
 }
 
-.piechart
+.highcharts-background
 {
-    
+    fill: #f5f5f5;
+}
+
+#chart1 , #chart2 , #chart3 , #chart4 
+{
+    margin-right: 5px;
 }
 
