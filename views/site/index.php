@@ -8,13 +8,18 @@ use yii\helpers\Html;
 $this->title = 'Sistem Informasi Network Element';
 ?>
 <div class="site-index">
-	<div id = "dashtext">Dashboard</div>
+	
     <div class="row">
     	<div class="col-lg-2" id="bluebox">
+
             <div class="inner">
-            	<h2><?= $NEcount ?></h2>
-            	<p>Total NE</p>
+         
+            	   <h2 ><?= $NEcount ?></h2>
+            	   <p>Total NE</p>
+
             </div>
+            
+            
             
             <div id= "detailtext">
             <?= Html::a('View Details ', ['networkelement/index']) ?>
@@ -54,7 +59,10 @@ $this->title = 'Sistem Informasi Network Element';
             <?= Html::a('View Details ', ['networkelement/index']) ?>
             </div>
         </div>
+    </div>
 
+    <br>
+    <div class="row">
         <div class="col-lg-2" id="purplebox">
             <div class="inner">
                 <h2><?= $HLRcount ?></h2>
@@ -79,28 +87,27 @@ $this->title = 'Sistem Informasi Network Element';
             </div>
         </div>
 
-    	<div class="col-lg-2" id="oceanbox">
+        <div class="col-lg-2" id="oceanbox">
             <div class="inner">
-            	<h2><?= $Partnercount ?></h2>
-            	<p>Total Partner VOIP</p>
+                <h2><?= $Partnercount ?></h2>
+                <p>Total Partner VOIP</p>
             </div>
             
             <div id= "detailtextc">
             <a href="#" >View Details </a>
             </div>
-    	</div>
+        </div>
 
-    	<div class="col-lg-2" id="greybox">
+        <div class="col-lg-2" id="greybox">
             <div class="inner">
-            	<h2><?= $PartnerPOIcount ?></h2>
-            	<p>Total Partner POI</p>
+                <h2><?= $PartnerPOIcount ?></h2>
+                <p>Total Partner POI</p>
             </div>
             
             <div id= "detailtexte">
             <a href="#" >View Details </a>
             </div>
-    	</div>
-
+        </div>      
     </div>
    
     

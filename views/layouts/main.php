@@ -168,7 +168,7 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-            <p class="pull-center">&copy; Fasilkom UI <?= date('Y') ?></p>
+            <p class="pull-center">&copy; 2015 Fasilkom UI </p>
         </div>
     </footer>
 

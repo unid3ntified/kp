@@ -302,6 +302,7 @@ body > div.wrap > ul > li:nth-child(18) > a:before
     font-family: 'Glyphicons Halflings';
     color: #676363;
 }
+  
 
 
 #detailtextg > a
@@ -339,24 +340,17 @@ body > div.wrap > ul > li:nth-child(18) > a:before
     color: #676363;
 }
 
-#dashtext
-{
-    font-size: 45px;
-    padding-bottom: 20px;
-    margin-left: -20px;
-    margin-top: -20px;
-}
 
 #detailtext
 {
+    background-color: #f5f5f5;
     font-size: 15px;
     text-align: center;
     color: #ffffff;
-    padding-bottom: 8px;
-    padding-top: 8px;
-    background-color: #f5f5f5;
+    padding-bottom: 10px;
+    padding-top: 10px;
     margin-left: -15px;
-    width: 122.2%;
+    width: 112%;
 
 }
 
@@ -364,166 +358,185 @@ body > div.wrap > ul > li:nth-child(18) > a:before
 {
     font-size: 15px;
     text-align: center;
- 
-    padding-bottom: 8px;
-    padding-top: 8px;
-    background-color: #f5f5f5;
+    color: #ffffff;
+    padding-bottom: 10px;
+    padding-top: 10px;
     margin-left: -15px;
-    width: 122.2%;
+    width: 112%;
+    background-color: #f5f5f5;
 }
 
 #detailtextr
 {
     font-size: 15px;
     text-align: center;
-    padding-bottom: 8px;
-    padding-top: 8px;
-    background-color: #f5f5f5;
+    color: #ffffff;
+    padding-bottom: 10px;
+    padding-top: 10px;
     margin-left: -15px;
-    width: 122.2%;
+    width: 112.2%;
+    background-color: #f5f5f5;
 }
 
 #detailtexto
 {
     font-size: 15px;
     text-align: center;
-    padding-bottom: 8px;
-    padding-top: 8px;
-    background-color: #f5f5f5;
+    color: #ffffff;
+    padding-bottom: 10px;
+    padding-top: 10px;
     margin-left: -15px;
-    width: 122.2%;
+    width: 112.2%;
+    background-color: #f5f5f5;
 }
 
 #detailtextp
 {
     font-size: 15px;
     text-align: center;
-    padding-bottom: 8px;
-    padding-top: 8px;
-    background-color: #f5f5f5;
+    color: #ffffff;
+    padding-bottom: 10px;
+    padding-top: 10px;
     margin-left: -15px;
-    width: 122.2%;
+    width: 112%;
+    background-color: #f5f5f5;
 }
 
 #detailtexty
 {
     font-size: 15px;
     text-align: center;
-    padding-bottom: 8px;
-    padding-top: 8px;
-    background-color: #f5f5f5;
+    color: #ffffff;
+    padding-bottom: 10px;
+    padding-top: 10px;
     margin-left: -15px;
-    width: 122.2%;
+    width: 112%;
+    background-color: #f5f5f5;
 }
 #detailtextc
 {
     font-size: 15px;
     text-align: center;
-    padding-bottom: 8px;
-    padding-top: 8px;
-    background-color: #f5f5f5;
+    color: #ffffff;
+    padding-bottom: 10px;
+    padding-top: 10px;
     margin-left: -15px;
-    width: 122.2%;
+    width: 112.2%;
+    background-color: #f5f5f5;
 }
 
 #detailtexte
 {
     font-size: 15px;
     text-align: center;
-    padding-bottom: 8px;
-    padding-top: 8px;
-    background-color: #f5f5f5;
+    color: #ffffff;
+    padding-bottom: 10px;
+    padding-top: 10px;
     margin-left: -15px;
-    width: 122.2%;
+    width: 112.2%;
+    background-color: #f5f5f5;
 }
 
 #bluebox
 {
     background-color: #1191e4;
-    width: 12%;
+    width: 20%;
     color: white;
     font-family: 'Helvetica';
-    font-weight: bold;
-    margin-right: 10px;
-    margin-left: -5px;
+
+    margin-right: 40px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+
 }
 
 #greenbox
 {
     background-color: #24b66c;
-    width: 12%;
+    width: 20%;
     color: white;
     font-family: 'Helvetica';
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 40px;
     margin-left: -5px;
+    margin-bottom: 10px;    
 }
 
 #redbox
 {
     background-color: #f12c2c;
-    width: 12%;
+    width: 20%;
     color: white;
     font-family: 'Helvetica';
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 40px;
     margin-left: -5px;
+    margin-bottom: 10px;
 }
 
 #orangebox
 {
     background-color: #f1a02c;
-    width: 12%;
+    width: 20%;
     color: white;
     font-family: 'Helvetica';
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 40px;
     margin-left: -5px;
+    margin-bottom: 10px;
 }
 
 #purplebox
 {
     background-color: #a92cf1;
-    width: 12%;
+    width: 20%;
     color: white;
     font-family: 'Helvetica';
     font-weight: bold;
-    margin-right: 10px;
-    margin-left: -5px;
+    margin-right: 40px;
+    margin-left: 60px;
+    margin-bottom: 10px;
 }
 
 #yellowbox
 {
     background-color: #b3d10e;
-    width: 12%;
+    width: 20%;
     color: white;
     font-family: 'Helvetica';
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 40px;
     margin-left: -5px;
+    margin-bottom: 10px;
 }
 
 #oceanbox
 {
     background-color: #11cb87;
-    width: 12%;
+    width: 20%;
     color: white;
     font-family: 'Helvetica';
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 40px;
     margin-left: -5px;
+    margin-bottom: 10px;
 }
 
 #greybox
 {
     background-color: #676363;
-    width: 12%;
+    width: 20%;
     color: white;
     font-family: 'Helvetica';
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 40px;
     margin-left: -5px;
+    margin-bottom: 10px;
 }
 
+.inner
+{
+    padding-left: 20px;
+}
 
 
