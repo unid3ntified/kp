@@ -248,6 +248,7 @@ body > div.wrap > ul > li:nth-child(18) > a:before
     content:"\e008 ";
     font-family: 'Glyphicons Halflings';
 }
+
 #detailtext > a:after
 {
     content:"\e131";
@@ -346,11 +347,9 @@ body > div.wrap > ul > li:nth-child(18) > a:before
     background-color: #f5f5f5;
     font-size: 15px;
     text-align: center;
-    color: #ffffff;
     padding-bottom: 10px;
     padding-top: 10px;
     margin-left: -15px;
-    width: 112%;
 
 }
 
@@ -358,11 +357,9 @@ body > div.wrap > ul > li:nth-child(18) > a:before
 {
     font-size: 15px;
     text-align: center;
-    color: #ffffff;
     padding-bottom: 10px;
     padding-top: 10px;
     margin-left: -15px;
-    width: 112%;
     background-color: #f5f5f5;
 }
 
@@ -370,11 +367,9 @@ body > div.wrap > ul > li:nth-child(18) > a:before
 {
     font-size: 15px;
     text-align: center;
-    color: #ffffff;
     padding-bottom: 10px;
     padding-top: 10px;
     margin-left: -15px;
-    width: 112.2%;
     background-color: #f5f5f5;
 }
 
@@ -382,11 +377,9 @@ body > div.wrap > ul > li:nth-child(18) > a:before
 {
     font-size: 15px;
     text-align: center;
-    color: #ffffff;
     padding-bottom: 10px;
     padding-top: 10px;
     margin-left: -15px;
-    width: 112.2%;
     background-color: #f5f5f5;
 }
 
@@ -394,11 +387,9 @@ body > div.wrap > ul > li:nth-child(18) > a:before
 {
     font-size: 15px;
     text-align: center;
-    color: #ffffff;
     padding-bottom: 10px;
     padding-top: 10px;
     margin-left: -15px;
-    width: 112%;
     background-color: #f5f5f5;
 }
 
@@ -406,34 +397,29 @@ body > div.wrap > ul > li:nth-child(18) > a:before
 {
     font-size: 15px;
     text-align: center;
-    color: #ffffff;
     padding-bottom: 10px;
     padding-top: 10px;
     margin-left: -15px;
-    width: 112%;
     background-color: #f5f5f5;
 }
 #detailtextc
 {
     font-size: 15px;
     text-align: center;
-    color: #ffffff;
     padding-bottom: 10px;
     padding-top: 10px;
     margin-left: -15px;
-    width: 112.2%;
     background-color: #f5f5f5;
+
 }
 
 #detailtexte
 {
     font-size: 15px;
     text-align: center;
-    color: #ffffff;
     padding-bottom: 10px;
     padding-top: 10px;
     margin-left: -15px;
-    width: 112.2%;
     background-color: #f5f5f5;
 }
 
@@ -538,5 +524,4 @@ body > div.wrap > ul > li:nth-child(18) > a:before
 {
     padding-left: 20px;
 }
-
 

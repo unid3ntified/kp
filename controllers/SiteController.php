@@ -51,7 +51,6 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $NEcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM network_element')->queryScalar();
-
         $MSCcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM msc')->queryScalar();
         $MGWcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM mgw')->queryScalar();
         $Partnercount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM (select distinct partner from trunk_voip) as a')->queryScalar();
@@ -59,17 +58,21 @@ class SiteController extends Controller
         $SGSNcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM network_element WHERE network_element_id like "SGSN%" OR network_element_id like "%SGSN%" OR network_element_id like "%SGSN"')->queryScalar();
         $HLRcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM network_element WHERE network_element_id like "HLR%" OR network_element_id like "%HLR%" OR network_element_id like "%HLR"')->queryScalar();
         $POIcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM poi')->queryScalar();
-
-
         
         //convert sql query to dataprovider class
         $temp = Yii::$app->db->createCommand('SELECT vendor as name, COUNT(*) as count FROM network_element group by vendor')->queryAll();
         //initialize array
         $vendorNE = array();
-        //map dataprovider to array
+        //map dataprovider to array & casting count to integer
         foreach ($temp as $key => $value) {
             $vendorNE[$key] = [$value['name'], (int)$value['count']] ;
         }
+
+        $temp = Yii::$app->db->createCommand('SELECT COUNT(*) FROM (select distinct vendor from network_element) as a')->queryScalar();
+        $NEvendor = (int)$temp;
+
+        $temp = Yii::$app->db->createCommand('SELECT COUNT(*) FROM (select distinct vendor from network_element) as a')->queryScalar();
+        $MSCvendor = (int)$temp;
 
         $temp = Yii::$app->db->createCommand('SELECT vendor as name, COUNT(*) as count FROM network_element, msc where msc_name = network_element_id group by vendor')->queryAll();
         $vendorMSC = array();
@@ -77,10 +80,10 @@ class SiteController extends Controller
             $vendorMSC[$key] = [$value['name'], (int)$value['count']] ;
         }
 
-        $temp = Yii::$app->db->createCommand('SELECT vendor as name, COUNT(*) as count FROM network_element, mgw where mgw_name = network_element_id group by vendor')->queryAll();
-        $vendorMGW = array();
+        $temp = Yii::$app->db->createCommand('SELECT pool as name, COUNT(*) as MSC FROM msc group by pool order by MSC DESC')->queryAll();
+        $pool = array();
         foreach ($temp as $key => $value) {
-            $vendorMGW[$key] = [$value['name'], (int)$value['count']] ;
+            $pool[$key] = [$value['name'], (int)$value['MSC']] ;
         }
 
         $temp = Yii::$app->db->createCommand('SELECT t_group as name, COUNT(*) as Trunk FROM trunk_interkoneksi group by t_group order by Trunk DESC')->queryAll();
@@ -89,22 +92,29 @@ class SiteController extends Controller
             $partnerPOI[$key] = [$value['name'], (int)$value['Trunk']] ;
         }
 
+        $temp = Yii::$app->db->createCommand('SELECT partner as name, COUNT(*) as Trunk FROM trunk_voip group by partner order by Trunk DESC')->queryAll();
+        $partnerVOIP = array();
+        foreach ($temp as $key => $value) {
+            $partnerVOIP[$key] = [$value['name'], (int)$value['Trunk']] ;
+        }
+
         //passing all variable to view class
         return $this->render('index', [
                 'NEcount' => $NEcount,
+                'NEvendor' => $NEvendor,
                 'vendorNE' => $vendorNE,
                 'vendorMSC' => $vendorMSC,
-                'vendorMGW' => $vendorMGW,
+                'MSCvendor' => $MSCvendor,
+                'pool' => $pool,
                 'partnerPOI' => $partnerPOI,
+                'partnerVOIP' => $partnerVOIP,
                 'MSCcount' => $MSCcount,
-                  'MGWcount' => $MGWcount,
-                  'Partnercount' => $Partnercount,
-                  'PartnerPOIcount' => $PartnerPOIcount,
-                  'SGSNcount' => $SGSNcount,
-                  'HLRcount' => $HLRcount,
-                  'POIcount' => $POIcount,
-
-
+                'MGWcount' => $MGWcount,
+                'Partnercount' => $Partnercount,
+                'PartnerPOIcount' => $PartnerPOIcount,
+                'SGSNcount' => $SGSNcount,
+                'HLRcount' => $HLRcount,
+                'POIcount' => $POIcount,
             ]);
 
     }

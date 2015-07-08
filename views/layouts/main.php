@@ -55,6 +55,8 @@ AppAsset::register($this);
                 $("#item12").hide();
                 $("#item13").hide();
             }
+                $("#chart1").hide();
+                $("#chart2").hide();
 
             $("#toggle1").click(function(){
                 $("#item1").toggle(320);
@@ -81,6 +83,16 @@ AppAsset::register($this);
                     sessionStorage.flag2="1";
                 else
                     sessionStorage.flag2="0";
+            });
+            $("#toggle3").click(function(){
+                $("#chart2").hide();
+                $("#chart1").show(640);
+
+            });
+            $("#toggle4").click(function(){
+                $("#chart1").hide();
+                $("#chart2").show(640);
+
             });
         });
     </script>
