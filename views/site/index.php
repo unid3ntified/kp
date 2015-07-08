@@ -10,184 +10,271 @@ $this->title = 'Sistem Informasi Network Element';
 <div class="site-index">
 	<div id = "dashtext">Dashboard</div>
     <div class="row">
-    	<div class="col-lg-2" id="bluebox">
+    	<div class="col-sm-2" id="bluebox">
             <div class="inner">
             	<h2><?= $NEcount ?></h2>
             	<p>Total NE</p>
             </div>
             
-            <div id= "detailtext">
+            <div class="row" id= "detailtext">
             <?= Html::a('View Details ', ['networkelement/index']) ?>
             </div>
     	</div>
 
-    	<div class="col-lg-2" id="greenbox">
+    	<div class="col-sm-2" id="greenbox">
             <div class="inner">
             	<h2><?= $MSCcount ?></h2>
             	<p>Total MSC</p>
             </div>
             
-            <div id= "detailtextg">
+            <div class="row" id= "detailtextg">
             <?= Html::a('View Details ', ['msc/index']) ?>
             </div>
     	</div>
     
 
-    	<div class="col-lg-2" id="redbox">
+    	<div class="col-sm-2" id="redbox">
             <div class="inner">
             	<h2><?= $MGWcount ?></h2>
             	<p>Total MGW</p>
             </div>
             
-            <div id= "detailtextr">
+            <div class="row" id= "detailtextr">
             <?= Html::a('View Details ', ['bcuid/index']) ?>
             </div>
         </div>
 
-        <div class="col-lg-2" id="orangebox">
+        <div class="col-sm-2" id="orangebox">
             <div class="inner">
                 <h2><?= $SGSNcount ?></h2>
                 <p>Total SGSN</p>
             </div>
             
-            <div id= "detailtexto">
-            <?= Html::a('View Details ', ['networkelement/index']) ?>
+            <div class="row" id= "detailtexto">
+            <?= Html::a('View Details ', ['networkelement/index', 'NetworkElementSearch[search]' => 'SGSN']) ?>
             </div>
         </div>
 
-        <div class="col-lg-2" id="purplebox">
+        <div class="col-sm-2" id="purplebox">
             <div class="inner">
                 <h2><?= $HLRcount ?></h2>
                 <p>Total HLR</p>
             </div>
           
            
-            <div id= "detailtextp">
-            <a href="#" >View Details </a>
+            <div class="row" id= "detailtextp">
+            <?= Html::a('View Details ', ['networkelement/index', 'NetworkElementSearch[search]' => 'HLR']) ?>
             </div>
       
         </div>
 
-        <div class="col-lg-2" id="yellowbox">
+        <div class="col-sm-2" id="yellowbox">
             <div class="inner">
                 <h2><?= $POIcount ?></h2>
                 <p>Total POI</p>
             </div>
             
-            <div id= "detailtexty">
+            <div class="row" id= "detailtexty">
             <?= Html::a('View Details ', ['poi/index']) ?>
             </div>
         </div>
 
-    	<div class="col-lg-2" id="oceanbox">
+    	<div class="col-sm-2" id="oceanbox">
             <div class="inner">
             	<h2><?= $Partnercount ?></h2>
-            	<p>Total Partner VOIP</p>
+            	<p>Partner VOIP</p>
             </div>
             
-            <div id= "detailtextc">
-            <a href="#" >View Details </a>
+            <div class="row" id= "detailtextc">
+            <a href="#" id="toggle3">View Details </a>
             </div>
     	</div>
 
-    	<div class="col-lg-2" id="greybox">
+    	<div class="col-sm-2" id="greybox">
             <div class="inner">
             	<h2><?= $PartnerPOIcount ?></h2>
-            	<p>Total Partner POI</p>
+            	<p>Partner POI</p>
             </div>
             
-            <div id= "detailtexte">
-            <a href="#" >View Details </a>
+            <div class="row" id= "detailtexte">
+            <a href="#" id="toggle4">View Details </a>
             </div>
     	</div>
-
     </div>
-   
+
     <br>
- 	<div class="row">
- 		<div class="col-md-6">
-			<?= Highcharts::widget([
-			   	'options' => [
-			    	'title' => ['text' => 'Network Element Vendor'],
-			      	'yAxis' => [
-			         	'title' => ['text' => 'count']
-			      	],
-			      	'series' => 
-			        [
-			         	[
-                			'type' => 'pie',
-                			'name' => 'count',
-                			'data' => $vendorNE,
-			                'center' => [300, 90],
-			                'size' => 180,
-			                'showInLegend' => true,
-			                'dataLabels' => [
-			                    'enabled' => false,
-        					],
-            			],
-			      	],
-			      	'credits' => ['enabled' => false],
-			   	]
-			]);
-			?>
-		</div>
-		<div class="col-md-6">
-			<?= Highcharts::widget([
-			   	'options' => [
-			    	'title' => ['text' => 'MSC Vendor'],
-			      	'yAxis' => [
-			         	'title' => ['text' => 'count']
-			      	],
-			      	'series' => 
-			        [
-			         	[
-                			'type' => 'pie',
-                			'name' => 'count',
-                			'data' => $vendorMSC,
-			                'center' => [300, 90],
-			                'size' => 180,
-			                'showInLegend' => true,
-			                'dataLabels' => [
-			                    'enabled' => false,
-        					],
-            			],
-			      	],
-			      	'credits' => ['enabled' => false],
-			   	]
-			]);
-			?>
-		</div>
-	</div>
-
-	<br>
     <div class="row">
-    	<div class="col-lg-12">
-            <?= Highcharts::widget([
-			   	'options' => [
-			    	'title' => ['text' => 'POI Partner'],
-			    	'xAxis' => [
-			         	'type' => 'category'
-			      	],
-			      	'yAxis' => [
-			         	'title' => ['text' => 'Total Trunk']
-			      	],
-			      	'series' => 
-			        [
-			         	[
-                			'type' => 'column',
-                			'name' => 'Trunk',
-                			'data' => $partnerPOI,
-			                'showInLegend' => false,
-			                'dataLabels' => [
-			                    'enabled' => true,
-        					],
-            			],
-			      	],
-			      	'credits' => ['enabled' => false],
-			   	]
-			]);
-			?>
+     	<div class="col-lg-9">
+            <div class="row" id="chart1">
+                <?= Highcharts::widget([
+                    'options' => [
+                        'title' => ['text' => 'VOIP Partner'],
+                        'xAxis' => [
+                            'type' => 'category'
+                        ],
+                        'yAxis' => [
+                            'title' => ['text' => 'Total Trunk']
+                        ],
+                        'chart' => [
+                            'width' => 1000,
+                        ],
+                        'series' => 
+                        [
+                            [
+                                'type' => 'column',
+                                'name' => 'Trunk',
+                                'data' => $partnerVOIP,
+                                'showInLegend' => false,
+                                'dataLabels' => [
+                                    'enabled' => true,
+                                ],
+                            ],
+                        ],
+                        'credits' => ['enabled' => false],
+                    ]
+                ]);
+                ?>
+            </div>
+            <div class="row" id="chart2">
+                <?= Highcharts::widget([
+                    'options' => [
+                        'title' => ['text' => 'POI Partner'],
+                        'xAxis' => [
+                            'type' => 'category'
+                        ],
+                        'yAxis' => [
+                            'title' => ['text' => 'Total Trunk']
+                        ],
+                        'chart' => [
+                            'width' => 1000,
+                        ],
+                        'series' => 
+                        [
+                            [
+                                'type' => 'column',
+                                'name' => 'Trunk',
+                                'data' => $partnerPOI,
+                                'showInLegend' => false,
+                                'dataLabels' => [
+                                    'enabled' => true,
+                                ],
+                            ],
+                        ],
+                        'credits' => ['enabled' => false],
+                    ]
+                ]);
+                ?>
+            </div>
+            <div class="row">
+                <?= Highcharts::widget([
+                    'options' => [
+                        'title' => ['text' => 'Pool Summary'],
+                        'xAxis' => [
+                            'type' => 'category'
+                        ],
+                        'yAxis' => [
+                            'title' => ['text' => 'Total MSC']
+                        ],
+                        'series' => 
+                        [
+                            [
+                                'type' => 'bar',
+                                'name' => 'MSC',
+                                'data' => $pool,
+                                'showInLegend' => false,
+                                'dataLabels' => [
+                                    'enabled' => true,
+                                ],
+                            ],
+                        ],
+                        'credits' => ['enabled' => false],
+                    ]
+                ]);
+                ?>
+            </div>          
+    	</div>
 
-		</div>
-	</div>
+		<div class="col-sm-3">
+            <div class="row">
+                <?= Highcharts::widget([
+                    'options' => [
+                        'title' => ['text' => 'Network Element Vendor'],
+                        'chart' => [
+                          'borderColor'=>'#e5e5e5',
+                          'type' => 'pie',
+                        ],
+                        'series' => 
+                        [
+                            [
+                                'name' => 'count',
+                                'data' => $vendorNE,
+                                'showInLegend' => true,
+                                'size' => '90%',
+                                'dataLabels' => [
+                                    'enabled' => false,
+                                ],
+                            ],
+                            [
+                                'name' => 'Network Element Vendor',
+                                'data' => [
+                                    [
+                                        'name' => '',
+                                        'y' => $NEvendor,
+                                        'color' => '#ffffff',
+                                    ]
+                                ],
+                                'size' => '50%',
+                                'showInLegend' => false,
+                                'dataLabels' => [
+                                    'enabled' => false,
+                                ],
+                            ]
+                        ],
+                        'credits' => ['enabled' => false],
+                    ]
+                ]);
+                ?>
+            </div>
+            <div class="row">
+    			<?= Highcharts::widget([
+    			   	'options' => [
+    			    	'title' => ['text' => 'MSC Vendor'],
+                        'chart' => [
+                          'borderColor'=>'#e5e5e5',
+                          'type' => 'pie',
+                        ],
+    			      	'series' => 
+    			        [
+    			         	[
+                    			'name' => 'count',
+                                'size' => '70%',
+                    			'data' => $vendorMSC,
+    			                'showInLegend' => true,
+    			                'dataLabels' => [
+    			                    'enabled' => false,
+            					],
+                			],
+                             [
+                                'name' => 'MSC Vendor',
+                                'data' => [
+                                    [
+                                        'name' => '',
+                                        'y' => $MSCvendor,
+                                        'color' => '#ffffff',
+                                    ]
+                                ],
+                                'size' => '40%',
+                                'showInLegend' => false,
+                                'dataLabels' => [
+                                    'enabled' => false,
+                                ],
+                            ]
+    			      	],
+    			      	'credits' => ['enabled' => false],
+    			   	]
+    			]);
+    			?>
+            </div>
+    	</div> 
+    </div>
 </div>
