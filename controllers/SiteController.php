@@ -81,9 +81,15 @@ class SiteController extends Controller
         }
 
         $temp = Yii::$app->db->createCommand('SELECT pool as name, COUNT(*) as MSC FROM msc group by pool order by MSC DESC')->queryAll();
-        $pool = array();
+        $MSCpool = array();
         foreach ($temp as $key => $value) {
-            $pool[$key] = [$value['name'], (int)$value['MSC']] ;
+            $MSCpool[$key] = [$value['name'], (int)$value['MSC']] ;
+        }
+
+        $temp = Yii::$app->db->createCommand('SELECT pool as name, COUNT(*) as RNC FROM rnc_reference group by pool order by RNC DESC')->queryAll();
+        $RNCpool = array();
+        foreach ($temp as $key => $value) {
+            $RNCpool[$key] = [$value['name'], (int)$value['RNC']] ;
         }
 
         $temp = Yii::$app->db->createCommand('SELECT t_group as name, COUNT(*) as Trunk FROM trunk_interkoneksi group by t_group order by Trunk DESC')->queryAll();
@@ -105,7 +111,8 @@ class SiteController extends Controller
                 'vendorNE' => $vendorNE,
                 'vendorMSC' => $vendorMSC,
                 'MSCvendor' => $MSCvendor,
-                'pool' => $pool,
+                'MSCpool' => $MSCpool,
+                'RNCpool' => $RNCpool,
                 'partnerPOI' => $partnerPOI,
                 'partnerVOIP' => $partnerVOIP,
                 'MSCcount' => $MSCcount,

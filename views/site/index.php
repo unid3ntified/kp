@@ -111,7 +111,7 @@ $this->title = 'Sistem Informasi Network Element';
 
     <br>
     <div class="row">
-     	<div class="col-lg-9">
+        <div class="col-lg-12">
             <div class="row" id="chart1">
                 <?= Highcharts::widget([
                     'options' => [
@@ -123,7 +123,7 @@ $this->title = 'Sistem Informasi Network Element';
                             'title' => ['text' => 'Total Trunk']
                         ],
                         'chart' => [
-                            'width' => 1000,
+                            'width' => 1200,
                         ],
                         'series' => 
                         [
@@ -153,7 +153,7 @@ $this->title = 'Sistem Informasi Network Element';
                             'title' => ['text' => 'Total Trunk']
                         ],
                         'chart' => [
-                            'width' => 1000,
+                            'width' => 1200,
                         ],
                         'series' => 
                         [
@@ -172,10 +172,15 @@ $this->title = 'Sistem Informasi Network Element';
                 ]);
                 ?>
             </div>
-            <div class="row">
+        </div>
+    </div>
+    <div class="row">
+     	<div class="col-lg-9">
+            
+            <div class="row" id="chart3">
                 <?= Highcharts::widget([
                     'options' => [
-                        'title' => ['text' => 'Pool Summary'],
+                        'title' => ['text' => 'MSC Pool Summary'],
                         'xAxis' => [
                             'type' => 'category'
                         ],
@@ -187,7 +192,7 @@ $this->title = 'Sistem Informasi Network Element';
                             [
                                 'type' => 'bar',
                                 'name' => 'MSC',
-                                'data' => $pool,
+                                'data' => $MSCpool,
                                 'showInLegend' => false,
                                 'dataLabels' => [
                                     'enabled' => true,
@@ -198,12 +203,39 @@ $this->title = 'Sistem Informasi Network Element';
                     ]
                 ]);
                 ?>
-            </div>          
+            </div>
+            <div class="row" id="chart4">
+                <?= Highcharts::widget([
+                    'options' => [
+                        'title' => ['text' => 'RNC Pool Summary'],
+                        'xAxis' => [
+                            'type' => 'category'
+                        ],
+                        'yAxis' => [
+                            'title' => ['text' => 'Total RNC']
+                        ],
+                        'series' => 
+                        [
+                            [
+                                'type' => 'column',
+                                'name' => 'RNC',
+                                'data' => $RNCpool,
+                                'showInLegend' => false,
+                                'dataLabels' => [
+                                    'enabled' => true,
+                                ],
+                            ],
+                        ],
+                        'credits' => ['enabled' => false],
+                    ]
+                ]);
+                ?>
+            </div>         
     	</div>
 
 
 		<div class="col-sm-3">
-            <div class="row">
+            <div class="row" id="chart5">
                 <?= Highcharts::widget([
                     'options' => [
                         'title' => ['text' => 'Network Element Vendor'],
@@ -243,7 +275,7 @@ $this->title = 'Sistem Informasi Network Element';
                 ]);
                 ?>
             </div>
-            <div class="row">
+            <div class="row" id="chart6">
     			<?= Highcharts::widget([
     			   	'options' => [
     			    	'title' => ['text' => 'MSC Vendor'],
@@ -262,7 +294,7 @@ $this->title = 'Sistem Informasi Network Element';
     			                    'enabled' => false,
             					],
                 			],
-                             [
+                            /*[
                                 'name' => 'MSC Vendor',
                                 'data' => [
                                     [
@@ -276,7 +308,7 @@ $this->title = 'Sistem Informasi Network Element';
                                 'dataLabels' => [
                                     'enabled' => false,
                                 ],
-                            ]
+                            ]*/
     			      	],
     			      	'credits' => ['enabled' => false],
     			   	]

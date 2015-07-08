@@ -153,7 +153,7 @@ body > div.wrap > ul
 #toggle1
 {
     width: 100%;
-    font-size: 11pt;   
+    font-size: 10pt;   
     color:#8490fe;
     padding: 5px 0px 5px 15px;
     transition: all .5s;
@@ -162,7 +162,7 @@ body > div.wrap > ul
 #toggle1 > a:visited:hover
 {
     width: 100%;
-    font-size: 11pt;   
+    font-size: 10pt;   
       color: #ece313;
     background-color: #202d4d;
     padding: 5px 0px 5px 15px;
@@ -172,7 +172,7 @@ body > div.wrap > ul
 #toggle2
 {
     width: 100%;
-    font-size: 11pt;   
+    font-size: 10pt;   
     color:#8490fe;
     padding: 5px 0px 5px 15px;
     transition: all .5s;
@@ -181,7 +181,7 @@ body > div.wrap > ul
 body > div.wrap > ul > li > a
 {
     width: 100%;
-    font-size: 11pt;   
+    font-size: 10pt;   
     color:#ffffff;
     padding: 5px 0px 5px 15px;
     transition: all .5s;
@@ -525,3 +525,22 @@ body > div.wrap > ul > li:nth-child(18) > a:before
     padding-left: 20px;
 }
 
+.highcharts-background
+{
+    fill: #f5f5f5;
+}
+
+#chart3 , #chart4 
+{
+    padding-right: 10px;
+}
+
+#chart1 , #chart2, #chart3, #chart5 
+{
+    margin-bottom: 10px;
+}
+
+#chart5, #chart6
+{
+    padding-left: -15px;
+}
