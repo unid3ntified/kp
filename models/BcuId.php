@@ -36,7 +36,7 @@ class BcuId extends \yii\db\ActiveRecord
         return [
             [['bcu_id', 'mgw_name', 'region', 'status'], 'required'],
             [['log_date'], 'safe'],
-            [['remark'], 'string'],
+            [['remark', 'pool'], 'string'],
             [['old_mss_connected', 'new_mss_connected'], 'string', 'max' => 20],
             [['mgw_name'], 'string', 'max' => 100],
             [['region'], 'string', 'max' => 80],
@@ -54,6 +54,7 @@ class BcuId extends \yii\db\ActiveRecord
         return [
             'bcu_id' => 'BCU ID',
             'mgw_name' => 'MGW Name',
+            'pool' => 'Pool',
             'region' => 'Region',
             'old_mss_connected' => 'Old MSS Connected',
             'new_mss_connected' => 'New MSS Connected',

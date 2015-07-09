@@ -180,7 +180,7 @@ $this->title = 'Sistem Informasi Network Element';
             <div class="row" id="chart3">
                 <?= Highcharts::widget([
                     'options' => [
-                        'title' => ['text' => 'MSC Pool Summary'],
+                        'title' => ['text' => 'MSC Summary'],
                         'xAxis' => [
                             'type' => 'category'
                         ],
@@ -207,7 +207,7 @@ $this->title = 'Sistem Informasi Network Element';
             <div class="row" id="chart4">
                 <?= Highcharts::widget([
                     'options' => [
-                        'title' => ['text' => 'RNC Pool Summary'],
+                        'title' => ['text' => 'RNC Summary'],
                         'xAxis' => [
                             'type' => 'category'
                         ],

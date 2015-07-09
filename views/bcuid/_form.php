@@ -23,6 +23,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'region')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'pool')->textarea(['rows' => 6]) ?>
+
     <?= $form->field($model, 'old_mss_connected')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'new_mss_connected')->textInput(['maxlength' => true]) ?>
