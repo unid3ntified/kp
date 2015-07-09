@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'bcu_id',
             'mgw_name',
+            'pool:ntext',
             'region',
             'old_mss_connected',
             'new_mss_connected',

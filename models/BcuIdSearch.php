@@ -20,7 +20,7 @@ class BcuIdSearch extends BcuId
     public function rules()
     {
         return [
-            [['search','bcu_id', 'mgw_name', 'region', 'old_mss_connected', 'new_mss_connected', 'status', 'log_date', 'remark'], 'safe'],
+            [['search','bcu_id', 'mgw_name', 'pool', 'region', 'old_mss_connected', 'new_mss_connected', 'status', 'log_date', 'remark'], 'safe'],
         ];
     }
 
@@ -61,6 +61,7 @@ class BcuIdSearch extends BcuId
 
         $query->orFilterWhere(['like', 'bcu_id', $this->search])
             ->orFilterWhere(['like', 'mgw_name', $this->search])
+            ->orFilterWhere(['like', 'pool', $this->search])
             ->orFilterWhere(['like', 'region', $this->search])
             ->orFilterWhere(['like', 'old_mss_connected', $this->search])
             ->orFilterWhere(['like', 'new_mss_connected', $this->search])
@@ -92,6 +93,7 @@ class BcuIdSearch extends BcuId
 
         $query->andFilterWhere(['like', 'bcu_id', $this->bcu_id])
             ->andFilterWhere(['like', 'mgw_name', $this->mgw_name])
+            ->andFilterWhere(['like', 'pool', $this->pool])
             ->andFilterWhere(['like', 'region', $this->region])
             ->andFilterWhere(['like', 'old_mss_connected', $this->old_mss_connected])
             ->andFilterWhere(['like', 'new_mss_connected', $this->new_mss_connected])

@@ -185,7 +185,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'chart' => [
                           'borderColor'=>'#e5e5e5',
                           'type' => 'bar',
-                          'height' => 800,
+                          'height' => 810,
                         ],
                         'xAxis' => [
                             'type' => 'category'
@@ -202,14 +202,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'dataLabels' => [
                                     'enabled' => true,
                                 ],
+                                'color' => '#fb1010',
                             ],
                             [
-                                'name' => 'RNC',
-                                'data' => $RNCpool,
+                                'name' => 'MGW',
+                                'data' => $MGWpool,
                                 'showInLegend' => false,
                                 'dataLabels' => [
                                     'enabled' => true,
                                 ],
+                                'color' => '#10008c',
                             ],
                         ],
                         'credits' => ['enabled' => false],
