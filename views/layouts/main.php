@@ -67,9 +67,32 @@ AppAsset::register($this);
                     sessionStorage.flag1="1";
                 else
                     sessionStorage.flag1="0";
+               
+               if (sessionStorage.flag2=="1")
+                {
+                    sessionStorage.flag2="0";
+                    $("#item5").toggle(320);
+                    $("#item6").toggle(320);
+                    $("#item7").toggle(320);
+                    $("#item8").toggle(320);
+                    $("#item9").toggle(320);
+                    $("#item10").toggle(320);
+                    $("#item11").toggle(320);
+                    $("#item12").toggle(320);
+                    $("#item13").toggle(320);
+                }
             });
 
             $("#toggle2").click(function(){
+                if (sessionStorage.flag1=="1")
+                {
+                    sessionStorage.flag1="0";
+                    $("#item1").toggle(320);
+                    $("#item2").toggle(320);
+                    $("#item3").toggle(320);
+                    $("#item4").toggle(320);
+                }
+
                 $("#item5").toggle(320);
                 $("#item6").toggle(320);
                 $("#item7").toggle(320);
@@ -128,8 +151,10 @@ AppAsset::register($this);
                 echo Nav::widget([
                     'options' => ['class' => 'nav-pills nav-stacked'],
                     'items' => [
-                        ['label' => ' Home', 'url' => ['/site/index']],
+                        ['label' => ' Home', 'url' => Yii::$app->homeUrl],
+                        ['label' => ' Dashboard', 'url' => ['/site/dashboard']],
                         ['label' => ' Download','url' => ['/site/download']],
+                        ['label' => ' File Sharing','url' => ['/site/sharing']],
                         ['label' => ' Network Data', 'options' => ['id' => 'toggle1']],
                         ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
                         ['label' => 'Interconnection Trunk', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
@@ -154,8 +179,10 @@ AppAsset::register($this);
                 echo Nav::widget([
                     'options' => ['class' => 'nav-pills nav-stacked'],
                     'items' => [            
-                        ['label' => ' Home', 'url' => ['/site/index']],
+                        ['label' => ' Home', 'url' => Yii::$app->homeUrl],
+                        ['label' => ' Dashboard', 'url' => ['/site/dashboard']],
                         ['label' => ' Download','url' => ['/site/download']],
+                        ['label' => ' Knowledge Sharing','url' => ['/site/sharing']],
                         ['label' => ' Network Data', 'options' => ['id' => 'toggle1']],
                         ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
                         ['label' => 'Interconnection Trunk', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],

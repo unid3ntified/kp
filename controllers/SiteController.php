@@ -20,12 +20,12 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['logout', 'error', 'index','download', 'user', 'info'],
+                        'actions' => ['logout', 'error', 'index','download', 'user', 'info', 'dashboard'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['login','error','download', 'index'],
+                        'actions' => ['login', 'error', 'download', 'index', 'dashboard'],
                         'allow' => true,
                     ],
                 ],
@@ -50,6 +50,14 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        return $this->render('index', [
+
+        ]);
+    }
+
+    public function actionDashboard()
+    {
+        //data for top widget
         $NEcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM network_element')->queryScalar();
         $MSCcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM msc')->queryScalar();
         $MGWcount = Yii::$app->db->createCommand('SELECT COUNT(*) FROM mgw')->queryScalar();
@@ -105,7 +113,7 @@ class SiteController extends Controller
         }
 
         //passing all variable to view class
-        return $this->render('index', [
+        return $this->render('dashboard', [
                 'NEcount' => $NEcount,
                 'NEvendor' => $NEvendor,
                 'vendorNE' => $vendorNE,

@@ -19,7 +19,8 @@
         "yiisoft/yii2-bootstrap": "*",
 		"kartik-v/yii2-krajee-base": "dev-master",
         "kartik-v/yii2-export": "dev-master",
-		"miloschuman/yii2-highcharts-widget": "*"
+		"miloschuman/yii2-highcharts-widget": "*",
+		"mdmsoft/yii2-upload-file": "~1.1"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

@@ -226,24 +226,35 @@ body > div.wrap > ul > li:nth-child(1) > a:before
 
 body > div.wrap > ul > li:nth-child(2) > a:before
 {
-    content:"\e025 ";
+    content:"\e141";
     font-family: 'Glyphicons Halflings';
 }
 
 body > div.wrap > ul > li:nth-child(3) > a:before
 {
+    content:"\e025 ";
+    font-family: 'Glyphicons Halflings';
+}
+
+body > div.wrap > ul > li:nth-child(4) > a:before
+{
+    content:"\e142";
+    font-family: 'Glyphicons Halflings';
+}
+
+body > div.wrap > ul > li:nth-child(5) > a:before
+{
     content:"\e137";
     font-family: 'Glyphicons Halflings';
 }
 
-
-body > div.wrap > ul > li:nth-child(8) > a:before
+body > div.wrap > ul > li:nth-child(10) > a:before
 {
     content:"\e086 ";
     font-family: 'Glyphicons Halflings';
 }
 
-body > div.wrap > ul > li:nth-child(18) > a:before
+body > div.wrap > ul > li:nth-child(20) > a:before
 {
     content:"\e008 ";
     font-family: 'Glyphicons Halflings';
@@ -543,4 +554,14 @@ body > div.wrap > ul > li:nth-child(18) > a:before
 #chart5, #chart6
 {
     padding-left: -15px;
+}
+
+div.required label:after {
+    content: " *";
+    color: red;
+}
+
+#highcharts-4 > svg > g.highcharts-axis-labels.highcharts-yaxis-labels > text
+{
+   opacity: 0;
 }

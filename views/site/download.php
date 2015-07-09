@@ -8,8 +8,6 @@ $this->title = 'Download';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
-   
-
     <div class="col-md-8">
  		<div class="panel panel-green">
 			<h4>Download Network Element Data:&nbsp;</h4>
