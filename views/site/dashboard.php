@@ -225,30 +225,34 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
                            
             <div class="row" id="chart4">
-                <?php /* echo Highcharts::widget([
+                <?= Highcharts::widget([
                     'options' => [
-                        'title' => ['text' => 'RNC Pool Summary'],
+                        'title' => ['text' => 'MGW Summary'],
+                        'chart' => [
+                          'borderColor'=>'#e5e5e5',
+                          'type' => 'bar',
+                        ],
                         'xAxis' => [
                             'type' => 'category'
                         ],
                         'yAxis' => [
-                            'title' => ['text' => 'Total RNC']
+                            'title' => ['text' => 'Total MGW']
                         ],
                         'series' => 
                         [
                             [
-                                'type' => 'column',
-                                'name' => 'RNC',
-                                'data' => $RNCpool,
+                                'name' => 'MGW',
+                                'data' => $MGWpool,
                                 'showInLegend' => false,
                                 'dataLabels' => [
                                     'enabled' => true,
                                 ],
+                                'color' => '#434348',
                             ],
                         ],
                         'credits' => ['enabled' => false],
                     ]
-                ]);*/
+                ]);
                 ?>
             </div>         
     	</div>
