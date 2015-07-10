@@ -565,3 +565,8 @@ div.required label:after {
 {
    opacity: 0;
 }
+
+#highcharts-6 > svg > g.highcharts-axis-labels.highcharts-yaxis-labels > text
+{
+   opacity: 0;
+}

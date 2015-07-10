@@ -28,7 +28,8 @@ class News extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'news_desc'], 'required'],
-            [['title', 'news_desc'], 'string']
+            [['title', 'news_desc'], 'string'],
+            ['image_id'], 'safe']
         ];
     }
 
@@ -41,6 +42,7 @@ class News extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Title',
             'news_desc' => 'News Desc',
+            'image_id' => 'Image',
         ];
     }
 }
