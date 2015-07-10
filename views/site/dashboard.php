@@ -181,17 +181,16 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row" id="chart3">
                 <?= Highcharts::widget([
                     'options' => [
-                        'title' => ['text' => 'Pool Summary'],
+                        'title' => ['text' => 'MSC Summary'],
                         'chart' => [
                           'borderColor'=>'#e5e5e5',
                           'type' => 'bar',
-                          'height' => 810,
                         ],
                         'xAxis' => [
                             'type' => 'category'
                         ],
                         'yAxis' => [
-                            'title' => ['text' => 'Total MGW/MSC']
+                            'title' => ['text' => 'Total MSC']
                         ],
                         'series' => 
                         [
@@ -202,17 +201,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'dataLabels' => [
                                     'enabled' => true,
                                 ],
-                                'color' => '#fb1010',
+                                'color' => '#7cb5ec',
                             ],
-                            [
-                                'name' => 'MGW',
-                                'data' => $MGWpool,
-                                'showInLegend' => false,
-                                'dataLabels' => [
-                                    'enabled' => true,
-                                ],
-                                'color' => '#10008c',
-                            ],
+                            
                         ],
                         'credits' => ['enabled' => false],
                     ]
@@ -220,30 +211,34 @@ $this->params['breadcrumbs'][] = $this->title;
                 ?>
             </div>
             <div class="row" id="chart4">
-                <?php /* echo Highcharts::widget([
+                <?= Highcharts::widget([
                     'options' => [
-                        'title' => ['text' => 'RNC Pool Summary'],
+                        'title' => ['text' => 'MGW Summary'],
+                        'chart' => [
+                          'borderColor'=>'#e5e5e5',
+                          'type' => 'bar',
+                        ],
                         'xAxis' => [
                             'type' => 'category'
                         ],
                         'yAxis' => [
-                            'title' => ['text' => 'Total RNC']
+                            'title' => ['text' => 'Total MGW']
                         ],
                         'series' => 
                         [
                             [
-                                'type' => 'column',
-                                'name' => 'RNC',
-                                'data' => $RNCpool,
+                                'name' => 'MGW',
+                                'data' => $MGWpool,
                                 'showInLegend' => false,
                                 'dataLabels' => [
                                     'enabled' => true,
                                 ],
+                                'color' => '#434348',
                             ],
                         ],
                         'credits' => ['enabled' => false],
                     ]
-                ]);*/
+                ]);
                 ?>
             </div>         
     	</div>

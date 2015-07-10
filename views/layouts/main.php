@@ -151,7 +151,7 @@ AppAsset::register($this);
                 echo Nav::widget([
                     'options' => ['class' => 'nav-pills nav-stacked'],
                     'items' => [
-                        ['label' => ' Home', 'url' => Yii::$app->homeUrl],
+                        ['label' => ' Home', 'url' => ['/site/index']],
                         ['label' => ' Dashboard', 'url' => ['/site/dashboard']],
                         ['label' => ' Download','url' => ['/site/download']],
                         ['label' => ' File Sharing','url' => ['/site/sharing']],
@@ -179,7 +179,7 @@ AppAsset::register($this);
                 echo Nav::widget([
                     'options' => ['class' => 'nav-pills nav-stacked'],
                     'items' => [            
-                        ['label' => ' Home', 'url' => Yii::$app->homeUrl],
+                        ['label' => ' Home', 'url' => ['/site/index']],
                         ['label' => ' Dashboard', 'url' => ['/site/dashboard']],
                         ['label' => ' Download','url' => ['/site/download']],
                         ['label' => ' Knowledge Sharing','url' => ['/site/sharing']],

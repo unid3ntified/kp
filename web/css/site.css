@@ -277,7 +277,7 @@ body > div.wrap > ul > li:nth-child(20) > a:before
 {
     content:"\e131";
     font-family: 'Glyphicons Halflings';
-    color: #f12c2c;
+    color: #fa5b24;
 }
 
 #detailtexto > a:after
@@ -324,7 +324,7 @@ body > div.wrap > ul > li:nth-child(20) > a:before
 
 #detailtextr > a
 {
-    color: #f12c2c;
+    color: #fa5b24;
 }
 
 #detailtexto > a
@@ -461,7 +461,7 @@ body > div.wrap > ul > li:nth-child(20) > a:before
 
 #redbox
 {
-    background-color: #f12c2c;
+    background-color: #fa5b24;
     width: 20%;
     color: white;
     font-family: 'Helvetica';

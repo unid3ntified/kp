@@ -94,7 +94,7 @@ class SiteController extends Controller
             $MSCpool[$key] = [$value['name'], (int)$value['MSC']] ;
         }
 
-        $temp = Yii::$app->db->createCommand('SELECT pool as name, COUNT(*) as MGW FROM mgw group by pool order by MGW DESC')->queryAll();
+        $temp = Yii::$app->db->createCommand('SELECT pool as name, COUNT(*) as MGW FROM mgw WHERE pool != "" group by pool order by MGW DESC')->queryAll();
         $MGWpool = array();
         foreach ($temp as $key => $value) {
             $MGWpool[$key] = [$value['name'], (int)$value['MGW']] ;

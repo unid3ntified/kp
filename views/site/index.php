@@ -18,15 +18,15 @@ $this->title = 'Sistem Informasi Network Element';
               <!-- Wrapper for slides -->
               <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                  <?php echo Html::img('@web/images/slider1.jpg', ['class'=> "img-rounded"]) ?>
+                   <?php echo Html::img('@web/images/slider2.jpg', ['class'=> "img-rounded"]) ?>
                 </div>
 
                 <div class="item">
-                  <?php echo Html::img('@web/images/slider2.jpg', ['class'=> "img-rounded"]) ?>
+                    <?php echo Html::img('@web/images/slider3.jpg', ['class'=> "img-rounded"]) ?>
                 </div>
 
                 <div class="item">
-                  <?php echo Html::img('@web/images/slider3.jpg', ['class'=> "img-rounded"]) ?>
+                    <?php echo Html::img('@web/images/slider1.jpg', ['class'=> "img-rounded"]) ?>
                 </div>
               </div>
 
