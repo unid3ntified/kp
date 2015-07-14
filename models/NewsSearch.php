@@ -12,6 +12,7 @@ use app\models\News;
  */
 class NewsSearch extends News
 {
+    public $search;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class NewsSearch extends News
     {
         return [
             [['id'], 'integer'],
-            [['title', 'news_desc'], 'safe'],
+            [['search', 'title', 'news_desc', 'username', 'timestamp'], 'safe'],
         ];
     }
 
@@ -59,8 +60,10 @@ class NewsSearch extends News
             'id' => $this->id,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'news_desc', $this->news_desc]);
+        $query->orFilterWhere(['like', 'title', $this->search])
+            ->orFilterWhere(['like', 'news_desc', $this->search])
+            ->orFilterWhere(['like', 'username', $this->search])
+            ->orFilterWhere(['like', 'timestamp', $this->search]);
 
         return $dataProvider;
     }

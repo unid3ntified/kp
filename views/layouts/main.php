@@ -42,6 +42,7 @@ AppAsset::register($this);
                 $("#item2").hide();
                 $("#item3").hide();
                 $("#item4").hide();
+                $("#item14").hide();
             }
             if (sessionStorage.flag2=="0")
             {
@@ -63,6 +64,7 @@ AppAsset::register($this);
                 $("#item2").toggle(320);
                 $("#item3").toggle(320);
                 $("#item4").toggle(320);
+                $("#item14").toggle(320);
                 if (sessionStorage.flag1=="0")
                     sessionStorage.flag1="1";
                 else
@@ -80,6 +82,7 @@ AppAsset::register($this);
                     $("#item11").toggle(320);
                     $("#item12").toggle(320);
                     $("#item13").toggle(320);
+
                 }
             });
 
@@ -91,6 +94,7 @@ AppAsset::register($this);
                     $("#item2").toggle(320);
                     $("#item3").toggle(320);
                     $("#item4").toggle(320);
+                    $("#item14").toggle(320);
                 }
 
                 $("#item5").toggle(320);
@@ -153,14 +157,15 @@ AppAsset::register($this);
                     'items' => [
                         ['label' => ' Home', 'url' => ['/site/index']],
                         ['label' => ' Dashboard', 'url' => ['/site/dashboard']],
-                        ['label' => ' Download','url' => ['/site/download']],
-                        ['label' => ' File Sharing','url' => ['/sharing/index']],
+                        ['label' => ' Knowledge Sharing','url' => ['/sharing/index']],
+                        ['label' => ' Network Topology','url' => ['/sharing/index']],
                         ['label' => ' Network Data', 'options' => ['id' => 'toggle1']],
                         ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
                         ['label' => 'Interconnection Trunk', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
                         ['label' => 'VOIP Trunk', 'url' => ['/trunkvoip/index'], 'options' => ['id' => 'item3']],
                         ['label' => 'POI', 'url' => ['/poi/index'], 'options' => ['id' => 'item4']],
-                        ['label' => ' Information', 'options' => ['id' => 'toggle2']],
+                        ['label' => ' Download','url' => ['/site/download'], 'options' => ['id' => 'item14']],
+                        ['label' => ' Network Information', 'options' => ['id' => 'toggle2']],
                         ['label' => 'GT Rule', 'url' => ['/gtrule/index'], 'options' => ['id' => 'item13']],
                         ['label' => 'GT Proposed List', 'url' => ['/gtproposedlist/index'], 'options' => ['id' => 'item5']],
                         ['label' => 'SPC Rule', 'url' => ['/spcrule/index'], 'options' => ['id' => 'item6']],
@@ -170,7 +175,6 @@ AppAsset::register($this);
                         ['label' => 'MSRN Routing', 'url' => ['/msrnrouting/index'], 'options' => ['id' => 'item10']],
                         ['label' => 'MSRN Proposed List', 'url' => ['/msrnproposedlist/index'], 'options' => ['id' => 'item11']],
                         ['label' => 'PABX Info', 'url' => ['/pabxinfo/index'], 'options' => ['id' => 'item12']],
-                        ['label' => ' Manage News', 'url' => ['/news/index']],
                         ['label' => ' Create Admin', 'url' => ['/site/user']],
                     ],
                 ]);
@@ -182,13 +186,24 @@ AppAsset::register($this);
                     'items' => [            
                         ['label' => ' Home', 'url' => ['/site/index']],
                         ['label' => ' Dashboard', 'url' => ['/site/dashboard']],
-                        ['label' => ' Download','url' => ['/site/download']],
                         ['label' => ' Knowledge Sharing','url' => ['/sharing/index']],
+                        ['label' => ' Network Topology','url' => ['/sharing/index']],
                         ['label' => ' Network Data', 'options' => ['id' => 'toggle1']],
                         ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
                         ['label' => 'Interconnection Trunk', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
                         ['label' => 'VOIP Trunk', 'url' => ['/trunkvoip/index'], 'options' => ['id' => 'item3']],
-                        ['label' => 'POI', 'url' => ['/poi/index'], 'options' => ['id' => 'item4']],            
+                        ['label' => 'POI', 'url' => ['/poi/index'], 'options' => ['id' => 'item4']],
+                        ['label' => ' Download','url' => ['/site/download'], 'options' => ['id' => 'item14']],
+                        ['label' => ' Network Information', 'options' => ['id' => 'toggle2']],
+                        ['label' => 'GT Rule', 'url' => ['/gtrule/index'], 'options' => ['id' => 'item13']],
+                        ['label' => 'GT Proposed List', 'url' => ['/gtproposedlist/index'], 'options' => ['id' => 'item5']],
+                        ['label' => 'SPC Rule', 'url' => ['/spcrule/index'], 'options' => ['id' => 'item6']],
+                        ['label' => 'SPC Ran Sharing', 'url' => ['/spcransharing/index'], 'options' => ['id' => 'item7']],
+                        ['label' => 'SCT Port Huawei', 'url' => ['/sctporthuawei/index'], 'options' => ['id' => 'item8']],
+                        ['label' => 'MSRN Rule', 'url' => ['/msrnrule/index'], 'options' => ['id' => 'item9']],
+                        ['label' => 'MSRN Routing', 'url' => ['/msrnrouting/index'], 'options' => ['id' => 'item10']],
+                        ['label' => 'MSRN Proposed List', 'url' => ['/msrnproposedlist/index'], 'options' => ['id' => 'item11']],
+                        ['label' => 'PABX Info', 'url' => ['/pabxinfo/index'], 'options' => ['id' => 'item12']],            
                     ],
                 ]);
             }

@@ -10,6 +10,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use yii\data\SqlDataProvider;
 use app\models\CreateAdmin;
+use app\models\News;
 
 class SiteController extends Controller
 {
@@ -50,9 +51,9 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
-
+        $newsList = News::find()->all();
         return $this->render('index', [
-
+            'newsList' => $newsList,
         ]);
     }
 
@@ -89,16 +90,18 @@ class SiteController extends Controller
             $vendorMSC[$key] = [$value['name'], (int)$value['count']] ;
         }
 
-        $temp = Yii::$app->db->createCommand('SELECT pool as name, COUNT(*) as MSC FROM msc group by pool order by MSC DESC')->queryAll();
+        $temp = Yii::$app->db->createCommand(
+            'SELECT pool as name, COUNT(*) as MSC, vendor FROM msc, network_element WHERE pool != "" AND network_element_id = msc_name group by pool order by MSC DESC')->queryAll();
         $MSCpool = array();
         foreach ($temp as $key => $value) {
-            $MSCpool[$key] = [$value['name'], (int)$value['MSC']] ;
+            $MSCpool[$key] = [$value['name'].' ('.$value['vendor'].')', (int)$value['MSC']] ;
         }
 
-        $temp = Yii::$app->db->createCommand('SELECT pool as name, COUNT(*) as MGW FROM mgw WHERE pool != "" group by pool order by MGW DESC')->queryAll();
+        $temp = Yii::$app->db->createCommand(
+            'SELECT pool as name, COUNT(*) as MGW, vendor FROM mgw, network_element WHERE pool != "" AND network_element_id = mgw_name group by pool order by MGW DESC')->queryAll();
         $MGWpool = array();
         foreach ($temp as $key => $value) {
-            $MGWpool[$key] = [$value['name'], (int)$value['MGW']] ;
+            $MGWpool[$key] = [$value['name'].' ('.$value['vendor'].')', (int)$value['MGW']] ;
         }
 
         //combining pool from both msc and mgw table

@@ -192,7 +192,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'type' => 'category'
                         ],
                         'yAxis' => [
-                            'title' => ['text' => 'Total MSC']
+                            'title' => ['text' => 'Total MSC/MGW']
                         ],
                         'series' => 
                         [
@@ -204,9 +204,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'dataLabels' => [
                                     'enabled' => true,
                                 ],
-                                'color' => '#10008c',
-                            ],                          
-                             [
+                                'color' => '#fa5b24',
+                            ],
+                            [
                                 'type' => 'bar',
                                 'name' => 'MSC',
                                 'data' => $MSCpool,
@@ -214,48 +214,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'dataLabels' => [
                                     'enabled' => true,
                                 ],
-                                'color' => '#901010',
-                            ],
-                            
+                                'color' => '#24b66c',
+                            ],                                               
                         ],
                         'credits' => ['enabled' => false],
                     ]
                 ]);
                 ?>
             </div>
-                           
-            <div class="row" id="chart4">
-                <?= Highcharts::widget([
-                    'options' => [
-                        'title' => ['text' => 'MGW Summary'],
-                        'chart' => [
-                          'borderColor'=>'#e5e5e5',
-                          'type' => 'bar',
-                        ],
-                        'xAxis' => [
-                            'type' => 'category'
-                        ],
-                        'yAxis' => [
-                            'title' => ['text' => 'Total MGW']
-                        ],
-                        'series' => 
-                        [
-                            [
-                                'name' => 'MGW',
-                                'data' => $MGWpool,
-                                'showInLegend' => false,
-                                'dataLabels' => [
-                                    'enabled' => true,
-                                ],
-                                'color' => '#434348',
-                            ],
-                        ],
-                        'credits' => ['enabled' => false],
-                    ]
-                ]);
-                ?>
-            </div>         
-    	</div>
+        </div>
 
 
 		<div class="col-sm-3">

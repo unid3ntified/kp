@@ -20,6 +20,17 @@ class News extends \yii\db\ActiveRecord
     {
         return 'news';
     }
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => 'mdm\upload\UploadBehavior',
+                'attribute' => 'file_image', // required, use to receive input file
+                'savedAttribute' => 'image_id', // optional, use to link model with saved file.
+                //'uploadPath' => '@common/upload', // saved directory. default to '@runtime/upload'
+            ],
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -29,7 +40,8 @@ class News extends \yii\db\ActiveRecord
         return [
             [['title', 'news_desc'], 'required'],
             [['title', 'news_desc'], 'string'],
-            ['image_id'], 'safe']
+            [['image_id'], 'safe'],
+            [['username'], 'string', 'max' => 50],
         ];
     }
 
@@ -43,6 +55,8 @@ class News extends \yii\db\ActiveRecord
             'title' => 'Title',
             'news_desc' => 'News Desc',
             'image_id' => 'Image',
+            'username' => 'Posted by',
+            'timestamp' => 'Time',
         ];
     }
 }
