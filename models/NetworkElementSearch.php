@@ -65,8 +65,8 @@ class NetworkElementSearch extends NetworkElement
             ->orFilterWhere(['like', 'provinsi', $this->search])
             ->orFilterWhere(['like', 'vendor', $this->search])
             ->orFilterWhere(['like', 'gtt', $this->search])
-            ->orFilterWhere(['like', 'status', $this->search])
-            ->orFilterWhere(['like', 'remark', $this->search]);
+            ->orFilterWhere(['like', 'status', $this->search]);
+           // ->orFilterWhere(['like', 'remark', $this->search]);
 
         return $dataProvider;
     }

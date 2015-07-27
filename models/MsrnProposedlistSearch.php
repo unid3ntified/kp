@@ -67,8 +67,8 @@ class MsrnProposedlistSearch extends MsrnProposedlist
             ->orFilterWhere(['like', 'New_MSRN', $this->search])
             ->orFilterWhere(['like', 'Status', $this->search])
             ->orFilterWhere(['like', 'Reserved_by', $this->search])
-            ->orFilterWhere(['like', 'Updated', $this->search])
-            ->orFilterWhere(['like', 'Remark', $this->search]);
+            ->orFilterWhere(['like', 'Updated', $this->search]);
+        //    ->orFilterWhere(['like', 'Remark', $this->search]);
 
         return $dataProvider;
     }
@@ -99,8 +99,8 @@ class MsrnProposedlistSearch extends MsrnProposedlist
             ->orFilterWhere(['like', 'New_MSRN', $this->search])
             ->orFilterWhere(['like', 'Status', $this->search])
             ->orFilterWhere(['like', 'Reserved_by', $this->search])
-            ->orFilterWhere(['like', 'Updated', $this->search])
-            ->orFilterWhere(['like', 'Remark', $this->search]);
+            ->orFilterWhere(['like', 'Updated', $this->search]);
+         //   ->orFilterWhere(['like', 'Remark', $this->search]);
 
         return $dataProvider;
     }

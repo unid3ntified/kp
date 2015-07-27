@@ -541,7 +541,7 @@ body > div.wrap > ul > li:nth-child(21) > a:before
     fill: #f5f5f5;
 }
 
-#chart3 , #chart4 
+#chart3 
 {
     padding-right: 10px;
 }
@@ -551,9 +551,15 @@ body > div.wrap > ul > li:nth-child(21) > a:before
     margin-bottom: 10px;
 }
 
-#chart5, #chart6
+#chart5
 {
     padding-left: -15px;
+}
+
+#chart4 , #chart6
+{
+    margin-left: -15px;
+    padding-right: 15px;
 }
 
 div.required label:after {

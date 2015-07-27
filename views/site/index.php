@@ -52,8 +52,8 @@ $this->title = 'Sistem Informasi Network Element';
             {
               $newsItem++;
               if ($newsItem < 5)
-              {             
-                if ($i % 2 == 1 )
+              {            
+                if ($newsItem % 2 == 1 )
                   echo '<div class="row">';
                 echo '<a href="'.Yii::$app->homeUrl.'?r=news/view&id='.$newsList[$i]->id.'">';
                 echo '<div class="col-md-6"><h3>'.$newsList[$i]->title.'</h3><div class="row">';
@@ -64,15 +64,14 @@ $this->title = 'Sistem Informasi Network Element';
                     $text[$j] = $newsList[$i]->news_desc[$j];
                 }
                 else $text = $newsList[$i]->news_desc;
-                //print_r($text);die;
                 echo '<div class="col-md-7">'.$text.'...<br>View More</div></div></div>';
-                if ($i % 2 == 0)
+                if ($newsItem % 2 == 0)
                   echo '</div><br><hr>';
                 echo '</a>';
               }
+              else break;
             }       
           ?>
-
         
       <div class="col-md-12" align=right>
         <?php

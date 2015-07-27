@@ -60,8 +60,8 @@ class MsrnRuleSearch extends MsrnRule
             ->orFilterWhere(['like', 'area', $this->search])
             ->orFilterWhere(['like', 'equipment', $this->search])
             ->orFilterWhere(['like', 'new_msrn', $this->search])
-            ->orFilterWhere(['like', 'last_counter', $this->search])
-            ->orFilterWhere(['like', 'remark', $this->search]);
+            ->orFilterWhere(['like', 'last_counter', $this->search]);
+         //   ->orFilterWhere(['like', 'remark', $this->search]);
 
         return $dataProvider;
     }

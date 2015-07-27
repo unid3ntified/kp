@@ -62,8 +62,8 @@ class SctPortHuaweiSearch extends SctPortHuawei
 
         $query->orFilterWhere(['like', 'mss_huawei', $this->search])
             ->orFilterWhere(['like', 'sctp_port', $this->search])
-            ->orFilterWhere(['like', 'last_counter', $this->search])
-            ->orFilterWhere(['like', 'Remark', $this->search]);
+            ->orFilterWhere(['like', 'last_counter', $this->search]);
+         //   ->orFilterWhere(['like', 'Remark', $this->search]);
 
         return $dataProvider;
     }

@@ -57,22 +57,6 @@ class TrunkInterkoneksiSearch extends TrunkInterkoneksi
             return $dataProvider;
         }
 
-        /* $query->andFilterWhere([
-            'e1_capacity' => $this->e1_capacity,
-            'log_date' => $this->log_date,
-        ]);
-
-        $query->andFilterWhere(['like', 'trunk_id', $this->trunk_id])
-            ->andFilterWhere(['like', 'direction', $this->direction])
-            ->andFilterWhere(['like', 'vendor', $this->vendor])
-            ->andFilterWhere(['like', 'opc', $this->opc])
-            ->andFilterWhere(['like', 'dpc', $this->dpc])
-            ->andFilterWhere(['like', 'POI', $this->POI])
-            ->andFilterWhere(['like', 'connection', $this->connection])
-            ->andFilterWhere(['like', 't_group', $this->t_group])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'remark', $this->remark]); */
-
         $query->orFilterWhere([
             'e1_capacity' => $this->search,
             'log_date' => $this->search,
@@ -86,8 +70,8 @@ class TrunkInterkoneksiSearch extends TrunkInterkoneksi
             ->orFilterWhere(['like', 'POI', $this->search])
             ->orFilterWhere(['like', 'connection', $this->search])
             ->orFilterWhere(['like', 't_group', $this->search])
-            ->orFilterWhere(['like', 'status', $this->search])
-            ->orFilterWhere(['like', 'remark', $this->search]);
+            ->orFilterWhere(['like', 'status', $this->search]);
+            //->orFilterWhere(['like', 'remark', $this->search]);
         return $dataProvider;
     }
 
@@ -120,8 +104,8 @@ class TrunkInterkoneksiSearch extends TrunkInterkoneksi
             ->andFilterWhere(['like', 'POI', $this->POI])
             ->andFilterWhere(['like', 'connection', $this->connection])
             ->andFilterWhere(['like', 't_group', $this->t_group])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'remark', $this->remark]);
+            ->andFilterWhere(['like', 'status', $this->status]);
+          //  ->andFilterWhere(['like', 'remark', $this->remark]);
 
         return $dataProvider;
     }

@@ -65,8 +65,8 @@ class GtProposedlistSearch extends GtProposedlist
             ->orFilterWhere(['like', 'MSS', $this->search])
             ->orFilterWhere(['like', 'GT', $this->search])
             ->orFilterWhere(['like', 'new_GT', $this->search])
-            ->orFilterWhere(['like', 'Status', $this->search])
-            ->orFilterWhere(['like', 'Remark', $this->search]);
+            ->orFilterWhere(['like', 'Status', $this->search]);
+          //  ->orFilterWhere(['like', 'Remark', $this->search]);
 
         return $dataProvider;
     }

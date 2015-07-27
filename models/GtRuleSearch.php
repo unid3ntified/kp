@@ -65,8 +65,8 @@ class GtRuleSearch extends GtRule
             ->orFilterWhere(['like', 'Area', $this->search])
             ->orFilterWhere(['like', 'Equipment', $this->search])
             ->orFilterWhere(['like', 'GT', $this->search])
-            ->orFilterWhere(['like', 'Last_counter', $this->search])
-            ->orFilterWhere(['like', 'Remark', $this->search]);
+            ->orFilterWhere(['like', 'Last_counter', $this->search]);
+         //   ->orFilterWhere(['like', 'Remark', $this->search]);
 
         return $dataProvider;
     }

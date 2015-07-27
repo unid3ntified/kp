@@ -63,8 +63,8 @@ class SpcRuleSearch extends SpcRule
         $query->orFilterWhere(['like', 'Area', $this->search])
             ->orFilterWhere(['like', 'SPC', $this->search])
             ->orFilterWhere(['like', 'Jenis', $this->search])
-            ->orFilterWhere(['like', 'Last_counter', $this->search])
-            ->orFilterWhere(['like', 'Remark', $this->search]);
+            ->orFilterWhere(['like', 'Last_counter', $this->search]);
+           // ->orFilterWhere(['like', 'Remark', $this->search]);
 
         return $dataProvider;
     }
