@@ -20,6 +20,7 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <script src="<?php echo Yii::$app->urlManager->baseUrl; ?>/assets/tes.js"></script>
     <script>
+
         $(document).ready(function(){
             if(typeof(Storage)!=="undefined")
             {
@@ -154,7 +155,7 @@ AppAsset::register($this);
                         ['label' => ' Home', 'url' => ['/site/index']],
                         ['label' => ' Dashboard', 'url' => ['/site/dashboard']],
                         ['label' => ' Download','url' => ['/site/download']],
-                        ['label' => ' File Sharing','url' => ['/site/sharing']],
+                        ['label' => ' File Sharing','url' => ['/sharing/index']],
                         ['label' => ' Network Data', 'options' => ['id' => 'toggle1']],
                         ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
                         ['label' => 'Interconnection Trunk', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
@@ -170,6 +171,7 @@ AppAsset::register($this);
                         ['label' => 'MSRN Routing', 'url' => ['/msrnrouting/index'], 'options' => ['id' => 'item10']],
                         ['label' => 'MSRN Proposed List', 'url' => ['/msrnproposedlist/index'], 'options' => ['id' => 'item11']],
                         ['label' => 'PABX Info', 'url' => ['/pabxinfo/index'], 'options' => ['id' => 'item12']],
+                        ['label' => ' Manage News', 'url' => ['/news/index']],
                         ['label' => ' Create Admin', 'url' => ['/site/user']],
                     ],
                 ]);
@@ -182,7 +184,7 @@ AppAsset::register($this);
                         ['label' => ' Home', 'url' => ['/site/index']],
                         ['label' => ' Dashboard', 'url' => ['/site/dashboard']],
                         ['label' => ' Download','url' => ['/site/download']],
-                        ['label' => ' Knowledge Sharing','url' => ['/site/sharing']],
+                        ['label' => ' Knowledge Sharing','url' => ['/sharing/index']],
                         ['label' => ' Network Data', 'options' => ['id' => 'toggle1']],
                         ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
                         ['label' => 'Interconnection Trunk', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],

@@ -21,6 +21,7 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             // send all mails to a file by default. You have to set
@@ -40,6 +41,9 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
     ],
     'params' => $params,
+    'controllerMap' => [
+        'file' => 'mdm\upload\FileController', // use to show or download file
+        ],
     'modules' => [
         'gridview' => [
             'class' => '\kartik\grid\Module'

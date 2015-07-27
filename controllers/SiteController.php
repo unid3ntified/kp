@@ -50,6 +50,7 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+
         return $this->render('index', [
 
         ]);
@@ -100,6 +101,35 @@ class SiteController extends Controller
             $MGWpool[$key] = [$value['name'], (int)$value['MGW']] ;
         }
 
+        //combining pool from both msc and mgw table
+        $pool = array();
+        $tempMsc = array();
+        $tempMgw = array();
+        for ($i = 0; $i<count($MSCpool); $i++)
+        {
+            array_push($pool,$MSCpool[$i][0]);
+            array_push($tempMsc,$MSCpool[$i][0]);
+        }
+        for ($i = 0; $i<count($MGWpool); $i++)
+        {
+            array_push($tempMgw,$MGWpool[$i][0]);
+            if (!in_array($MGWpool[$i][0], $pool))
+                array_push($pool,$MGWpool[$i][0]);
+        }
+        //adding pool that exist in combined pool, but not in msc/mgw
+        for ($i = 0; $i<count($pool); $i++)
+        {
+            if (!in_array($pool[$i], $tempMsc))
+                array_push($MSCpool,[$pool[$i],NULL]);    
+        }
+        for ($i = 0; $i<count($pool); $i++)
+        {
+            if (!in_array($pool[$i], $tempMgw))
+                array_push($MGWpool,[$pool[$i],NULL]);    
+        }
+        sort($MSCpool);
+        sort($MGWpool);
+        
         $temp = Yii::$app->db->createCommand('SELECT t_group as name, COUNT(*) as Trunk FROM trunk_interkoneksi group by t_group order by Trunk DESC')->queryAll();
         $partnerPOI = array();
         foreach ($temp as $key => $value) {

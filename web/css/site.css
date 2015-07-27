@@ -565,9 +565,8 @@ div.required label:after {
 {
    opacity: 0;
 }
- .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-            background-image:none !important;
-        }
-        .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
-            background-color:red;
-        }
+
+#highcharts-6 > svg > g.highcharts-axis-labels.highcharts-yaxis-labels > text
+{
+   opacity: 0;
+}

@@ -81,6 +81,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterInputOptions' => ['placeholder' => 'Search new MSS here'],
             ],
 
+            'pool',
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); 

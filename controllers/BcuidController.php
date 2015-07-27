@@ -105,7 +105,7 @@ class BcuidController extends Controller
         $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $$this->fillModel($model);
+            $this->fillModel($model);
             return $this->redirect(['view', 'id' => $model->bcu_id]);
         } else {
             return $this->render('update', [

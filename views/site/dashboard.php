@@ -177,14 +177,16 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="row">
      	<div class="col-lg-9">
-            
+
             <div class="row" id="chart3">
                 <?= Highcharts::widget([
+                     'scripts' => [
+                        'modules/exporting',
+                    ],
                     'options' => [
                         'title' => ['text' => 'MSC Summary'],
                         'chart' => [
-                          'borderColor'=>'#e5e5e5',
-                          'type' => 'bar',
+                            'height' => 810,  
                         ],
                         'xAxis' => [
                             'type' => 'category'
@@ -195,13 +197,24 @@ $this->params['breadcrumbs'][] = $this->title;
                         'series' => 
                         [
                             [
+                                'type' => 'bar',
+                                'name' => 'MGW',
+                                'data' => $MGWpool,
+                                'showInLegend' => false,
+                                'dataLabels' => [
+                                    'enabled' => true,
+                                ],
+                                'color' => '#fa5b24',
+                            ],                          
+                             [
+                                'type' => 'bar',
                                 'name' => 'MSC',
                                 'data' => $MSCpool,
                                 'showInLegend' => false,
                                 'dataLabels' => [
                                     'enabled' => true,
                                 ],
-                                'color' => '#7cb5ec',
+                                'color' => '#24b66c',
                             ],
                             
                         ],
@@ -210,37 +223,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);
                 ?>
             </div>
-            <div class="row" id="chart4">
-                <?= Highcharts::widget([
-                    'options' => [
-                        'title' => ['text' => 'MGW Summary'],
-                        'chart' => [
-                          'borderColor'=>'#e5e5e5',
-                          'type' => 'bar',
-                        ],
-                        'xAxis' => [
-                            'type' => 'category'
-                        ],
-                        'yAxis' => [
-                            'title' => ['text' => 'Total MGW']
-                        ],
-                        'series' => 
-                        [
-                            [
-                                'name' => 'MGW',
-                                'data' => $MGWpool,
-                                'showInLegend' => false,
-                                'dataLabels' => [
-                                    'enabled' => true,
-                                ],
-                                'color' => '#434348',
-                            ],
-                        ],
-                        'credits' => ['enabled' => false],
-                    ]
-                ]);
-                ?>
-            </div>         
+                           
+           
     	</div>
 
 
