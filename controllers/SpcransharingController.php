@@ -8,6 +8,7 @@ use app\models\SpcRansharingSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * SpcransharingController implements the CRUD actions for SpcRansharing model.
@@ -17,6 +18,20 @@ class SpcransharingController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['create', 'update', 'index', 'view', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['view','index'],
+                        'allow' => true,
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

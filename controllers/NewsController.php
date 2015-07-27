@@ -5,9 +5,12 @@ namespace app\controllers;
 use Yii;
 use app\models\News;
 use app\models\NewsSearch;
+use app\models\User;
+use app\models\UserSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * NewsController implements the CRUD actions for News model.
@@ -17,6 +20,20 @@ class NewsController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['create', 'update', 'index', 'view', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['view','index'],
+                        'allow' => true,
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -62,7 +79,12 @@ class NewsController extends Controller
     {
         $model = new News();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if($model->load(Yii::$app->request->post()) && $model->validate()){
+            $userid = User::findIdentity(Yii::$app->user->id);
+            $username = $userid->username;
+            $model->username = $username;
+            if($model->saveUploadedFile() !== false)
+                $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

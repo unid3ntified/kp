@@ -8,6 +8,7 @@ use app\models\PabxInfoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * PabxinfoController implements the CRUD actions for PabxInfo model.
@@ -17,6 +18,20 @@ class PabxinfoController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['create', 'update', 'index', 'view', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['view','index'],
+                        'allow' => true,
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

@@ -192,7 +192,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'type' => 'category'
                         ],
                         'yAxis' => [
-                            'title' => ['text' => 'Total MSC']
+                            'title' => ['text' => 'Total MSC/MGW']
                         ],
                         'series' => 
                         [
@@ -205,8 +205,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'enabled' => true,
                                 ],
                                 'color' => '#fa5b24',
-                            ],                          
-                             [
+
+                            ],
+                            [
+
                                 'type' => 'bar',
                                 'name' => 'MSC',
                                 'data' => $MSCpool,
@@ -215,17 +217,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'enabled' => true,
                                 ],
                                 'color' => '#24b66c',
-                            ],
-                            
+
+                            ],                                               
                         ],
                         'credits' => ['enabled' => false],
                     ]
                 ]);
                 ?>
             </div>
-                           
-           
-    	</div>
+
+        </div>
 
 
 		<div class="col-sm-3">

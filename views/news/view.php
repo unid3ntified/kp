@@ -12,26 +12,39 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="news-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'id',
-            'title:ntext',
-            'news_desc:ntext',
-        ],
-    ]) ?>
-
+    <div class="row">
+        <div class="col-lg-8 col-md-offset-2">
+            <div class="row" id="newsimage" align="center">
+                <?= Html::img(['/file','id'=>$model->image_id]) ?>
+                <br>
+            </div>
+            <div class="row" id="newstitle" align="center">
+                <h2><?= $model->title ?></h2>
+                <hr>
+            </div>
+            <div class="row" id="newscontent">
+                <h4><?= $model->news_desc ?></h4>
+                <br>
+                <hr>
+            </div>
+    
+            <div class="row" id="newsbutton" align=right>
+                <br>
+                <?php
+                    if (!Yii::$app->user->isGuest)
+                    {
+                        echo Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']);
+                        echo ' ';
+                        echo Html::a('Delete', ['delete', 'id' => $model->id], [
+                            'class' => 'btn btn-danger',
+                            'data' => [
+                                'confirm' => 'Are you sure you want to delete this item?',
+                                'method' => 'post',
+                            ],
+                        ]);
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
 </div>
