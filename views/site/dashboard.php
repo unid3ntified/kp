@@ -267,44 +267,85 @@ $this->params['breadcrumbs'][] = $this->title;
                 ?>
             </div>
             <div class="row" id="chart6">
-    			<?= Highcharts::widget([
-    			   	'options' => [
-    			    	'title' => ['text' => 'MSC Vendor'],
-                        'chart' => [
-                          'borderColor'=>'#e5e5e5',
-                          'type' => 'pie',
-                        ],
-    			      	'series' => 
-    			        [
-    			         	[
-                    			'name' => 'count',
-                                'size' => '70%',
-                    			'data' => $vendorMSC,
-    			                'showInLegend' => true,
-    			                'dataLabels' => [
-    			                    'enabled' => false,
-            					],
-                			],
-                            /*[
-                                'name' => 'MSC Vendor',
-                                'data' => [
-                                    [
-                                        'name' => '',
-                                        'y' => $MSCvendor,
-                                        'color' => '#ffffff',
-                                    ]
+
+        			<?= Highcharts::widget([
+        			   	'options' => [
+        			    	'title' => ['text' => 'MSC Vendor'],
+                            'chart' => [
+                              'borderColor'=>'#e5e5e5',
+                              'type' => 'pie',
+                            ],
+        			      	'series' => 
+        			        [
+        			         	[
+                        			'name' => 'count',
+                                    'size' => '50%',
+                        			'data' => $vendorMSC,
+        			                'showInLegend' => true,
+        			                'dataLabels' => [
+        			                    'enabled' => false,
+                					],
+                    			],
+                                /*[
+                                    'name' => 'MSC Vendor',
+                                    'data' => [
+                                        [
+                                            'name' => '',
+                                            'y' => $MSCvendor,
+                                            'color' => '#ffffff',
+                                        ]
+                                    ],
+                                    'size' => '40%',
+                                    'showInLegend' => false,
+                                    'dataLabels' => [
+                                        'enabled' => false,
+                                    ],
+                                ]*/
+        			      	],
+        			      	'credits' => ['enabled' => false],
+        			   	]
+        			]);
+        			?>
+                
+                    <?= Highcharts::widget([
+                        'options' => [
+                            'title' => ['text' => 'MGW Vendor'],
+                            'chart' => [
+                              'borderColor'=>'#e5e5e5',
+                              'type' => 'pie',
+                            ],
+                            'series' => 
+                            [
+                                [
+                                    'name' => 'count',
+                                    'size' => '50%',
+                                    'data' => $vendorMGW,
+                                    'showInLegend' => true,
+                                    'dataLabels' => [
+                                        'enabled' => false,
+                                    ],
                                 ],
-                                'size' => '40%',
-                                'showInLegend' => false,
-                                'dataLabels' => [
-                                    'enabled' => false,
-                                ],
-                            ]*/
-    			      	],
-    			      	'credits' => ['enabled' => false],
-    			   	]
-    			]);
-    			?>
+                                /*[
+                                    'name' => 'MSC Vendor',
+                                    'data' => [
+                                        [
+                                            'name' => '',
+                                            'y' => $MSCvendor,
+                                            'color' => '#ffffff',
+                                        ]
+                                    ],
+                                    'size' => '40%',
+                                    'showInLegend' => false,
+                                    'dataLabels' => [
+                                        'enabled' => false,
+                                    ],
+                                ]*/
+                            ],
+                            'credits' => ['enabled' => false],
+                        ]
+                    ]);
+                    ?>
+                
             </div>
     	</div> 
 
