@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2015 at 08:33 AM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: Jul 27, 2015 at 07:54 AM
+-- Server version: 5.6.11
+-- PHP Version: 5.5.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `sinet`
 --
+CREATE DATABASE IF NOT EXISTS `sinet` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `sinet`;
 
 -- --------------------------------------------------------
 
@@ -27,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `desc_network` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `network_element_id` varchar(100) NOT NULL,
   `opc_nat0` varchar(20) DEFAULT NULL,
   `opc_nat1` varchar(20) DEFAULT NULL,
@@ -39,8 +41,10 @@ CREATE TABLE IF NOT EXISTS `desc_network` (
   `fifth_opc` varchar(20) DEFAULT NULL,
   `sixth_opc` varchar(20) DEFAULT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=15377 DEFAULT CHARSET=latin1;
+  `remark` text,
+  PRIMARY KEY (`id`),
+  KEY `network_id` (`network_element_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15377 ;
 
 --
 -- Dumping data for table `desc_network`
@@ -1624,15 +1628,16 @@ INSERT INTO `desc_network` (`id`, `network_element_id`, `opc_nat0`, `opc_nat1`, 
 --
 
 CREATE TABLE IF NOT EXISTS `gt_proposedlist` (
-`No` int(11) NOT NULL,
+  `No` int(11) NOT NULL AUTO_INCREMENT,
   `Regional` varchar(100) NOT NULL,
   `MSS` varchar(20) DEFAULT NULL,
   `Vendor` varchar(100) DEFAULT NULL,
   `GT` varchar(30) DEFAULT NULL,
   `new_GT` varchar(30) DEFAULT NULL,
   `Status` varchar(50) DEFAULT NULL,
-  `Remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=248 DEFAULT CHARSET=latin1;
+  `Remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=248 ;
 
 --
 -- Dumping data for table `gt_proposedlist`
@@ -1769,14 +1774,15 @@ INSERT INTO `gt_proposedlist` (`No`, `Regional`, `MSS`, `Vendor`, `GT`, `new_GT`
 --
 
 CREATE TABLE IF NOT EXISTS `gt_rule` (
-`No` int(11) NOT NULL,
+  `No` int(11) NOT NULL AUTO_INCREMENT,
   `STP` text NOT NULL,
   `Area` text NOT NULL,
   `Equipment` varchar(100) DEFAULT NULL,
   `GT` text NOT NULL,
   `Last_counter` varchar(30) DEFAULT NULL,
-  `Remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+  `Remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=69 ;
 
 --
 -- Dumping data for table `gt_rule`
@@ -1867,7 +1873,9 @@ CREATE TABLE IF NOT EXISTS `mgw` (
   `new_mss_connected` varchar(20) DEFAULT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`bcu_id`),
+  KEY `mgw_name` (`mgw_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2005,7 +2013,6 @@ INSERT INTO `mgw` (`bcu_id`, `mgw_name`, `pool`, `region`, `old_mss_connected`, 
 ('413', 'MGDP301', 'MiP Balomsum', 'CENTER JAVA, EAST JAVA, BALI', 'MSDP3', NULL, 'in service', NULL, NULL),
 ('414', 'MGPL102', 'MiP Center Java', 'CENTER JAVA, EAST JAVA, BALI', NULL, NULL, 'in service', NULL, NULL),
 ('416', 'MGML102', 'MiP East Java', 'CENTER JAVA, EAST JAVA, BALI', 'MSML1', NULL, 'in service', NULL, NULL),
-('419', 'MGYG301', 'MiP Center Java', 'CENTER JAVA, EAST JAVA, BALI', 'MSYG3', NULL, 'in service', NULL, NULL),
 ('420', 'MGSG102', 'MiP Balomsum', 'CENTER JAVA, EAST JAVA, BALI', NULL, 'MSSG2', 'in service', NULL, 'Cutover GCP MSDP3 to MSSG2'),
 ('423', 'MGPO101', 'MiP Center Java', 'CENTER JAVA, EAST JAVA, BALI', 'MSSM1', NULL, 'in service', NULL, NULL),
 ('424', 'MGYG302', 'MiP Center Java', 'CENTER JAVA, EAST JAVA, BALI', 'MSYG3', NULL, 'in service', NULL, NULL),
@@ -2132,7 +2139,8 @@ INSERT INTO `mgw` (`bcu_id`, `mgw_name`, `pool`, `region`, `old_mss_connected`, 
 
 CREATE TABLE IF NOT EXISTS `migration` (
   `version` varchar(180) NOT NULL,
-  `apply_time` int(11) DEFAULT NULL
+  `apply_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2166,7 +2174,9 @@ CREATE TABLE IF NOT EXISTS `msc` (
   `mgw_managerA_circuit` varchar(10) DEFAULT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`msc_name`),
+  UNIQUE KEY `cnid` (`cnid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2300,7 +2310,7 @@ INSERT INTO `msc` (`msc_name`, `cnid`, `pool`, `non_broadcast_lai`, `null_nri`, 
 --
 
 CREATE TABLE IF NOT EXISTS `msrn_proposedlist` (
-`No` int(11) NOT NULL,
+  `No` int(11) NOT NULL AUTO_INCREMENT,
   `Regional` varchar(100) NOT NULL,
   `MSS` varchar(10) NOT NULL,
   `Vendor` varchar(100) DEFAULT NULL,
@@ -2309,8 +2319,9 @@ CREATE TABLE IF NOT EXISTS `msrn_proposedlist` (
   `Status` varchar(50) DEFAULT NULL,
   `Reserved_by` varchar(50) NOT NULL,
   `Updated` varchar(20) NOT NULL,
-  `Remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=227 DEFAULT CHARSET=latin1;
+  `Remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=227 ;
 
 --
 -- Dumping data for table `msrn_proposedlist`
@@ -2438,13 +2449,14 @@ INSERT INTO `msrn_proposedlist` (`No`, `Regional`, `MSS`, `Vendor`, `Existing_MS
 --
 
 CREATE TABLE IF NOT EXISTS `msrn_routing` (
-`No` int(11) NOT NULL,
+  `No` int(11) NOT NULL AUTO_INCREMENT,
   `cluster` varchar(100) NOT NULL,
   `mss` varchar(20) NOT NULL,
   `first_route` varchar(30) NOT NULL,
   `second_route` varchar(20) NOT NULL,
-  `remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+  `remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;
 
 --
 -- Dumping data for table `msrn_routing`
@@ -2523,7 +2535,8 @@ CREATE TABLE IF NOT EXISTS `msrn_rule` (
   `equipment` varchar(100) NOT NULL,
   `new_msrn` varchar(20) NOT NULL,
   `last_counter` varchar(20) NOT NULL,
-  `remark` varchar(100) DEFAULT NULL
+  `remark` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`cmn`,`new_msrn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2556,7 +2569,10 @@ CREATE TABLE IF NOT EXISTS `network_element` (
   `gtt` varchar(20) DEFAULT NULL,
   `status` varchar(20) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`network_element_id`),
+  UNIQUE KEY `sc-_address` (`gt_address`),
+  UNIQUE KEY `gtt` (`gtt`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2880,121 +2896,119 @@ INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `
 ('MCA SS7GW 2', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', 'Nashrul 13 Okt 08'),
 ('MCA-SMSC-1 Trial', '62818445858', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', 'Nashrul 15 Aug 08'),
 ('MCA-SMSC-2 Trial', '62818445859', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', 'Nashrul 15 Aug 08'),
-('MGAB101', NULL, 'Ambon, MGAB101', 'Maluku', 'Not Set', NULL, 'In Service', '2015-06-24', '9358 (M3UA Agent NAT-1)'),
-('MGAC101', NULL, 'Aceh, Bireuen', 'not set', 'Not Set', NULL, 'In Service', NULL, '9351 (NAT0 m3ua agent BSC)\r\n9577 (dual stack)\r\n114 (V-MSC MPP)\r\n 9896 (triple stack)'),
-('MGAC102', NULL, 'Aceh, Bireuen', 'not set', 'Not Set', NULL, 'In Service', NULL, '9750 (stack1)\r\n9751 (m3ua agent) \r\n9752 (stack2)\r\n9897 (triple stack)\r\n115 (V-MSC MPP)'),
+('MGAB101', NULL, 'Ambon, MGAB101', 'Maluku', 'Huawei', NULL, 'In Service', '2015-07-27', '9358 (M3UA Agent NAT-1)'),
+('MGAC101', NULL, 'Aceh, Bireuen', 'Aceh', 'Ericsson', NULL, 'In Service', '2015-07-27', '9351 (NAT0 m3ua agent BSC)\r\n9577 (dual stack)\r\n114 (V-MSC MPP)\r\n 9896 (triple stack)'),
+('MGAC102', NULL, 'Aceh, Bireuen', 'Aceh', 'Ericsson', NULL, 'In Service', '2015-07-27', '9750 (stack1)\r\n9751 (m3ua agent) \r\n9752 (stack2)\r\n9897 (triple stack)\r\n115 (V-MSC MPP)'),
 ('MGAC201', NULL, 'Aceh Bireun', 'not set', 'Not Set', NULL, 'planned', '0000-00-00', '(PLANNED Ferry 24/12/2014)'),
 ('MGAC202', NULL, 'Aceh Bireun', 'not set', 'Not Set', NULL, 'planned', '0000-00-00', '(PLANNED Ferry 24/12/2014)'),
-('MGBA101', NULL, 'Bangkalan', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGBA102', NULL, 'Bangkalan', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGBA101', NULL, 'Bangkalan', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGBA102', NULL, 'Bangkalan', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGBA201', NULL, 'Bangkalan', 'JAWA TIMUR', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGBB101', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGBB102', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGBB201', NULL, 'Gabek,', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGBB201', NULL, 'Gabek,', 'Kep. Bangka Belitung', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
 ('MGBB202', NULL, 'Gabek, MGBB202', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGBB301', NULL, 'TanjungPandan', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGBD201', NULL, 'Kiara Condong', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGBB301', NULL, 'TanjungPandan', 'Kep. Bangka Belitung', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGBD201', NULL, 'Kiara Condong', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGBD202', NULL, 'Bandung Office', 'not set', 'Not Set', NULL, 'In Service', NULL, '7376 (Dual Stack)'),
-('MGBD301', NULL, 'Bandung Office', 'not set', 'Not Set', NULL, 'In Service', NULL, '5250 (for nat-1 M3UA agent)\r\n9354 (M3UA agent)\r\n9447 (new VMGW2 TSBD3)'),
+('MGBD301', NULL, 'Bandung Office', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', '5250 (for nat-1 M3UA agent)\r\n9354 (M3UA agent)\r\n9447 (new VMGW2 TSBD3)'),
 ('MGBD401', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGBD402', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGBD403', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGBD501', NULL, 'Bandung Office', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGBD502', NULL, 'Bandung Office', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGBD601', NULL, 'Bandung new office', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGBD602', NULL, 'BNB', 'not set', 'Not Set', NULL, 'In Service', NULL, '7430 (dual stack)\r\n7431 (triple stack)'),
-('MGBD701', NULL, 'BNB', 'not set', 'Not Set', NULL, 'In Service', NULL, '7510(dual stack)\r\n7511(triple stack)'),
-('MGBD702', NULL, 'BNB', 'not set', 'Not Set', NULL, 'In Service', NULL, '7513 (dual stack)\r\n7514 (triple stack)'),
+('MGBD501', NULL, 'Bandung Office', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGBD502', NULL, 'Bandung Office', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGBD601', NULL, 'Bandung new office', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGBD602', NULL, 'BNB', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', '7430 (dual stack)\r\n7431 (triple stack)'),
+('MGBD701', NULL, 'BNB', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', '7510(dual stack)\r\n7511(triple stack)'),
+('MGBD702', NULL, 'BNB', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', '7513 (dual stack)\r\n7514 (triple stack)'),
 ('MGBD801', NULL, 'BNB', 'JAWA BARAT', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGBJ101', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGBJ102', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGBJ201', NULL, 'BJM Office, MGBJ201', 'not set', 'Not Set', NULL, 'In Service', NULL, '11394 (M3UA Agent)'),
-('MGBJ202', NULL, 'Benua anyar,MGBJ202', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGBJ201', NULL, 'BJM Office, MGBJ201', 'Kalimantan Selatan', 'Huawei', NULL, 'In Service', '2015-07-27', '11394 (M3UA Agent)'),
+('MGBJ202', NULL, 'Benua anyar,MGBJ202', 'Kalimantan Selatan', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
 ('MGBJ301', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGBK101', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGBK201', NULL, 'Pd. Harapan,', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGBK201', NULL, 'Pd. Harapan,', 'Bengkulu', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
 ('MGBL101', NULL, 'Blitar', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGBM101', NULL, 'Bulumakadae, MGBM101', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGBM101', NULL, 'Bulumakadae, MGBM101', 'Sulawesi Selatan', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
 ('MGBP201', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGBP301', NULL, 'Balikpapan, MGBP301', 'not set', 'Not Set', NULL, 'In Service', NULL, '11393/M3UA Agent'),
+('MGBP301', NULL, 'Balikpapan, MGBP301', 'Kalimantan Timur', 'Huawei', NULL, 'In Service', '2015-07-27', '11393/M3UA Agent'),
 ('MGBP302', NULL, 'Balikpapan, MGBP302', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGBR101', NULL, 'Brebes', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGBT101', NULL, 'Batam', 'not set', 'Not Set', NULL, 'In Service', NULL, '9220 (NAT0 m3ua agent BSC)\r\n9658 (dual stack)\r\n9884 (triple stack)\r\n101 (V-MSC MPP)'),
-('MGBT102', NULL, 'Batam Center', 'not set', 'Not Set', NULL, 'In Service', NULL, '9265  (nat-1 m3ua agent)\r\n9361 (NAT0 m3ua agent BSC)\r\n9659 (dual stack)\r\n9885 (triple stack)\r\n102 (V-MSC MPP)'),
+('MGBR101', NULL, 'Brebes', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGBT101', NULL, 'Batam', 'Kep. Riau', 'Ericsson', NULL, 'In Service', '2015-07-27', '9220 (NAT0 m3ua agent BSC)\r\n9658 (dual stack)\r\n9884 (triple stack)\r\n101 (V-MSC MPP)'),
+('MGBT102', NULL, 'Batam Center', 'Kep. Riau', 'Ericsson', NULL, 'In Service', '2015-07-27', '9265  (nat-1 m3ua agent)\r\n9361 (NAT0 m3ua agent BSC)\r\n9659 (dual stack)\r\n9885 (triple stack)\r\n102 (V-MSC MPP)'),
 ('MGBT201', NULL, 'Batam Center', 'not set', 'Not Set', NULL, 'planned', '0000-00-00', 'PLANNED Ferry (24/12/2014)'),
 ('MGBT202', NULL, 'Batam Center', 'not set', 'Not Set', NULL, 'planned', '0000-00-00', 'PLANNED Ferry (24/12/2014)'),
-('MGBY101', NULL, 'Banyuwangi', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGCH101', NULL, 'Cimahi', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGCH102', NULL, 'Cimahi/2011', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGBY101', NULL, 'Banyuwangi', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGCH101', NULL, 'Cimahi', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGCH102', NULL, 'Cimahi/2011', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGCH201', NULL, 'Cimahi HUT', 'JAWA BARAT', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGCI101', NULL, 'Cirebon Pegambiran', 'not set', 'Not Set', NULL, 'In Service', NULL, '9534 (M3UA)'),
-('MGCI102', NULL, 'HUT Cirebon/2011', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGCJ101', NULL, 'Cianjur101 (Cianjur)', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGCJ102', NULL, 'Cianjur', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGCL101', NULL, 'Cilacap101', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGCL102', NULL, 'Cilacap102', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGCI101', NULL, 'Cirebon Pegambiran', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', '9534 (M3UA)'),
+('MGCI102', NULL, 'HUT Cirebon/2011', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGCJ101', NULL, 'Cianjur101 (Cianjur)', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGCJ102', NULL, 'Cianjur', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGCL101', NULL, 'Cilacap101', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGCL102', NULL, 'Cilacap102', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGCL201', NULL, 'Cilacap', 'JAWA TENGAH', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGCM101', NULL, 'Ciamis', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGDK101', NULL, 'Demak', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGDP201', NULL, 'Denpasar Office', 'not set', 'Not Set', NULL, 'In Service', NULL, '7306 (for nat-1 M3UA agent)'),
-('MGDP202', NULL, 'Pemecutan Klod', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGDP301', NULL, 'Sanur', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGDP302', NULL, 'Penatih', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGDP401', NULL, 'Denpasar401 (Office)', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGDP402', NULL, 'Denpasar402 (Sanur)', 'not set', 'Not Set', NULL, 'In Service', NULL, '7411 (dual stack)\r\n7412 (triple stack)'),
-('MGDP501', NULL, 'Denpasar501 (Office)', 'not set', 'Not Set', NULL, 'In Service', NULL, '7471 (dual stack)\r\n7472 (triple stack)'),
-('MGGO101', NULL, 'Tumba , MGGO101', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGGU101', NULL, 'Garut/2011', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ1001', NULL, 'Bintaro office', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '7364 (for BSC Training Huawei)'),
-('MGJ1002', NULL, 'Parung Panjang', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ1201', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ1202', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ1301', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ1302', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGCM101', NULL, 'Ciamis', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGDK101', NULL, 'Demak', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGDP201', NULL, 'Denpasar Office', 'Bali', 'Ericsson', NULL, 'In Service', '2015-07-27', '7306 (for nat-1 M3UA agent)'),
+('MGDP202', NULL, 'Pemecutan Klod', 'Bali', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGDP301', NULL, 'Sanur', 'Bali', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGDP302', NULL, 'Penatih', 'Bali', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGDP401', NULL, 'Denpasar401 (Office)', 'Bali', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGDP402', NULL, 'Denpasar402 (Sanur)', 'Bali', 'Ericsson', NULL, 'In Service', '2015-07-27', '7411 (dual stack)\r\n7412 (triple stack)'),
+('MGDP501', NULL, 'Denpasar501 (Office)', 'Bali', 'Ericsson', NULL, 'In Service', '2015-07-27', '7471 (dual stack)\r\n7472 (triple stack)'),
+('MGGO101', NULL, 'Tumba , MGGO101', 'Gorontalo', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGGU101', NULL, 'Garut/2011', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ1001', NULL, 'Bintaro office', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', '7364 (for BSC Training Huawei)'),
+('MGJ1002', NULL, 'Parung Panjang', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ1201', NULL, 'not set', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ1202', NULL, 'not set', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ1301', NULL, 'not set', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ1302', NULL, 'not set', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGJ1401', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ1402', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ1501', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ1502', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ1601', NULL, 'Serang', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGJ1402', NULL, 'not set', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ1501', NULL, 'not set', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ1502', NULL, 'not set', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ1601', NULL, 'Serang', 'Banten', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGJ1701', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGJ1702', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ1801', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGJ1801', NULL, 'not set', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGJ1802', NULL, 'not set', 'not set', 'Not Set', NULL, 'not set', NULL, NULL),
 ('MGJ1901', NULL, 'Bintaro', 'DKI Jakarta', 'Huawei', NULL, 'In Service', '2015-07-10', ''),
 ('MGJ1902', NULL, 'Bintaro', 'DKI Jakarta', 'Huawei', NULL, 'In Service', '2015-07-10', ''),
 ('MGJ2001', NULL, 'Cibitung', 'Jawa Barat', 'Huawei', NULL, 'In Service', '2015-07-10', ''),
 ('MGJ2002', NULL, 'Cibitung', 'Jawa Barat', 'Huawei', NULL, 'In Service', '2015-07-10', ''),
-('MGJ2101', NULL, 'Labuhan', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ2102\r\n', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ2102', NULL, 'Labuhan', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGJ2101', NULL, 'Labuhan', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ2102', NULL, 'Labuhan', 'Banten', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGJ2201', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ2301', NULL, 'Jakarta2301 (Kp. Koang)', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ2401\r\n', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ2401', NULL, 'Jakarta2401 (Sukapura)', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '9720  (dual stack=GCP\r\n9722         (dual stack=BSSAP/RANAP)'),
-('MGJ2402', NULL, 'Jakarta2402 (Ancol)', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '9933 (GCP)\r\n9934 (BSSAP/RANAP)\r\n9935 (BSSAP/RANAP)'),
-('MGJ2501', NULL, 'Jakarta2501 (Raya Bitung)', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '9819 (GCP)\r\n9820 (BSSAP/RANAP)\r\n9821 (BSSAP/RANAP)'),
-('MGJ2502', NULL, 'Mampang/2011', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ2601', NULL, 'Jakarta2601(Cibitung)', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '9927 (GCP)\r\n9928 (BSSAP/RANAP)\r\n9929 (BSSAP/RANAP)'),
-('MGJ2602', NULL, 'Jakarta2602 (Cibitung)', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '9930 (GCP)\r\n9931 (BSSAP/RANAP)\r\n9932 (BSSAP/RANAP)'),
+('MGJ2301', NULL, 'Jakarta2301 (Kp. Koang)', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ2401', NULL, 'Jakarta2401 (Sukapura)', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', '9720  (dual stack=GCP\r\n9722         (dual stack=BSSAP/RANAP)'),
+('MGJ2402', NULL, 'Jakarta2402 (Ancol)', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', '9933 (GCP)\r\n9934 (BSSAP/RANAP)\r\n9935 (BSSAP/RANAP)'),
+('MGJ2501', NULL, 'Jakarta2501 (Raya Bitung)', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', '9819 (GCP)\r\n9820 (BSSAP/RANAP)\r\n9821 (BSSAP/RANAP)'),
+('MGJ2502', NULL, 'Mampang/2011', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ2601', NULL, 'Jakarta2601(Cibitung)', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', '9927 (GCP)\r\n9928 (BSSAP/RANAP)\r\n9929 (BSSAP/RANAP)'),
+('MGJ2602', NULL, 'Jakarta2602 (Cibitung)', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', '9930 (GCP)\r\n9931 (BSSAP/RANAP)\r\n9932 (BSSAP/RANAP)'),
 ('MGJ2701', NULL, 'Cibitung', 'Jawa Barat', 'Huawei', NULL, 'In Service', '2015-07-10', '5284 (M3UA Agent NAT-1)'),
-('MGJ2802', NULL, 'Kemang/2011', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ2901', NULL, 'Jatinegara/2011', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ2902', NULL, 'Ampera/2011', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ3001', NULL, 'Cilegon/2011', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ3101', NULL, 'Anyer/2011', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ3102', NULL, 'Kalideres (Jabotabek)', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJ3201', NULL, 'Cibitung', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '7427 (dual stack)\r\n7428 (triple stack)'),
-('MGJ3202', NULL, 'Cibitung', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '7477 (dual stack)\r\n7481 (triple stack)'),
-('MGJ3301', NULL, 'Serang', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '7480 (dual stack)\r\n7484 (triple stack'),
-('MGJ3302', NULL, 'Puspitek Serpong', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '7483 (dual stack)\r\n7487 (triple stack)'),
-('MGJ3401', NULL, 'Cempaka Putih', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '7486 (dual stack)\r\n7490 (triple stack)'),
-('MGJ3402', NULL, 'Cibitung', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '7489 (dual stack)\r\n7493 (triple stack)'),
-('MGJ3501', NULL, 'Supernode Kemang', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '7492 (dual stack)\r\n7496 (triple stack)'),
+('MGJ2802', NULL, 'Kemang/2011', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ2901', NULL, 'Jatinegara/2011', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ2902', NULL, 'Ampera/2011', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ3001', NULL, 'Cilegon/2011', 'Banten', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ3101', NULL, 'Anyer/2011', 'Banten', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ3102', NULL, 'Kalideres (Jabotabek)', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJ3201', NULL, 'Cibitung', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', '7427 (dual stack)\r\n7428 (triple stack)'),
+('MGJ3202', NULL, 'Cibitung', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', '7477 (dual stack)\r\n7481 (triple stack)'),
+('MGJ3301', NULL, 'Serang', 'Banten', 'Ericsson', NULL, 'In Service', '2015-07-27', '7480 (dual stack)\r\n7484 (triple stack'),
+('MGJ3302', NULL, 'Puspitek Serpong', 'Banten', 'Ericsson', NULL, 'In Service', '2015-07-27', '7483 (dual stack)\r\n7487 (triple stack)'),
+('MGJ3401', NULL, 'Cempaka Putih', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', '7486 (dual stack)\r\n7490 (triple stack)'),
+('MGJ3402', NULL, 'Cibitung', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', '7489 (dual stack)\r\n7493 (triple stack)'),
+('MGJ3501', NULL, 'Supernode Kemang', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', '7492 (dual stack)\r\n7496 (triple stack)'),
 ('MGJB102', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJB201', NULL, 'Pandearang,', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJB202', NULL, 'Pandearang, (2011)', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGJB201', NULL, 'Pandearang,', 'Jambi', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGJB202', NULL, 'Pandearang, (2011)', 'Jambi', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
 ('MGJE101', NULL, 'Jember', 'not set', 'Not Set', NULL, 'In Service', NULL, '9324 (for nat-1 M3UA agent)'),
-('MGJE102', NULL, 'Puger-Jember', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGJE102', NULL, 'Puger-Jember', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGJK1201', NULL, 'Pancoran', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGJK1202', NULL, 'Bantargebang', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGJK1301', NULL, 'Bintaro', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '9430 (M3UA Agent'),
@@ -3011,8 +3025,8 @@ INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `
 ('MGJK1902', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGJK2001', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGJK2002', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJK501', NULL, 'Jombang Rawa', 'JAKARTA', 'Not Set', NULL, 'In Service', '0000-00-00', NULL),
-('MGJK502', NULL, 'Pancoran', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGJK501', NULL, 'Jombang Rawa', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJK502', NULL, 'Pancoran', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGJK503', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGJK601', NULL, 'Jelambar', 'JAKARTA', 'Not Set', NULL, 'In Service', '0000-00-00', '7362 (dual stack'),
 ('MGJK602\r\n', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
@@ -3020,168 +3034,165 @@ INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `
 ('MGJK701', NULL, 'cibitung', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '3212 (M3UA Agent Grha)\r\n3213 (M3UA Agent Grha)\r\n9490 (spc mgw for new VMGW TSJK7)'),
 ('MGJK702', NULL, 'Bintaro', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, '9348 (M3UA Agent Bintaro)'),
 ('MGJK703', NULL, 'not set', 'not set', 'Not Set', NULL, '', NULL, NULL),
-('MGJK801', NULL, 'Depok', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJK802', NULL, 'Bogor', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJK901', NULL, 'Bekasi', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJK902', NULL, 'Ampera', 'JAKARTA', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJO101', NULL, 'Jombang', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGJK801', NULL, 'Depok', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJK802', NULL, 'Bogor', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJK901', NULL, 'Bekasi', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJK902', NULL, 'Ampera', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJO101', NULL, 'Jombang', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGJO102', NULL, 'Jombang', 'JAWA TIMUR', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJT101', NULL, 'Jatibarang', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJT102', NULL, 'Jatibarang/2011', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJT201', NULL, 'Jatibarang/2013', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGJY101', NULL, 'Jayapura, MGJY101', 'not set', 'Not Set', NULL, 'In Service', NULL, '9357 (M3UA Agent NAT-1)'),
-('MGKB101', NULL, 'Kebumen', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGKB102', NULL, 'Kebumen Prembun', 'not set', 'Not Set', NULL, 'In Service', NULL, '7525 (dual stack)\r\n7526 (triple stack)'),
+('MGJT101', NULL, 'Jatibarang', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJT102', NULL, 'Jatibarang/2011', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGJT201', NULL, 'Jatibarang/2013', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', '');
+INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `provinsi`, `vendor`, `gtt`, `status`, `log_date`, `remark`) VALUES
+('MGJY101', NULL, 'Jayapura, MGJY101', 'Papua', 'Huawei', NULL, 'In Service', '2015-07-27', '9357 (M3UA Agent NAT-1)'),
+('MGKB101', NULL, 'Kebumen', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGKB102', NULL, 'Kebumen Prembun', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', '7525 (dual stack)\r\n7526 (triple stack)'),
 ('MGKE101', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGKE102', NULL, 'Kendari, MGKE102', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGKE301', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGKG101', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGKG102', NULL, 'mgbj', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL);
-INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `provinsi`, `vendor`, `gtt`, `status`, `log_date`, `remark`) VALUES
+('MGKG102', NULL, 'mgbj', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGKG201', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGKI101', NULL, 'Kediri', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGKU201', NULL, 'Kupang, MGKU201', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGLA101', NULL, 'Lamongan', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGKI101', NULL, 'Kediri', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGKU201', NULL, 'Kupang, MGKU201', 'NTT', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGLA101', NULL, 'Lamongan', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGLK101', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGLK102', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGLP201', NULL, 'Kedaton,', 'not set', 'Not Set', NULL, 'In Service', NULL, '15499, 15495 (for NAT-1 M3UA Agent)\r\n9368   (for TDM connection)'),
-('MGLP202', NULL, 'Lempuyang Bandar,', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGLP401', NULL, 'Lempuyang Bandar,', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGLP402', NULL, 'Natar, MGLP402 (2011)', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGMA101', NULL, 'Madiun', 'not set', 'Not Set', NULL, 'In Service', NULL, '9241 (for nat-1 M3UA agent)'),
-('MGMA102', NULL, 'Madiun', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGMD201', NULL, 'Medan Tj Morawa', 'not set', 'Not Set', NULL, 'In Service', NULL, '13446 (for nat-1 M3UA agent), \r\n13440 (for NAT-1 NRS AXIS Medan)\r\n9221 (NAT0 m3ua agent BSC)\r\n9156 (NAT1 m3ua agent OLO), 9578 (dual stack)\r\n9157 (VMGW SPC)\r\n9890 (triple stack)\r\n106 (V-MSC MPP)'),
-('MGMD301', NULL, 'Helvetia', 'not set', 'Not Set', NULL, 'In Service', NULL, '9263 (NAT0 m3ua agent BSC)\r\n9579 (dual stack)\r\n9891 (triple stack)\r\n107 (V-MSC MPP)'),
-('MGMD302', NULL, 'Kisaran', 'not set', 'Not Set', NULL, 'In Service', NULL, '9264 (NAT0 m3ua agent BSC)\r\n9650 (dual stack)\r\n9892 (triple stack)\r\n108 (V-MSC MPP)'),
-('MGMD401', NULL, 'Medan Tj. Morawa', 'not set', 'Not Set', NULL, 'In Service', NULL, '9456 (dual stack)\r\n9457 (m3ua agent)\r\n9893 (triple stack)\r\n109 (V-MSC MPP)'),
-('MGMD402', NULL, 'Helvetia', 'not set', 'Not Set', NULL, 'In Service', NULL, '9773 (dual stack)\r\n9894 (triple stack)\r\n110 (V-MSC MPP)'),
-('MGMD501', NULL, 'Tj. Morawa', 'not set', 'Not Set', NULL, 'In Service', NULL, '9651 (stack1, kearah MSC)\r\n9653 (m3ua agent, kearah BSC)\r\n9774 (stack2)\r\n111 (V-MSC MPP stack1) & 112 (V-MSC MPP stack2)'),
-('MGMD502', NULL, 'Helvetia', 'not set', 'Not Set', NULL, 'In Service', NULL, '9657 (dual stack)\r\n9895 (triple stack)\r\n113 (V-MSC MPP)'),
-('MGMD601', NULL, 'Kisaran', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGMD602', NULL, 'Balige', 'not set', 'Not Set', NULL, 'In Service', NULL, '7516 (dual stack)\r\n7517 (triple stack)'),
+('MGLK102', NULL, 'not set', 'Sumatera Barat', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGLP201', NULL, 'Kedaton,', 'Lampung', 'Huawei', NULL, 'In Service', '2015-07-27', '15499, 15495 (for NAT-1 M3UA Agent)\r\n9368   (for TDM connection)'),
+('MGLP202', NULL, 'Lempuyang Bandar,', 'Lampung', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGLP401', NULL, 'Lempuyang Bandar,', 'Lampung', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGLP402', NULL, 'Natar, MGLP402 (2011)', 'Lampung', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGMA101', NULL, 'Madiun', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', '9241 (for nat-1 M3UA agent)'),
+('MGMA102', NULL, 'Madiun', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGMD201', NULL, 'Medan Tj Morawa', 'Sumatera Utara', 'Ericsson', NULL, 'In Service', '2015-07-27', '13446 (for nat-1 M3UA agent), \r\n13440 (for NAT-1 NRS AXIS Medan)\r\n9221 (NAT0 m3ua agent BSC)\r\n9156 (NAT1 m3ua agent OLO), 9578 (dual stack)\r\n9157 (VMGW SPC)\r\n9890 (triple stack)\r\n106 (V-MSC MPP)'),
+('MGMD301', NULL, 'Helvetia', 'Sumatera Utara', 'Ericsson', NULL, 'In Service', '2015-07-27', '9263 (NAT0 m3ua agent BSC)\r\n9579 (dual stack)\r\n9891 (triple stack)\r\n107 (V-MSC MPP)'),
+('MGMD302', NULL, 'Kisaran', 'Sumatera Utara', 'Ericsson', NULL, 'In Service', '2015-07-27', '9264 (NAT0 m3ua agent BSC)\r\n9650 (dual stack)\r\n9892 (triple stack)\r\n108 (V-MSC MPP)'),
+('MGMD401', NULL, 'Medan Tj. Morawa', 'Sumatera Utara', 'Ericsson', NULL, 'In Service', '2015-07-27', '9456 (dual stack)\r\n9457 (m3ua agent)\r\n9893 (triple stack)\r\n109 (V-MSC MPP)'),
+('MGMD402', NULL, 'Helvetia', 'Sumatera Utara', 'Ericsson', NULL, 'In Service', '2015-07-27', '9773 (dual stack)\r\n9894 (triple stack)\r\n110 (V-MSC MPP)'),
+('MGMD501', NULL, 'Tj. Morawa', 'Sumatera Utara', 'Ericsson', NULL, 'In Service', '2015-07-27', '9651 (stack1, kearah MSC)\r\n9653 (m3ua agent, kearah BSC)\r\n9774 (stack2)\r\n111 (V-MSC MPP stack1) & 112 (V-MSC MPP stack2)'),
+('MGMD502', NULL, 'Helvetia', 'Sumatera Utara', 'Ericsson', NULL, 'In Service', '2015-07-27', '9657 (dual stack)\r\n9895 (triple stack)\r\n113 (V-MSC MPP)'),
+('MGMD601', NULL, 'Kisaran', 'Sumatera Utara', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGMD602', NULL, 'Balige', 'Sumatera Utara', 'Ericsson', NULL, 'In Service', '2015-07-27', '7516 (dual stack)\r\n7517 (triple stack)'),
 ('MGMD701', NULL, 'Medan Tjg Morawa', 'not set', 'Not Set', NULL, 'planned', '0000-00-00', 'PLANNED Ferry (24/12/2014)'),
 ('MGMD702', NULL, 'Medan Tjg Morawa', 'not set', 'Not Set', NULL, 'planned', '0000-00-00', 'PLANNED Ferry (24/12/2014)'),
 ('MGMD801', NULL, 'Medan Helvetia', 'not set', 'Not Set', NULL, 'planned', '0000-00-00', 'PLANNED Ferry (24/12/2014)'),
 ('MGMD802', NULL, 'Balige', 'not set', 'Not Set', NULL, 'planned', '0000-00-00', 'PLANNED Ferry (24/12/2014)'),
 ('MGMD901', NULL, 'Kisaran', 'not set', 'Not Set', NULL, 'planned', '0000-00-00', 'PLANNED Ferry (24/12/2014)'),
-('MGMG101', NULL, 'Magelang', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGMG101', NULL, 'Magelang', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGMK201', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGMK301', NULL, 'Kima, MGMK301', 'not set', 'Not Set', NULL, 'In Service', NULL, '9347, 9345 (M3UA NAT1)\r\n9594 (for BSC MIP Sulawesi)'),
-('MGMK302', NULL, 'Bulo2 , MGMK302', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGML101', NULL, 'Malang', 'not set', 'Not Set', NULL, 'In Service', NULL, '7298 (for nat-1 M3UA agent)'),
-('MGML102', NULL, 'Malang', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGMK301', NULL, 'Kima, MGMK301', 'Sulawesi Utara', 'Huawei', NULL, 'In Service', '2015-07-27', '9347, 9345 (M3UA NAT1)\r\n9594 (for BSC MIP Sulawesi)'),
+('MGMK302', NULL, 'Bulo2 , MGMK302', 'Sulawesi Barat', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGML101', NULL, 'Malang', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', '7298 (for nat-1 M3UA agent)'),
+('MGML102', NULL, 'Malang', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGML103', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGML201', NULL, 'Pagedangan (Malang)', 'not set', 'Not Set', NULL, 'In Service', NULL, '7424 (dual stack)\r\n7425 (triple stack)'),
+('MGML201', NULL, 'Pagedangan (Malang)', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', '7424 (dual stack)\r\n7425 (triple stack)'),
 ('MGMO201', NULL, 'Manado, MGMO201', 'not set', 'Not Set', NULL, 'In Service', NULL, '9346(M3UA NAT1)'),
 ('MGNT101', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGOM101', NULL, 'Omben, Sampang', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGOM101', NULL, 'Omben, Sampang', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGPA101', NULL, 'Pamekasan Pamekasan', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPA102', NULL, 'Pamekasan Budaggan', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPA103', NULL, 'Pamekasan', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGPA102', NULL, 'Pamekasan Budaggan', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGPA103', NULL, 'Pamekasan', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGPA104', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGPA105', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPA201', NULL, 'Budagan', 'not set', 'Not Set', NULL, 'In Service', NULL, '7398 (dual stack)\r\n7399 (triple stack)'),
+('MGPA201', NULL, 'Budagan', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', '7398 (dual stack)\r\n7399 (triple stack)'),
 ('MGPA202', NULL, 'Budagan, Pamekasan', 'JAWA TIMUR', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGPB202', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGPB301', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPB401', NULL, 'Palembang Office,', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPB402', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPB501', NULL, 'Kayu Agung,', 'not set', 'Not Set', NULL, 'In Service', NULL, '9465/VHE'),
-('MGPB502', NULL, 'Palembang Office, MGPB502', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGPB401', NULL, 'Palembang Office,', 'Sumatera Selatan', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGPB402', NULL, 'not set', 'Sumatera Barat', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGPB501', NULL, 'Kayu Agung,', 'Sumatera Selatan', 'Huawei', NULL, 'In Service', '2015-07-27', '9465/VHE'),
+('MGPB502', NULL, 'Palembang Office, MGPB502', 'Sumatera Selatan', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
 ('MGPB601', NULL, 'Palembang Office, MGPB601', 'Sumatera Selatan', 'Huawei', NULL, 'In Service', '2015-07-08', '9964 (For RC100 to MSPB4)'),
-('MGPB602', NULL, 'Lahat,MGPB602', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGPB602', NULL, 'Lahat,MGPB602', 'Sumatera Selatan', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
 ('MGPD101', NULL, 'Padang', 'not set', 'Not Set', NULL, 'In Service', NULL, '9244 (for nat-1 M3UA agent)\r\n9222 (NAT0 m3ua agent BSC)\r\n9674 (dual stack)\r\n9675 (V-MSC MPP)'),
 ('MGPD102', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPD301\r\n', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPD301', NULL, 'Padang Luar,', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPD302', NULL, 'Lubuk Alung', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPD401', NULL, 'Padang Luar,', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPG101', NULL, 'Pemangkata MGPG101', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPK101\r\n', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPK101', NULL, 'Pekanbaru Office', 'not set', 'Not Set', NULL, 'In Service', NULL, '15489 (for nat-1 M3UA agent)\r\n9225 (NAT0 m3ua agent BSC)\r\n9660 (dual stack)\r\n9886 (triple stack)\r\n103 (V-MSC MPP)'),
-('MGPK102', NULL, 'Pekanbaru Office', 'not set', 'Not Set', NULL, 'In Service', NULL, '9266  (BSC m3ua agent)\r\n9661 (dual stack)\r\n9887 (triple stack)\r\n104 (V-MSC MPP)'),
-('MGPK201', NULL, 'Pekanbaru Office', 'not set', 'Not Set', NULL, 'In Service', NULL, '9976 (stack1)\r\n9978 (m3ua agent)\r\n9979 (stack2)\r\n9889 (triple stack)\r\n105 (V-MSC MPP)'),
-('MGPK202', NULL, 'Pekanbaru Office', 'not set', 'Not Set', NULL, 'In Service', NULL, '7442 (dual stack)\r\n7443 (triple stack)'),
+('MGPD301', NULL, 'Padang Luar,', 'Sumatera Barat', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGPD302', NULL, 'Lubuk Alung', 'Sumatera Barat', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGPD401', NULL, 'Padang Luar,', 'Sumatera Barat', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGPG101', NULL, 'Pemangkata MGPG101', 'Kalimantan Barat', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGPK101', NULL, 'Pekanbaru Office', 'Riau', 'Ericsson', NULL, 'In Service', '2015-07-27', '15489 (for nat-1 M3UA agent)\r\n9225 (NAT0 m3ua agent BSC)\r\n9660 (dual stack)\r\n9886 (triple stack)\r\n103 (V-MSC MPP)'),
+('MGPK102', NULL, 'Pekanbaru Office', 'Riau', 'Ericsson', NULL, 'In Service', '2015-07-27', '9266  (BSC m3ua agent)\r\n9661 (dual stack)\r\n9887 (triple stack)\r\n104 (V-MSC MPP)'),
+('MGPK201', NULL, 'Pekanbaru Office', 'Riau', 'Ericsson', NULL, 'In Service', '2015-07-27', '9976 (stack1)\r\n9978 (m3ua agent)\r\n9979 (stack2)\r\n9889 (triple stack)\r\n105 (V-MSC MPP)'),
+('MGPK202', NULL, 'Pekanbaru Office', 'Riau', 'Ericsson', NULL, 'In Service', '2015-07-27', '7442 (dual stack)\r\n7443 (triple stack)'),
 ('MGPK301', NULL, 'Pekanbaru \r\nNew Building', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', 'PLANNED Ferry'),
 ('MGPL101', NULL, 'Pekalongan', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPL102', NULL, 'Pekalongan', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPM101', NULL, 'Pemalang', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPO101', NULL, 'Purwodadi', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGPL102', NULL, 'Pekalongan', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGPM101', NULL, 'Pemalang', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGPO101', NULL, 'Purwodadi', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGPO102', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPR101', NULL, 'Purwokerto', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPR102', NULL, 'Purwokerto/2011', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPR201', NULL, 'Purwokerto', 'not set', 'Not Set', NULL, 'In Service', NULL, '7474 (dual stack)\r\n7475 (triple stack)'),
+('MGPR101', NULL, 'Purwokerto', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGPR102', NULL, 'Purwokerto/2011', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGPR201', NULL, 'Purwokerto', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', '7474 (dual stack)\r\n7475 (triple stack)'),
 ('MGPT101', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPT102', NULL, 'Pontianak, MGPT102', 'not set', 'Not Set', NULL, 'In Service', NULL, '11395(M3UA NAT-1)'),
+('MGPT102', NULL, 'Pontianak, MGPT102', 'Kalimantan Barat', 'Huawei', NULL, 'In Service', '2015-07-27', '11395(M3UA NAT-1)'),
 ('MGPU101', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPU102', NULL, 'Palu, MGPU102', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGPW101', NULL, 'Purwakarta', 'not set', 'Not Set', NULL, 'In Service', NULL, '7366(dual stack)'),
-('MGPW102', NULL, 'Purwakarta', 'not set', 'Not Set', NULL, 'In Service', NULL, '7389 (dual stack)\r\n7390 (triple stack)'),
-('MGPY101', NULL, 'Palangkaraya Sebangau, MGPY101', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGRK101', NULL, 'Rumak,Lombok Barat', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGRK102', NULL, 'Rumak', 'not set', 'Not Set', NULL, 'In Service', NULL, '7436 (dual stack)\r\n7437 (triple stack)'),
-('MGS1001', NULL, 'SNB', 'not set', 'Not Set', NULL, 'In Service', NULL, '7504 (dual stack)\r\n7505 (triple stack)'),
-('MGSA101', NULL, 'Sampit, MGSA101', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGPU102', NULL, 'Palu, MGPU102', 'Sulawesi Tengah', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGPW101', NULL, 'Purwakarta', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', '7366(dual stack)'),
+('MGPW102', NULL, 'Purwakarta', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', '7389 (dual stack)\r\n7390 (triple stack)'),
+('MGPY101', NULL, 'Palangkaraya Sebangau, MGPY101', 'Kalimantan Tengah', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGRK101', NULL, 'Rumak,Lombok Barat', 'NTB', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGRK102', NULL, 'Rumak', 'NTB', 'Ericsson', NULL, 'In Service', '2015-07-27', '7436 (dual stack)\r\n7437 (triple stack)'),
+('MGS1001', NULL, 'SNB', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', '7504 (dual stack)\r\n7505 (triple stack)'),
+('MGSA101', NULL, 'Sampit, MGSA101', 'Kalimantan Tengah', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
 ('MGSB301', NULL, 'SBY Office', 'not set', 'Not Set', NULL, 'In Service', NULL, '7304 (for nat-1 M3UA agent)'),
-('MGSB302', NULL, 'Rungkut', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGSB302', NULL, 'Rungkut', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGSB401', NULL, 'SBY Office', 'not set', 'Not Set', NULL, 'In Service', NULL, '7308 (for nat-1 M3UA agent), \r\n9128, 9243 (for nat-0 M3UA agent)\r\n9525 (New VMGW2-TSSB4)\r\n9715 (for nat-1 M3UA agent)'),
 ('MGSB501', NULL, 'Sumur Welut', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGSB502', NULL, 'Surabaya502 (Smr. Welut)', 'not set', 'Not Set', NULL, 'In Service', NULL, '9529 (dual stack)'),
-('MGSB601', NULL, 'Surabaya601 (SNB)', 'not set', 'Not Set', NULL, 'In Service', NULL, '9521 (dual stack)'),
-('MGSB701', NULL, 'Surabaya701', 'not set', 'Not Set', NULL, 'In Service', NULL, '9541 (for nat-1 M3UA agent)\r\n9536 (GCP/Vmgw internal connection, terminasi GPB 6/7 dan GPB 10)\r\n9543 node yg belum support quasi-signalling dengan menggunakan M3UA agent (e.g. CRP, PRBT, IMGBUSOL, GOTN)\r\n9544 node yg support quasi-signalling (e.g. UIP, VMS)'),
-('MGSB702', NULL, 'Surabaya702 (SNB)', 'not set', 'Not Set', NULL, 'In Service', NULL, '7315/Surabaya (for NAT-1 M3UA Agent; NRS Fadly 8 Nov''13)'),
-('MGSB801', NULL, 'Surabaya801', 'not set', 'Not Set', NULL, 'In Service', NULL, '9539 Untuk GCP/Vmgw, terminasi GPB 6/7 dan (GPB 10 atau GPB 11)\r\n9540 (Untuk BSSAP/RANAP, terminasi di GPB 8/9)'),
-('MGSB802', NULL, 'SNB/2011', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGSB901', NULL, 'SNB', 'not set', 'Not Set', NULL, 'In Service', NULL, '7421 (dual stack)\r\n7422 (triple stack)'),
-('MGSB902', NULL, 'SNB', 'not set', 'Not Set', NULL, 'In Service', NULL, '7501 (dual stack)\r\n7502 (triple stack)'),
-('MGSD101', NULL, 'Situbondo', 'not set', 'Not Set', NULL, 'In Service', NULL, '7528 (dual stack)\r\n7529 (triple stack)'),
-('MGSG102', NULL, 'Ampenan (Senggigi)', 'not set', 'Not Set', NULL, 'In Service', NULL, '7433 (dual stack)\r\n7434 (triple stack)'),
+('MGSB502', NULL, 'Surabaya502 (Smr. Welut)', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', '9529 (dual stack)'),
+('MGSB601', NULL, 'Surabaya601 (SNB)', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', '9521 (dual stack)'),
+('MGSB701', NULL, 'Surabaya701', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', '9541 (for nat-1 M3UA agent)\r\n9536 (GCP/Vmgw internal connection, terminasi GPB 6/7 dan GPB 10)\r\n9543 node yg belum support quasi-signalling dengan menggunakan M3UA agent (e.g. CRP, PRBT, IMGBUSOL, GOTN)\r\n9544 node yg support quasi-signalling (e.g. UIP, VMS)'),
+('MGSB702', NULL, 'Surabaya702 (SNB)', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', '7315/Surabaya (for NAT-1 M3UA Agent; NRS Fadly 8 Nov''13)'),
+('MGSB801', NULL, 'Surabaya801', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', '9539 Untuk GCP/Vmgw, terminasi GPB 6/7 dan (GPB 10 atau GPB 11)\r\n9540 (Untuk BSSAP/RANAP, terminasi di GPB 8/9)'),
+('MGSB802', NULL, 'SNB/2011', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGSB901', NULL, 'SNB', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', '7421 (dual stack)\r\n7422 (triple stack)'),
+('MGSB902', NULL, 'SNB', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', '7501 (dual stack)\r\n7502 (triple stack)'),
+('MGSD101', NULL, 'Situbondo', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-27', '7528 (dual stack)\r\n7529 (triple stack)'),
+('MGSG102', NULL, 'Ampenan (Senggigi)', 'NTB', 'Ericsson', NULL, 'In Service', '2015-07-27', '7433 (dual stack)\r\n7434 (triple stack)'),
 ('MGSG201', '62818445647', 'Senggigi MGSG201', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGSG202', NULL, 'Pengambengan', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGSM101', NULL, 'Semarang', 'not set', 'Not Set', NULL, 'In Service', NULL, '5259 (for GCT),\r\n7367(Dual stack)\r\n 5265  (for nat-1 M3UA agent)'),
-('MGSM102', NULL, 'Semarang, Poncol', 'not set', 'Not Set', NULL, 'In Service', NULL, '9349 (nat-1 m3ua agent)\r\n9491 (NAT0 m3ua agent BSC)'),
-('MGSM201', NULL, 'Semarang, Alas Tuo', 'not set', 'Not Set', NULL, 'In Service', NULL, '7392 (dual stack)\r\n7393 (triple stack)'),
+('MGSM101', NULL, 'Semarang', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', '5259 (for GCT),\r\n7367(Dual stack)\r\n 5265  (for nat-1 M3UA agent)'),
+('MGSM102', NULL, 'Semarang, Poncol', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', '9349 (nat-1 m3ua agent)\r\n9491 (NAT0 m3ua agent BSC)'),
+('MGSM201', NULL, 'Semarang, Alas Tuo', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', '7392 (dual stack)\r\n7393 (triple stack)'),
 ('MGSM202', NULL, 'GOMBEL SEMARANG', 'JAWA TENGAH', 'Ericsson', NULL, 'In Service', NULL, NULL),
-('MGSN101', NULL, 'Subang', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGSN102', NULL, 'Subang/2011', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGSO101', NULL, 'Solo', 'not set', 'Not Set', NULL, 'In Service', NULL, '5256 (for nat-1 M3UA agent)'),
-('MGSO102', NULL, 'Solo/2011', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGSP101', NULL, 'Sumenep', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGST101', NULL, 'HUT Sangata, MGST101', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGSU101', NULL, 'Sumbawa Besar MGSU101', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGSU102', NULL, 'Sumbawa Besar MGSU102', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGSU201', NULL, 'Sumbawa Besar', 'not set', 'Not Set', NULL, 'In Service', NULL, '7439 (dual stack)\r\n7440 (triple stack)'),
-('MGSU202', NULL, 'Sumbawa Besar', 'not set', 'Not Set', NULL, 'In Service', NULL, '7507 (dual stack)\r\n7508 (triple stack)'),
+('MGSN101', NULL, 'Subang', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGSN102', NULL, 'Subang/2011', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGSO101', NULL, 'Solo', 'Sulawesi Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', '5256 (for nat-1 M3UA agent)'),
+('MGSO102', NULL, 'Solo/2011', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGSP101', NULL, 'Sumenep', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGST101', NULL, 'HUT Sangata, MGST101', 'Kalimantan Timur', 'Huawei', NULL, 'In Service', '2015-07-27', ''),
+('MGSU101', NULL, 'Sumbawa Besar MGSU101', 'NTB', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGSU102', NULL, 'Sumbawa Besar MGSU102', 'NTT', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGSU201', NULL, 'Sumbawa Besar', 'NTB', 'Ericsson', NULL, 'In Service', '2015-07-27', '7439 (dual stack)\r\n7440 (triple stack)'),
+('MGSU202', NULL, 'Sumbawa Besar', 'NTB', 'Ericsson', NULL, 'In Service', '2015-07-27', '7507 (dual stack)\r\n7508 (triple stack)'),
 ('MGTE101', NULL, 'Terrara MGTE101', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGTE102', NULL, 'Montongtangi MGTE102', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGTE102', NULL, 'Montongtangi MGTE102', 'NTB', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGTE103', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGTE201', NULL, 'Montongtangi/2011', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGTE202', NULL, 'Terara', 'not set', 'Not Set', NULL, 'In Service', NULL, '7408 (dual stack)\r\n7409 (triple stack)'),
-('MGTG101', NULL, 'Tegal', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGTG102', NULL, 'Tegal', 'not set', 'Not Set', NULL, 'In Service', NULL, '7395 (dual stack)\r\n7396 (triple stack)'),
-('MGTS101', NULL, 'Tasikmalaya', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGTE201', NULL, 'Montongtangi/2011', 'NTB', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGTE202', NULL, 'Terara', 'NTB', 'Ericsson', NULL, 'In Service', '2015-07-27', '7408 (dual stack)\r\n7409 (triple stack)'),
+('MGTG101', NULL, 'Tegal', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGTG102', NULL, 'Tegal', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', '7395 (dual stack)\r\n7396 (triple stack)'),
+('MGTS101', NULL, 'Tasikmalaya', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGTS102', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGW1', NULL, 'not set', 'not set', 'Not Set', NULL, 'dismantled', NULL, NULL),
 ('MGW2', NULL, 'not set', 'not set', 'Not Set', NULL, 'dismantled', NULL, NULL),
 ('MGWCH201\r\n', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGWCH201', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGWL101', NULL, 'Weleri101', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGWL102', NULL, 'Weleri102', 'not set', 'Not Set', NULL, 'In Service', NULL, '7418 (dual stack)\r\n7419 (triple stack)'),
-('MGWN101', NULL, 'Wonosari101 (Wonosari)', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('MGWL101', NULL, 'Weleri101', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGWL102', NULL, 'Weleri102', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', '7418 (dual stack)\r\n7419 (triple stack)'),
+('MGWN101', NULL, 'Wonosari101 (Wonosari)', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
 ('MGWPOOLCJ1', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGWPOOLCJ2', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGWPOOLCJ3', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGWPOOLJABO2', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGWPOOLJABO3', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MGWTEST', NULL, 'MGWTEST (Graha XL 2F)', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGYG201', NULL, 'Yogyakarta', 'not set', 'Not Set', NULL, 'In Service', NULL, '5252 (for nat-1 M3UA agent)\r\n9219 (nat-0 M3UA agent)\r\n7361 (dual stack)'),
-('MGYG301', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGYG302', NULL, 'Yogyakarta Pathok', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGYG401', NULL, 'Yogyakarta401 (Yogya Wates)', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('MGYG402', NULL, 'Yogyakarta402 (Yogya Wates)', 'not set', 'Not Set', NULL, 'In Service', NULL, '7415 (dual stack)\r\n7416 (triple stack)'),
+('MGYG201', NULL, 'Yogyakarta', 'DI Yogyakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', '5252 (for nat-1 M3UA agent)\r\n9219 (nat-0 M3UA agent)\r\n7361 (dual stack)'),
+('MGYG302', NULL, 'Yogyakarta Pathok', 'DI Yogyakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGYG401', NULL, 'Yogyakarta401 (Yogya Wates)', 'DI Yogyakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', ''),
+('MGYG402', NULL, 'Yogyakarta402 (Yogya Wates)', 'DI Yogyakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', '7415 (dual stack)\r\n7416 (triple stack)'),
 ('Mitracom Video Gateway', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('MME Cibitung', '628184420605', 'not set', 'not set', 'Huawei', NULL, 'In Service', NULL, NULL),
-('MMGYG301', NULL, 'Yogyakarta Pathok', 'not set', 'Not Set', NULL, 'In Service', NULL, '9938 (for nat-1 M3UA agent)\r\n9716 (dual stack)\r\n9724 (second SPC for dual stack)'),
+('MMGYG301', NULL, 'Yogyakarta Pathok', 'DI Yogyakarta', 'Ericsson', NULL, 'In Service', '2015-07-27', '9938 (for nat-1 M3UA agent)\r\n9716 (dual stack)\r\n9724 (second SPC for dual stack)'),
 ('MMX P2P Diameter', '628184422880', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', 'Mita/ for Migration to STP Huawei project (SPS)'),
 ('MMX test', NULL, 'not set', 'not set', 'Not Set', '62818445075', 'In Service', NULL, NULL),
 ('MMX-BNB01', '62818445205', 'BNB', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', 'MITHA'),
@@ -3477,7 +3488,8 @@ INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `
 ('PROD-SCP53', '62818445930', 'BINTARO', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', 'mitha'),
 ('PROD-SCP8', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('PROD-SCP9', NULL, 'not set', 'not set', 'Not Set', '62818445151', 'In Service', NULL, NULL),
-('PROD-UIP?YGY1', '62818445952', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', '13/04/2009 - Modified by Mita'),
+('PROD-UIP?YGY1', '62818445952', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', '13/04/2009 - Modified by Mita');
+INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `provinsi`, `vendor`, `gtt`, `status`, `log_date`, `remark`) VALUES
 ('PROD-UIP?YGY2', '62818445912', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', '13/04/2009 - Modified by Mita'),
 ('PROD-UIP?YGY3', '62818445913', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', '13/04/2009 - Modified by Mita'),
 ('PROD-UIP?YGY4', '62818445914', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', '13/04/2009 - Modified by Mita'),
@@ -3493,8 +3505,7 @@ INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `
 ('prod-uipjkt02', NULL, 'JAKARTA', 'not set', 'Sun', NULL, 'In Service', '0000-00-00', NULL),
 ('prod-uipjkt03', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', NULL),
 ('prod-uipjkt04', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', NULL),
-('prod-uipmdn01', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', NULL);
-INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `provinsi`, `vendor`, `gtt`, `status`, `log_date`, `remark`) VALUES
+('prod-uipmdn01', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', NULL),
 ('prod-uipmdn02', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', NULL),
 ('prod-uipmdn03', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', NULL),
 ('prod-uipmdn04', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', NULL),
@@ -3936,7 +3947,8 @@ INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `
 ('UMS JKT19', '62818445144', 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('UMS JKT20', '62818445145', 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('UMS JKT21', '62818445146', 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('UMS JKT22', '62818445147', 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
+('UMS JKT22', '62818445147', 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL);
+INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `provinsi`, `vendor`, `gtt`, `status`, `log_date`, `remark`) VALUES
 ('UMS JKT23', '62818445148', 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('UMS JKT24', '62818445149', 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('UMS JKT25', '62818445150', 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
@@ -3951,8 +3963,7 @@ INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `
 ('USSD Migration Bintaro', '62818445792', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', NULL),
 ('USSD of LRN (Local Roaming Number)', '628184422823', 'Cibitung', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', 'Rifqi/ 5 Dec 2011'),
 ('USSD-BNB01', '62818445218', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', 'Mitha'),
-('USSD-BNB02', '62818445219', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', 'Mitha');
-INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `provinsi`, `vendor`, `gtt`, `status`, `log_date`, `remark`) VALUES
+('USSD-BNB02', '62818445219', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', 'Mitha'),
 ('USSD1-01', '62818445561', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', 'RIFQI'),
 ('USSD1-02', '62818445562', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', 'RIFQI'),
 ('USSD1-03', '62818445563', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', 'RIFQI'),
@@ -4081,13 +4092,16 @@ INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `
 --
 
 CREATE TABLE IF NOT EXISTS `news` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` text NOT NULL,
   `news_desc` text NOT NULL,
   `image_id` int(11) DEFAULT NULL,
   `username` varchar(50) DEFAULT NULL,
-  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `image_id` (`image_id`,`username`),
+  KEY `user_id` (`username`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `news`
@@ -4097,7 +4111,8 @@ INSERT INTO `news` (`id`, `title`, `news_desc`, `image_id`, `username`, `timesta
 (2, 'TES', 'lorem ipsum dolor sit amet \r\nlorem ipsum dolor sit amet \r\nlorem ipsum dolor sit amet \r\nlorem ipsum dolor sit amet ', 14, 'admin', '2015-07-10 03:53:18'),
 (3, 'Tes 2', 'Lorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.', 20, 'admin', '2015-07-14 03:51:42'),
 (4, 'tes 3', 'asdasdad', 22, 'admin', '2015-07-14 04:15:50'),
-(5, 'tes 4', 'asdasdasd', NULL, 'admin', '2015-07-14 04:43:28');
+(5, 'tes 4', 'asdasdasd', NULL, 'admin', '2015-07-14 04:43:28'),
+(6, 'tes7', 'lalalkjgdseuolnbcertyuiop', 24, 'admin', '2015-07-27 02:08:13');
 
 -- --------------------------------------------------------
 
@@ -4106,12 +4121,13 @@ INSERT INTO `news` (`id`, `title`, `news_desc`, `image_id`, `username`, `timesta
 --
 
 CREATE TABLE IF NOT EXISTS `pabx_info` (
-`No` int(11) NOT NULL,
+  `No` int(11) NOT NULL AUTO_INCREMENT,
   `Regional` varchar(100) NOT NULL,
   `LAC` varchar(15) NOT NULL,
   `DN` varchar(15) DEFAULT NULL,
-  `Remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
+  `Remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=72 ;
 
 --
 -- Dumping data for table `pabx_info`
@@ -4181,7 +4197,9 @@ CREATE TABLE IF NOT EXISTS `poi` (
   `MSRN` varchar(30) DEFAULT NULL,
   `dummy_number` varchar(20) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`poi`),
+  KEY `msc_name` (`msc_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -4235,7 +4253,10 @@ CREATE TABLE IF NOT EXISTS `rnc_reference` (
   `rnc_location` varchar(80) NOT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`rnc_id`,`mgw_name`),
+  KEY `msc_name` (`pool`),
+  KEY `mgw_name` (`mgw_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -4310,7 +4331,6 @@ INSERT INTO `rnc_reference` (`rnc_id`, `mgw_name`, `rnc_name`, `pool`, `vendor_r
 ('RNBTM01', 'MGBT101', 'RNC Batam01', 'MSBT1', 'ericsson', '8038', 'not set', 'Batam Center', 'in service', NULL, NULL),
 ('RNBTM02', 'MGBT102', 'RNC Batam-02', 'MiP Sum1/2', 'huawei', '8179', 'I/ORBTM2', 'HUT Batam Tiban', 'in service', NULL, '2014'),
 ('RNBTM02', 'MGPK202', 'RNC Batam-02', 'MiP Sum1/2', 'huawei', '8179', 'I/ORBTM2', 'HUT Batam Tiban', 'in service', NULL, '2014'),
-('RNC HCPT', 'MGYG301', 'RNC Sharing HCPT', 'MIP CENTER JAVA', 'ericsson', '8057', 'I/ODJRH1', 'Yogya', 'in service', NULL, NULL),
 ('RNCHCPT01', 'MGSM101', 'RNC Sharing HCPT', 'not set', 'not set', '3092', 'I/OWZRH1', 'Semarang (LIVE)', 'in service', NULL, NULL),
 ('RNCHCPT01', 'MGSM102', 'RNC Sharing HCPT', 'not set', 'not set', 'not set', 'I/OUERXH1', 'Semarang (TRIAL)', 'in service', NULL, NULL),
 ('RNCJKT19', 'MGJ1701', 'RNC Jakarta-19', 'MiP Jabo', 'ericsson', '8056', 'I/OUWR19', 'JAKARTA', 'in service', NULL, NULL),
@@ -4403,7 +4423,6 @@ INSERT INTO `rnc_reference` (`rnc_id`, `mgw_name`, `rnc_name`, `pool`, `vendor_r
 ('RNKGN02', 'MGBD701', 'RNC Kuningan-02', 'MIP West Java', 'ericsson', '8129', 'I/ORKGN2', 'HUT Kuningan', 'in service', NULL, NULL),
 ('RNKGN02', 'MGBD702', 'RNC Kuningan-02', 'MIP West Java', 'ericsson', '8130', 'I/ORKGN2', 'HUT Kuningan', 'in service', NULL, NULL),
 ('RNKLP01', 'MGYG402', 'RNC Kulon Progo-01', 'MIP CENTER JAVA', 'ericsson', '8154', 'OI/ORKLP1', 'HUT Wates', 'in service', NULL, '2013'),
-('RNKLT01', 'MGYG301', 'RNC Klaten-01', 'MIP CENTER JAVA', 'ericsson', '8171', 'I/ORKLT1', 'SN Klaten', 'in service', NULL, '2014'),
 ('RNKLT02', 'MGWPOOLCJ2', 'RNC Klaten-02', 'MIP CENTER JAVA', 'ericsson', '8194', 'I/ORKLT2', 'SUPERNODE Klaten', 'in service', NULL, '2015'),
 ('RNKRW01', 'MGJ3201', 'RNC Karawang-01', 'MiP Jabo', 'ericsson', '8099', 'I/ORKRW1', 'HUT Karawang', 'in service', NULL, NULL),
 ('RNKRW01', 'MGJ3202', 'RNC Karawang-01', 'MiP Jabo', 'ericsson', '8099', 'I/ORKRW1', 'HUT Karawang', 'in service', NULL, NULL),
@@ -4526,12 +4545,13 @@ INSERT INTO `rnc_reference` (`rnc_id`, `mgw_name`, `rnc_name`, `pool`, `vendor_r
 --
 
 CREATE TABLE IF NOT EXISTS `sct_port_huawei` (
-`No` int(11) NOT NULL,
+  `No` int(11) NOT NULL AUTO_INCREMENT,
   `mss_huawei` varchar(100) NOT NULL,
   `sctp_port` varchar(20) NOT NULL,
   `last_counter` varchar(20) DEFAULT NULL,
-  `Remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `Remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `sct_port_huawei`
@@ -4552,9 +4572,10 @@ INSERT INTO `sct_port_huawei` (`No`, `mss_huawei`, `sctp_port`, `last_counter`, 
 --
 
 CREATE TABLE IF NOT EXISTS `spc_ransharing` (
-`No` int(11) NOT NULL,
-  `SPC` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `No` int(11) NOT NULL AUTO_INCREMENT,
+  `SPC` varchar(20) NOT NULL,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `spc_ransharing`
@@ -4575,13 +4596,14 @@ INSERT INTO `spc_ransharing` (`No`, `SPC`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `spc_rule` (
-`No` int(11) NOT NULL,
+  `No` int(11) NOT NULL AUTO_INCREMENT,
   `Area` varchar(100) NOT NULL,
   `SPC` varchar(50) NOT NULL,
   `Jenis` varchar(20) NOT NULL,
   `Last_counter` varchar(30) NOT NULL,
-  `Remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `Remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `spc_rule`
@@ -4615,7 +4637,9 @@ CREATE TABLE IF NOT EXISTS `trunk_interkoneksi` (
   `e1_capacity` int(11) DEFAULT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`trunk_id`),
+  KEY `POI` (`POI`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -4912,7 +4936,10 @@ CREATE TABLE IF NOT EXISTS `trunk_voip` (
   `voip_gateway` varchar(80) NOT NULL,
   `status` varchar(20) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`trunk_id`),
+  KEY `mgw_name` (`mgw`),
+  KEY `mss` (`mss`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -5046,12 +5073,13 @@ INSERT INTO `trunk_voip` (`trunk_id`, `mss`, `mgw`, `detail`, `direction`, `konf
 --
 
 CREATE TABLE IF NOT EXISTS `uploaded_file` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) DEFAULT NULL,
   `filename` varchar(256) DEFAULT NULL,
   `size` int(11) DEFAULT NULL,
-  `type` varchar(32) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+  `type` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `uploaded_file`
@@ -5071,7 +5099,9 @@ INSERT INTO `uploaded_file` (`id`, `name`, `filename`, `size`, `type`) VALUES
 (19, 'home.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\39\\39fde4adef40d3433775c067d4c688ce_home.png', 546321, NULL),
 (20, 'home.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\df\\df40911fc95ba3a474915e02ce8ff9bc_home.png', 546321, NULL),
 (21, 'index.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\55\\55965f8db536d5cf4b2963001262771c_index.jpg', 4099, NULL),
-(22, 'index.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\cd\\cdefadd1f95330ec8482047bbc855649_index.jpg', 4099, NULL);
+(22, 'index.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\cd\\cdefadd1f95330ec8482047bbc855649_index.jpg', 4099, NULL),
+(23, 'images (2).jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\e9\\e92a2f376486c66b00e9b5cc0d50797e_images (2).jpg', 4876, NULL),
+(24, 'images (2).jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\ea\\ea33b8456cb100abab2f3a548ac61de5_images (2).jpg', 4876, NULL);
 
 -- --------------------------------------------------------
 
@@ -5080,7 +5110,7 @@ INSERT INTO `uploaded_file` (`id`, `name`, `filename`, `size`, `type`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-`ID` int(10) NOT NULL,
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `password_reset_token` varchar(32) DEFAULT NULL,
@@ -5089,8 +5119,11 @@ CREATE TABLE IF NOT EXISTS `user` (
   `status` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Phone` varchar(12) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+  `Phone` varchar(12) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `Username` (`username`),
+  KEY `User_ID` (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
 -- Dumping data for table `user`
@@ -5100,200 +5133,6 @@ INSERT INTO `user` (`ID`, `username`, `password_hash`, `password_reset_token`, `
 (17, 'admin', '$2y$13$2Jpvuobfxs/c9lX3BhTlA.HNyBSgtGy1aAbyU4so0K87FnKfVrYf6', NULL, 'Uxgyfo8tKfeAR3WyqfKVKhwvJAMIBHJN', 'admin@example.com', 10, '2015-06-30 06:05:02', '2015-06-30 06:05:02', NULL);
 
 --
--- Indexes for dumped tables
---
-
---
--- Indexes for table `desc_network`
---
-ALTER TABLE `desc_network`
- ADD PRIMARY KEY (`id`), ADD KEY `network_id` (`network_element_id`);
-
---
--- Indexes for table `gt_proposedlist`
---
-ALTER TABLE `gt_proposedlist`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `gt_rule`
---
-ALTER TABLE `gt_rule`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `mgw`
---
-ALTER TABLE `mgw`
- ADD PRIMARY KEY (`bcu_id`), ADD KEY `mgw_name` (`mgw_name`);
-
---
--- Indexes for table `migration`
---
-ALTER TABLE `migration`
- ADD PRIMARY KEY (`version`);
-
---
--- Indexes for table `msc`
---
-ALTER TABLE `msc`
- ADD PRIMARY KEY (`msc_name`), ADD UNIQUE KEY `cnid` (`cnid`);
-
---
--- Indexes for table `msrn_proposedlist`
---
-ALTER TABLE `msrn_proposedlist`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `msrn_routing`
---
-ALTER TABLE `msrn_routing`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `msrn_rule`
---
-ALTER TABLE `msrn_rule`
- ADD PRIMARY KEY (`cmn`,`new_msrn`);
-
---
--- Indexes for table `network_element`
---
-ALTER TABLE `network_element`
- ADD PRIMARY KEY (`network_element_id`), ADD UNIQUE KEY `sc-_address` (`gt_address`), ADD UNIQUE KEY `gtt` (`gtt`);
-
---
--- Indexes for table `news`
---
-ALTER TABLE `news`
- ADD PRIMARY KEY (`id`), ADD KEY `image_id` (`image_id`,`username`), ADD KEY `user_id` (`username`);
-
---
--- Indexes for table `pabx_info`
---
-ALTER TABLE `pabx_info`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `poi`
---
-ALTER TABLE `poi`
- ADD PRIMARY KEY (`poi`), ADD KEY `msc_name` (`msc_name`);
-
---
--- Indexes for table `rnc_reference`
---
-ALTER TABLE `rnc_reference`
- ADD PRIMARY KEY (`rnc_id`,`mgw_name`), ADD KEY `msc_name` (`pool`), ADD KEY `mgw_name` (`mgw_name`);
-
---
--- Indexes for table `sct_port_huawei`
---
-ALTER TABLE `sct_port_huawei`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `spc_ransharing`
---
-ALTER TABLE `spc_ransharing`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `spc_rule`
---
-ALTER TABLE `spc_rule`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `trunk_interkoneksi`
---
-ALTER TABLE `trunk_interkoneksi`
- ADD PRIMARY KEY (`trunk_id`), ADD KEY `POI` (`POI`);
-
---
--- Indexes for table `trunk_voip`
---
-ALTER TABLE `trunk_voip`
- ADD PRIMARY KEY (`trunk_id`), ADD KEY `mgw_name` (`mgw`), ADD KEY `mss` (`mss`);
-
---
--- Indexes for table `uploaded_file`
---
-ALTER TABLE `uploaded_file`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Username` (`username`), ADD KEY `User_ID` (`ID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `desc_network`
---
-ALTER TABLE `desc_network`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15377;
---
--- AUTO_INCREMENT for table `gt_proposedlist`
---
-ALTER TABLE `gt_proposedlist`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=248;
---
--- AUTO_INCREMENT for table `gt_rule`
---
-ALTER TABLE `gt_rule`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=69;
---
--- AUTO_INCREMENT for table `msrn_proposedlist`
---
-ALTER TABLE `msrn_proposedlist`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=227;
---
--- AUTO_INCREMENT for table `msrn_routing`
---
-ALTER TABLE `msrn_routing`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=60;
---
--- AUTO_INCREMENT for table `news`
---
-ALTER TABLE `news`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `pabx_info`
---
-ALTER TABLE `pabx_info`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=72;
---
--- AUTO_INCREMENT for table `sct_port_huawei`
---
-ALTER TABLE `sct_port_huawei`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `spc_ransharing`
---
-ALTER TABLE `spc_ransharing`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `spc_rule`
---
-ALTER TABLE `spc_rule`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `uploaded_file`
---
-ALTER TABLE `uploaded_file`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
---
 -- Constraints for dumped tables
 --
 
@@ -5301,51 +5140,51 @@ MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
 -- Constraints for table `desc_network`
 --
 ALTER TABLE `desc_network`
-ADD CONSTRAINT `desc_network_ibfk_1` FOREIGN KEY (`network_element_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `desc_network_ibfk_1` FOREIGN KEY (`network_element_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `mgw`
 --
 ALTER TABLE `mgw`
-ADD CONSTRAINT `mgw_ibfk_1` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `mgw_ibfk_1` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `msc`
 --
 ALTER TABLE `msc`
-ADD CONSTRAINT `msc_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `msc_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `news`
 --
 ALTER TABLE `news`
-ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `uploaded_file` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `news_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `uploaded_file` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `news_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `poi`
 --
 ALTER TABLE `poi`
-ADD CONSTRAINT `poi_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `poi_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `rnc_reference`
 --
 ALTER TABLE `rnc_reference`
-ADD CONSTRAINT `rnc_reference_ibfk_2` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `rnc_reference_ibfk_2` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `trunk_interkoneksi`
 --
 ALTER TABLE `trunk_interkoneksi`
-ADD CONSTRAINT `trunk_interkoneksi_ibfk_1` FOREIGN KEY (`POI`) REFERENCES `poi` (`poi`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `trunk_interkoneksi_ibfk_1` FOREIGN KEY (`POI`) REFERENCES `poi` (`poi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `trunk_voip`
 --
 ALTER TABLE `trunk_voip`
-ADD CONSTRAINT `trunk_voip_ibfk_3` FOREIGN KEY (`mss`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `trunk_voip_ibfk_4` FOREIGN KEY (`mgw`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `trunk_voip_ibfk_3` FOREIGN KEY (`mss`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `trunk_voip_ibfk_4` FOREIGN KEY (`mgw`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

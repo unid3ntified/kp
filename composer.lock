@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "hash": "07acaf148566a98b7459d0b42b159d6b",
@@ -322,12 +322,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-export.git",
-                "reference": "db45b9f55437edc449c365203f9adeaae2bfcfa0"
+                "reference": "6b35666681ab02d9f4fb06603cbc972bed37ba5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-export/zipball/db45b9f55437edc449c365203f9adeaae2bfcfa0",
-                "reference": "db45b9f55437edc449c365203f9adeaae2bfcfa0",
+                "url": "https://api.github.com/repos/kartik-v/yii2-export/zipball/6b35666681ab02d9f4fb06603cbc972bed37ba5f",
+                "reference": "6b35666681ab02d9f4fb06603cbc972bed37ba5f",
                 "shasum": ""
             },
             "require": {
@@ -368,7 +368,7 @@
                 "xlsx",
                 "yii2"
             ],
-            "time": "2015-06-21 07:21:11"
+            "time": "2015-07-19 08:17:17"
         },
         {
             "name": "kartik-v/yii2-grid",
@@ -462,16 +462,16 @@
         },
         {
             "name": "mdmsoft/yii2-upload-file",
-            "version": "1.1.0",
+            "version": "1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mdmsoft/yii2-upload-file.git",
-                "reference": "8b8d372e43c4f12caabcd7fee82e87e7be6f531c"
+                "reference": "dbace811784c58bc934b694cd47d85655608f395"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mdmsoft/yii2-upload-file/zipball/8b8d372e43c4f12caabcd7fee82e87e7be6f531c",
-                "reference": "8b8d372e43c4f12caabcd7fee82e87e7be6f531c",
+                "url": "https://api.github.com/repos/mdmsoft/yii2-upload-file/zipball/dbace811784c58bc934b694cd47d85655608f395",
+                "reference": "dbace811784c58bc934b694cd47d85655608f395",
                 "shasum": ""
             },
             "require": {
@@ -479,8 +479,9 @@
             },
             "type": "yii2-extension",
             "extra": {
+                "bootstrap": "mdm\\upload\\Bootstrap",
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.x-dev"
                 }
             },
             "autoload": {
@@ -504,20 +505,20 @@
                 "upload",
                 "yii"
             ],
-            "time": "2014-12-19 01:29:55"
+            "time": "2015-07-23 09:07:05"
         },
         {
             "name": "miloschuman/yii2-highcharts-widget",
-            "version": "v4.1.6",
+            "version": "v4.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/miloschuman/yii2-highcharts.git",
-                "reference": "695ab0ed747d7dddcd59ab495f7ca8927aeeaa97"
+                "reference": "4b3f3a138c99ea475842e3ea4ddeb6784fa82074"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/miloschuman/yii2-highcharts/zipball/695ab0ed747d7dddcd59ab495f7ca8927aeeaa97",
-                "reference": "695ab0ed747d7dddcd59ab495f7ca8927aeeaa97",
+                "url": "https://api.github.com/repos/miloschuman/yii2-highcharts/zipball/4b3f3a138c99ea475842e3ea4ddeb6784fa82074",
+                "reference": "4b3f3a138c99ea475842e3ea4ddeb6784fa82074",
                 "shasum": ""
             },
             "require": {
@@ -549,7 +550,7 @@
                 "widget",
                 "yii2"
             ],
-            "time": "2015-06-22 10:36:47"
+            "time": "2015-07-09 20:36:01"
         },
         {
             "name": "phpoffice/phpexcel",
@@ -610,16 +611,16 @@
         },
         {
             "name": "yiisoft/yii2",
-            "version": "2.0.4",
+            "version": "2.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "726867caee3f23aa7a6975c801e64b6021e14f86"
+                "reference": "ea8c13b9f5cd437bd7bf73cad8a3457a155f3727"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/726867caee3f23aa7a6975c801e64b6021e14f86",
-                "reference": "726867caee3f23aa7a6975c801e64b6021e14f86",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ea8c13b9f5cd437bd7bf73cad8a3457a155f3727",
+                "reference": "ea8c13b9f5cd437bd7bf73cad8a3457a155f3727",
                 "shasum": ""
             },
             "require": {
@@ -694,7 +695,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2015-05-10 20:09:47"
+            "time": "2015-07-11 02:37:59"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
