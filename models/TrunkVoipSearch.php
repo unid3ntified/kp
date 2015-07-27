@@ -57,24 +57,6 @@ class TrunkVoipSearch extends TrunkVoip
             return $dataProvider;
         }
 
-        /* $query->andFilterWhere([
-            'e1' => $this->e1,
-            'log_date' => $this->log_date,
-        ]);
-
-        $query->andFilterWhere(['like', 'trunk_id', $this->trunk_id])
-            ->andFilterWhere(['like', 'mss', $this->mss])
-            ->andFilterWhere(['like', 'mgw', $this->mgw])
-            ->andFilterWhere(['like', 'detail', $this->detail])
-            ->andFilterWhere(['like', 'direction', $this->direction])
-            ->andFilterWhere(['like', 'konfigurasi', $this->konfigurasi])
-            ->andFilterWhere(['like', 'partner', $this->partner])
-            ->andFilterWhere(['like', 'opc_mss', $this->opc_mss])
-            ->andFilterWhere(['like', 'dpc', $this->dpc])
-            ->andFilterWhere(['like', 'voip_gateway', $this->voip_gateway])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'remark', $this->remark]); */
-
         $query->orFilterWhere([
             'e1' => $this->search,
             'log_date' => $this->search,
@@ -90,8 +72,8 @@ class TrunkVoipSearch extends TrunkVoip
             ->orFilterWhere(['like', 'opc_mss', $this->search])
             ->orFilterWhere(['like', 'dpc', $this->search])
             ->orFilterWhere(['like', 'voip_gateway', $this->search])
-            ->orFilterWhere(['like', 'status', $this->search])
-            ->orFilterWhere(['like', 'remark', $this->search]);
+            ->orFilterWhere(['like', 'status', $this->search]);
+          //  ->orFilterWhere(['like', 'remark', $this->search]);
 
         return $dataProvider;
     }
@@ -127,8 +109,8 @@ class TrunkVoipSearch extends TrunkVoip
             ->andFilterWhere(['like', 'opc_mss', $this->opc_mss])
             ->andFilterWhere(['like', 'dpc', $this->dpc])
             ->andFilterWhere(['like', 'voip_gateway', $this->voip_gateway])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'remark', $this->remark]);
+            ->andFilterWhere(['like', 'status', $this->status]);
+         //   ->andFilterWhere(['like', 'remark', $this->remark]);
 
         return $dataProvider;
     }

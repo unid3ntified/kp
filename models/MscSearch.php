@@ -75,8 +75,8 @@ class MscSearch extends Msc
             ->orFilterWhere(['like', 'nb_lai', $this->search])
             ->orFilterWhere(['like', 'msc_IP_sigtran1', $this->search])
             ->orFilterWhere(['like', 'msc_IP_sigtran2', $this->search])
-            ->orFilterWhere(['like', 'status', $this->search])
-            ->orFilterWhere(['like', 'remark', $this->search]);
+            ->orFilterWhere(['like', 'status', $this->search]);
+         //   ->orFilterWhere(['like', 'remark', $this->search]);
 
         return $dataProvider;
     }
@@ -115,8 +115,8 @@ class MscSearch extends Msc
             ->andFilterWhere(['like', 'nb_lai', $this->nb_lai])
             ->andFilterWhere(['like', 'msc_IP_sigtran1', $this->msc_IP_sigtran1])
             ->andFilterWhere(['like', 'msc_IP_sigtran2', $this->msc_IP_sigtran2])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'remark', $this->remark]);
+            ->andFilterWhere(['like', 'status', $this->status]);
+          //  ->andFilterWhere(['like', 'remark', $this->remark]);
 
         return $dataProvider;
     }

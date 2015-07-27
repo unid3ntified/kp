@@ -266,88 +266,63 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);
                 ?>
             </div>
-            <div class="row" id="chart6">
-
-        			<?= Highcharts::widget([
-        			   	'options' => [
-        			    	'title' => ['text' => 'MSC Vendor'],
-                            'chart' => [
-                              'borderColor'=>'#e5e5e5',
-                              'type' => 'pie',
-                            ],
-        			      	'series' => 
-        			        [
-        			         	[
-                        			'name' => 'count',
-                                    'size' => '50%',
-                        			'data' => $vendorMSC,
-        			                'showInLegend' => true,
-        			                'dataLabels' => [
-        			                    'enabled' => false,
-                					],
-                    			],
-                                /*[
-                                    'name' => 'MSC Vendor',
-                                    'data' => [
-                                        [
-                                            'name' => '',
-                                            'y' => $MSCvendor,
-                                            'color' => '#ffffff',
-                                        ]
-                                    ],
-                                    'size' => '40%',
-                                    'showInLegend' => false,
-                                    'dataLabels' => [
-                                        'enabled' => false,
-                                    ],
-                                ]*/
-        			      	],
-        			      	'credits' => ['enabled' => false],
-        			   	]
-        			]);
-        			?>
-                
-                    <?= Highcharts::widget([
-                        'options' => [
-                            'title' => ['text' => 'MGW Vendor'],
-                            'chart' => [
-                              'borderColor'=>'#e5e5e5',
-                              'type' => 'pie',
-                            ],
-                            'series' => 
-                            [
+            <div class="row">
+    			<?= Highcharts::widget([
+    			   	'options' => [
+    			    	'title' => ['text' => 'MSC/MGW Vendor'],
+                        'chart' => [
+                          'borderColor'=>'#e5e5e5',
+                          'type' => 'pie',
+                        ],
+                        'labels' => [
+                            'items' => [
                                 [
-                                    'name' => 'count',
-                                    'size' => '50%',
-                                    'data' => $vendorMGW,
-                                    'showInLegend' => true,
-                                    'dataLabels' => [
-                                        'enabled' => false,
+                                    'html' => 'MSC',
+                                    'style' => [
+                                        'left' => '50px',
+                                        'top' => '180px',
+                                        'font-size' => '14pt'
                                     ],
                                 ],
-                                /*[
-                                    'name' => 'MSC Vendor',
-                                    'data' => [
-                                        [
-                                            'name' => '',
-                                            'y' => $MSCvendor,
-                                            'color' => '#ffffff',
-                                        ]
+                                [
+                                    'html' => 'MGW',
+                                    'style' => [
+                                        'left' => '190px',
+                                        'top' => '180px',
+                                        'font-size' => '14pt',
                                     ],
-                                    'size' => '40%',
-                                    'showInLegend' => false,
-                                    'dataLabels' => [
-                                        'enabled' => false,
-                                    ],
-                                ]*/
+                                ],
                             ],
-                            'credits' => ['enabled' => false],
-                        ]
-                    ]);
-                    ?>
-                
+                        ],
+    			      	'series' => 
+    			        [
+    			         	[
+                    			'name' => 'MSC count',
+                                'size' => '40%',
+                    			'data' => $vendorMSC,
+                                'center' => [50, 80],
+    			                'showInLegend' => true,
+    			                'dataLabels' => [
+    			                    'enabled' => false,
+            					],
+                			],
+                            [
+                                'name' => 'MGW count',
+                                'data' => $vendorMGW,
+                                'center' => [190, 80],
+                                'size' => '40%',
+                                'showInLegend' => false,
+                                'dataLabels' => [
+                                    'enabled' => false,
+                                ],
+                            ]
+    			      	],
+    			      	'credits' => ['enabled' => false],
+    			   	]
+    			]);
+    			?>
+
             </div>
     	</div> 
-
     </div>
 </div>

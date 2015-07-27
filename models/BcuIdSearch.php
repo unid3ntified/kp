@@ -65,8 +65,8 @@ class BcuIdSearch extends BcuId
             ->orFilterWhere(['like', 'region', $this->search])
             ->orFilterWhere(['like', 'old_mss_connected', $this->search])
             ->orFilterWhere(['like', 'new_mss_connected', $this->search])
-            ->orFilterWhere(['like', 'status', $this->search])
-            ->orFilterWhere(['like', 'remark', $this->search]);
+            ->orFilterWhere(['like', 'status', $this->search]);
+           // ->orFilterWhere(['like', 'remark', $this->search]);
 
         return $dataProvider;
     }
@@ -97,8 +97,8 @@ class BcuIdSearch extends BcuId
             ->andFilterWhere(['like', 'region', $this->region])
             ->andFilterWhere(['like', 'old_mss_connected', $this->old_mss_connected])
             ->andFilterWhere(['like', 'new_mss_connected', $this->new_mss_connected])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'remark', $this->remark]);
+            ->andFilterWhere(['like', 'status', $this->status]);
+           // ->andFilterWhere(['like', 'remark', $this->remark]);
 
         return $dataProvider;
     }

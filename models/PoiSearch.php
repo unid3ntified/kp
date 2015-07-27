@@ -63,8 +63,8 @@ class PoiSearch extends Poi
             ->orFilterWhere(['like', 'msc_name', $this->search])
             ->orFilterWhere(['like', 'address', $this->search])
             ->orFilterWhere(['like', 'MSRN', $this->search])
-            ->orFilterWhere(['like', 'dummy_number', $this->search])
-            ->orFilterWhere(['like', 'remark', $this->search]);
+            ->orFilterWhere(['like', 'dummy_number', $this->search]);
+         //   ->orFilterWhere(['like', 'remark', $this->search]);
 
         return $dataProvider;
     }

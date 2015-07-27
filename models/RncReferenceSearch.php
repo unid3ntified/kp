@@ -67,8 +67,8 @@ class RncReferenceSearch extends RncReference
             ->orFilterWhere(['like', 'spc_nat0', $this->search])
             ->orFilterWhere(['like', 'trunk_name', $this->search])
             ->orFilterWhere(['like', 'rnc_location', $this->search])
-            ->orFilterWhere(['like', 'status', $this->search])
-            ->orFilterWhere(['like', 'remark', $this->search]);
+            ->orFilterWhere(['like', 'status', $this->search]);
+         //   ->orFilterWhere(['like', 'remark', $this->search]);
 
         return $dataProvider;
     }
@@ -100,8 +100,8 @@ class RncReferenceSearch extends RncReference
             ->andFilterWhere(['like', 'spc_nat0', $this->spc_nat0])
             ->andFilterWhere(['like', 'trunk_name', $this->trunk_name])
             ->andFilterWhere(['like', 'rnc_location', $this->rnc_location])
-            ->andFilterWhere(['like', 'status', $this->status])
-            ->andFilterWhere(['like', 'remark', $this->remark]);
+            ->andFilterWhere(['like', 'status', $this->status]);
+         //   ->andFilterWhere(['like', 'remark', $this->remark]);
 
         return $dataProvider;
     }

@@ -62,8 +62,8 @@ class PabxInfoSearch extends PabxInfo
 
         $query->orFilterWhere(['like', 'Regional', $this->search])
             ->orFilterWhere(['like', 'LAC', $this->search])
-            ->orFilterWhere(['like', 'DN', $this->search])
-            ->orFilterWhere(['like', 'Remark', $this->search]);
+            ->orFilterWhere(['like', 'DN', $this->search]);
+          //  ->orFilterWhere(['like', 'Remark', $this->search]);
 
         return $dataProvider;
     }

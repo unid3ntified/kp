@@ -64,8 +64,8 @@ class MsrnRoutingSearch extends MsrnRouting
         $query->orFilterWhere(['like', 'cluster', $this->search])
             ->orFilterWhere(['like', 'mss', $this->search])
             ->orFilterWhere(['like', 'first_route', $this->search])
-            ->orFilterWhere(['like', 'second_route', $this->search])
-            ->orFilterWhere(['like', 'remark', $this->search]);
+            ->orFilterWhere(['like', 'second_route', $this->search]);
+          //  ->orFilterWhere(['like', 'remark', $this->search]);
 
         return $dataProvider;
     }
