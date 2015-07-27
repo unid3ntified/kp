@@ -90,6 +90,12 @@ class SiteController extends Controller
             $vendorMSC[$key] = [$value['name'], (int)$value['count']] ;
         }
 
+        $temp = Yii::$app->db->createCommand('SELECT vendor as name, COUNT(*) as count FROM network_element, mgw where mgw_name = network_element_id group by vendor')->queryAll();
+        $vendorMGW = array();
+        foreach ($temp as $key => $value) {
+            $vendorMGW[$key] = [$value['name'], (int)$value['count']] ;
+        }
+
         $temp = Yii::$app->db->createCommand(
             'SELECT pool as name, COUNT(*) as MSC, vendor FROM msc, network_element WHERE pool != "" AND network_element_id = msc_name group by pool order by MSC DESC')->queryAll();
         $MSCpool = array();
@@ -151,6 +157,7 @@ class SiteController extends Controller
                 'NEvendor' => $NEvendor,
                 'vendorNE' => $vendorNE,
                 'vendorMSC' => $vendorMSC,
+                'vendorMGW' => $vendorMGW,
                 'MSCvendor' => $MSCvendor,
                 'MSCpool' => $MSCpool,
                 'MGWpool' => $MGWpool,
