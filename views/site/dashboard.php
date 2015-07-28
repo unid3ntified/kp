@@ -305,7 +305,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'size' => '40%',
                     			'data' => $vendorMSC,
                                 'center' => [50, 80],
-    			                'showInLegend' => true,
+    			                'showInLegend' => false,
     			                'dataLabels' => [
     			                    'enabled' => false,
             					],
@@ -315,7 +315,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'data' => $vendorMGW,
                                 'center' => [190, 80],
                                 'size' => '40%',
-                                'showInLegend' => false,
+                                'showInLegend' => true,
                                 'dataLabels' => [
                                     'enabled' => false,
                                 ],

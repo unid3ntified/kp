@@ -17,17 +17,15 @@ $this->title = 'Sistem Informasi Network Element';
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
-          <div class="item active">
-             <?php echo Html::img('@web/images/slider2.jpg', ['class'=> "img-rounded"]) ?>
-          </div>
-
-          <div class="item">
-              <?php echo Html::img('@web/images/slider3.jpg', ['class'=> "img-rounded"]) ?>
-          </div>
-
-          <div class="item">
-              <?php echo Html::img('@web/images/slider1.jpg', ['class'=> "img-rounded"]) ?>
-          </div>
+          <?php
+            $data = Yii::$app->db->createCommand('SELECT id FROM uploaded_file WHERE type = "slider"')->queryAll();
+            foreach ($data as $key => $value) {
+              if ($key == 0)
+                echo '<div class="item active">'.Html::img(['/file','id'=>$value['id']]).'</div>';
+              else
+                echo '<div class="item">'.Html::img(['/file','id'=>$value['id']]).'</div>';
+            }
+          ?>
         </div>
 
         <!-- Left and right controls -->
@@ -59,10 +57,7 @@ $this->title = 'Sistem Informasi Network Element';
                 echo '<div class="col-md-6"><h3>'.$newsList[$i]->title.'</h3><div class="row">';
                 echo '<div class="col-md-5">'.Html::img(['/file','id'=>$newsList[$i]->image_id]).'</div>';
                 if (strlen($newsList[$i]->news_desc) >= 150)
-                {
-                  for ($j = 0; $j < 150; $j++)
-                    $text[$j] = $newsList[$i]->news_desc[$j];
-                }
+                  $text = substr($newsList[$i]->news_desc,0,150);
                 else $text = $newsList[$i]->news_desc;
                 echo '<div class="col-md-7">'.$text.'...<br>View More</div></div></div>';
                 if ($newsItem % 2 == 0)
