@@ -18,11 +18,8 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
-    <script src="<?php echo Yii::$app->urlManager->baseUrl; ?>/assets/jquery.gdocsviewer.js"></script>
-    <script src="<?php echo Yii::$app->urlManager->baseUrl; ?>/assets/jquery.gdocsviewer.min.js"></script>
     <script src="<?php echo Yii::$app->urlManager->baseUrl; ?>/assets/tes.js"></script>
     <script>
-        $('a.embed').gdocsViewer();
         $(document).ready(function(){
             if(typeof(Storage)!=="undefined")
             {
