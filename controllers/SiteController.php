@@ -11,6 +11,7 @@ use app\models\ContactForm;
 use yii\data\SqlDataProvider;
 use app\models\CreateAdmin;
 use app\models\News;
+use yii\base\DynamicModel;
 
 class SiteController extends Controller
 {
@@ -21,12 +22,12 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['logout', 'error', 'index','download', 'user', 'info', 'dashboard'],
+                        'actions' => ['logout', 'error', 'index','download', 'user', 'info', 'dashboard', 'topology'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['login', 'error', 'download', 'index', 'dashboard'],
+                        'actions' => ['login', 'error', 'download', 'index', 'dashboard', 'topology'],
                         'allow' => true,
                     ],
                 ],
@@ -291,5 +292,35 @@ class SiteController extends Controller
             'TIdataProvider' => $TIdataProvider,
             'TVdataProvider' => $TVdataProvider,
         ]);
+    }
+
+    public function actionTopology()
+    {
+        $model = new DynamicModel([
+            'file_id'
+        ]);
+     
+        // behavior untuk upload file
+        $model->attachBehavior('upload', [
+            'class' => 'mdm\upload\UploadBehavior',
+            'attribute' => 'file',
+            'savedAttribute' => 'file_id', 
+            //'uploadPath' => Yii::$app->homeUrl.'/files',
+        ]);   
+     
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->saveUploadedFile() !== false) {
+                if ($model->file_id !== NULL && $model->file_id !== '')
+                    Yii::$app->db->createCommand('UPDATE uploaded_file SET type = "slider" WHERE id = '.$model->file_id)->execute();
+                Yii::$app->session->setFlash('success', 'Upload Success');
+            }
+        }
+        return $this->render('topology',['model' => $model]);
+    }
+
+    public function actionDeletetopology($id)
+    {
+        Yii::$app->db->createCommand('DELETE FROM uploaded_file WHERE id = '.$id)->execute();
+        return $this->redirect(['topology']);
     }
 }

@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\News;
 use app\models\NewsSearch;
+use yii\base\DynamicModel;
 use app\models\User;
 use app\models\UserSearch;
 use yii\web\Controller;
@@ -24,7 +25,7 @@ class NewsController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'update', 'index', 'view', 'delete'],
+                        'actions' => ['create', 'update', 'index', 'view', 'delete', 'slider', 'deleteslider'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -80,11 +81,7 @@ class NewsController extends Controller
         $model = new News();
 
         if($model->load(Yii::$app->request->post()) && $model->validate()){
-            $userid = User::findIdentity(Yii::$app->user->id);
-            $username = $userid->username;
-            $model->username = $username;
-            if($model->saveUploadedFile() !== false)
-                $model->save();
+            $this->saveModel($model);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -103,7 +100,8 @@ class NewsController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $this->saveModel($model);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -120,9 +118,47 @@ class NewsController extends Controller
      */
     public function actionDelete($id)
     {
+        //$this->deleteImage($id);
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function deleteImage($id)
+    {
+        $image = $this->findModel($id)->image_id;
+        if ($image !== NULL && $image !== '')
+            Yii::$app->db->createCommand('DELETE FROM uploaded_file WHERE id = '.$image)->execute();
+    }
+
+    public function actionSlider()
+    {
+        $model = new DynamicModel([
+            'file_id'
+        ]);
+     
+        // behavior untuk upload file
+        $model->attachBehavior('upload', [
+            'class' => 'mdm\upload\UploadBehavior',
+            'attribute' => 'file',
+            'savedAttribute' => 'file_id', 
+            //'uploadPath' => Yii::$app->homeUrl.'/files',
+        ]);   
+     
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->saveUploadedFile() !== false) {
+                if ($model->file_id !== NULL && $model->file_id !== '')
+                    Yii::$app->db->createCommand('UPDATE uploaded_file SET type = "slider" WHERE id = '.$model->file_id)->execute();
+                Yii::$app->session->setFlash('success', 'Upload Success');
+            }
+        }
+        return $this->render('slider',['model' => $model]);
+    }
+
+    public function actionDeleteslider($id)
+    {
+        Yii::$app->db->createCommand('DELETE FROM uploaded_file WHERE id = '.$id)->execute();
+        return $this->redirect(['slider']);
     }
 
     /**
@@ -138,6 +174,16 @@ class NewsController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    protected function saveModel($model)
+    {
+        $model->username = User::findIdentity(Yii::$app->user->id)->username;
+        if($model->saveUploadedFile() !== false)
+        {               
+            $model->save();
+            Yii::$app->db->createCommand('UPDATE uploaded_file SET type = "news" WHERE id = '.$model->image_id)->execute();
         }
     }
 }

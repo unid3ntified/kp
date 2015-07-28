@@ -23,12 +23,12 @@ class SharingController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['create', 'index', 'delete'],
+                        'actions' => ['index', 'delete', 'download', 'rename'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['index'],
+                        'actions' => ['index', 'download'],
                         'allow' => true,
                     ],
                 ],
@@ -55,17 +55,30 @@ class SharingController extends Controller
             'savedAttribute' => 'file_id', 
             //'uploadPath' => Yii::$app->homeUrl.'/files',
         ]);   
-     
+        
+        $model->addRule('file_id', 'safe')
+            ->addRule('file', 'file', ['maxSize' => 26214400]);
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->saveUploadedFile() !== false) {
+                if ($model->file_id !== NULL && $model->file_id !== '')
+                    Yii::$app->db->createCommand('UPDATE uploaded_file SET type = "sharing" WHERE id = '.$model->file_id)->execute();
                 Yii::$app->session->setFlash('success', 'Upload Success');
             }
         }
         return $this->render('index',['model' => $model]);
     }
 
-    public function actionCreate()
+    public function actionDownload($path)
     {
-         
+        if(file_exists($path)) {
+            Yii::$app->response->sendFile($path); 
+        }
+    }
+
+    public function actionDelete($id)
+    {
+        Yii::$app->db->createCommand('DELETE FROM uploaded_file WHERE id = '.$id)->execute();
+        return $this->redirect(['index']);
     }
 }

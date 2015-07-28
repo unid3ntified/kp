@@ -18,9 +18,11 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <script src="<?php echo Yii::$app->urlManager->baseUrl; ?>/assets/jquery.gdocsviewer.js"></script>
+    <script src="<?php echo Yii::$app->urlManager->baseUrl; ?>/assets/jquery.gdocsviewer.min.js"></script>
     <script src="<?php echo Yii::$app->urlManager->baseUrl; ?>/assets/tes.js"></script>
     <script>
-
+        $('a.embed').gdocsViewer();
         $(document).ready(function(){
             if(typeof(Storage)!=="undefined")
             {
@@ -159,7 +161,7 @@ AppAsset::register($this);
                         ['label' => ' Home', 'url' => ['/site/index']],
                         ['label' => ' Dashboard', 'url' => ['/site/dashboard']],
                         ['label' => ' Knowledge Sharing','url' => ['/sharing/index']],
-                        ['label' => ' Network Topology','url' => ['/sharing/index']],
+                        ['label' => ' Network Topology','url' => ['/site/topology']],
                         ['label' => ' Network Data', 'options' => ['id' => 'toggle1']],
                         ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
                         ['label' => 'Interconnection Trunk', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
@@ -188,7 +190,7 @@ AppAsset::register($this);
                         ['label' => ' Home', 'url' => ['/site/index']],
                         ['label' => ' Dashboard', 'url' => ['/site/dashboard']],
                         ['label' => ' Knowledge Sharing','url' => ['/sharing/index']],
-                        ['label' => ' Network Topology','url' => ['/sharing/index']],
+                        ['label' => ' Network Topology','url' => ['/site/topology']],
                         ['label' => ' Network Data', 'options' => ['id' => 'toggle1']],
                         ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
                         ['label' => 'Interconnection Trunk', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
