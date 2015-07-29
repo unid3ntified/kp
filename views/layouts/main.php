@@ -141,7 +141,7 @@ AppAsset::register($this);
                 'items' => [
                     Yii::$app->user->isGuest ?
                         ['label' => ''] :
-                        ['label' => ' Change Password', 'url' => ['/user/update'], 'id' => ''],            
+                        ['label' => ' Change Password', 'url' => ['/user/update'], 'options' => ['id' => 'cpicon']],            
                     Yii::$app->user->isGuest ?
                         ['label' => ' Login', 'url' => ['/site/login']] :
                         ['label' => ' Logout (' . Yii::$app->user->identity->username . ')',
