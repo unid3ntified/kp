@@ -46,7 +46,8 @@ class ChangePassword extends Model
     {
         return [
             'username' => 'Username',
-			'email' => 'Email',	
+			'email' => 'Email',
+            'repeat_password' => 'Repeat New Password',	
         ];
     }
 
