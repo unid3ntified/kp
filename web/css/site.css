@@ -583,6 +583,12 @@ img
     max-width: 90%;
 }
 
+#Carousel > div > div.item > img
+{
+    width: 1027px;
+    height: 345px;
+}
+
 #newsimage > img
 {
     max-height: 40%; 
@@ -593,4 +599,5 @@ img
 {
     padding-bottom: 5px;
 }
+
 

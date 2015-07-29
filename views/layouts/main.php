@@ -138,12 +138,16 @@ AppAsset::register($this);
             ]);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => [            
+                'items' => [
+                    Yii::$app->user->isGuest ?
+                        ['label' => ''] :
+                        ['label' => ' Change Password', 'url' => ['/user/update'], 'id' => ''],            
                     Yii::$app->user->isGuest ?
                         ['label' => ' Login', 'url' => ['/site/login']] :
                         ['label' => ' Logout (' . Yii::$app->user->identity->username . ')',
                             'url' => ['/site/logout'],
                             'linkOptions' => ['data-method' => 'post']],
+                        
                 ],
             ]);
             NavBar::end();
@@ -175,7 +179,7 @@ AppAsset::register($this);
                         ['label' => 'MSRN Routing', 'url' => ['/msrnrouting/index'], 'options' => ['id' => 'item10']],
                         ['label' => 'MSRN Proposed List', 'url' => ['/msrnproposedlist/index'], 'options' => ['id' => 'item11']],
                         ['label' => 'PABX Info', 'url' => ['/pabxinfo/index'], 'options' => ['id' => 'item12']],
-                        ['label' => ' Create Admin', 'url' => ['/site/user']],
+                        ['label' => ' Manage Admin', 'url' => ['/user/index']],
                     ],
                 ]);
             }

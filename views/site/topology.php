@@ -32,15 +32,15 @@ $this->params['breadcrumbs'][] = $this->title;
 	            'options' => [ 'enctype' => 'multipart/form-data']
 	    ]);
 	    ?>
-	    <?= '<h2>Add Network Topology</h2>' ?>
+	    <?= '<h3>Add Network Topology</h3>' ?>
 		<?= $form->field($model,'file')->fileInput(); ?>
 		<div class="form-group">
-	        <?= Html::submitButton('Upload', ['class' => 'btn btn-lg btn-primary']) ?>
+	        <?= Html::submitButton('Upload', ['class' => 'btn btn-md btn-primary']) ?>
 	    </div>
 	    <?php ActiveForm::end(); ?>
 	    <?php 
 	    	if ($model->file_id)
-	    		echo '<h2>Network Topology Added</h2>';
+	    		echo '<h3>Network Topology Added</h3>';
 		?>
 	</div>
 </div>

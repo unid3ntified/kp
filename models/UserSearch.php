@@ -12,6 +12,7 @@ use app\models\User;
  */
 class UserSearch extends User
 {
+    public $search;
     /**
      * @inheritdoc
      */
@@ -19,7 +20,7 @@ class UserSearch extends User
     {
         return [
             [['ID', 'status'], 'integer'],
-            [['Username', 'Password_hash', 'password_reset_token', 'auth_key', 'Email', 'created_at', 'updated_at', 'Phone'], 'safe'],
+            [['search','username', 'password_hash', 'password_reset_token', 'auth_key', 'email', 'created_at', 'updated_at', 'Phone'], 'safe'],
         ];
     }
 
@@ -55,19 +56,19 @@ class UserSearch extends User
             return $dataProvider;
         }
 
-        $query->andFilterWhere([
-            'ID' => $this->ID,
-            'status' => $this->status,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+        $query->orFilterWhere([
+            //'ID' => $this->ID,
+            //'status' => $this->status,
+            'created_at' => $this->search,
+            'updated_at' => $this->search,
         ]);
 
-        $query->andFilterWhere(['like', 'Username', $this->Username])
-            ->andFilterWhere(['like', 'Password_hash', $this->Password_hash])
-            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
-            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
-            ->andFilterWhere(['like', 'Email', $this->Email])
-            ->andFilterWhere(['like', 'Phone', $this->Phone]);
+        $query->orFilterWhere(['like', 'username', $this->search])
+            //->andFilterWhere(['like', 'password_hash', $this->password_hash])
+            //->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
+            //->andFilterWhere(['like', 'auth_key', $this->auth_key])
+            ->orFilterWhere(['like', 'email', $this->search]);
+            //->andFilterWhere(['like', 'Phone', $this->Phone]);
 
         return $dataProvider;
     }

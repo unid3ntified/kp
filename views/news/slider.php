@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	    <?= '<h2>Add Slider</h2>' ?>
 		<?= $form->field($model,'file')->fileInput(); ?>
 		<div class="form-group">
-	        <?= Html::submitButton('Upload', ['class' => 'btn btn-lg btn-primary']) ?>
+	        <?= Html::submitButton('Upload', ['class' => 'btn btn-md btn-primary']) ?>
 	    </div>
 	    <?php ActiveForm::end(); ?>
 	    <?php 

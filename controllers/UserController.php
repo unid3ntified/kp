@@ -5,10 +5,11 @@ namespace app\controllers;
 use Yii;
 use app\models\User;
 use app\models\UserSearch;
+use app\models\CreateAdmin;
+use app\models\ChangePassword;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -18,20 +19,6 @@ class UserController extends Controller
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['create', 'update', 'index', 'view', 'delete'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                    [
-                        'actions' => ['view','index'],
-                        'allow' => true,
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -45,10 +32,14 @@ class UserController extends Controller
      * Lists all User models.
      * @return mixed
      */
-    public function actionIndex($id)
+    public function actionIndex()
     {
+        $searchModel = new UserSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
         return $this->render('index', [
-            'id' => $id,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -69,17 +60,21 @@ class UserController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionSignup()
     {
-        $model = new User();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
-        }
+        $notif = '';
+        $model = new CreateAdmin();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                    $notif = "New admin has been created.";
+                    $model = new CreateAdmin();
+                }
+            }
+               
+        return $this->render('signup', [
+            'model' => $model,
+            'notif' => $notif
+        ]);
     }
 
     /**
@@ -88,31 +83,38 @@ class UserController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate()
     {
-        $model = $this->findModel($id);
+        $notif = '';
+        $model = new ChangePassword();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->ID]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->setPassword()) {
+                    $notif = "Password changed successfully.";
+                    $model = new ChangePassword();
+                }
+            }
+               
+        return $this->render('update', [
+            'model' => $model,
+            'notif' => $notif,
+        ]);
     }
 
-    /**
+    /*
      * Deletes an existing User model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
-     */
+     
+
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
     }
+    */
 
     /**
      * Finds the User model based on its primary key value.

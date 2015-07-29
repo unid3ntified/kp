@@ -9,7 +9,6 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use yii\data\SqlDataProvider;
-use app\models\CreateAdmin;
 use app\models\News;
 use yii\base\DynamicModel;
 
@@ -195,21 +194,6 @@ class SiteController extends Controller
     {
         Yii::$app->user->logout();
         return $this->goHome();
-    }
-
-    public function actionUser()
-    {
-        $model = new CreateAdmin();
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
-            }
-        }       
-        return $this->render('user', [
-            'model' => $model,
-        ]);
     }
 
     public function actionContact()
