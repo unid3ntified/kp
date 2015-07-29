@@ -7,7 +7,7 @@ $this->title = 'Knowledge Sharing';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
-	<div class="col-md-7">
+	
 		<?php
 			$data = Yii::$app->db->createCommand('SELECT * FROM uploaded_file WHERE type = "sharing"')->queryAll();
 			echo '<div class="row">
@@ -30,17 +30,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]]).'</div></div>';
         	}
 		?>
-	</div>
-	<div class="col-md-4 col-md-offset-1">
+
+	<br>
+	<br>
+	<br>
+	<div align="center">			
 		<?php
 	    $form = ActiveForm::begin([
 	            'options' => [ 'enctype' => 'multipart/form-data']
 	    ]);
 	    ?>
-	    <?= '<h2>Upload File</h2>' ?>
-		<?= $form->field($model,'file')->fileInput(); ?>
+		<?= $form->field($model,'file')->fileInput()->label('File (Max size: 25MB)'); ?>
 		<div class="form-group">
-	        <?= Html::submitButton('Upload', ['class' => 'btn btn-md btn-primary']) ?>
+	        <?= Html::submitButton('Upload this file', ['class' => 'btn btn-sm btn-primary']) ?>
 	    </div>
 	    <?php ActiveForm::end(); ?>
 	    <?php 
