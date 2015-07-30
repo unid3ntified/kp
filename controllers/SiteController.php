@@ -21,7 +21,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['logout', 'error', 'index','download', 'user', 'info', 'dashboard', 'topology'],
+                        'actions' => ['logout', 'error', 'index','download', 'user', 'info', 'dashboard', 'topology', 'deletetopology'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -295,7 +295,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->saveUploadedFile() !== false) {
                 if ($model->file_id !== NULL && $model->file_id !== '')
-                    Yii::$app->db->createCommand('UPDATE uploaded_file SET type = "slider" WHERE id = '.$model->file_id)->execute();
+                    Yii::$app->db->createCommand('UPDATE uploaded_file SET type = "topology" WHERE id = '.$model->file_id)->execute();
                 Yii::$app->session->setFlash('success', 'Upload Success');
             }
         }

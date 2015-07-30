@@ -11,14 +11,18 @@ $this->title = 'Sistem Informasi Network Element';
         <!-- Indicators -->
         <ol class="carousel-indicators">
           <li data-target="#Carousel" data-slide-to="0" class="active"></li>
-          <li data-target="#Carousel" data-slide-to="1"></li>
-          <li data-target="#Carousel" data-slide-to="2"></li>
+          <?php
+            $data = Yii::$app->db->createCommand('SELECT id FROM uploaded_file WHERE type = "slider"')->queryAll();
+            foreach ($data as $key => $value) {
+              if ($key !== 0)
+                echo '<li data-target="#Carousel" data-slide-to="'.$key.'"></li>';
+            }
+          ?>
         </ol>
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
           <?php
-            $data = Yii::$app->db->createCommand('SELECT id FROM uploaded_file WHERE type = "slider"')->queryAll();
             foreach ($data as $key => $value) {
               if ($key == 0)
                 echo '<div class="item active">'.Html::img(['/file','id'=>$value['id']]).'</div>';

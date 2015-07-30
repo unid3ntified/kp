@@ -31,6 +31,8 @@ AppAsset::register($this);
                     sessionStorage.flag1="0";
                 if (sessionStorage.flag2==null)
                     sessionStorage.flag2="0";
+                if (sessionStorage.nav==null)
+                    sessionStorage.nav="1";
             }
             else
             {
@@ -59,6 +61,11 @@ AppAsset::register($this);
             }
                 $("#chart1").hide();
                 $("#chart2").hide();
+
+            if (sessionStorage.nav=="0")
+            {
+                $("#rightbar").hide();               
+            }
 
             $("#toggle1").click(function(){
                 $("#item1").toggle(320);
@@ -122,6 +129,14 @@ AppAsset::register($this);
                 $("#chart2").show(640);
 
             });
+
+            $("#toggle0").click(function(){
+                $("#rightbar").toggle(640);
+                if (sessionStorage.nav=="0")
+                    sessionStorage.nav="1";
+                else
+                    sessionStorage.nav="0";
+            });
         });
     </script>
     <?php $this->head() ?>
@@ -131,15 +146,16 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                //'brandLabel' => 'My Company',
+                //'brandLabel' => 'Toggle',
                 //'brandUrl' => Yii::$app->homeUrl,
                 //'options' => [
-               //     'class' => 'navbar-inverse navbar-fixed-top',
-               // ],
+                   //'class' => 'navbar-inverse navbar-fixed-top',
+               //],
             ]);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
+                        //['label' => 'toggle', 'options' => ['id' => 'toggle0']],                        
                     Yii::$app->user->isGuest ?
                         ['label' => ''] :
                         ['label' => ' Change Password', 'url' => ['/user/update'], 'options' => ['id' => 'cpicon']],            
@@ -158,7 +174,7 @@ AppAsset::register($this);
             if (!Yii::$app->user->isGuest)
             {
                 echo Nav::widget([
-                    'options' => ['class' => 'nav-pills nav-stacked'],
+                    'options' => ['class' => 'nav-pills nav-stacked', 'id' => 'rightbar'],
                     'items' => [
                         ['label' => ' Home', 'url' => ['/site/index']],
                         ['label' => ' Dashboard', 'url' => ['/site/dashboard']],
@@ -187,7 +203,7 @@ AppAsset::register($this);
             else
             {
                 echo Nav::widget([
-                    'options' => ['class' => 'nav-pills nav-stacked'],
+                    'options' => ['class' => 'nav-pills nav-stacked', 'id' => 'rightbar'],
                     'items' => [            
                         ['label' => ' Home', 'url' => ['/site/index']],
                         ['label' => ' Dashboard', 'url' => ['/site/dashboard']],

@@ -143,10 +143,20 @@ a.desc:after {
     font-family: "Glyphicons Halflings";
 }
 
-.navbar .nav > li:nth-child(2) > a:before
+#cpicon > a
+{
+    text-align: right;
+}
+
+.navbar .nav > li:nth-child(3) > a:before
 {
     content:"\e017";
     font-family: "Glyphicons Halflings";
+}
+
+.navbar .nav > li:nth-child(3) > a
+{
+    text-align: right;
 }
 
 body > div.wrap > ul
@@ -159,6 +169,11 @@ body > div.wrap > ul
     padding-top: 60px;
     margin-top: -60px;
 
+}
+
+#toggle0
+{
+    text-align: left;
 }
 
 #toggle1
