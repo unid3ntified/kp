@@ -19,7 +19,7 @@ class BscSearch extends Bsc
     public function rules()
     {
         return [
-            [['search', 'bsc_id', 'mgw', 'msc', 'trunk_name', 'status', 'log_date', 'remark', 'year'], 'safe'],
+            [['search', 'bsc_id', 'mgw', 'msc', 'trunk_name', 'log_date', 'remark', 'year'], 'safe'],
         ];
     }
 
@@ -63,8 +63,7 @@ class BscSearch extends Bsc
         $query->orFilterWhere(['like', 'bsc_id', $this->search])
             ->orFilterWhere(['like', 'mgw', $this->search])
             ->orFilterWhere(['like', 'msc', $this->search])
-            ->orFilterWhere(['like', 'trunk_name', $this->search])
-            ->orFilterWhere(['like', 'status', $this->search]);
+            ->orFilterWhere(['like', 'trunk_name', $this->search]);
             //->orFilterWhere(['like', 'remark', $this->remark]);
 
         return $dataProvider;
@@ -94,8 +93,7 @@ class BscSearch extends Bsc
         $query->orFilterWhere(['like', 'bsc_id', $this->search])
             ->orFilterWhere(['like', 'mgw', $this->search])
             ->orFilterWhere(['like', 'msc', $this->search])
-            ->orFilterWhere(['like', 'trunk_name', $this->search])
-            ->orFilterWhere(['like', 'status', $this->search]);
+            ->orFilterWhere(['like', 'trunk_name', $this->search]);
             //->orFilterWhere(['like', 'remark', $this->remark]);
 
         return $dataProvider;

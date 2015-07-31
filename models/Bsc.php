@@ -39,7 +39,7 @@ class Bsc extends \yii\db\ActiveRecord
             [['remark'], 'string'],
             [['year'], 'integer', 'max' => 2999, 'message' => 'Please enter a valid year.', 'tooBig' => 'Please enter a valid year.'],
             [['year'], 'integer', 'min' => 1900, 'message' => 'Please enter a valid year.', 'tooSmall' => 'Please enter a valid year.'],         
-            [['bsc_id', 'mgw', 'msc', 'trunk_name', 'status'], 'string', 'max' => 20],
+            [['bsc_id', 'mgw', 'msc', 'trunk_name'], 'string', 'max' => 20],
             [['trunk_name'], 'unique']
         ];
     }
@@ -54,7 +54,6 @@ class Bsc extends \yii\db\ActiveRecord
             'mgw' => 'MGW',
             'msc' => 'MSC',
             'trunk_name' => 'Trunk Name',
-            'status' => 'Status',
             'log_date' => 'Log Date',
             'remark' => 'Remark',
         ];

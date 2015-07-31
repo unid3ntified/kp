@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'mgw',
             'msc',
             'trunk_name',
-            'status',
+            //'status',
             // 'log_date',
             // 'remark:ntext',
 

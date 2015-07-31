@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
                     $filename = 'MGW_filtered_'.date('Y-m-d');
                     echo 'Download Table: '.ExportMenu::widget([
-                        'dataProvider' => $dataProvider,
+                        'dataProvider' => $downloadProvider,
                         'filename' => $filename,
                     ]);
                 ?>
