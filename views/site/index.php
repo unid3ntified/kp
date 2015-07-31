@@ -59,11 +59,13 @@ $this->title = 'Sistem Informasi Network Element';
                   echo '<div class="row">';
                 echo '<a href="'.Yii::$app->homeUrl.'?r=news/view&id='.$newsList[$i]->id.'">';
                 echo '<div class="col-md-6"><h3>'.$newsList[$i]->title.'</h3><div class="row">';
-                echo '<div class="col-md-5">'.Html::img(['/file','id'=>$newsList[$i]->image_id]).'</div>';
+                echo '<div class="col-md-5">';
+                if ($newsList[$i]->image_id !== NULL && $newsList[$i]->image_id !== '')
+                   echo Html::img(['/file','id'=>$newsList[$i]->image_id]);
                 if (strlen($newsList[$i]->news_desc) >= 150)
                   $text = substr($newsList[$i]->news_desc,0,150);
                 else $text = $newsList[$i]->news_desc;
-                echo '<div class="col-md-7">'.$text.'...<br>View More</div></div></div>';
+                echo '</div><div class="col-md-7">'.$text.'...<br>View More</div></div></div>';
                 if ($newsItem % 2 == 0)
                   echo '</div><br><hr>';
                 echo '</a>';

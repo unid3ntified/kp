@@ -158,6 +158,23 @@ $this->params['breadcrumbs'][] = $this->title;
             echo "<p align=right>";
             echo Html::a('Assign RNC', ['/rncreference/index'], ['class' => 'btn btn-primary']);
             echo "</p>";
+
+             echo "<h3>BSC</h3>"; 
+            echo GridView::widget([
+                'dataProvider' => $BscDataProvider,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    'bsc_id',
+                    'mgw',
+                    'msc',
+                    'trunk_name',
+                    'year',
+                ],
+            ]);
+
+            echo "<p align=right>";
+            echo Html::a('Assign BSC', ['/bsc/index'], ['class' => 'btn btn-primary']);
+            echo "</p>";
         }     
     ?><br>
 

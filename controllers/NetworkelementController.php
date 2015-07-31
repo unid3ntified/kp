@@ -9,6 +9,8 @@ use app\models\DescNetwork;
 use app\models\DescNetworkSearch;
 use app\models\BcuId;
 use app\models\BcuIdSearch;
+use app\models\Bsc;
+use app\models\BscSearch;
 use app\models\Msc;
 use app\models\MscSearch;
 use app\models\RncReference;
@@ -62,10 +64,14 @@ class NetworkelementController extends Controller
     {
         $searchModel = new NetworkElementSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $downloadModel = new NetworkElementSearch();
+        $downloadProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $downloadProvider->setPagination(false);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'downloadProvider' => $downloadProvider,
         ]);
     }
 
@@ -87,6 +93,8 @@ class NetworkelementController extends Controller
         $TVSearchModel = new TrunkVoipSearch();
         $TVDataProvider = $TVSearchModel->searchId(Yii::$app->request->queryParams, $id);
         $msrnSearchModel = new MsrnProposedlistSearch();
+        $BscSearchModel = new BscSearch();
+        $BscDataProvider = $BscSearchModel->searchId(Yii::$app->request->queryParams, $id);
 
         $model = $this->findModel($id);
         $msrn = null;
@@ -119,6 +127,7 @@ class NetworkelementController extends Controller
             'flag' => $flag,
             'mscmodel' => $mscmodel,
             'TVDataProvider' => $TVDataProvider,
+            'BscDataProvider' => $BscDataProvider,
             'RncDataProvider' => $RncDataProvider,
         ]);
 
@@ -323,6 +332,9 @@ class NetworkelementController extends Controller
             case ("33"):
                 $model->provinsi = "Papua";
                 break;
+            case ("34"):
+                $model->provinsi = "Lain-lain";
+                break;
         }
         if ($model->gtt == '')
             $model->gtt = NULL;
@@ -452,6 +464,9 @@ class NetworkelementController extends Controller
                 break;
             case ("Papua"):
                 $model->provinsi = "33";
+                break;
+            case ("Lain-lain"):
+                $model->provinsi = "34";
                 break;
         }
     }
