@@ -27,8 +27,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'year')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->dropDownList(['Dismantle', 'In Service', 'Plan', 'Trial'], ['prompt' => 'Choose Status']) ?>
-
     <?= $form->field($model, 'remark')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">

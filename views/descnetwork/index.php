@@ -31,8 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-sm-4" align=center>
             <h4>
                 <?php
+                    $filename = 'OPCList_filtered_'.date('Y-m-d');
                     echo 'Download Table: '.ExportMenu::widget([
-                        'dataProvider' => $dataProvider,
+                        'dataProvider' => $downloadProvider,
+                        'filename' => $filename,
                     ]);
                 ?>
             </h4>

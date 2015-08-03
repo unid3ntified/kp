@@ -64,7 +64,6 @@ class NetworkelementController extends Controller
     {
         $searchModel = new NetworkElementSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $downloadModel = new NetworkElementSearch();
         $downloadProvider = $searchModel->search(Yii::$app->request->queryParams);
         $downloadProvider->setPagination(false);
 

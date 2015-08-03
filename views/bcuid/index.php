@@ -42,8 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h4><?= Html::a('Manage MGW', ['create'], ['class' => 'btn btn-success']) ?></h4>
         </div>
     </div>
-
-     <?= GridView::widget([
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
         //'filterModel' => $searchModel,
 

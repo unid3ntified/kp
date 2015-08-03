@@ -52,10 +52,13 @@ class MscController extends Controller
     {
         $searchModel = new MscSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $downloadProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $downloadProvider->setPagination(false);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'downloadProvider' => $downloadProvider,
         ]);
     }
 

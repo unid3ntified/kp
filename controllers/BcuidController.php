@@ -52,7 +52,6 @@ class BcuidController extends Controller
     {
         $searchModel = new BcuIdSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $downloadModel = new BcuIdSearch();
         $downloadProvider = $searchModel->search(Yii::$app->request->queryParams);
         $downloadProvider->setPagination(false);
 

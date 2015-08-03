@@ -29,8 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-sm-4" align=center>
             <h4>
-                <?= 'Download Table: '.ExportMenu::widget([
-                        'dataProvider' => $dataProvider,
+                <?php
+                    $filename = 'TrunkVOIP_filtered_'.date('Y-m-d');
+                    echo 'Download Table: '.ExportMenu::widget([
+                        'dataProvider' => $downloadProvider,
+                        'filename' => $filename,
                     ]);
                 ?>
             </h4>

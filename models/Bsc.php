@@ -11,7 +11,6 @@ use Yii;
  * @property string $mgw
  * @property string $msc
  * @property string $trunk_name
- * @property string $status
  * @property string $log_date
  * @property string $remark
  *
@@ -34,7 +33,7 @@ class Bsc extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['bsc_id', 'mgw', 'status'], 'required'],
+            [['bsc_id', 'mgw'], 'required'],
             [['log_date'], 'safe'],
             [['remark'], 'string'],
             [['year'], 'integer', 'max' => 2999, 'message' => 'Please enter a valid year.', 'tooBig' => 'Please enter a valid year.'],
