@@ -97,17 +97,17 @@ class SiteController extends Controller
         }
 
         $temp = Yii::$app->db->createCommand(
-            'SELECT pool as name, COUNT(*) as MSC, vendor FROM msc, network_element WHERE pool != "" AND network_element_id = msc_name group by pool order by MSC DESC')->queryAll();
+            'SELECT pool as name, COUNT(*) as MSC, vendor FROM msc, network_element WHERE pool != "" AND network_element_id = msc_name group by pool, vendor order by MSC DESC')->queryAll();
         $MSCpool = array();
         foreach ($temp as $key => $value) {
-            $MSCpool[$key] = [$value['name'].' ('.$value['vendor'].')', (int)$value['MSC']] ;
+            $MSCpool[$key] = [$value['name'].' ('.$value['vendor'].')', (int)$value['MSC']];
         }
 
         $temp = Yii::$app->db->createCommand(
-            'SELECT pool as name, COUNT(*) as MGW, vendor FROM mgw, network_element WHERE pool != "" AND network_element_id = mgw_name group by pool order by MGW DESC')->queryAll();
+            'SELECT pool as name, COUNT(*) as MGW, vendor FROM mgw, network_element WHERE pool != "" AND network_element_id = mgw_name group by pool, vendor order by MGW DESC')->queryAll();
         $MGWpool = array();
         foreach ($temp as $key => $value) {
-            $MGWpool[$key] = [$value['name'].' ('.$value['vendor'].')', (int)$value['MGW']] ;
+            $MGWpool[$key] = [$value['name'].' ('.$value['vendor'].')', (int)$value['MGW']];
         }
 
         //combining pool from both msc and mgw table
@@ -125,6 +125,7 @@ class SiteController extends Controller
             if (!in_array($MGWpool[$i][0], $pool))
                 array_push($pool,$MGWpool[$i][0]);
         }
+
         //adding pool that exist in combined pool, but not in msc/mgw
         for ($i = 0; $i<count($pool); $i++)
         {
@@ -151,6 +152,15 @@ class SiteController extends Controller
             $partnerVOIP[$key] = [$value['name'], (int)$value['Trunk']] ;
         }
 
+        $temp = Yii::$app->db->createCommand('SELECT region as name, vendor, sum(subs_capacity) as cap1, sum(bhca_capacity) as cap2, sum(erlang_capacity) as cap3 FROM network_element, msc_cap_dimensioning WHERE network_element_id = node_id group by region, vendor order by cap1 DESC')->queryAll();
+        $subsCapacity = array();
+        $erlangCapacity = array();
+        foreach ($temp as $key => $value) {
+            $subsCapacity[$key] = [$value['name'].' ('.$value['vendor'].')', (int)$value['cap1']];
+            $BHCACapacity[$key] = [$value['name'].' ('.$value['vendor'].')', (int)$value['cap2']];
+            $erlangCapacity[$key] = [$value['name'].' ('.$value['vendor'].')', (int)$value['cap3']];
+        }
+
         //passing all variable to view class
         return $this->render('dashboard', [
                 'NEcount' => $NEcount,
@@ -170,6 +180,9 @@ class SiteController extends Controller
                 'SGSNcount' => $SGSNcount,
                 'HLRcount' => $HLRcount,
                 'POIcount' => $POIcount,
+                'subsCapacity' => $subsCapacity,
+                'BHCACapacity' => $BHCACapacity,
+                'erlangCapacity' => $erlangCapacity,
             ]);
 
     }

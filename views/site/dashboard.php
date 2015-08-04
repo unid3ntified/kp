@@ -124,7 +124,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => ['text' => 'Total Trunk']
                         ],
                         'chart' => [
-                            'width' => 1200,
+                            'width' => 1080,
                         ],
                         'series' => 
                         [
@@ -154,7 +154,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => ['text' => 'Total Trunk']
                         ],
                         'chart' => [
-                            'width' => 1200,
+                            'width' => 1080,
                         ],
                         'series' => 
                         [
@@ -177,7 +177,6 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="row">
      	<div class="col-lg-9">
-
             <div class="row" id="chart3">
                 <?= Highcharts::widget([
                      'scripts' => [
@@ -216,10 +215,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'enabled' => true,
                                 ],
                                 'color' => '#fa5b24',
-
                             ],
                             [
-
                                 'type' => 'bar',
                                 'name' => 'MSC',
                                 'data' => $MSCpool,
@@ -236,7 +233,54 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);
                 ?>
             </div>
-
+            <div class="row" id="chart4">
+                <?= Highcharts::widget([
+                    'options' => [
+                        'title' => ['text' => 'Regional Subscriber Capacity'],
+                        'xAxis' => [
+                            'type' => 'category'
+                        ],
+                        'yAxis' => [
+                            'title' => ['text' => 'Total Capacity']
+                        ],
+                        'chart' => [
+                            'height' => 610,  
+                        ],
+                        'series' => 
+                        [
+                            [
+                                'type' => 'bar',
+                                'name' => 'Subscriber Capacity',
+                                'data' => $subsCapacity,
+                                'showInLegend' => true,
+                                'dataLabels' => [
+                                    'enabled' => true,
+                                ],
+                            ],
+                            [
+                                'type' => 'bar',
+                                'name' => 'BHCA Capacity',
+                                'data' => $BHCACapacity,
+                                'showInLegend' => true,
+                                'dataLabels' => [
+                                    'enabled' => true,
+                                ],
+                            ],
+                            [
+                                'type' => 'bar',
+                                'name' => 'Erlang Capacity',
+                                'data' => $erlangCapacity,
+                                'showInLegend' => true,
+                                'dataLabels' => [
+                                    'enabled' => true,
+                                ],
+                            ],
+                        ],
+                        'credits' => ['enabled' => false],
+                    ]
+                ]);
+                ?>
+            </div>
         </div>
 
 
@@ -303,7 +347,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 [
                                     'html' => 'MGW',
                                     'style' => [
-                                        'left' => '210px',
+                                        'left' => '170px',
                                         'top' => '190px',
                                         'font-size' => '14pt',
                                         'position' => 'fixed',

@@ -9,7 +9,7 @@ use yii\widgets\ActiveForm;
 /* @var $searchModel app\models\CapDimensioningSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Cap Dimensionings';
+$this->title = 'Capacity Dimensionings';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cap-dimensioning-index">

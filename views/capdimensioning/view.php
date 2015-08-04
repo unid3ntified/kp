@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\CapDimensioning */
 
 $this->title = $model->node_id;
-$this->params['breadcrumbs'][] = ['label' => 'Cap Dimensionings', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Capacity Dimensionings', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cap-dimensioning-view">

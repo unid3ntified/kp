@@ -51,11 +51,11 @@ class CapDimensioning extends \yii\db\ActiveRecord
         return [
             'node_id' => 'Node ID',
             'region' => 'Region',
-            'hw_type' => 'Hw Type',
+            'hw_type' => 'HW Type',
             'software_release' => 'Software Release',
             'subs_capacity' => 'Subs Capacity',
             'erlang_capacity' => 'Erlang Capacity',
-            'bhca_capacity' => 'Bhca Capacity',
+            'bhca_capacity' => 'BHCA Capacity',
         ];
     }
 

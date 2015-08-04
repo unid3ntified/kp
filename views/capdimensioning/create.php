@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\CapDimensioning */
 
 $this->title = 'Create Cap Dimensioning';
-$this->params['breadcrumbs'][] = ['label' => 'Cap Dimensionings', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Capacity Dimensionings', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="cap-dimensioning-create">
