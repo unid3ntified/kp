@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	            'options' => [ 'enctype' => 'multipart/form-data']
 	    ]);
 	    ?>
-		<?= $form->field($model,'file')->fileInput()->label('File (Max size: 25MB)'); ?>
+		<?= $form->field($model,'file')->fileInput()->label('Image File (Max size: 25MB)'); ?>
 		<div class="form-group">
 	        <?= Html::submitButton('Upload this file', ['class' => 'btn btn-sm btn-primary']) ?>
 	    </div>

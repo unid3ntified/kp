@@ -150,37 +150,43 @@ a.desc:after {
     font-family: "Glyphicons Halflings";
 }
 
-#cpicon > a
-{
-    text-align: right;
-}
-
-.navbar .nav > li:nth-child(3) > a:before
+#officon > a:before
 {
     content:"\e017";
     font-family: "Glyphicons Halflings";
 }
 
-.navbar .nav > li:nth-child(3) > a
-{
-    text-align: right;
-}
-
-body > div.wrap > ul
+#rightmenu
 {
     position: fixed;
     background-color: #202d4d;
     width: 220px;
-
+    margin-top:-55px;
     height: 120%;
-    padding-top: 60px;
-    margin-top: -60px;
+}
 
+#toggle
+{
+    margin-bottom:15px;
 }
 
 #toggle0
 {
-    text-align: left;
+    margin-left: -120px;
+}
+
+#toggle0 > a:after
+{
+    content:"\e055";
+    font-family: 'Glyphicons Halflings';
+    font-size: 16pt;
+}
+
+#toggle > a:after
+{
+    content:"\e055";
+    font-family: 'Glyphicons Halflings';
+    font-size: 16pt;
 }
 
 #toggle1
@@ -211,7 +217,7 @@ body > div.wrap > ul
     transition: all .5s;
 }
 
-body > div.wrap > ul > li > a
+#rightmenu > li > a
 {
     width: 100%;
     font-size: 10pt;   
@@ -220,13 +226,13 @@ body > div.wrap > ul > li > a
     transition: all .5s;
 }
 
-body > div.wrap > ul > li > a:hover{
+#rightmenu > li > a:hover{
     color:#ece313;
     background-color: #202d4d;
 }
 
 
-body > div.wrap > ul > li.active > a{
+#rightmenu > li.active > a{
     background-color: #193492;
     color:#ece313;
 }
@@ -245,49 +251,57 @@ body > div.wrap > ul > li.active > a{
 }
 
 #page-wrapper{
-    position: inherit;
-    margin: 0 0 0 200px;
+
     padding: 40px 70px;
     color: #111;
 }
 
-body > div.wrap > ul > li:nth-child(1) > a:before
+.highcharts-legend-item
+{
+    margin-top:-50px;
+}
+
+#wrapbar{
+    width:95%;
+}
+
+#itemhome > a:before
 {
     content:"\e021 ";
     font-family: 'Glyphicons Halflings';
 }
 
-body > div.wrap > ul > li:nth-child(2) > a:before
+#itemdashboard > a:before
 {
     content:"\e141";
     font-family: 'Glyphicons Halflings';
 }
 
-body > div.wrap > ul > li:nth-child(3) > a:before
+#itemsharing > a:before
 {
     content:"\e025 ";
     font-family: 'Glyphicons Halflings';
 }
 
-body > div.wrap > ul > li:nth-child(4) > a:before
+#itemtopology > a:before
 {
     content:"\e142";
     font-family: 'Glyphicons Halflings';
 }
 
-body > div.wrap > ul > li:nth-child(5) > a:before
+#toggle1 > a:before
 {
     content:"\e137";
     font-family: 'Glyphicons Halflings';
 }
 
-body > div.wrap > ul > li:nth-child(11) > a:before
+#toggle2 > a:before
 {
     content:"\e086 ";
     font-family: 'Glyphicons Halflings';
 }
 
-body > div.wrap > ul > li:nth-child(21) > a:before
+#itemadmin > a:before
 {
     content:"\e008 ";
     font-family: 'Glyphicons Halflings';
@@ -467,15 +481,20 @@ body > div.wrap > ul > li:nth-child(21) > a:before
     background-color: #f5f5f5;
 }
 
+#largebox , #largebox2
+{
+    padding-left:70px;
+}
+
 #bluebox
 {
     background-color: #1191e4;
     width: 20%;
     color: white;
     font-family: 'Helvetica';
-
+    font-weight: bold;
     margin-right: 40px;
-    margin-left: 60px;
+    margin-left: -5px;
     margin-bottom: 10px;
 
 }
@@ -524,7 +543,7 @@ body > div.wrap > ul > li:nth-child(21) > a:before
     font-family: 'Helvetica';
     font-weight: bold;
     margin-right: 40px;
-    margin-left: 60px;
+    margin-left: -5px;
     margin-bottom: 10px;
 }
 
@@ -564,6 +583,11 @@ body > div.wrap > ul > li:nth-child(21) > a:before
     margin-bottom: 10px;
 }
 
+#highcharts-4 > svg > g:nth-child(8) > text
+{
+    opacity: 0;
+}
+
 .inner
 {
     padding-left: 20px;
@@ -587,12 +611,6 @@ body > div.wrap > ul > li:nth-child(21) > a:before
 #chart5
 {
     padding-left: -15px;
-}
-
-#chart4 , #chart6
-{
-    margin-left: -15px;
-    padding-right: 15px;
 }
 
 div.required label:after {

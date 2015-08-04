@@ -21,12 +21,12 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['logout', 'error', 'index','download', 'user', 'info', 'dashboard', 'topology', 'deletetopology'],
+                        'actions' => ['logout', 'error', 'index','download', 'user', 'info', 'dashboard'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['login', 'error', 'download', 'index', 'dashboard', 'topology'],
+                        'actions' => ['login', 'error', 'download', 'index', 'dashboard'],
                         'allow' => true,
                     ],
                 ],
@@ -272,33 +272,4 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionTopology()
-    {
-        $model = new DynamicModel([
-            'file_id'
-        ]);
-     
-        // behavior untuk upload file
-        $model->attachBehavior('upload', [
-            'class' => 'mdm\upload\UploadBehavior',
-            'attribute' => 'file',
-            'savedAttribute' => 'file_id', 
-            //'uploadPath' => Yii::$app->homeUrl.'/files',
-        ]);   
-     
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->saveUploadedFile() !== false) {
-                if ($model->file_id !== NULL && $model->file_id !== '')
-                    Yii::$app->db->createCommand('UPDATE uploaded_file SET type = "topology" WHERE id = '.$model->file_id)->execute();
-                Yii::$app->session->setFlash('success', 'Upload Success');
-            }
-        }
-        return $this->render('topology',['model' => $model]);
-    }
-
-    public function actionDeletetopology($id)
-    {
-        Yii::$app->db->createCommand('DELETE FROM uploaded_file WHERE id = '.$id)->execute();
-        return $this->redirect(['topology']);
-    }
 }
