@@ -64,7 +64,8 @@ AppAsset::register($this);
 
             if (sessionStorage.nav=="0")
             {
-                $("#rightbar").hide();               
+                $("#rightbar").hide();
+                document.getElementById("page-wrapper").className="col-md-12";               
             }
 
             $("#toggle1").click(function(){
@@ -130,12 +131,34 @@ AppAsset::register($this);
 
             });
 
-            $("#toggle0").click(function(){
-                $("#rightbar").toggle(640);
+             $("#toggle0").click(function(){
+                $("#rightbar").toggle(320);
+                $("#toggle0").hide();
                 if (sessionStorage.nav=="0")
+                {
+                    document.getElementById("page-wrapper").className="col-md-10";
                     sessionStorage.nav="1";
+                }
                 else
+                {
+                    document.getElementById("page-wrapper").className="col-md-12";
                     sessionStorage.nav="0";
+                }
+            });
+
+            $("#toggle").click(function(){
+                $("#rightbar").toggle(320);
+                $("#toggle0").show();
+                if (sessionStorage.nav=="0")
+                {
+                    document.getElementById("page-wrapper").className="col-md-10";
+                    sessionStorage.nav="1";
+                }
+                else
+                {
+                    document.getElementById("page-wrapper").className="col-md-12";
+                    sessionStorage.nav="0";
+                }
             });
         });
     </script>
@@ -153,33 +176,40 @@ AppAsset::register($this);
                //],
             ]);
             echo Nav::widget([
-                'options' => ['class' => 'navbar-nav navbar-right'],
+                'options' => ['class' => 'navbar-nav navbar-left'],
                 'items' => [
-                        //['label' => 'toggle', 'options' => ['id' => 'toggle0']],                        
+                        ['label' => '', 'options' => ['id' => 'toggle0']],
+                ],
+            ]);
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav navbar-right'],
+                'items' => [                      
                     Yii::$app->user->isGuest ?
                         ['label' => ''] :
                         ['label' => ' Change Password', 'url' => ['/user/update'], 'options' => ['id' => 'cpicon']],            
                     Yii::$app->user->isGuest ?
-                        ['label' => ' Login', 'url' => ['/site/login']] :
+                        ['label' => ' Login', 'url' => ['/site/login'], 'options' => ['id' => 'officon']] :
                         ['label' => ' Logout (' . Yii::$app->user->identity->username . ')',
                             'url' => ['/site/logout'],
-                            'linkOptions' => ['data-method' => 'post']],
-                        
+                            'linkOptions' => ['data-method' => 'post'],
+                            'options' => ['id' => 'officon']],            
                 ],
             ]);
             NavBar::end();
         ?>
 
         <?php       
+            echo '<div class="row" id="wrapbar"><div class="col-md-2" id="rightbar">';       
             if (!Yii::$app->user->isGuest)
             {
                 echo Nav::widget([
-                    'options' => ['class' => 'nav-pills nav-stacked', 'id' => 'rightbar'],
+                    'options' => ['class' => 'nav-pills nav-stacked', 'id' => 'rightmenu'],
                     'items' => [
-                        ['label' => ' Home', 'url' => ['/site/index']],
-                        ['label' => ' Dashboard', 'url' => ['/site/dashboard']],
-                        ['label' => ' Knowledge Sharing','url' => ['/sharing/index']],
-                        ['label' => ' Network Topology','url' => ['/site/topology']],
+                        ['label' => ' ', 'options' => ['id' => 'toggle']], 
+                        ['label' => ' Home', 'url' => ['/site/index'], 'options' => ['id' => 'itemhome']],
+                        ['label' => ' Dashboard', 'url' => ['/site/dashboard'], 'options' => ['id' => 'itemdashboard']],
+                        ['label' => ' Knowledge Sharing','url' => ['/sharing/index'], 'options' => ['id' => 'itemsharing']],
+                        ['label' => ' Network Topology','url' => ['/sharing/topology'], 'options' => ['id' => 'itemtopology']],
                         ['label' => ' Network Data', 'options' => ['id' => 'toggle1']],
                         ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
                         ['label' => 'Interconnection Trunk', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
@@ -196,19 +226,20 @@ AppAsset::register($this);
                         ['label' => 'MSRN Routing', 'url' => ['/msrnrouting/index'], 'options' => ['id' => 'item10']],
                         ['label' => 'MSRN Proposed List', 'url' => ['/msrnproposedlist/index'], 'options' => ['id' => 'item11']],
                         ['label' => 'PABX Info', 'url' => ['/pabxinfo/index'], 'options' => ['id' => 'item12']],
-                        ['label' => ' Manage Admin', 'url' => ['/user/index']],
+                        ['label' => ' Manage Admin', 'url' => ['/user/index'], 'options' => ['id' => 'itemadmin']],
                     ],
                 ]);
             }
             else
             {
                 echo Nav::widget([
-                    'options' => ['class' => 'nav-pills nav-stacked', 'id' => 'rightbar'],
-                    'items' => [            
-                        ['label' => ' Home', 'url' => ['/site/index']],
-                        ['label' => ' Dashboard', 'url' => ['/site/dashboard']],
-                        ['label' => ' Knowledge Sharing','url' => ['/sharing/index']],
-                        ['label' => ' Network Topology','url' => ['/site/topology']],
+                    'options' => ['class' => 'nav-pills nav-stacked', 'id' => 'rightmenu'],
+                    'items' => [
+                        ['label' => ' ', 'options' => ['id' => 'toggle']],            
+                        ['label' => ' Home', 'url' => ['/site/index'], 'options' => ['id' => 'itemhome']],
+                        ['label' => ' Dashboard', 'url' => ['/site/dashboard'], 'options' => ['id' => 'itemdashboard']],
+                        ['label' => ' Knowledge Sharing','url' => ['/sharing/index'], 'options' => ['id' => 'itemsharing']],
+                        ['label' => ' Network Topology','url' => ['/sharing/topology'], 'options' => ['id' => 'itemtopology']],
                         ['label' => ' Network Data', 'options' => ['id' => 'toggle1']],
                         ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
                         ['label' => 'Interconnection Trunk', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
@@ -228,9 +259,10 @@ AppAsset::register($this);
                     ],
                 ]);
             }
+            echo '</div>';
         ?>
 
-        <div id="page-wrapper">
+        <div class="col-md-10" id="page-wrapper">
             <?= Breadcrumbs::widget([
                 'homeLink' => [
                     'label' => Yii::t('yii', 'Home'),
@@ -240,6 +272,7 @@ AppAsset::register($this);
             ]) ?>
             <?= $content ?>
         </div>
+        <?= '</div>' ?>
     </div>
 
     <footer class="footer">

@@ -10,8 +10,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-dashboard">
 	
-    <div class="row">
-    	<div class="col-lg-2" id="bluebox">
+    <div class="row" id="largebox">
+    	<div class="col-sm-2" id="bluebox">
             <div class="inner">
         	   <h2 ><?= $NEcount ?></h2>
         	   <p>Total NE</p>
@@ -59,8 +59,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <br>
-    <div class="row">
-        <div class="col-lg-2" id="purplebox">
+    <div class="row" id="largebox2">
+        <div class="col-sm-2" id="purplebox">
             <div class="inner">
                 <h2><?= $HLRcount ?></h2>
                 <p>Total HLR</p>
@@ -194,8 +194,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         'yAxis' => [
                             'title' => ['text' => 'Total MSC/MGW']
                         ],
-                        'series' => 
-                        [
+                        'labels' => [
+                            'items' => [
+                                [
+                                    'html' => 'Total MSC/MGW',
+                                    'style' => [
+                                        'left' => '160px',
+                                        'top' => '510px',
+                                        'font-size' => '9pt'
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'series' => [
                             [
                                 'type' => 'bar',
                                 'name' => 'MGW',
@@ -270,7 +281,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);
                 ?>
             </div>
-            <div class="row">
+            <div class="row" id="chart6">
     			<?= Highcharts::widget([
     			   	'options' => [
     			    	'title' => ['text' => 'MSC/MGW Vendor'],
@@ -284,16 +295,18 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'html' => 'MSC',
                                     'style' => [
                                         'left' => '50px',
-                                        'top' => '180px',
-                                        'font-size' => '14pt'
+                                        'top' => '190px',
+                                        'font-size' => '14pt',
+
                                     ],
                                 ],
                                 [
                                     'html' => 'MGW',
                                     'style' => [
-                                        'left' => '175px',
-                                        'top' => '180px',
+                                        'left' => '210px',
+                                        'top' => '190px',
                                         'font-size' => '14pt',
+                                        'position' => 'fixed',
                                     ],
                                 ],
                             ],
@@ -302,9 +315,9 @@ $this->params['breadcrumbs'][] = $this->title;
     			        [
     			         	[
                     			'name' => 'MSC count',
-                                'size' => '40%',
+                                'size' => '45%',
                     			'data' => $vendorMSC,
-                                'center' => [50, 80],
+                                'center' => ['20%', '30%'],
     			                'showInLegend' => false,
     			                'dataLabels' => [
     			                    'enabled' => false,
@@ -313,8 +326,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             [
                                 'name' => 'MGW count',
                                 'data' => $vendorMGW,
-                                'center' => [175, 80],
-                                'size' => '40%',
+                                'center' => ['80%', '30%'],
+                                'size' => '45%',
                                 'showInLegend' => true,
                                 'dataLabels' => [
                                     'enabled' => false,

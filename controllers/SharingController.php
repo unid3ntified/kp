@@ -23,12 +23,12 @@ class SharingController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'delete', 'download', 'rename'],
+                        'actions' => ['index', 'delete', 'download', 'rename', 'topology', 'deletetopology'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['index', 'download'],
+                        'actions' => ['index', 'download', 'topology', 'dltopology'],
                         'allow' => true,
                     ],
                 ],
@@ -81,4 +81,36 @@ class SharingController extends Controller
         Yii::$app->db->createCommand('DELETE FROM uploaded_file WHERE id = '.$id)->execute();
         return $this->redirect(['index']);
     }
+
+    public function actionTopology()
+    {
+        $model = new DynamicModel([
+            'file_id'
+        ]);
+     
+        // behavior untuk upload file
+        $model->attachBehavior('upload', [
+            'class' => 'mdm\upload\UploadBehavior',
+            'attribute' => 'file',
+            'savedAttribute' => 'file_id', 
+            //'uploadPath' => Yii::$app->homeUrl.'/files',
+        ]);   
+     
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->saveUploadedFile() !== false) {
+                if ($model->file_id !== NULL && $model->file_id !== '')
+                    Yii::$app->db->createCommand('UPDATE uploaded_file SET type = "topology" WHERE id = '.$model->file_id)->execute();
+                Yii::$app->session->setFlash('success', 'Upload Success');
+            }
+        }
+        return $this->render('topology',['model' => $model]);
+    }
+
+    public function actionDeletetopology($id)
+    {
+        Yii::$app->db->createCommand('DELETE FROM uploaded_file WHERE id = '.$id)->execute();
+        return $this->redirect(['topology']);
+    }
+
+
 }
