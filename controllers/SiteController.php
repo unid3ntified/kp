@@ -152,13 +152,24 @@ class SiteController extends Controller
             $partnerVOIP[$key] = [$value['name'], (int)$value['Trunk']] ;
         }
 
-        $temp = Yii::$app->db->createCommand('SELECT region as name, vendor, sum(subs_capacity) as cap1, sum(bhca_capacity) as cap2, sum(erlang_capacity) as cap3 FROM network_element, msc_cap_dimensioning WHERE network_element_id = node_id group by region, vendor order by cap1 DESC')->queryAll();
+        $temp = Yii::$app->db->createCommand('SELECT region as name, vendor, sum(subs_capacity) as cap1, sum(bhca_capacity) as cap2, sum(erlang_capacity) as cap3 FROM network_element, msc_cap_dimensioning WHERE network_element_id = node_id group by region, vendor order by cap2 DESC')->queryAll();
         $subsCapacity = array();
+        $BHCACapacity = array();
         $erlangCapacity = array();
         foreach ($temp as $key => $value) {
             $subsCapacity[$key] = [$value['name'].' ('.$value['vendor'].')', (int)$value['cap1']];
             $BHCACapacity[$key] = [$value['name'].' ('.$value['vendor'].')', (int)$value['cap2']];
             $erlangCapacity[$key] = [$value['name'].' ('.$value['vendor'].')', (int)$value['cap3']];
+        }
+
+        $temp = Yii::$app->db->createCommand('SELECT vendor, sum(subs_capacity) as cap1, sum(bhca_capacity) as cap2, sum(erlang_capacity) as cap3 FROM network_element, msc_cap_dimensioning WHERE network_element_id = node_id group by vendor')->queryAll();
+        $subsVendor = array();
+        $BHCAVendor = array();
+        $erlangVendor = array();
+        foreach ($temp as $key => $value) {
+            $subsVendor[$key] = [$value['vendor'], (int)$value['cap1']];
+            $BHCAVendor[$key] = [$value['vendor'], (int)$value['cap2']];
+            $erlangVendor[$key] = [$value['vendor'], (int)$value['cap3']];
         }
 
         //passing all variable to view class
@@ -183,6 +194,9 @@ class SiteController extends Controller
                 'subsCapacity' => $subsCapacity,
                 'BHCACapacity' => $BHCACapacity,
                 'erlangCapacity' => $erlangCapacity,
+                'subsVendor' => $subsVendor,
+                'BHCAVendor' => $BHCAVendor,
+                'erlangVendor' => $erlangVendor,
             ]);
 
     }

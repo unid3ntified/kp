@@ -185,7 +185,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'options' => [
                         'title' => ['text' => 'MSC Summary'],
                         'chart' => [
-                            'height' => 610,  
+                            'height' => 600,  
                         ],
                         'xAxis' => [
                             'type' => 'category'
@@ -199,7 +199,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'html' => 'Total MSC/MGW',
                                     'style' => [
                                         'left' => '160px',
-                                        'top' => '510px',
+                                        'top' => '455px',
                                         'font-size' => '9pt'
                                     ],
                                 ],
@@ -210,7 +210,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'type' => 'bar',
                                 'name' => 'MGW',
                                 'data' => $MGWpool,
-                                'showInLegend' => false,
+                                'showInLegend' => true,
                                 'dataLabels' => [
                                     'enabled' => true,
                                 ],
@@ -220,7 +220,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'type' => 'bar',
                                 'name' => 'MSC',
                                 'data' => $MSCpool,
-                                'showInLegend' => false,
+                                'showInLegend' => true,
                                 'dataLabels' => [
                                     'enabled' => true,
                                 ],
@@ -236,7 +236,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row" id="chart4">
                 <?= Highcharts::widget([
                     'options' => [
-                        'title' => ['text' => 'Regional Subscriber Capacity'],
+                        'title' => ['text' => 'Regional Capacity'],
                         'xAxis' => [
                             'type' => 'category'
                         ],
@@ -244,35 +244,38 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => ['text' => 'Total Capacity']
                         ],
                         'chart' => [
-                            'height' => 610,  
+                            'height' => 700,  
                         ],
                         'series' => 
-                        [
+                        [    
                             [
-                                'type' => 'bar',
-                                'name' => 'Subscriber Capacity',
-                                'data' => $subsCapacity,
-                                'showInLegend' => true,
-                                'dataLabels' => [
-                                    'enabled' => true,
-                                ],
-                            ],
-                            [
-                                'type' => 'bar',
+                                'type' => 'column',
                                 'name' => 'BHCA Capacity',
                                 'data' => $BHCACapacity,
                                 'showInLegend' => true,
+                                'color' => '#ca1b14',
                                 'dataLabels' => [
                                     'enabled' => true,
                                 ],
                             ],
                             [
-                                'type' => 'bar',
+                                'type' => 'column',
                                 'name' => 'Erlang Capacity',
                                 'data' => $erlangCapacity,
                                 'showInLegend' => true,
+                                'color' => '#141ba0',
                                 'dataLabels' => [
                                     'enabled' => true,
+                                ],
+                            ],
+                            [
+                                'type' => 'spline',
+                                'name' => 'Subscriber Capacity',
+                                'data' => $subsCapacity,
+                                'showInLegend' => true,
+                                'color' => '#434343',
+                                'dataLabels' => [
+                                    'enabled' => false,
                                 ],
                             ],
                         ],
@@ -382,7 +385,64 @@ $this->params['breadcrumbs'][] = $this->title;
     			   	]
     			]);
     			?>
+            </div>
+            <div class="row" id="chart7">
+                <?= Highcharts::widget([
+                    'options' => [
+                        'title' => ['text' => 'Vendor Capacity'],
+                        'chart' => [
+                          'borderColor'=>'#e5e5e5',
+                          'type' => 'pie',
+                        ],
+                        'labels' => [
+                            'items' => [
+                                [
+                                    'html' => 'Subs',
+                                    'style' => [
+                                        'left' => '50px',
+                                        'top' => '190px',
+                                        'font-size' => '14pt',
 
+                                    ],
+                                ],
+                                [
+                                    'html' => 'BHCA',
+                                    'style' => [
+                                        'left' => '170px',
+                                        'top' => '190px',
+                                        'font-size' => '14pt',
+                                        'position' => 'fixed',
+                                    ],
+                                ],
+                            ],
+                        ],
+                        'series' => 
+                        [
+                            [
+                                'name' => 'Subscriber Capacity',
+                                'size' => '45%',
+                                'data' => $subsVendor,
+                                'center' => ['20%', '30%'],
+                                'showInLegend' => false,
+                                'dataLabels' => [
+                                    'enabled' => false,
+                                ],
+                            ],
+                            [
+                                'name' => 'BHCA Capacity',
+                                'data' => $BHCAVendor,
+                                'center' => ['80%', '30%'],
+                                'size' => '45%',
+                                'showInLegend' => true,
+                                'dataLabels' => [
+                                    'enabled' => false,
+                                ],
+                            ]
+                        ],
+                        'credits' => ['enabled' => false],
+                    ]
+                ]);
+                ?>
             </div>
     	</div> 
     </div>

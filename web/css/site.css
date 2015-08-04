@@ -598,12 +598,12 @@ a.desc:after {
     fill: #f5f5f5;
 }
 
-#chart3 
+#chart3 , #chart4
 {
     padding-right: 10px;
 }
 
-#chart1 , #chart2, #chart3, #chart5 
+#chart1 , #chart2, #chart3, #chart5 , #chart6
 {
     margin-bottom: 10px;
 }
