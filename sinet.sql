@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 04, 2015 at 08:54 AM
+-- Generation Time: Aug 04, 2015 at 09:55 AM
 -- Server version: 5.6.11
 -- PHP Version: 5.5.1
 
@@ -4102,7 +4102,7 @@ INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `
 ('MSPR2', '628184424314', 'Purwoketo2', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-07', ''),
 ('MSPRG Node1 CAMEL HUB Roamware', '628184422502', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', NULL),
 ('MSPRG Node2 CAMEL HUB Roamware', '628184422503', 'not set', 'not set', 'Not Set', NULL, 'In Service', '0000-00-00', NULL),
-('MSPT1', '62818445846', 'Pontianak, MSPT1', 'not set', 'Not Set', NULL, 'In Service', NULL, '11395/Pontianak'),
+('MSPT1', '62818445846', 'Pontianak, MSPT1', 'Kalimantan Barat', 'Huawei', NULL, 'In Service', '2015-08-04', '11395/Pontianak'),
 ('MSPU1', '62818445849', 'Palu, MSPU1', 'Sulawesi Tengah', 'Huawei', NULL, 'In Service', '2015-07-08', '9360 (M3UA Agent NAT-1) For NRS MAP\r\n9597 (VLR backup)'),
 ('MSPW1', '628184423305', 'Purwakarta', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-07-07', ''),
 ('MSPY1', '62818445851', 'Palangkaraya Sebangau, MSPY1', 'Kalimantan Tengah', 'Huawei', NULL, 'In Service', '2015-07-08', ''),
@@ -4765,12 +4765,12 @@ INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `
 ('TRIAL IN HUAWEI :', NULL, 'not set', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('TSB13', NULL, 'SNB (Ex HSSB4)', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-09', ''),
 ('TSB14', NULL, 'Sumur Welut (Ex HSBY3)', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-09', ''),
-('TSBD3', '628184423304', 'Bandung3 (Bandung Office)', 'not set', 'Not Set', NULL, 'In Service', NULL, '5254/BDG\r\n9355/MGJ1701Bintaro\r\n9131 Nat0'),
+('TSBD3', '628184423304', 'Bandung3 (Bandung Office)', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-08-04', '5254/BDG\r\n9355/MGJ1701Bintaro\r\n9131 Nat0'),
 ('TSDP7', NULL, 'Sanur Denpasar (Ex HDPS2)', 'Bali', 'Ericsson', NULL, 'In Service', '2015-07-09', ''),
 ('TSDP8', NULL, 'Denpasar', 'Bali', 'Ericsson', NULL, 'In Service', '2015-07-09', ''),
-('TSJ19', '62818445931', 'Bintaro, TSJ19', 'not set', 'Not Set', NULL, 'In Service', NULL, '5262/Bintaro\r\n9411, 9413 (M3UA NAT-0)'),
-('TSJ20', '628184422301', 'Grha XL, TSJ20', 'not set', 'Not Set', NULL, 'In Service', NULL, '5261/Grha\r\n9415 (MG2001), 9453 (MGJ2002), 9716 (MGJ2002) For CAMEL_SC\r\n9532 & 9533 (Testing Trunk Loop CAMEL SC)'),
-('TSJ27', '628184422302', 'Cibitung, TSJ27', 'not set', 'Not Set', NULL, 'In Service', NULL, '7444 (NAT-0 VHE/LRN)'),
+('TSJ19', '62818445931', 'Bintaro, TSJ19', 'DKI Jakarta', 'Huawei', NULL, 'In Service', '2015-08-04', '5262/Bintaro\r\n9411, 9413 (M3UA NAT-0)'),
+('TSJ20', '628184422301', 'Grha XL, TSJ20', 'DKI Jakarta', 'Huawei', NULL, 'In Service', '2015-08-04', '5261/Grha\r\n9415 (MG2001), 9453 (MGJ2002), 9716 (MGJ2002) For CAMEL_SC\r\n9532 & 9533 (Testing Trunk Loop CAMEL SC)'),
+('TSJ27', '628184422302', 'Cibitung, TSJ27', 'Jawa Barat', 'Huawei', NULL, 'In Service', '2015-08-04', '7444 (NAT-0 VHE/LRN)'),
 ('TSJ31', NULL, 'Binatro (Ex HSJK9)', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-09', ''),
 ('TSJ32', NULL, 'Jombang Raw (Ex HJKT6)', 'Jawa Timur', 'Ericsson', NULL, 'In Service', '2015-07-09', ''),
 ('TSJ33', NULL, 'Bintaro (Ex HJKT7)', 'DKI Jakarta', 'Ericsson', NULL, 'In Service', '2015-07-09', ''),
@@ -4781,8 +4781,7 @@ INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `
 ('TSPB7', NULL, 'Palembang (Ex HPLB1)', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('TSPK4', NULL, 'Pekanbaru (Ex HPKB1)', 'Riau', 'Ericsson', NULL, 'In Service', '2015-07-09', ''),
 ('TSSB4', '62818445627', 'Surabaya4 (SBY Office)', 'not set', 'Not Set', NULL, 'In Service', NULL, '7307/nat 1 Surabaya, \r\n7313/nat 1 Surabaya (For TSSB7)\r\n9530 & 9531 For SC CAMEL Loop'),
-('TSSB7\r\n', NULL, 'NOT SET', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
-('TSSB7', '628184425311', 'Surabaya7', 'not set', 'Not Set', NULL, 'In Service', NULL, '7313/ NAT 1 Surabaya, \r\n7311 NAT 1  (NRS Fadly 1 Oct''13)'),
+('TSSB7', '628184425311', 'snb', 'Jawa Barat', 'Ericsson', NULL, 'In Service', '2015-08-04', '7313/ NAT 1 Surabaya, \r\n7311 NAT 1  (NRS Fadly 1 Oct''13)'),
 ('TSSM2', NULL, 'Alas Tuo, Semarang (Ex HSMG1)', 'Jawa Tengah', 'Ericsson', NULL, 'In Service', '2015-07-09', ''),
 ('TSSU2', NULL, 'Sumbawa (Ex HKDI1)', 'not set', 'Not Set', NULL, 'In Service', NULL, NULL),
 ('TSYG7', NULL, 'Pathuk, Yogyakarta (Ex HYGY2)', 'DI Yogyakarta', 'Ericsson', NULL, 'In Service', '2015-07-09', ''),
