@@ -186,7 +186,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'options' => [
                         'title' => ['text' => 'MSC Summary'],
                         'chart' => [
-                            'height' => 810,  
+                            'height' => 610,  
                         ],
                         'xAxis' => [
                             'type' => 'category'
@@ -255,7 +255,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     [
                                         'name' => '',
                                         'y' => $NEvendor,
-                                        'color' => '#ffffff',
+                                        'color' => '#f5f5f5',
                                     ]
                                 ],
                                 'size' => '50%',
@@ -291,7 +291,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 [
                                     'html' => 'MGW',
                                     'style' => [
-                                        'left' => '190px',
+                                        'left' => '175px',
                                         'top' => '180px',
                                         'font-size' => '14pt',
                                     ],
@@ -313,7 +313,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             [
                                 'name' => 'MGW count',
                                 'data' => $vendorMGW,
-                                'center' => [190, 80],
+                                'center' => [175, 80],
                                 'size' => '40%',
                                 'showInLegend' => true,
                                 'dataLabels' => [

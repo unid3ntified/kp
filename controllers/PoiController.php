@@ -54,10 +54,13 @@ class PoiController extends Controller
     {
         $searchModel = new PoiSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $downloadProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $downloadProvider->setPagination(false);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'downloadProvider' => $downloadProvider,
         ]);
     }
 

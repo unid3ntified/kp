@@ -52,10 +52,13 @@ class DescnetworkController extends Controller
     {
         $searchModel = new DescNetworkSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $downloadProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $downloadProvider->setPagination(false);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'downloadProvider' => $downloadProvider,
         ]);
     }
 
@@ -83,7 +86,7 @@ class DescnetworkController extends Controller
        
         if ($model->load(Yii::$app->request->post())) {
             $valid = $this->fillModel($model);
-                        //var_dump($valid);die;
+                        
             if ($valid == 0)
             {
                 $model->save();

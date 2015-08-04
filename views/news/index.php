@@ -26,6 +26,17 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($searchModel, 'search', ['inputOptions' => ['size' => '30']])?>
             <?php ActiveForm::end(); ?>
         </div>
+        <div class="col-sm-4" align=center> 
+            <h4>
+                <?php
+                    $filename = 'News_filtered_'.date('Y-m-d');
+                    echo 'Download Table: '.ExportMenu::widget([
+                        'dataProvider' => $downloadProvider,
+                        'filename' => $filename,
+                    ]);
+                ?>
+            </h4>
+        </div>
         <div class="col-md-6" align=right>
             <?= Html::a('Add News', ['create'], ['class' => 'btn btn-success']) ?>
         </div>

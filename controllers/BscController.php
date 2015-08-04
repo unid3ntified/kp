@@ -52,10 +52,13 @@ class BscController extends Controller
     {
         $searchModel = new BscSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $downloadProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $downloadProvider->setPagination(false);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'downloadProvider' => $downloadProvider,
         ]);
     }
 
@@ -103,7 +106,6 @@ class BscController extends Controller
     public function actionUpdate($bsc_id, $mgw)
     {
         $model = $this->findModel($bsc_id, $mgw);
-        $this->convertDropDown($model);
         $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -149,43 +151,9 @@ class BscController extends Controller
 
      public function fillModel($model)
     {
-        switch($model->status)
-        {
-            case ("0"):
-                $model->status = "Dismantle";
-                break;
-            case ("1"):
-                $model->status = "In Service";
-                break;
-            case ("2"):
-                $model->status = "Plan";
-                break;
-            case ("3"):
-                $model->status = "Trial";
-                break;
-        }
         $model->log_date = date('Y-m-d');
         if ($model->trunk_name == '')
             $model->trunk_name = NULL;
         $model->save();
-    }
-
-    public function convertDropDown($model)
-    {
-         switch($model->status)
-        {
-            case ("Dismantle"):
-                $model->status = "0";
-                break;
-            case ("In Service"):
-                $model->status = "1";
-                break;
-            case ("Plan"):
-                $model->status = "2";
-                break;
-            case ("Trial"):
-                $model->status = "3";
-                break;
-        }
     }
 }
