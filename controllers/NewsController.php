@@ -186,7 +186,8 @@ class NewsController extends Controller
         if($model->saveUploadedFile() !== false)
         {               
             $model->save();
-            Yii::$app->db->createCommand('UPDATE uploaded_file SET type = "news" WHERE id = '.$model->image_id)->execute();
+            if ($model->image_id !== NULL && $model->image_id !== '')
+                Yii::$app->db->createCommand('UPDATE uploaded_file SET type = "news" WHERE id = '.$model->image_id)->execute();
         }
     }
 }

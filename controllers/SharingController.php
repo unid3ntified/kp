@@ -23,7 +23,7 @@ class SharingController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'delete', 'download', 'rename', 'topology', 'deletetopology'],
+                        'actions' => ['index', 'delete', 'download', 'rename', 'topology', 'deletetopology', 'dltopology'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

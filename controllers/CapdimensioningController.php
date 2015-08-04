@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\TrunkVoip;
-use app\models\TrunkVoipSearch;
+use app\models\CapDimensioning;
+use app\models\CapDimensioningSearch;
 use app\models\NetworkElement;
 use app\models\NetworkElementSearch;
 use yii\web\Controller;
@@ -14,9 +14,9 @@ use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl;
 
 /**
- * TrunkvoipController implements the CRUD actions for TrunkVoip model.
+ * CapDimensioningController implements the CRUD actions for CapDimensioning model.
  */
-class TrunkvoipController extends Controller
+class CapdimensioningController extends Controller
 {
     public function behaviors()
     {
@@ -45,12 +45,12 @@ class TrunkvoipController extends Controller
     }
 
     /**
-     * Lists all TrunkVoip models.
+     * Lists all CapDimensioning models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TrunkVoipSearch();
+        $searchModel = new CapDimensioningSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $downloadProvider = $searchModel->search(Yii::$app->request->queryParams);
         $downloadProvider->setPagination(false);
@@ -63,7 +63,7 @@ class TrunkvoipController extends Controller
     }
 
     /**
-     * Displays a single TrunkVoip model.
+     * Displays a single CapDimensioning model.
      * @param string $id
      * @return mixed
      */
@@ -75,30 +75,27 @@ class TrunkvoipController extends Controller
     }
 
     /**
-     * Creates a new TrunkVoip model.
+     * Creates a new CapDimensioning model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new TrunkVoip();
-        $option = ['Dismantle', 'In Service', 'Plan', 'Trial'];
+        $model = new CapDimensioning();
         $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->fillmodel($model);
-            return $this->redirect(['view', 'id' => $model->trunk_id]);
+            return $this->redirect(['view', 'id' => $model->node_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
                 'listData' => $listData,
-                'option' => $option,
             ]);
         }
     }
 
     /**
-     * Updates an existing TrunkVoip model.
+     * Updates an existing CapDimensioning model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -106,24 +103,20 @@ class TrunkvoipController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
         $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
-        $this->convertDropDown($model);
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->fillmodel($model);
-            return $this->redirect(['view', 'id' => $model->trunk_id]);
+            return $this->redirect(['view', 'id' => $model->node_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
                 'listData' => $listData,
-                'option' => $option,
             ]);
         }
     }
 
     /**
-     * Deletes an existing TrunkVoip model.
+     * Deletes an existing CapDimensioning model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -136,58 +129,18 @@ class TrunkvoipController extends Controller
     }
 
     /**
-     * Finds the TrunkVoip model based on its primary key value.
+     * Finds the CapDimensioning model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return TrunkVoip the loaded model
+     * @return CapDimensioning the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = TrunkVoip::findOne($id)) !== null) {
+        if (($model = CapDimensioning::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
-        }
-    }
-
-    public function fillModel($model)
-    {
-        switch($model->status)
-        {
-            case ("0"):
-                $model->status = "Dismantle";
-                break;
-            case ("1"):
-                $model->status = "In Service";
-                break;
-            case ("2"):
-                $model->status = "Plan";
-                break;
-            case ("3"):
-                $model->status = "Trial";
-                break;
-        }
-        $model->log_date = date('Y-m-d');
-        $model->save();
-    }
-
-    public function convertDropDown($model)
-    {
-         switch($model->status)
-        {
-            case ("Dismantle"):
-                $model->status = "0";
-                break;
-            case ("In Service"):
-                $model->status = "1";
-                break;
-            case ("Plan"):
-                $model->status = "2";
-                break;
-            case ("Trial"):
-                $model->status = "3";
-                break;
         }
     }
 }
