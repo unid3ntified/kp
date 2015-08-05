@@ -241,10 +241,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             'type' => 'category'
                         ],
                         'yAxis' => [
-                            'title' => ['text' => 'Total Capacity']
+                            'title' => ['text' => 'Total Capacity (thousand)']
                         ],
                         'chart' => [
-                            'height' => 700,  
+                            'height' => 610,  
                         ],
                         'series' => 
                         [    
@@ -253,7 +253,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'name' => 'BHCA Capacity',
                                 'data' => $BHCACapacity,
                                 'showInLegend' => true,
-                                'color' => '#ca1b14',
+                                'color' => '#545ba0',
                                 'dataLabels' => [
                                     'enabled' => true,
                                 ],
@@ -263,13 +263,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'name' => 'Erlang Capacity',
                                 'data' => $erlangCapacity,
                                 'showInLegend' => true,
-                                'color' => '#141ba0',
+                                'color' => '#aa5b54',
                                 'dataLabels' => [
                                     'enabled' => true,
                                 ],
                             ],
                             [
-                                'type' => 'spline',
+                                'type' => 'line',
                                 'name' => 'Subscriber Capacity',
                                 'data' => $subsCapacity,
                                 'showInLegend' => true,

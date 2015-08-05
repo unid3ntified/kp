@@ -50,6 +50,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'node_id',
+            [
+                'attribute' => 'location',
+                'value' => 'node.location'
+            ],
             'region',
             'hw_type',
             'software_release',

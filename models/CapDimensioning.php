@@ -53,9 +53,9 @@ class CapDimensioning extends \yii\db\ActiveRecord
             'region' => 'Region',
             'hw_type' => 'HW Type',
             'software_release' => 'Software Release',
-            'subs_capacity' => 'Subs Capacity',
-            'erlang_capacity' => 'Erlang Capacity',
-            'bhca_capacity' => 'BHCA Capacity',
+            'subs_capacity' => 'Subs Cap',
+            'erlang_capacity' => 'Erlang Cap',
+            'bhca_capacity' => 'BHCA Cap',
         ];
     }
 

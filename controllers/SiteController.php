@@ -152,7 +152,7 @@ class SiteController extends Controller
             $partnerVOIP[$key] = [$value['name'], (int)$value['Trunk']] ;
         }
 
-        $temp = Yii::$app->db->createCommand('SELECT region as name, vendor, sum(subs_capacity) as cap1, sum(bhca_capacity) as cap2, sum(erlang_capacity) as cap3 FROM network_element, msc_cap_dimensioning WHERE network_element_id = node_id group by region, vendor order by cap2 DESC')->queryAll();
+        $temp = Yii::$app->db->createCommand('SELECT region as name, vendor, sum(subs_capacity)/1000 as cap1, sum(bhca_capacity)/1000 as cap2, sum(erlang_capacity)/1000 as cap3 FROM network_element, msc_cap_dimensioning WHERE network_element_id = node_id group by region, vendor order by cap2 DESC')->queryAll();
         $subsCapacity = array();
         $BHCACapacity = array();
         $erlangCapacity = array();

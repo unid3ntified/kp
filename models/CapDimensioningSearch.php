@@ -13,13 +13,14 @@ use app\models\CapDimensioning;
 class CapDimensioningSearch extends CapDimensioning
 {
     public $search;
+    public $location;
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['search', 'node_id', 'region', 'hw_type', 'software_release'], 'safe'],
+            [['search', 'node_id', 'region', 'hw_type', 'software_release', 'location'], 'safe'],
             [['subs_capacity', 'erlang_capacity', 'bhca_capacity'], 'integer'],
         ];
     }
@@ -44,9 +45,16 @@ class CapDimensioningSearch extends CapDimensioning
     {
         $query = CapDimensioning::find();
 
+        $query->joinWith(['node']);
+
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+         $dataProvider->sort->attributes['location'] = [
+        'asc' => ['network_element.location' => SORT_ASC],
+        'desc' => ['network_element.location' => SORT_DESC],
+        ];
 
         $this->load($params);
 
