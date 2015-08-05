@@ -8,8 +8,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
 	
-		<?php
-			$data = Yii::$app->db->createCommand('SELECT * FROM uploaded_file WHERE type = "sharing"')->queryAll();
+	<?php
+		if (!$model->file_id)
+		{
 			echo '<div class="row">
 				<div class="col-md-1">#</div>
 				<div class="col-md-6">Title</div>
@@ -29,25 +30,28 @@ $this->params['breadcrumbs'][] = $this->title;
                     'method' => 'post',
                 ]]).'</div></div>';
         	}
-		?>
+        }
+	?>
 
 	<br>
 	<br>
 	<br>
 	<div align="center">			
-		<?php
-	    $form = ActiveForm::begin([
-	            'options' => [ 'enctype' => 'multipart/form-data']
-	    ]);
-	    ?>
-		<?= $form->field($model,'file')->fileInput()->label('File (Max size: 25MB)'); ?>
-		<div class="form-group">
-	        <?= Html::submitButton('Upload this file', ['class' => 'btn btn-sm btn-primary']) ?>
-	    </div>
-	    <?php ActiveForm::end(); ?>
 	    <?php 
 	    	if ($model->file_id)
-	    		echo '<h2>Upload Success</h2>';
+	    	{
+	    		echo '<h2>Upload Success</h2><br><br>';
+	    		echo Html::a('Back', ['index'], ['class' => 'btn btn-success']);
+	    	}
+	    	else
+	    	{
+	    		$form = ActiveForm::begin([
+	            	'options' => [ 'enctype' => 'multipart/form-data']
+	    		]);
+	    		echo $form->field($model,'file')->fileInput()->label('File (Max size: 25MB)');
+	    		echo Html::submitButton('Upload this file', ['class' => 'btn btn-sm btn-primary']);
+	    		ActiveForm::end();
+	    	}
 		?>
 	</div>
 </div>

@@ -59,6 +59,8 @@ class SharingController extends Controller
         $model->addRule('file_id', 'safe')
             ->addRule('file', 'file', ['maxSize' => 26214400]);
 
+        $data = Yii::$app->db->createCommand('SELECT * FROM uploaded_file WHERE type = "sharing"')->queryAll();
+
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->saveUploadedFile() !== false) {
                 if ($model->file_id !== NULL && $model->file_id !== '')
@@ -66,7 +68,10 @@ class SharingController extends Controller
                 Yii::$app->session->setFlash('success', 'Upload Success');
             }
         }
-        return $this->render('index',['model' => $model]);
+        return $this->render('index',[
+            'model' => $model,
+            'data' => $data,
+            ]);
     }
 
     public function actionDownload($path)
@@ -94,7 +99,9 @@ class SharingController extends Controller
             'attribute' => 'file',
             'savedAttribute' => 'file_id', 
             //'uploadPath' => Yii::$app->homeUrl.'/files',
-        ]);   
+        ]);
+        $data = Yii::$app->db->createCommand('SELECT * FROM uploaded_file WHERE type = "topology"')->queryAll();
+        $support = array("jpeg", "jpg", "png", "bmp", "gif", "jpe", "jfif", "jif", "jfi");   
      
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->saveUploadedFile() !== false) {
@@ -103,7 +110,11 @@ class SharingController extends Controller
                 Yii::$app->session->setFlash('success', 'Upload Success');
             }
         }
-        return $this->render('topology',['model' => $model]);
+        return $this->render('topology',[
+            'model' => $model,
+            'data' => $data,
+            'support' => $support,
+        ]);
     }
 
     public function actionDeletetopology($id)

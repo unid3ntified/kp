@@ -29,6 +29,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'node_id',
+            [
+                'label' => 'Location',
+                'value' => $model->node->location,
+            ],
             'region',
             'hw_type',
             'software_release',
