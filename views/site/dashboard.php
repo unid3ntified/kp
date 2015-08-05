@@ -244,7 +244,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => ['text' => 'Total Capacity']
                         ],
                         'chart' => [
-                            'height' => 700,  
+                            'height' => 610,  
                         ],
                         'series' => 
                         [    
