@@ -41,7 +41,7 @@ class TrunkVoip extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['trunk_id', 'partner', 'voip_gateway', 'status', 'mss'], 'required'],
+            [['trunk_id', 'partner', 'voip_gateway', 'status', 'mss', 'mgw'], 'required'],
             [['detail', 'konfigurasi', 'remark'], 'string'],
             [['e1'], 'integer'],
             [['log_date'], 'safe'],
