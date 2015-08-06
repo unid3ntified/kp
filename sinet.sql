@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
+-- version 4.0.4.1
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 06, 2015 at 11:21 AM
--- Server version: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: Aug 06, 2015 at 09:23 AM
+-- Server version: 5.6.11
+-- PHP Version: 5.5.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `sinet`
 --
+CREATE DATABASE IF NOT EXISTS `sinet` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `sinet`;
 
 -- --------------------------------------------------------
 
@@ -33,7 +35,9 @@ CREATE TABLE IF NOT EXISTS `bsc` (
   `trunk_name` varchar(20) NOT NULL,
   `year` year(4) DEFAULT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`bsc_id`,`mgw`),
+  KEY `mgw` (`mgw`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -328,7 +332,7 @@ INSERT INTO `bsc` (`bsc_id`, `mgw`, `msc`, `trunk_name`, `year`, `log_date`, `re
 --
 
 CREATE TABLE IF NOT EXISTS `desc_network` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `network_element_id` varchar(100) NOT NULL,
   `opc_nat0` varchar(20) DEFAULT NULL,
   `opc_nat1` varchar(20) DEFAULT NULL,
@@ -340,8 +344,10 @@ CREATE TABLE IF NOT EXISTS `desc_network` (
   `fifth_opc` varchar(20) DEFAULT NULL,
   `sixth_opc` varchar(20) DEFAULT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=15519 DEFAULT CHARSET=latin1;
+  `remark` text,
+  PRIMARY KEY (`id`),
+  KEY `network_id` (`network_element_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15519 ;
 
 --
 -- Dumping data for table `desc_network`
@@ -2067,15 +2073,16 @@ INSERT INTO `desc_network` (`id`, `network_element_id`, `opc_nat0`, `opc_nat1`, 
 --
 
 CREATE TABLE IF NOT EXISTS `gt_proposedlist` (
-`No` int(11) NOT NULL,
+  `No` int(11) NOT NULL AUTO_INCREMENT,
   `Regional` varchar(100) NOT NULL,
   `MSS` varchar(20) DEFAULT NULL,
   `Vendor` varchar(100) DEFAULT NULL,
   `GT` varchar(30) DEFAULT NULL,
   `new_GT` varchar(30) DEFAULT NULL,
   `Status` varchar(50) DEFAULT NULL,
-  `Remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=248 DEFAULT CHARSET=latin1;
+  `Remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=249 ;
 
 --
 -- Dumping data for table `gt_proposedlist`
@@ -2212,14 +2219,15 @@ INSERT INTO `gt_proposedlist` (`No`, `Regional`, `MSS`, `Vendor`, `GT`, `new_GT`
 --
 
 CREATE TABLE IF NOT EXISTS `gt_rule` (
-`No` int(11) NOT NULL,
+  `No` int(11) NOT NULL AUTO_INCREMENT,
   `STP` text NOT NULL,
   `Area` text NOT NULL,
   `Equipment` varchar(100) DEFAULT NULL,
   `GT` text NOT NULL,
   `Last_counter` varchar(30) DEFAULT NULL,
-  `Remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=latin1;
+  `Remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=70 ;
 
 --
 -- Dumping data for table `gt_rule`
@@ -2310,7 +2318,9 @@ CREATE TABLE IF NOT EXISTS `mgw` (
   `new_mss_connected` varchar(20) DEFAULT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`bcu_id`),
+  KEY `mgw_name` (`mgw_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2574,7 +2584,8 @@ INSERT INTO `mgw` (`bcu_id`, `mgw_name`, `pool`, `region`, `old_mss_connected`, 
 
 CREATE TABLE IF NOT EXISTS `migration` (
   `version` varchar(180) NOT NULL,
-  `apply_time` int(11) DEFAULT NULL
+  `apply_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`version`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2608,7 +2619,9 @@ CREATE TABLE IF NOT EXISTS `msc` (
   `mgw_managerA_circuit` varchar(10) DEFAULT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`msc_name`),
+  UNIQUE KEY `cnid` (`cnid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2749,7 +2762,8 @@ CREATE TABLE IF NOT EXISTS `msc_cap_dimensioning` (
   `subs_capacity` int(11) DEFAULT NULL,
   `erlang_capacity` int(11) DEFAULT NULL,
   `bhca_capacity` int(11) DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`node_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2870,7 +2884,7 @@ INSERT INTO `msc_cap_dimensioning` (`node_id`, `region`, `hw_type`, `software_re
 --
 
 CREATE TABLE IF NOT EXISTS `msrn_proposedlist` (
-`No` int(11) NOT NULL,
+  `No` int(11) NOT NULL AUTO_INCREMENT,
   `Regional` varchar(100) NOT NULL,
   `MSS` varchar(10) NOT NULL,
   `Vendor` varchar(100) DEFAULT NULL,
@@ -2879,8 +2893,9 @@ CREATE TABLE IF NOT EXISTS `msrn_proposedlist` (
   `Status` varchar(50) DEFAULT NULL,
   `Reserved_by` varchar(50) NOT NULL,
   `Updated` varchar(20) NOT NULL,
-  `Remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=228 DEFAULT CHARSET=latin1;
+  `Remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=230 ;
 
 --
 -- Dumping data for table `msrn_proposedlist`
@@ -2999,7 +3014,10 @@ INSERT INTO `msrn_proposedlist` (`No`, `Regional`, `MSS`, `Vendor`, `Existing_MS
 (223, 'Sulawesi', 'MSPU1', 'Huawei', '628180177abc', '62819000002abcd', '', 'LukmanHM', 'W16 2012', ''),
 (224, 'Sulawesi', 'MSBM1', 'Huawei', '628180183abc', '62819000003abcd', '', 'LukmanHM', 'W16 2012', ''),
 (225, 'Jayapura', 'MSJY1', 'Huawei', '628180186abc', '62819000004abcd', '', 'LukmanHM', 'W16 2012', ''),
-(226, 'Jayapura', 'MSAB1', 'Huawei', '628180184abc', '62819000005abcd', '', 'LukmanHM', 'W16 2012', '');
+(226, 'Jayapura', 'MSAB1', 'Huawei', '628180184abc', '62819000005abcd', '', 'LukmanHM', 'W16 2012', ''),
+(227, 'bali', 'bali', NULL, 'bali', 'bali', '', 'bali', 'ali', ''),
+(228, 'bali', 'bali', NULL, 'bali', 'bali', '', 'bali', 'bali', ''),
+(229, 'bali', 'bali', NULL, 'bali', 'bali', '', 'bali', 'bali', '');
 
 -- --------------------------------------------------------
 
@@ -3008,13 +3026,14 @@ INSERT INTO `msrn_proposedlist` (`No`, `Regional`, `MSS`, `Vendor`, `Existing_MS
 --
 
 CREATE TABLE IF NOT EXISTS `msrn_routing` (
-`No` int(11) NOT NULL,
+  `No` int(11) NOT NULL AUTO_INCREMENT,
   `cluster` varchar(100) NOT NULL,
   `mss` varchar(20) NOT NULL,
   `first_route` varchar(30) NOT NULL,
   `second_route` varchar(20) NOT NULL,
-  `remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+  `remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=61 ;
 
 --
 -- Dumping data for table `msrn_routing`
@@ -3093,7 +3112,8 @@ CREATE TABLE IF NOT EXISTS `msrn_rule` (
   `equipment` varchar(100) NOT NULL,
   `new_msrn` varchar(20) NOT NULL,
   `last_counter` varchar(20) NOT NULL,
-  `remark` varchar(100) DEFAULT NULL
+  `remark` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`cmn`,`new_msrn`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -3126,7 +3146,10 @@ CREATE TABLE IF NOT EXISTS `network_element` (
   `gtt` varchar(20) DEFAULT NULL,
   `status` varchar(20) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`network_element_id`),
+  UNIQUE KEY `sc-_address` (`gt_address`),
+  UNIQUE KEY `gtt` (`gtt`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -4929,22 +4952,25 @@ INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `
 --
 
 CREATE TABLE IF NOT EXISTS `news` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` text NOT NULL,
   `news_desc` text NOT NULL,
   `image_id` int(11) DEFAULT NULL,
   `username` varchar(50) DEFAULT NULL,
-  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `image_id` (`image_id`,`username`),
+  KEY `user_id` (`username`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id`, `title`, `news_desc`, `image_id`, `username`, `timestamp`) VALUES
-(4, 'Tes 3', 'Lorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.', 92, 'admin', '2015-07-14 04:15:50'),
-(12, 'Tes 1', 'Lorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.', 88, 'admin', '2015-07-28 06:22:52'),
-(13, 'TES 2', 'Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.', NULL, 'nitto', '2015-08-06 03:38:15');
+(4, 'Tes 3', 'Lorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.', 72, 'admin', '2015-07-14 04:15:50'),
+(5, 'Tes 4', 'Lorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.', 74, 'admin', '2015-07-14 04:43:28'),
+(12, 'Tes 1', 'Lorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.', 76, 'admin', '2015-07-28 06:22:52');
 
 -- --------------------------------------------------------
 
@@ -4953,12 +4979,13 @@ INSERT INTO `news` (`id`, `title`, `news_desc`, `image_id`, `username`, `timesta
 --
 
 CREATE TABLE IF NOT EXISTS `pabx_info` (
-`No` int(11) NOT NULL,
+  `No` int(11) NOT NULL AUTO_INCREMENT,
   `Regional` varchar(100) NOT NULL,
   `LAC` varchar(15) NOT NULL,
   `DN` varchar(15) DEFAULT NULL,
-  `Remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=latin1;
+  `Remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=73 ;
 
 --
 -- Dumping data for table `pabx_info`
@@ -5028,7 +5055,9 @@ CREATE TABLE IF NOT EXISTS `poi` (
   `MSRN` varchar(30) DEFAULT NULL,
   `dummy_number` varchar(20) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`poi`),
+  KEY `msc_name` (`msc_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -5082,7 +5111,10 @@ CREATE TABLE IF NOT EXISTS `rnc_reference` (
   `rnc_location` varchar(80) NOT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`rnc_id`,`mgw_name`),
+  KEY `msc_name` (`pool`),
+  KEY `mgw_name` (`mgw_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -5371,12 +5403,13 @@ INSERT INTO `rnc_reference` (`rnc_id`, `mgw_name`, `rnc_name`, `pool`, `vendor_r
 --
 
 CREATE TABLE IF NOT EXISTS `sct_port_huawei` (
-`No` int(11) NOT NULL,
+  `No` int(11) NOT NULL AUTO_INCREMENT,
   `mss_huawei` varchar(100) NOT NULL,
   `sctp_port` varchar(20) NOT NULL,
   `last_counter` varchar(20) DEFAULT NULL,
-  `Remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `Remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `sct_port_huawei`
@@ -5393,13 +5426,61 @@ INSERT INTO `sct_port_huawei` (`No`, `mss_huawei`, `sctp_port`, `last_counter`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sgsn_cap_dimensioning`
+--
+
+CREATE TABLE IF NOT EXISTS `sgsn_cap_dimensioning` (
+  `node_name` varchar(20) NOT NULL,
+  `site_name` varchar(100) NOT NULL,
+  `technology_type` varchar(20) NOT NULL,
+  `vendor` varchar(30) NOT NULL,
+  `hardware_version` varchar(50) NOT NULL,
+  `software_level` varchar(50) NOT NULL,
+  `cap_max_sau` varchar(50) NOT NULL,
+  `cap_max_pdp` varchar(50) NOT NULL,
+  `cap_used_sau` varchar(50) NOT NULL,
+  `cap_used_pdp` varchar(50) NOT NULL,
+  `cap_used_sau_percent` float DEFAULT NULL,
+  `cap_used_pdp_percent` float DEFAULT NULL,
+  `cpu_utilisation_percent` float DEFAULT NULL,
+  `memory_utilisation_percent` float DEFAULT NULL,
+  PRIMARY KEY (`node_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `sgsn_cap_dimensioning`
+--
+
+INSERT INTO `sgsn_cap_dimensioning` (`node_name`, `site_name`, `technology_type`, `vendor`, `hardware_version`, `software_level`, `cap_max_sau`, `cap_max_pdp`, `cap_used_sau`, `cap_used_pdp`, `cap_used_sau_percent`, `cap_used_pdp_percent`, `cpu_utilisation_percent`, `memory_utilisation_percent`) VALUES
+('SGBJM01', 'Banjarmasin', '2G/3G', 'Huawei', 'ATCA', 'PS10', '1.5 Mio', '1.5 Mio', '108 K', '76 K', 7, 5, 4, NULL),
+('SGBLB01', 'Not Set', '2G/3G', 'Huawei', 'ATCA', 'PS10', '1.2 Mio', '1.2 Mio', '126 K', '80 K', 10, 6, 5, NULL),
+('SGBLP03', 'Balikpapan', '2G/3G', 'Huawei', 'ATCA', 'PS10', '1.5 Mio', '1.5 Mio', '108 K', '70 K', 7, 4, 4, NULL),
+('SGCBT01', 'Cibitung', '2G/3G', 'Ericsson', 'SGSN MKVIII', '2013B', '10 Mio', '15 Mio', '3029 K', '1776 K', 30, 11, 31, 16),
+('SGCBT02', 'Cibitung', '2G/3G', 'Ericsson', 'SGSN MKVIII', '2013B', '10 Mio', '15 Mio', '1518 K', '903 K', 15, 6, 18, 12),
+('SGDPS03', 'Denpasar', '2G/3G', 'Huawei', 'NEW ATCA', 'PS10', '12 Mio', '16 Mio', '510 K', '253 K', 4, 1, 2, NULL),
+('SGDPS04', 'Denpasar', '2G/3G', 'Huawei', 'NEW ATCA', 'PS10', '12 Mio', '16 Mio', '519 K', '247 K', 4, 1, 2, NULL),
+('SGJKT02', 'Jakarta (Menteng)', '2G/3G', 'Ericsson', 'SGSN MKVIII', '2013B', '10 Mio', '15 Mio', '1350 K', '783 K', 13, 5, 17, 10),
+('SGJMB02', 'Jambi', '2G/3G', 'Ericsson', 'SGSN MKVIII', '2013B', '10 Mio', '15 Mio', '249 K', '124 K', 2, 0, 5, 9),
+('SGMDN03', 'Medan', '2G/3G', 'Ericsson', 'SGSN MKVIII', '2013B', '10 Mio', '15 Mio', '379 K', '209 K', 3, 1, 6, 8),
+('SGMKS03', 'Makassar', '2G/3G', 'Huawei', 'ATCA', 'PS10', '1.2 Mio', '1.2 Mio', '160 K', '107 K', 13, 8, 6, NULL),
+('SGPKB02', 'Pekanbaru', '2G/3G', 'Ericsson', 'SGSN MKVIII', '2013B', '10 Mio', '15 Mio', '366 K', '200 K', 3, 1, 7, 8),
+('SGPLB03', 'Palembang', '2G/3G', 'Ericsson', 'SGSN MKVIII', '2013B', '10 Mio', '15 Mio', '215 K', '111 K', 2, 0, 4, 8),
+('SGPTK01', 'Pontianak', '2G/3G', 'Huawei', 'ATCA', 'PS10', '1.5 Mio', '1.5 Mio', '105 K', '67 K', 7, 4, 4, NULL),
+('SGSBY04', 'Surabaya', '2G/3G', 'Ericsson', 'SGSN MKVIII', '2013B', '10 Mio', '15 Mio', '1153 K', '495 K', 11, 3, 13, 12),
+('SGSBY05', 'Surabaya', '2G/3G', 'Ericsson', 'SGSN MKVIII', '2013B', '10 Mio', '15 Mio', '906 K', '412 K', 9, 2, 11, 10),
+('SGSBY06', 'Surabaya', '2G/3G', 'Ericsson', 'SGSN MKVIII', '2013B', '10 Mio', '15 Mio', '1042 K', '397 K', 10, 2, 11, 10);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `spc_ransharing`
 --
 
 CREATE TABLE IF NOT EXISTS `spc_ransharing` (
-`No` int(11) NOT NULL,
-  `SPC` varchar(20) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  `No` int(11) NOT NULL AUTO_INCREMENT,
+  `SPC` varchar(20) NOT NULL,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `spc_ransharing`
@@ -5420,13 +5501,14 @@ INSERT INTO `spc_ransharing` (`No`, `SPC`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `spc_rule` (
-`No` int(11) NOT NULL,
+  `No` int(11) NOT NULL AUTO_INCREMENT,
   `Area` varchar(100) NOT NULL,
   `SPC` varchar(50) NOT NULL,
   `Jenis` varchar(20) NOT NULL,
   `Last_counter` varchar(30) NOT NULL,
-  `Remark` text
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+  `Remark` text,
+  PRIMARY KEY (`No`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `spc_rule`
@@ -5460,7 +5542,9 @@ CREATE TABLE IF NOT EXISTS `trunk_interkoneksi` (
   `e1_capacity` int(11) DEFAULT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`trunk_id`),
+  KEY `POI` (`POI`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -5746,7 +5830,7 @@ INSERT INTO `trunk_interkoneksi` (`trunk_id`, `POI`, `connection`, `t_group`, `d
 CREATE TABLE IF NOT EXISTS `trunk_voip` (
   `trunk_id` varchar(20) NOT NULL,
   `mss` varchar(20) NOT NULL,
-  `mgw` varchar(20) DEFAULT NULL,
+  `mgw` varchar(20) NOT NULL,
   `detail` text,
   `direction` varchar(20) DEFAULT NULL,
   `konfigurasi` text,
@@ -5757,7 +5841,10 @@ CREATE TABLE IF NOT EXISTS `trunk_voip` (
   `voip_gateway` varchar(80) NOT NULL,
   `status` varchar(20) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text
+  `remark` text,
+  PRIMARY KEY (`trunk_id`),
+  KEY `mgw_name` (`mgw`),
+  KEY `mss` (`mss`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -5765,124 +5852,124 @@ CREATE TABLE IF NOT EXISTS `trunk_voip` (
 --
 
 INSERT INTO `trunk_voip` (`trunk_id`, `mss`, `mgw`, `detail`, `direction`, `konfigurasi`, `partner`, `e1`, `opc_mss`, `dpc`, `voip_gateway`, `status`, `log_date`, `remark`) VALUES
-('I/OGSETS', 'TSSB7', NULL, 'TSSB7-SBCSB01', 'TERMINASI', NULL, 'ETISALAT', 10, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, NULL),
-('I/OGSGH1', 'TSSB7 ', NULL, 'TSSB7 - SBCSB01', 'TERMINASI', NULL, 'GAHARU', 19, NULL, NULL, 'SBC ACME PACKET', 'inservice', NULL, NULL),
-('I/OGSNG1', 'TSSB7', 'MGSB702', 'TSSB7-SBC SURABAYA (direct connection)', 'TERMINASI', NULL, 'NGT', NULL, NULL, NULL, 'not set', 'trial', NULL, NULL),
-('I/OGSNG2', 'TSSB7', 'MGSB702', 'TSSB7-SBC SURABAYA (internet public connection)', 'TERMINASI', NULL, 'NGT', NULL, NULL, NULL, 'not set', 'trial', NULL, NULL),
-('I/OGSNG3', 'TSSB7', 'MGSB702', 'TSSB7-SBC SURABAYA (internet connection)', 'ORIGINASI', NULL, 'NGT', NULL, NULL, NULL, 'not set', 'trial', NULL, NULL),
-('I/OGSNG4', 'TSSB7', NULL, 'TSSB7 - SBC Surabaya  NGT no CLI', 'TERMINASI', NULL, 'NGT', 9, NULL, NULL, 'SBC ACME PACKET', 'inservice', NULL, NULL),
-('I/OGSNG5', 'TSSB7', NULL, 'TSSB7 - SBC Surabaya NGT for DiGi', 'TERMINASI', NULL, 'NGT', 20, NULL, NULL, 'SBC ACME PACKET', 'inservice', NULL, NULL),
-('I/OGSNGO', 'TSSB7', 'MGSB702', 'TSSB7-SBC SURABAYA (direct connection)', 'ORIGINASI', NULL, 'NGT', NULL, NULL, NULL, 'not set', 'trial', NULL, NULL),
-('I/OGSSN1', 'TSSB7', NULL, 'TSSB7 - SBC SURABAYA', 'TERMINASI', NULL, 'SMARTONE', 10, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, NULL),
-('I/OGSST1', 'tssb7', NULL, 'TSSB7 - SBC Surabaya shinetown 01000 (via direct)', 'ORIGINASI', NULL, 'SHINETOWN', NULL, '-', '-', 'SBC ACME PACKET', 'trial', NULL, NULL),
-('I/OGSST2', 'tssb7', NULL, 'TSSB7 - SBC Surabaya shinetown 01000 (via public)', 'ORIGINASI', NULL, 'SHINETOWN', NULL, '-', '-', 'SBC ACME PACKET', 'trial', NULL, NULL),
-('I/OGSST3', 'tssb7', NULL, 'TSSB7 - SBC Surabaya (via direct)', 'terminasi', NULL, 'SHINETOWN', NULL, '-', '-', 'SBC ACME PACKET', 'trial', NULL, NULL),
-('I/OGSST4', 'tssb7', NULL, 'TSSB7 - SBC Surabaya (via public)', 'terminasi', NULL, 'SHINETOWN', NULL, '-', '-', 'SBC ACME PACKET', 'trial', NULL, NULL),
-('I/OGSST5', 'tssb7', NULL, 'TSSB7 - SBC Surabaya (via direct)', 'terminasi', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'trial', NULL, NULL),
-('I/OGSST6', 'tssb7', NULL, 'TSSB7 - SBC Surabaya (via direct)', 'terminasi', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'trial', NULL, NULL),
-('I/OGSST7', 'tssb7', NULL, 'TSSB7 - SBC Surabaya (via direct)', 'terminasi', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'trial', NULL, NULL),
-('I/OGSTES', 'TSSB7', NULL, 'TSSB7-SBC SURABAYA', NULL, NULL, 'SBCSB01 TESTING', NULL, '-', '-', 'SBC ACME PACKET', 'trial', NULL, NULL),
-('IXBETS', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro  Etisalat', 'TERMINASI', NULL, 'ETISALAT', 10, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6309'),
-('IXBFR1', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Orange FT', 'TERMINASI', NULL, 'ORANGE FT', 6, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6371'),
-('IXBJJ2', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro  JJ TELECOM', 'TERMINASI', NULL, 'JJ TELECOM (partner BUSOL)', 2, '-', '-', 'SBC ACME PACKET', 'INSERVICE', NULL, '6000-6063'),
-('IXBJJ3', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro  JJ TELECOM', 'TERMINASI', NULL, 'JJ TELECOM (partner BUSOL)', NULL, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000-6063'),
-('IXBJJT', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro  JJ TELECOM (busol Partner)', 'TERMINASI', NULL, 'JJ TELECOM (partner BUSOL)', 2, '-', '-', 'SBC ACME PACKET', 'INSERVICE', NULL, '6000-6063'),
-('IXBSL4', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Sing Tel (inet public)', 'TERMINASI', NULL, 'SINGTEL', 7, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000-6433'),
-('IXBST1', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Shinetown  (via bintaro)', 'TERMINASI', NULL, 'SHINETOWN', 27, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-7673'),
-('IXBST2', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Shinetown  (via bintaro)', 'TERMINASI', NULL, 'SHINETOWN', 10, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6619'),
-('IXBST3', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Shinetown  (via PTP Bintaro)', 'TERMINASI', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'trial', NULL, NULL),
-('IXBST4', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Shinetown  (via router ICR jkt)', 'TERMINASI', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'trial', NULL, NULL),
-('IXBST5', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Shinetown  (via router ICR jkt)', 'TERMINASI', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'trial', NULL, NULL),
-('IXBTL1', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Telindo', 'TERMINASI', NULL, 'TELINDO', 1, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6619'),
-('IXBTM5', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro TM Singapore', 'terminasi', NULL, 'TM SINGAPORE', NULL, NULL, NULL, 'SBC ACME PACKET', 'trial', NULL, NULL),
-('OXACL6', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Shah Alam (via Equinix)', 'ORIGINASI', NULL, 'CELCOM', 20, '10409', '10278', 'Direct', 'inservice', NULL, NULL),
-('OXACL7', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Kepong (via Equinix)', 'ORIGINASI', NULL, 'CELCOM', 17, '10409', '10279', 'Direct', 'inservice', NULL, NULL),
-('OXBBG5', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Belga CLI origination 01000', 'ORIGINASI', NULL, 'BELGA', 1, '-', '-', 'SBC ACME PACKET', 'INSERVICE', NULL, '6000-7239'),
-('OXBBG6', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Belga CLI origination MSRN', 'ORIGINASI', NULL, 'BELGA', 2, '-', '-', 'SBC ACME PACKET', 'INSERVICE', NULL, '6000-7239'),
-('OXBCL4', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro- Celcom (VoIP corporate)', 'ORIGINASI', NULL, 'CELCOM (VoIP corporate)', NULL, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000-11827'),
-('OXBDLG', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro  Dialog Origination', 'ORIGINASI', NULL, 'DIALOG', 1, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6003'),
-('OXBETS', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro  Etisalat', 'ORIGINASI', NULL, 'ETISALAT', 2, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6123'),
-('OXBGH1', 'TSJ19', NULL, 'TSJ19 - SBC BintaroGAHARU CLI', 'originasi', NULL, 'GAHARU (voIP corporate)', 1, NULL, NULL, 'SBC ACME PACKET', 'trial', NULL, '6000-7983'),
-('OXBJJ1', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro  JJ TELECOM', 'originasi', NULL, 'JJ TELECOM (partner BUSOL)', NULL, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000-6063'),
-('OXBJJT', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro  JJ TELECOM', 'originasi', NULL, 'JJ TELECOM (partner BUSOL)', NULL, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000-6063'),
-('OXBN10', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro NGT  VoIP Corp (161662)', 'ORIGINASI', NULL, 'NGT', 14, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6309'),
-('OXBN11', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro NGT CLI', 'ORIGINASI', NULL, 'NGT', NULL, '-', '-', 'SBC ACME PACKET', 'trial', NULL, NULL),
-('OXBNG9', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro NGT', 'ORIGINASI', NULL, 'NGT', 37, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-8367'),
-('OXBSL4', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Sing Tel (inet public)', 'ORIGINASI', NULL, 'SINGTEL', 6, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000-6433'),
-('OXBST1', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Shinetown 01000 Shine Town Jkt', 'ORIGINASI', NULL, 'SHINETOWN', 13, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6805'),
-('OXBST2', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Shinetown  (via router ICR jkt)', 'ORIGINASI', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'trial', NULL, NULL),
-('OXBTC3', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Tata Comunication', 'ORIGINASI', 'IP media TATA: 112.215.6.210\r\nIP signaling TATA : 116.0.70.11\r\n                                66.198.81.6', 'TATA', NULL, NULL, NULL, 'SBC ACME PACKET', 'INSERVICE', NULL, NULL),
-('OXBTL1', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Telindo', 'ORIGINASI', NULL, 'TELINDO', 3, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6805'),
-('OXBTM5', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro TM Singapore', 'originasi', NULL, 'TM SINGAPORE', NULL, NULL, NULL, 'SBC ACME PACKET', 'trial', NULL, NULL),
-('TXACL1', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Kepong (2CELC)', 'BOTHWAY', NULL, 'CELCOM', 6, '10409', '10279', 'Direct', 'inservice', NULL, NULL),
-('TXACL2', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Shah Alam (2CECL)', 'BOTHWAY', NULL, 'CELCOM', 6, '10409', '10278', 'Direct', 'inservice', NULL, NULL),
-('TXACL3', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Kepong 3G (2CECL)', 'BOTHWAY', NULL, 'CELCOM', 8, '10409', '10279', 'Direct', 'inservice', NULL, NULL),
-('TXACL4', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Shah Alam (2TMCH)', 'BOTHWAY', NULL, 'CELCOM', 32, '10409', '10278', 'Direct', 'inservice', NULL, NULL),
-('TXACL5', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Kepong (2TMCH)', 'BOTHWAY', NULL, 'CELCOM', 29, '10409', '10279', 'Direct', 'inservice', NULL, NULL),
-('TXACL6', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Shah Alam (Equinix))', 'BOTHWAY', NULL, 'CELCOM', 70, '10409', '10278', 'Direct', 'inservice', NULL, NULL),
-('TXACL7', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Kepong (Equinix)', 'BOTHWAY', NULL, 'CELCOM', 73, '10409', '10279', 'Direct', 'inservice', NULL, NULL),
-('TXACL8', 'TSJ19', 'MGJ1901', 'MGJ1901 ? Celcom For Inbound Dial + and Outbound MSRN (Equinix)', 'ORIGINASI', NULL, 'CELCOM', 3, '10409', '10279', 'Direct', 'inservice', NULL, NULL),
-('TXASKM', 'TSJ19', 'MGJ1902', 'MGJ1902 - SBC Bintaro', 'ORIGINASI', 'ok', 'ASIAKOMNET', 6, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6371'),
-('TXBBG3', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB Belgacom 1st Class', 'ORIGINASI', NULL, 'BELGA', 1, '9413', '3705', 'Telco Bridge', 'inservice', NULL, NULL),
-('TXBBG4', 'TSJ19', 'MGJ1902', 'MGJ1902 ? TB Belgacom For Inbound Dial + and Outbound MSRN', 'ORIGINASI', NULL, 'BELGA', 2, '9413', '3705', 'Telco Bridge', 'inservice', NULL, NULL),
-('TXBBG5', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Belga CLI', 'TERMINASI', NULL, 'BELGA', 20, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000-7239'),
-('TXBBTV', 'TSJ19', NULL, 'TSJ19 - Esia IDD Jakarta (VoIP Terminasi)', 'TERMINASI', NULL, 'ESIA', 5, '-', '-', 'Direct', 'inservice', NULL, NULL),
-('TXBCCW', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro  PCCW', 'TERMINASI', NULL, 'PCCW', 1, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000-6003'),
-('TXBCL1', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Celcom Kepong (Equinix) via inet public', 'TERMINASI', NULL, 'CELCOM', 118, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-11827'),
-('TXBCL3', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Celcom Shahalam (Equinix) via inet public', 'TERMINASI', NULL, 'CELCOM', 118, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-11827'),
-('TXBDLG', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro  Dialog Termination', 'TERMINASI', NULL, 'DIALOG', 4, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6247'),
-('TXBESS', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro BTEL', 'BOTHWAY', NULL, 'BTEL', 12, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6743'),
-('TXBFR1', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Orange FT', 'ORIGINASI', NULL, 'ORANGE FT', 2, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000-6003'),
-('TXBGH1', 'TSJ19', 'MGJ1902', 'MGJ1902 - Gaharu Bw', 'BOTHWAY', NULL, 'GAHARU', 5, '9453', '3653', 'Direct', 'inservice', NULL, NULL),
-('TXBHCP', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro HCPT', 'BOTHWAY', NULL, 'HCPT', 1, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000-6062'),
-('TXBIND', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro ISAT', 'BOTHWAY', NULL, 'INDOSAT', 1, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000-6062'),
-('TXBIP1', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro  IP Telin', 'TERMINASI', NULL, 'IPTELIN', 12, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6063'),
-('TXBIT1', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro  TMI via inet', 'ORIGINASI', NULL, 'TM INTERNATIONAL', NULL, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000-8479'),
-('TXBJST', 'TSJ19', NULL, 'MGJ1902-SBC Bintaro Jasnita', 'ORIGINASI', NULL, 'JASNITA', 5, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6309'),
-('TXBM11', 'TSJ19', 'MGJ1902', 'MGJ1902 - M1 Singapore (direct)', 'TERMINASI', NULL, 'M1', 28, '5261', '1107', 'Direct', 'inservice', NULL, NULL),
-('TXBM12', 'TSJ19', 'MGJ1902', 'MGJ1902 - M1 Singapore (direct)', 'TERMINASI', NULL, 'M1', 3, '5261', '1107', 'Direct', 'inservice', NULL, NULL),
-('TXBNG7', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro NGT CLI', 'TERMINASI', NULL, 'NGT', 30, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-9657'),
-('TXBNG8', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro NGT no CLI', 'TERMINASI', NULL, 'NGT', 10, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-7239'),
-('TXBNG9', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro NGT for DiGi', 'TERMINASI', NULL, 'NGT', 20, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-8479'),
-('TXBNGO', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB NGT Networks', 'ORIGINASI', NULL, 'NGT', 37, '9413', '3705', 'Telco Bridge', 'inservice', NULL, NULL),
-('TXBSH1', 'TSJ19', 'MGJ1902', 'MGJ1902 - IMG Bintaro Shinetown Termination non CLI_Equinix', 'TERMINASI', NULL, 'SHINETOWN', 17, '9413', '3706', 'IMG', 'inservice', NULL, NULL),
-('TXBSHT', 'TSJ19', 'MGJ1902', 'MGJ1902 - IMG Bintaro Shinetown ISDN Jakarta', 'TERMINASI', NULL, 'SHINETOWN', 31, '9413', '3706', 'IMG', 'inservice', NULL, NULL),
-('TXBSL1', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB Singapore Telecommunication', 'ORIGINASI', NULL, 'SINGTEL', 5, '9413', '3705', 'Telco Bridge', 'inservice', NULL, NULL),
-('TXBSL3', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Sing Tel', 'TERMINASI', NULL, 'SINGTEL', 7, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6433'),
+('I/OGSETS', 'TSSB7', 'MGSB702', 'TSSB7-SBCSB01', 'TERMINASI', NULL, 'ETISALAT', 10, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, NULL),
+('I/OGSGH1', 'TSSB7', 'MGSB702', 'TSSB7 - SBCSB01', 'TERMINASI', NULL, 'GAHARU', 19, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, NULL),
+('I/OGSNG1', 'TSSB7', 'MGSB702', 'TSSB7-SBC SURABAYA (direct connection)', 'TERMINASI', NULL, 'NGT', NULL, NULL, NULL, 'not set', 'Trial', NULL, NULL),
+('I/OGSNG2', 'TSSB7', 'MGSB702', 'TSSB7-SBC SURABAYA (internet public connection)', 'TERMINASI', NULL, 'NGT', NULL, NULL, NULL, 'not set', 'Trial', NULL, NULL),
+('I/OGSNG3', 'TSSB7', 'MGSB702', 'TSSB7-SBC SURABAYA (internet connection)', 'ORIGINASI', NULL, 'NGT', NULL, NULL, NULL, 'not set', 'Trial', NULL, NULL),
+('I/OGSNG4', 'TSSB7', 'MGSB702', 'TSSB7 - SBC Surabaya  NGT no CLI', 'TERMINASI', NULL, 'NGT', 9, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, NULL),
+('I/OGSNG5', 'TSSB7', 'MGSB702', 'TSSB7 - SBC Surabaya NGT for DiGi', 'TERMINASI', NULL, 'NGT', 20, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, NULL),
+('I/OGSNGO', 'TSSB7', 'MGSB702', 'TSSB7-SBC SURABAYA (direct connection)', 'ORIGINASI', NULL, 'NGT', NULL, NULL, NULL, 'not set', 'Trial', NULL, NULL),
+('I/OGSSN1', 'TSSB7', 'MGSB702', 'TSSB7 - SBC SURABAYA', 'TERMINASI', NULL, 'SMARTONE', 10, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, NULL),
+('I/OGSST1', 'TSSB7', 'MGSB702', 'TSSB7 - SBC Surabaya shinetown 01000 (via direct)', 'ORIGINASI', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
+('I/OGSST2', 'TSSB7', 'MGSB702', 'TSSB7 - SBC Surabaya shinetown 01000 (via public)', 'ORIGINASI', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
+('I/OGSST3', 'TSSB7', 'MGSB702', 'TSSB7 - SBC Surabaya (via direct)', 'terminasi', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
+('I/OGSST4', 'TSSB7', 'MGSB702', 'TSSB7 - SBC Surabaya (via public)', 'terminasi', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
+('I/OGSST5', 'TSSB7', 'MGSB702', 'TSSB7 - SBC Surabaya (via direct)', 'terminasi', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
+('I/OGSST6', 'TSSB7', 'MGSB702', 'TSSB7 - SBC Surabaya (via direct)', 'terminasi', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
+('I/OGSST7', 'TSSB7', 'MGSB702', 'TSSB7 - SBC Surabaya (via direct)', 'terminasi', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
+('I/OGSTES', 'TSSB7', 'MGSB702', 'TSSB7-SBC SURABAYA', NULL, NULL, 'SBCSB01 TESTING', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
+('IXBETS', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro  Etisalat', 'TERMINASI', NULL, 'ETISALAT', 10, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6309'),
+('IXBFR1', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Orange FT', 'TERMINASI', NULL, 'ORANGE FT', 6, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6371'),
+('IXBJJ2', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro  JJ TELECOM', 'TERMINASI', NULL, 'JJ TELECOM (partner BUSOL)', 2, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6063'),
+('IXBJJ3', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro  JJ TELECOM', 'TERMINASI', NULL, 'JJ TELECOM (partner BUSOL)', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-6063'),
+('IXBJJT', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro  JJ TELECOM (busol Partner)', 'TERMINASI', NULL, 'JJ TELECOM (partner BUSOL)', 2, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6063'),
+('IXBSL4', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Sing Tel (inet public)', 'TERMINASI', NULL, 'SINGTEL', 7, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-6433'),
+('IXBST1', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Shinetown  (via bintaro)', 'TERMINASI', NULL, 'SHINETOWN', 27, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-7673'),
+('IXBST2', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Shinetown  (via bintaro)', 'TERMINASI', NULL, 'SHINETOWN', 10, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6619'),
+('IXBST3', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Shinetown  (via PTP Bintaro)', 'TERMINASI', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
+('IXBST4', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Shinetown  (via router ICR jkt)', 'TERMINASI', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
+('IXBST5', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Shinetown  (via router ICR jkt)', 'TERMINASI', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
+('IXBTL1', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Telindo', 'TERMINASI', NULL, 'TELINDO', 1, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6619'),
+('IXBTM5', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro TM Singapore', 'terminasi', NULL, 'TM SINGAPORE', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
+('OXACL6', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Shah Alam (via Equinix)', 'ORIGINASI', NULL, 'CELCOM', 20, '10409', '10278', 'Direct', 'In Service', NULL, NULL),
+('OXACL7', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Kepong (via Equinix)', 'ORIGINASI', NULL, 'CELCOM', 17, '10409', '10279', 'Direct', 'In Service', NULL, NULL),
+('OXBBG5', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Belga CLI origination 01000', 'ORIGINASI', NULL, 'BELGA', 1, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-7239'),
+('OXBBG6', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Belga CLI origination MSRN', 'ORIGINASI', NULL, 'BELGA', 2, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-7239'),
+('OXBCL4', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro- Celcom (VoIP corporate)', 'ORIGINASI', NULL, 'CELCOM (VoIP corporate)', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-11827'),
+('OXBDLG', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro  Dialog Origination', 'ORIGINASI', NULL, 'DIALOG', 1, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6003'),
+('OXBETS', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro  Etisalat', 'ORIGINASI', NULL, 'ETISALAT', 2, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6123'),
+('OXBGH1', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC BintaroGAHARU CLI', 'originasi', NULL, 'GAHARU (voIP corporate)', 1, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-7983'),
+('OXBJJ1', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro  JJ TELECOM', 'originasi', NULL, 'JJ TELECOM (partner BUSOL)', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-6063'),
+('OXBJJT', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro  JJ TELECOM', 'originasi', NULL, 'JJ TELECOM (partner BUSOL)', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-6063'),
+('OXBN10', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro NGT  VoIP Corp (161662)', 'ORIGINASI', NULL, 'NGT', 14, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6309'),
+('OXBN11', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro NGT CLI', 'ORIGINASI', NULL, 'NGT', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
+('OXBNG9', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro NGT', 'ORIGINASI', NULL, 'NGT', 37, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-8367'),
+('OXBSL4', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Sing Tel (inet public)', 'ORIGINASI', NULL, 'SINGTEL', 6, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-6433'),
+('OXBST1', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Shinetown 01000 Shine Town Jkt', 'ORIGINASI', NULL, 'SHINETOWN', 13, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6805'),
+('OXBST2', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Shinetown  (via router ICR jkt)', 'ORIGINASI', NULL, 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
+('OXBTC3', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Tata Comunication', 'ORIGINASI', 'IP media TATA: 112.215.6.210', 'SHINETOWN', NULL, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, NULL),
+('OXBTL1', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Telindo', 'ORIGINASI', NULL, 'TELINDO', 3, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6805'),
+('OXBTM5', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro TM Singapore', 'originasi', NULL, 'TM SINGAPORE', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
+('TXACL1', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Kepong (2CELC)', 'BOTHWAY', NULL, 'CELCOM', 6, '10409', '10279', 'Direct', 'In Service', NULL, NULL),
+('TXACL2', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Shah Alam (2CECL)', 'BOTHWAY', NULL, 'CELCOM', 6, '10409', '10278', 'Direct', 'In Service', NULL, NULL),
+('TXACL3', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Kepong 3G (2CECL)', 'BOTHWAY', NULL, 'CELCOM', 8, '10409', '10279', 'Direct', 'In Service', NULL, NULL),
+('TXACL4', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Shah Alam (2TMCH)', 'BOTHWAY', NULL, 'CELCOM', 32, '10409', '10278', 'Direct', 'In Service', NULL, NULL),
+('TXACL5', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Kepong (2TMCH)', 'BOTHWAY', NULL, 'CELCOM', 29, '10409', '10279', 'Direct', 'In Service', NULL, NULL),
+('TXACL6', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Shah Alam (Equinix))', 'BOTHWAY', NULL, 'CELCOM', 70, '10409', '10278', 'Direct', 'In Service', NULL, NULL),
+('TXACL7', 'TSJ19', 'MGJ1901', 'MGJ1901 - Celcom Kepong (Equinix)', 'BOTHWAY', NULL, 'CELCOM', 73, '10409', '10279', 'Direct', 'In Service', NULL, NULL),
+('TXACL8', 'TSJ19', 'MGJ1901', 'MGJ1901 ? Celcom For Inbound Dial + and Outbound MSRN (Equinix)', 'ORIGINASI', NULL, 'CELCOM', 3, '10409', '10279', 'Direct', 'In Service', NULL, NULL),
+('TXASKM', 'TSJ19', 'MGJ1902', 'MGJ1902 - SBC Bintaro', 'ORIGINASI', 'ok', 'ASIAKOMNET', 6, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6371'),
+('TXBBG3', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB Belgacom 1st Class', 'ORIGINASI', NULL, 'BELGA', 1, '9413', '3705', 'Telco Bridge', 'In Service', NULL, NULL),
+('TXBBG4', 'TSJ19', 'MGJ1902', 'MGJ1902 ? TB Belgacom For Inbound Dial + and Outbound MSRN', 'ORIGINASI', NULL, 'BELGA', 2, '9413', '3705', 'Telco Bridge', 'In Service', NULL, NULL),
+('TXBBG5', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Belga CLI', 'TERMINASI', NULL, 'BELGA', 20, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-7239'),
+('TXBBTV', 'TSJ19', 'MGJ1902', 'TSJ19 - Esia IDD Jakarta (VoIP Terminasi)', 'TERMINASI', NULL, 'ESIA', 5, NULL, NULL, 'Direct', 'In Service', NULL, NULL),
+('TXBCCW', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro  PCCW', 'TERMINASI', NULL, 'PCCW', 1, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-6003'),
+('TXBCL1', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Celcom Kepong (Equinix) via inet public', 'TERMINASI', NULL, 'CELCOM', 118, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-11827'),
+('TXBCL3', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Celcom Shahalam (Equinix) via inet public', 'TERMINASI', NULL, 'CELCOM', 118, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-11827'),
+('TXBDLG', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro  Dialog Termination', 'TERMINASI', NULL, 'DIALOG', 4, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6247'),
+('TXBESS', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro BTEL', 'BOTHWAY', NULL, 'BTEL', 12, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6743'),
+('TXBFR1', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Orange FT', 'ORIGINASI', NULL, 'ORANGE FT', 2, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-6003'),
+('TXBGH1', 'TSJ19', 'MGJ1902', 'MGJ1902 - Gaharu Bw', 'BOTHWAY', NULL, 'GAHARU', 5, '9453', '3653', 'Direct', 'In Service', NULL, NULL),
+('TXBHCP', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro HCPT', 'BOTHWAY', NULL, 'HCPT', 1, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-6062'),
+('TXBIND', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro ISAT', 'BOTHWAY', NULL, 'INDOSAT', 1, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-6062'),
+('TXBIP1', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro  IP Telin', 'TERMINASI', NULL, 'IPTELIN', 12, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6063'),
+('TXBIT1', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro  TMI via inet', 'ORIGINASI', NULL, 'TM INTERNATIONAL', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-8479'),
+('TXBJST', 'TSJ19', 'MGJ1902', 'MGJ1902-SBC Bintaro Jasnita', 'ORIGINASI', NULL, 'JASNITA', 5, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6309'),
+('TXBM11', 'TSJ19', 'MGJ1902', 'MGJ1902 - M1 Singapore (direct)', 'TERMINASI', NULL, 'M1', 28, '5261', '1107', 'Direct', 'In Service', NULL, NULL),
+('TXBM12', 'TSJ19', 'MGJ1902', 'MGJ1902 - M1 Singapore (direct)', 'TERMINASI', NULL, 'M1', 3, '5261', '1107', 'Direct', 'In Service', NULL, NULL),
+('TXBNG7', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro NGT CLI', 'TERMINASI', NULL, 'NGT', 30, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-9657'),
+('TXBNG8', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro NGT no CLI', 'TERMINASI', NULL, 'NGT', 10, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-7239'),
+('TXBNG9', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro NGT for DiGi', 'TERMINASI', NULL, 'NGT', 20, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-8479'),
+('TXBNGO', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB NGT Networks', 'ORIGINASI', NULL, 'NGT', 37, '9413', '3705', 'Telco Bridge', 'In Service', NULL, NULL),
+('TXBSH1', 'TSJ19', 'MGJ1902', 'MGJ1902 - IMG Bintaro Shinetown Termination non CLI_Equinix', 'TERMINASI', NULL, 'SHINETOWN', 17, '9413', '3706', 'IMG', 'In Service', NULL, NULL),
+('TXBSHT', 'TSJ19', 'MGJ1902', 'MGJ1902 - IMG Bintaro Shinetown ISDN Jakarta', 'TERMINASI', NULL, 'SHINETOWN', 31, '9413', '3706', 'IMG', 'In Service', NULL, NULL),
+('TXBSL1', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB Singapore Telecommunication', 'ORIGINASI', NULL, 'SINGTEL', 5, '9413', '3705', 'Telco Bridge', 'In Service', NULL, NULL),
+('TXBSL3', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Sing Tel', 'TERMINASI', NULL, 'SINGTEL', 7, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6433'),
 ('TXBSL4', 'TSJ19', 'MGJ1902', 'MGJ1902-IMG Bintaro Jasnita', 'ORIGINASI', NULL, 'JASNITA', 5, '9413', '3697', 'IMG', 'dismantle', NULL, NULL),
-('TXBSRT', 'TSJ19', 'MGJ1902', 'MGJ1902 - IMG Bintaro Smartone Hongkong', 'TERMINASI', NULL, 'SMARTONE', 4, '9413', '3706', 'IMG', 'inservice', NULL, NULL),
-('TXBST1', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Smartone', 'TERMINASI', NULL, 'SMARTONE', 4, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6247'),
-('TXBST2', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Shinetown for Digi', 'TERMINASI', NULL, 'SHINETOWN', 32, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-7983'),
-('TXBST3', 'TSJ19', 'MGJ1902', 'MGJ1902 - Termination Shinetown CLI ? XL ON NET', 'TERMINASI', NULL, 'SHINETOWN', 10, '9413', '3705', 'Telco Bridge', 'inservice', NULL, NULL),
-('TXBST4', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro  TMI', 'TERMINASI', NULL, 'TM INTERNATIONAL', 40, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000-8479'),
-('TXBST5', 'TSJ19', 'MGJ1902', 'MGJ1902 - ShineTown SGP for VoIP Corporate (151562)', 'ORIGINASI', NULL, 'SHINETOWN', 10, '9413', '3709', 'Telco Bridge', 'inservice', NULL, NULL),
-('TXBST6', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Smartone', 'TERMINASI', NULL, 'SMARTONE', 4, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000'),
+('TXBSRT', 'TSJ19', 'MGJ1902', 'MGJ1902 - IMG Bintaro Smartone Hongkong', 'TERMINASI', NULL, 'SMARTONE', 4, '9413', '3706', 'IMG', 'In Service', NULL, NULL),
+('TXBST1', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Smartone', 'TERMINASI', NULL, 'SMARTONE', 4, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6247'),
+('TXBST2', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Shinetown for Digi', 'TERMINASI', NULL, 'SHINETOWN', 32, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-7983'),
+('TXBST3', 'TSJ19', 'MGJ1902', 'MGJ1902 - Termination Shinetown CLI ? XL ON NET', 'TERMINASI', NULL, 'SHINETOWN', 10, '9413', '3705', 'Telco Bridge', 'In Service', NULL, NULL),
+('TXBST4', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro  TMI', 'TERMINASI', NULL, 'TM INTERNATIONAL', 40, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-8479'),
+('TXBST5', 'TSJ19', 'MGJ1902', 'MGJ1902 - ShineTown SGP for VoIP Corporate (151562)', 'ORIGINASI', NULL, 'SHINETOWN', 10, '9413', '3709', 'Telco Bridge', 'In Service', NULL, NULL),
+('TXBST6', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Smartone', 'TERMINASI', NULL, 'SMARTONE', 4, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000'),
 ('TXBSTN', 'TSJ19', 'MGJ1902', 'MGJK1902 - TB VoIP 01000 Shine Town Jkt', 'ORIGINASI', NULL, 'SHINETOWN', 13, '9413', '3705', 'Telco Bridge', 'dismantle', NULL, NULL),
-('TXBSTT', 'TSJ19', 'MGJ1902', 'MGJ1902 - ShineTown Jakarta', 'TERMINASI', NULL, 'SHINETOWN', 14, '9453', '3655', 'Direct', 'inservice', NULL, NULL),
-('TXBSTW', 'TSJ19', 'MGJ1902', 'MGJ1902 - IMG Bintaro Shinetown CLI_Equinix', 'TERMINASI', NULL, 'SHINETOWN', 28, '9413', '3697', 'IMG', 'inservice', NULL, NULL),
-('TXBSV1', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Sunvone (171762)', 'ORIGINASI', NULL, 'SUNVONE', 20, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-7239'),
-('TXBTB1', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB TM Singapore', 'ORIGINASI', NULL, 'TM SINGAPORE', 3, '9413', '3705', 'Telco Bridge', 'inservice', NULL, NULL),
-('TXBTC1', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB Tata Communication', 'ORIGINASI', NULL, 'TATA', 3, '9413', '3705', 'Telco Bridge', 'inservice', NULL, NULL),
-('TXBTC2', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Tata Comunication', 'TERMINASI', NULL, 'TATA', 4, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6247'),
-('TXBTES', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro  TMI', NULL, NULL, 'SBCSB01 TESTING', NULL, '-', '-', 'SBC ACME PACKET', 'trial', NULL, NULL),
+('TXBSTT', 'TSJ19', 'MGJ1902', 'MGJ1902 - ShineTown Jakarta', 'TERMINASI', NULL, 'SHINETOWN', 14, '9453', '3655', 'Direct', 'In Service', NULL, NULL),
+('TXBSTW', 'TSJ19', 'MGJ1902', 'MGJ1902 - IMG Bintaro Shinetown CLI_Equinix', 'TERMINASI', NULL, 'SHINETOWN', 28, '9413', '3697', 'IMG', 'In Service', NULL, NULL),
+('TXBSV1', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Sunvone (171762)', 'ORIGINASI', NULL, 'SUNVONE', 20, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-7239'),
+('TXBTB1', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB TM Singapore', 'ORIGINASI', NULL, 'TM SINGAPORE', 3, '9413', '3705', 'Telco Bridge', 'In Service', NULL, NULL),
+('TXBTC1', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB Tata Communication', 'ORIGINASI', NULL, 'TATA', 3, '9413', '3705', 'Telco Bridge', 'In Service', NULL, NULL),
+('TXBTC2', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Tata Comunication', 'TERMINASI', NULL, 'TATA', 4, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6247'),
+('TXBTES', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro  TMI', NULL, NULL, 'SBCSB01 TESTING', NULL, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, NULL),
 ('TXBTG1', 'TSJ19', 'MGJ1902', 'MGJ1902 - IMG Bintaro Teleglobal (without CLI)', 'TERMINASI', NULL, 'TELEGLOBAL', 8, '9413', '3706', 'IMG', 'dismantle', NULL, NULL),
 ('TXBTG2', 'TSJ19', 'MGJ1902', 'MGJ1902 - IMG Bintaro Teleglobal (CLI)', 'TERMINASI', NULL, 'TELEGLOBAL', 4, '9413', '3706', 'IMG', 'dismantle', NULL, NULL),
-('TXBTG3', 'TSJ19', NULL, 'MGJ1902 - SBC Bintaro Teleglobal (without CLI)', 'TERMINASI', NULL, 'TELEGLOBAL', 8, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6495'),
-('TXBTG4', 'TSJ19', NULL, 'MGJ1902 - SBC Bintaro Teleglobal (CLI)', 'TERMINASI', NULL, 'TELEGLOBAL', 4, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6247'),
-('TXBTG5', 'TSJ19', NULL, 'MGJ1902 - SBC Bintaro Teleglobal (without CLI)', 'TERMINASI', NULL, 'TELEGLOBAL', 4, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6247'),
-('TXBTG6', 'TSJ19', NULL, 'MGJ1902 - SBC Bintaro Teleglobal (CLI)', 'TERMINASI', NULL, 'TELEGLOBAL', 1, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6247'),
-('TXBTKM', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro Telkom', 'BOTHWAY', 'IP realm 10.178.127.45/26', 'TELKOM', 1, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000-6062'),
-('TXBTLD', 'TSJ19', 'MGJ1902', 'MGJ1902 - IMG For Telindo', 'TERMINASI', NULL, 'TELINDO', 1, '9413', '3697', 'IMG', 'inservice', NULL, NULL),
-('TXBTLO', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB Bintaro for Telindo', 'ORIGINASI', NULL, 'TELINDO', 1, '9413', '3705', 'Telco Bridge', 'inservice', NULL, NULL),
-('TXBTM1', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB Bintaro TM Singapure', 'TERMINASI', NULL, 'TM SINGAPORE', 4, '9413', '3709', 'Telco Bridge', 'inservice', NULL, NULL),
-('TXBTM9', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro TM Singapore', 'TERMINASI', NULL, 'TM SINGAPORE', 3, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-6185'),
-('TXBTMI', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB Bintaro TM International', 'TERMINASI', NULL, 'TM INTERNATIOAL', 22, '9413', '3709', 'Telco Bridge', 'inservice', NULL, NULL),
-('TXBTMO', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB TM International', 'ORIGINASI', NULL, 'TM INTERNATIOAL', 14, '9413', '3705', 'Telco Bridge', 'inservice', NULL, NULL),
-('TXBTSL', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro TSEL', 'BOTHWAY', NULL, 'TELKOMSEL', 1, '-', '-', 'SBC ACME PACKET', 'trial', NULL, '6000-6062'),
-('TXBTST', 'TSJ19', 'MGJ1902', 'MGJK1902 -TB VoIP 01000 Shine Town Spore', 'ORIGINASI', NULL, 'SHINETOWN', 10, '9413', '3705', 'Telco Bridge', 'inservice', NULL, NULL),
-('TXBVB3', 'TSJ19', NULL, 'TSJ19 - SBC IMG Corporate', 'TERMINASI', NULL, 'VOIP CORPORATE', NULL, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-65535'),
-('TXGHRU', 'TSJ19', NULL, 'TSJ19 - SBC Bintaro NGT no CLI', 'TERMINASI', NULL, 'GAHARU', 71, '-', '-', 'SBC ACME PACKET', 'inservice', NULL, '6000-7983'),
-('TXIPBO', 'TSJ20', 'MGJ2002', 'TSJ20 - VoIP PABX Via Dugem', 'ORIGINASI', NULL, 'PABX', 1, '9453', '3699', 'Direct', 'inservice', NULL, NULL);
+('TXBTG3', 'TSJ19', 'MGJ1902', 'MGJ1902 - SBC Bintaro Teleglobal (without CLI)', 'TERMINASI', NULL, 'TELEGLOBAL', 8, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6495'),
+('TXBTG4', 'TSJ19', 'MGJ1902', 'MGJ1902 - SBC Bintaro Teleglobal (CLI)', 'TERMINASI', NULL, 'TELEGLOBAL', 4, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6247'),
+('TXBTG5', 'TSJ19', 'MGJ1902', 'MGJ1902 - SBC Bintaro Teleglobal (without CLI)', 'TERMINASI', NULL, 'TELEGLOBAL', 4, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6247'),
+('TXBTG6', 'TSJ19', 'MGJ1902', 'MGJ1902 - SBC Bintaro Teleglobal (CLI)', 'TERMINASI', NULL, 'TELEGLOBAL', 1, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6247'),
+('TXBTKM', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro Telkom', 'BOTHWAY', 'IP realm 10.178.127.45/26', 'TELKOM', 1, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-6062'),
+('TXBTLD', 'TSJ19', 'MGJ1902', 'MGJ1902 - IMG For Telindo', 'TERMINASI', NULL, 'TELINDO', 1, '9413', '3697', 'IMG', 'In Service', NULL, NULL),
+('TXBTLO', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB Bintaro for Telindo', 'ORIGINASI', NULL, 'TELINDO', 1, '9413', '3705', 'Telco Bridge', 'In Service', NULL, NULL),
+('TXBTM1', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB Bintaro TM Singapure', 'TERMINASI', NULL, 'TM SINGAPORE', 4, '9413', '3709', 'Telco Bridge', 'In Service', NULL, NULL),
+('TXBTM9', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro TM Singapore', 'TERMINASI', NULL, 'TM SINGAPORE', 3, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-6185'),
+('TXBTMI', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB Bintaro TM International', 'TERMINASI', NULL, 'TM INTERNATIOAL', 22, '9413', '3709', 'Telco Bridge', 'In Service', NULL, NULL),
+('TXBTMO', 'TSJ19', 'MGJ1902', 'MGJ1902 - TB TM International', 'ORIGINASI', NULL, 'TM INTERNATIOAL', 14, '9413', '3705', 'Telco Bridge', 'In Service', NULL, NULL),
+('TXBTSL', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro TSEL', 'BOTHWAY', NULL, 'TELKOMSEL', 1, NULL, NULL, 'SBC ACME PACKET', 'Trial', NULL, '6000-6062'),
+('TXBTST', 'TSJ19', 'MGJ1902', 'MGJK1902 -TB VoIP 01000 Shine Town Spore', 'ORIGINASI', NULL, 'SHINETOWN', 10, '9413', '3705', 'Telco Bridge', 'In Service', NULL, NULL),
+('TXBVB3', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC IMG Corporate', 'TERMINASI', NULL, 'VOIP CORPORATE', NULL, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-65535'),
+('TXGHRU', 'TSJ19', 'MGJ1902', 'TSJ19 - SBC Bintaro NGT no CLI', 'TERMINASI', NULL, 'GAHARU', 71, NULL, NULL, 'SBC ACME PACKET', 'In Service', NULL, '6000-7983'),
+('TXIPBO', 'TSJ20', 'MGJ2002', 'TSJ20 - VoIP PABX Via Dugem', 'ORIGINASI', NULL, 'PABX', 1, '9453', '3699', 'Direct', 'In Service', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -5891,19 +5978,21 @@ INSERT INTO `trunk_voip` (`trunk_id`, `mss`, `mgw`, `detail`, `direction`, `konf
 --
 
 CREATE TABLE IF NOT EXISTS `uploaded_file` (
-`id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(64) DEFAULT NULL,
   `filename` varchar(256) DEFAULT NULL,
   `size` int(11) DEFAULT NULL,
   `type` varchar(30) DEFAULT NULL,
-  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
+  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=94 ;
 
 --
 -- Dumping data for table `uploaded_file`
 --
 
 INSERT INTO `uploaded_file` (`id`, `name`, `filename`, `size`, `type`, `timestamp`) VALUES
+(9, 'sinet.sql', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\b1\\b1631225f3277cde083584cf8a3d134b_sinet.sql', 530778, 'sharing', NULL),
 (29, 'home.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\7f\\7fbbc32f8b6e0ec3689ac7f7b758b795_home.png', 546321, 'news', '2015-07-28 01:06:19'),
 (31, 'dashboard.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\13\\139598597a5b537d3735247bf5dad9ce_dashboard.png', 107577, 'news', '2015-07-28 01:10:59'),
 (54, '1005665_560013057396229_1841222337_n.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\7e\\7e707ead6ee8cb2a763f5e48393ecb59_1005665_560013057396229_1841222337_n.png', 521578, NULL, '2015-07-28 06:16:49'),
@@ -5912,6 +6001,9 @@ INSERT INTO `uploaded_file` (`id`, `name`, `filename`, `size`, `type`, `timestam
 (59, 'home.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\e2\\e22d955aa9b3439767982d2cc2ae0866_home.png', 546321, 'news', '2015-07-28 06:35:43'),
 (60, 'crm.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\b3\\b3cb2e2c382f29fb35d27c6647cf81b4_crm.jpg', 244467, NULL, '2015-07-28 06:37:38'),
 (61, 'crm.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\0f\\0f31bfde1c728d9092c00fb144beeceb_crm.jpg', 244467, 'news', '2015-07-28 06:37:38'),
+(62, 'uploaded_file.sql', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\3a\\3ac9917af6e88d4015bc5ebecbe11021_uploaded_file.sql', 3491, 'sharing', '2015-07-28 09:25:00'),
+(66, 'Satellite1.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\ec\\ec1589607ad49c8f9be087b95e4158ae_Satellite1.jpg', 198290, 'slider', '2015-07-28 09:28:04'),
+(67, 'Satellite.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\01\\017634c1f6b46e80ffe5478a68ceb4e1_Satellite.jpg', 73188, 'slider', '2015-07-28 09:28:14'),
 (69, '2.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\8a\\8a8bcaa369e59f81da725b7c4ac6daef_2.jpg', 4805, NULL, '2015-07-29 03:48:21'),
 (70, '2.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\09\\094d6dfecf06fca3cd8f5b640c7532bd_2.jpg', 4805, 'news', '2015-07-29 03:48:21'),
 (71, '11.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\33\\33112afba6a6680e507a511c3f3f41d5_11.jpg', 5310, NULL, '2015-07-29 03:48:35'),
@@ -5920,20 +6012,16 @@ INSERT INTO `uploaded_file` (`id`, `name`, `filename`, `size`, `type`, `timestam
 (74, '99.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\a4\\a46921722471a11ef5ec116106fb3933_99.jpg', 10589, 'news', '2015-07-29 03:48:53'),
 (75, '2013-07-11_123536.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\cf\\cf59a7973b7d9ae310e89dd11b8d7fc4_2013-07-11_123536.png', 180457, NULL, '2015-07-29 03:49:10'),
 (76, '2013-07-11_123536.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\4d\\4da0130265c01152fe73975b14dd9b08_2013-07-11_123536.png', 180457, 'news', '2015-07-29 03:49:10'),
-(87, 'selfie.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\62\\62a8461b3d6e188c7ee9607dd436f126_selfie.jpg', 85165, NULL, '2015-08-05 07:26:44'),
-(88, 'selfie.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\59\\5945b1ea425d0f52b5916cd2e5fd1ad8_selfie.jpg', 85165, 'news', '2015-08-05 07:26:44'),
-(89, 'home.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\59\\595701dff3699810f558a9b2ce50588c_home.png', 546321, NULL, '2015-08-05 07:35:02'),
-(90, 'home.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\51\\51b71dc7f14182989ba4414895f47e53_home.png', 546321, 'news', '2015-08-05 07:35:02'),
-(91, 'dashboard.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\6a\\6a868ca36f25c9346ba1f55bcc14228e_dashboard.png', 107577, NULL, '2015-08-05 07:35:26'),
-(92, 'dashboard.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\60\\607185e8524203b18b84d7a55e9685de_dashboard.png', 107577, 'news', '2015-08-05 07:35:26'),
-(94, 'HLR,SGSN,STP,IN.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\21\\21f006d586d8627f7c9635ef6d0ab27b_HLR,SGSN,STP,IN.JPG', 357854, 'topology', '2015-08-05 07:37:49'),
-(95, 'MSS.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\a4\\a4f8b77bb763ee81a3a1702680d02604_MSS.JPG', 484045, 'topology', '2015-08-05 07:38:03'),
-(96, 'SGSN.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\7e\\7e733f8b9426d0c7337639cf94560a54_SGSN.JPG', 269989, 'topology', '2015-08-05 07:38:21'),
-(97, 'SMSC,FDA.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\ba\\ba36aef5627a7dc8a1a5c5bf0196ef58_SMSC,FDA.JPG', 328726, 'topology', '2015-08-05 07:38:39'),
-(98, 'VMS.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\2c\\2c3d97c825c291923fe94a1eeba0baf1_VMS.JPG', 331878, 'topology', '2015-08-05 07:38:53'),
-(99, 'slider2.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\55\\556f565b08d8da6999d9d7ebcaa8f134_slider2.jpg', 102773, 'slider', '2015-08-06 03:08:52'),
-(101, 'slider3.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\7c\\7c93671d4e87180df61b65ab119a28b6_slider3.jpg', 198290, 'slider', '2015-08-06 03:37:42'),
-(102, 'slider1.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\00\\001520b3d14e63a08c75aa6708ec52f7_slider1.jpg', 77608, 'slider', '2015-08-06 03:37:48');
+(82, '3.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\bf\\bfa65b1f1218c25ff22b8da998377606_3.png', 56590, NULL, '2015-08-05 02:02:01'),
+(83, '3.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\73\\734a0667ff7237c3bf0135d8b2b0109e_3.png', 56590, 'news', '2015-08-05 02:02:01'),
+(84, 'HLR,SGSN,STP,IN.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\16\\1693c6009c539835a91cd96f1c79d005_HLR,SGSN,STP,IN.JPG', 357854, 'topology', '2015-08-05 07:19:58'),
+(85, 'MSS.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\aa\\aab8ffcd80962291ea1ee0b8aafaa65b_MSS.JPG', 484045, 'topology', '2015-08-05 07:20:14'),
+(86, 'SGSN.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\aa\\aa942d47e9984174b1ffaeba4eb48f03_SGSN.JPG', 269989, 'topology', '2015-08-05 07:20:22'),
+(88, 'SMSC,FDA.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\da\\da1172990ce67f8f10b0739bb90b5bbe_SMSC,FDA.JPG', 328726, 'topology', '2015-08-05 07:20:57'),
+(89, 'VMS.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\30\\30eeb77593fe82dc2dd2ffb678d76a5f_VMS.JPG', 331878, 'topology', '2015-08-05 07:21:06'),
+(90, '11.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\6f\\6f06a694d54fdcbf1323d453b6a319c8_11.jpg', 5310, NULL, '2015-08-06 02:58:07'),
+(91, '11.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\3c\\3c2b67998231f4b50a13e130fa061a68_11.jpg', 5310, 'news', '2015-08-06 02:58:07'),
+(92, 'Satellite5.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\0b\\0b3ce481b92927d93ceb748b423b3b6a_Satellite5.jpg', 222554, 'slider', '2015-08-06 03:06:39');
 
 -- --------------------------------------------------------
 
@@ -5942,7 +6030,7 @@ INSERT INTO `uploaded_file` (`id`, `name`, `filename`, `size`, `type`, `timestam
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-`ID` int(10) NOT NULL,
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `password_reset_token` varchar(32) DEFAULT NULL,
@@ -5951,8 +6039,11 @@ CREATE TABLE IF NOT EXISTS `user` (
   `status` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Phone` varchar(12) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+  `Phone` varchar(12) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `Username` (`username`),
+  KEY `User_ID` (`ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `user`
@@ -5962,214 +6053,8 @@ INSERT INTO `user` (`ID`, `username`, `password_hash`, `password_reset_token`, `
 (17, 'admin', '$2y$13$2Jpvuobfxs/c9lX3BhTlA.HNyBSgtGy1aAbyU4so0K87FnKfVrYf6', NULL, 'Uxgyfo8tKfeAR3WyqfKVKhwvJAMIBHJN', 'admin@example.com', 10, '2015-06-30 06:05:02', '2015-06-30 06:05:02', NULL),
 (18, 'admin2', '$2y$13$2BbZ9UPTlxF3murf4r9PtOuR9VCZ4buqMfWRMVwc/j.WVX5/13BmK', NULL, 'Ug7ePFo8TKFsjgk_tDF7ixDQ0lc2UswO', 'admin2@admin.com', 10, '2015-07-30 00:45:58', '2015-07-30 00:45:58', NULL),
 (19, 'admin3', '$2y$13$PRkkrLkE.kgg/XAR3Io9Weq8wa6UIgxqrZraFoYmFtjdGvweC1MMi', NULL, 'WtRHklpQYDnufzMirL8tcL72BTMCuUQr', 'admin3@admin.com', 10, '2015-07-30 00:46:55', '2015-07-30 00:46:55', NULL),
-(20, 'nitto', '$2y$13$SYXOsRUo5SF8Vi/dV/0TI.ltPf8LbgVk4hdcrQivdnrnXYYSSnDDS', NULL, '7rb-3wLQP8X9hXdOyc09rGYgNXDuNgqt', 'nitto.sahadi@ui.ac.id', 10, '2015-08-06 02:55:57', '2015-08-06 02:55:57', NULL);
+(20, 'made', '$2y$13$yRb5915CYcPp6exNuSd6iuIMI.7gNz5HgIFgVM9vLvBaRm8CR7vbG', NULL, '5XKGiIVjkAjjJwlSR5hyUAaLeIu81V_e', 'made@ui.ac.id', 10, '2015-08-06 02:56:30', '2015-08-06 02:56:30', NULL);
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `bsc`
---
-ALTER TABLE `bsc`
- ADD PRIMARY KEY (`bsc_id`,`mgw`), ADD KEY `mgw` (`mgw`);
-
---
--- Indexes for table `desc_network`
---
-ALTER TABLE `desc_network`
- ADD PRIMARY KEY (`id`), ADD KEY `network_id` (`network_element_id`);
-
---
--- Indexes for table `gt_proposedlist`
---
-ALTER TABLE `gt_proposedlist`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `gt_rule`
---
-ALTER TABLE `gt_rule`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `mgw`
---
-ALTER TABLE `mgw`
- ADD PRIMARY KEY (`bcu_id`), ADD KEY `mgw_name` (`mgw_name`);
-
---
--- Indexes for table `migration`
---
-ALTER TABLE `migration`
- ADD PRIMARY KEY (`version`);
-
---
--- Indexes for table `msc`
---
-ALTER TABLE `msc`
- ADD PRIMARY KEY (`msc_name`), ADD UNIQUE KEY `cnid` (`cnid`);
-
---
--- Indexes for table `msc_cap_dimensioning`
---
-ALTER TABLE `msc_cap_dimensioning`
- ADD PRIMARY KEY (`node_id`);
-
---
--- Indexes for table `msrn_proposedlist`
---
-ALTER TABLE `msrn_proposedlist`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `msrn_routing`
---
-ALTER TABLE `msrn_routing`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `msrn_rule`
---
-ALTER TABLE `msrn_rule`
- ADD PRIMARY KEY (`cmn`,`new_msrn`);
-
---
--- Indexes for table `network_element`
---
-ALTER TABLE `network_element`
- ADD PRIMARY KEY (`network_element_id`), ADD UNIQUE KEY `sc-_address` (`gt_address`), ADD UNIQUE KEY `gtt` (`gtt`);
-
---
--- Indexes for table `news`
---
-ALTER TABLE `news`
- ADD PRIMARY KEY (`id`), ADD KEY `image_id` (`image_id`,`username`), ADD KEY `user_id` (`username`);
-
---
--- Indexes for table `pabx_info`
---
-ALTER TABLE `pabx_info`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `poi`
---
-ALTER TABLE `poi`
- ADD PRIMARY KEY (`poi`), ADD KEY `msc_name` (`msc_name`);
-
---
--- Indexes for table `rnc_reference`
---
-ALTER TABLE `rnc_reference`
- ADD PRIMARY KEY (`rnc_id`,`mgw_name`), ADD KEY `msc_name` (`pool`), ADD KEY `mgw_name` (`mgw_name`);
-
---
--- Indexes for table `sct_port_huawei`
---
-ALTER TABLE `sct_port_huawei`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `spc_ransharing`
---
-ALTER TABLE `spc_ransharing`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `spc_rule`
---
-ALTER TABLE `spc_rule`
- ADD PRIMARY KEY (`No`);
-
---
--- Indexes for table `trunk_interkoneksi`
---
-ALTER TABLE `trunk_interkoneksi`
- ADD PRIMARY KEY (`trunk_id`), ADD KEY `POI` (`POI`);
-
---
--- Indexes for table `trunk_voip`
---
-ALTER TABLE `trunk_voip`
- ADD PRIMARY KEY (`trunk_id`), ADD KEY `mgw_name` (`mgw`), ADD KEY `mss` (`mss`);
-
---
--- Indexes for table `uploaded_file`
---
-ALTER TABLE `uploaded_file`
- ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
- ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Username` (`username`), ADD KEY `User_ID` (`ID`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `desc_network`
---
-ALTER TABLE `desc_network`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15519;
---
--- AUTO_INCREMENT for table `gt_proposedlist`
---
-ALTER TABLE `gt_proposedlist`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=248;
---
--- AUTO_INCREMENT for table `gt_rule`
---
-ALTER TABLE `gt_rule`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=69;
---
--- AUTO_INCREMENT for table `msrn_proposedlist`
---
-ALTER TABLE `msrn_proposedlist`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=228;
---
--- AUTO_INCREMENT for table `msrn_routing`
---
-ALTER TABLE `msrn_routing`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=60;
---
--- AUTO_INCREMENT for table `news`
---
-ALTER TABLE `news`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
---
--- AUTO_INCREMENT for table `pabx_info`
---
-ALTER TABLE `pabx_info`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=72;
---
--- AUTO_INCREMENT for table `sct_port_huawei`
---
-ALTER TABLE `sct_port_huawei`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `spc_ransharing`
---
-ALTER TABLE `spc_ransharing`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
---
--- AUTO_INCREMENT for table `spc_rule`
---
-ALTER TABLE `spc_rule`
-MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
---
--- AUTO_INCREMENT for table `uploaded_file`
---
-ALTER TABLE `uploaded_file`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=103;
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- Constraints for dumped tables
 --
@@ -6178,63 +6063,64 @@ MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 -- Constraints for table `bsc`
 --
 ALTER TABLE `bsc`
-ADD CONSTRAINT `bsc_ibfk_1` FOREIGN KEY (`bsc_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `bsc_ibfk_2` FOREIGN KEY (`mgw`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `bsc_ibfk_1` FOREIGN KEY (`bsc_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `bsc_ibfk_2` FOREIGN KEY (`mgw`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `desc_network`
 --
 ALTER TABLE `desc_network`
-ADD CONSTRAINT `desc_network_ibfk_1` FOREIGN KEY (`network_element_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `desc_network_ibfk_1` FOREIGN KEY (`network_element_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `mgw`
 --
 ALTER TABLE `mgw`
-ADD CONSTRAINT `mgw_ibfk_1` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `mgw_ibfk_1` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `msc`
 --
 ALTER TABLE `msc`
-ADD CONSTRAINT `msc_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `msc_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `msc_cap_dimensioning`
 --
 ALTER TABLE `msc_cap_dimensioning`
-ADD CONSTRAINT `msc_cap_dimensioning_ibfk_1` FOREIGN KEY (`node_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `msc_cap_dimensioning_ibfk_1` FOREIGN KEY (`node_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `news`
 --
 ALTER TABLE `news`
-ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `uploaded_file` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `news_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `uploaded_file` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `news_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `poi`
 --
 ALTER TABLE `poi`
-ADD CONSTRAINT `poi_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `poi_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `rnc_reference`
 --
 ALTER TABLE `rnc_reference`
-ADD CONSTRAINT `rnc_reference_ibfk_2` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `rnc_reference_ibfk_2` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `trunk_interkoneksi`
 --
 ALTER TABLE `trunk_interkoneksi`
-ADD CONSTRAINT `trunk_interkoneksi_ibfk_1` FOREIGN KEY (`POI`) REFERENCES `poi` (`poi`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `trunk_interkoneksi_ibfk_1` FOREIGN KEY (`POI`) REFERENCES `poi` (`poi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `trunk_voip`
 --
 ALTER TABLE `trunk_voip`
-ADD CONSTRAINT `trunk_voip_ibfk_3` FOREIGN KEY (`mss`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `trunk_voip_ibfk_4` FOREIGN KEY (`mgw`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `trunk_voip_ibfk_3` FOREIGN KEY (`mss`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
