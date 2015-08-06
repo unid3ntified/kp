@@ -12,7 +12,6 @@ $this->title = 'Sistem Informasi Network Element';
         <ol class="carousel-indicators">
           <li data-target="#Carousel" data-slide-to="0" class="active"></li>
           <?php
-            $data = Yii::$app->db->createCommand('SELECT id FROM uploaded_file WHERE type = "slider"')->queryAll();
             foreach ($data as $key => $value) {
               if ($key !== 0)
                 echo '<li data-target="#Carousel" data-slide-to="'.$key.'"></li>';
@@ -53,9 +52,9 @@ $this->title = 'Sistem Informasi Network Element';
             for ($i = count($newsList)-1; $i>=0; $i--)
             {
               $newsItem++;
-              if ($newsItem < 5)
+              if ($newsItem < 5) //limiting diplay up to 4 item
               {            
-                if ($newsItem % 2 == 1 )
+                if ($newsItem % 2 == 1 ) //begin a row if its item with an odd number
                   echo '<div class="row">';
                 echo '<a href="'.Yii::$app->homeUrl.'?r=news/view&id='.$newsList[$i]->id.'">';
                 echo '<div class="col-md-6"><h3>'.$newsList[$i]->title.'</h3><div class="row">';
@@ -66,7 +65,7 @@ $this->title = 'Sistem Informasi Network Element';
                   $text = substr($newsList[$i]->news_desc,0,150);
                 else $text = $newsList[$i]->news_desc;
                 echo '</div><div class="col-md-7">'.$text.'...<br>View More</div></div></div>';
-                if ($newsItem % 2 == 0)
+                if (($newsItem % 2 == 0) || (count($newsList) == $newsItem))//closing row if its item with even number or when there's no item anymore
                   echo '</div><br><hr>';
                 echo '</a>';
               }

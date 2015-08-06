@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\MsrnProposedlist */
 
 $this->title = $model->No;
-$this->params['breadcrumbs'][] = ['label' => 'Msrn Proposedlists', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Msrn Proposed List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="msrn-proposedlist-view">
@@ -35,9 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'New_MSRN',
             'Reserved_by',
             'Updated',
-
-             ['class' => 'yii\grid\ActionColumn'],
-            
+            'Remark'  
         ],
     ]) ?>
 

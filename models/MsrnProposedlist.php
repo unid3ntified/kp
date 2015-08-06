@@ -50,9 +50,9 @@ class MsrnProposedlist extends \yii\db\ActiveRecord
         return [
             'No' => 'No',
             'Regional' => 'Regional',
-            'MSS' => 'Mss',
-            'Existing_MSRN' => 'Existing  Msrn',
-            'New_MSRN' => 'New  Msrn',
+            'MSS' => 'MSS',
+            'Existing_MSRN' => 'Existing  MSRN',
+            'New_MSRN' => 'New  MSRN',
             'Status' => 'Status',
             'Reserved_by' => 'Reserved By',
             'Updated' => 'Updated',

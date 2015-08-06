@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\MsrnProposedlist */
 
 $this->title = 'Create Msrn Proposedlist';
-$this->params['breadcrumbs'][] = ['label' => 'Msrn Proposedlists', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Msrn Proposed List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="msrn-proposedlist-create">

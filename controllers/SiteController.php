@@ -52,8 +52,10 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $newsList = News::find()->all();
+        $data = Yii::$app->db->createCommand('SELECT id FROM uploaded_file WHERE type = "slider"')->queryAll();
         return $this->render('index', [
             'newsList' => $newsList,
+            'data' => $data,
         ]);
     }
 
