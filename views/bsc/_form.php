@@ -17,9 +17,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'bsc_id')->dropDownList($listData, ['prompt' => 'Choose BSC']) ?>
+    <?= $form->field($model, 'bsc_id')->dropDownList($listBsc, ['prompt' => 'Choose BSC']) ?>
 
-    <?= $form->field($model, 'mgw')->dropDownList($listData, ['prompt' => 'Choose MGW']) ?>
+    <?= $form->field($model, 'mgw')->dropDownList($listMgw, ['prompt' => 'Choose MGW']) ?>
 
     <?= $form->field($model, 'msc')->textInput(['maxlength' => true]) ?>
 

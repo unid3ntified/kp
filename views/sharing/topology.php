@@ -14,9 +14,9 @@ $this->params['breadcrumbs'][] = $this->title;
 				<div class="col-md-10">Image/File</div>
 				<div class="col-md-1">Action</div></div>';
 			foreach ($data as $key => $value) {
-				$pos = (strrpos($value['name'],".") + 1);
-				$length = (strlen($value['name']) - $pos);
-				$format = substr($value['name'],$pos,$length);
+				$pos = (strrpos($value['name'],".") + 1); //find the position of dot "."
+				$length = (strlen($value['name']) - $pos); //find the length of extension
+				$format = substr($value['name'],$pos,$length); //find the format/extenson itself
 
 	        	echo '<div class="row">
 	        	<div class="col-md-1">'.($key + 1).'</div><div class="col-md-10" id="sliderlist">';

@@ -3,38 +3,22 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\CapDimensioning;
-use app\models\CapDimensioningSearch;
+use app\models\SgsnCapDimensioning;
+use app\models\SgsnCapDimensioningSearch;
 use app\models\NetworkElement;
 use app\models\NetworkElementSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
-use yii\filters\AccessControl;
 
 /**
- * CapDimensioningController implements the CRUD actions for CapDimensioning model.
+ * SgsncapdimensioningController implements the CRUD actions for SgsnCapDimensioning model.
  */
-class CapdimensioningController extends Controller
+class SgsncapdimensioningController extends Controller
 {
     public function behaviors()
     {
         return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'actions' => ['create', 'update', 'index', 'view', 'delete'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                    [
-                        'actions' => ['view','index'],
-                        'allow' => true,
-                    ],
-                ],
-            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -45,12 +29,12 @@ class CapdimensioningController extends Controller
     }
 
     /**
-     * Lists all CapDimensioning models.
+     * Lists all SgsnCapDimensioning models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CapDimensioningSearch();
+        $searchModel = new SgsnCapDimensioningSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         $downloadProvider = $searchModel->search(Yii::$app->request->queryParams);
         $downloadProvider->setPagination(false);
@@ -63,7 +47,7 @@ class CapdimensioningController extends Controller
     }
 
     /**
-     * Displays a single CapDimensioning model.
+     * Displays a single SgsnCapDimensioning model.
      * @param string $id
      * @return mixed
      */
@@ -75,27 +59,27 @@ class CapdimensioningController extends Controller
     }
 
     /**
-     * Creates a new CapDimensioning model.
+     * Creates a new SgsnCapDimensioning model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new CapDimensioning();
-        $listData = NetworkElement::listMsc();
+        $model = new SgsnCapDimensioning();
+        $listSgsn = NetworkElement::listSgsn();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->node_id]);
+            return $this->redirect(['view', 'id' => $model->node_name]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'listData' => $listData,
+                'listSgsn' => $listSgsn,
             ]);
         }
     }
 
     /**
-     * Updates an existing CapDimensioning model.
+     * Updates an existing SgsnCapDimensioning model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -103,20 +87,20 @@ class CapdimensioningController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $listData = NetworkElement::listMsc();
+        $listSgsn = NetworkElement::listSgsn();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->node_id]);
+            return $this->redirect(['view', 'id' => $model->node_name]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'listData' => $listData,
+                'listSgsn' => $listSgsn,
             ]);
         }
     }
 
     /**
-     * Deletes an existing CapDimensioning model.
+     * Deletes an existing SgsnCapDimensioning model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -129,15 +113,15 @@ class CapdimensioningController extends Controller
     }
 
     /**
-     * Finds the CapDimensioning model based on its primary key value.
+     * Finds the SgsnCapDimensioning model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return CapDimensioning the loaded model
+     * @return SgsnCapDimensioning the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = CapDimensioning::findOne($id)) !== null) {
+        if (($model = SgsnCapDimensioning::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

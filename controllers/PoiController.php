@@ -5,7 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Poi;
 use app\models\PoiSearch;
-use app\models\Networkelement;
+use app\models\NetworkElement;
 use app\models\NetworkElementSearch;
 use app\models\TrunkInterkoneksi;
 use app\models\TrunkInterkoneksiSearch;
@@ -87,7 +87,7 @@ class PoiController extends Controller
     public function actionCreate()
     {
         $model = new Poi();
-        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
+        $listData = NetworkElement::listMsc();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->fillModel($model);
@@ -109,7 +109,7 @@ class PoiController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
+        $listData = NetworkElement::listMsc();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->fillModel($model);

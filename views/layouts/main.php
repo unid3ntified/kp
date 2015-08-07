@@ -7,6 +7,11 @@ use app\assets\AppAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
+/* @var #toggle & #toggle0 for right menubar */
+/* @var #toggle1 for network data menu */
+/* @var #toggle2 for network information menu */
+/* @var #toggle3 & #toggle4 for chart display */
+/* @var #toggle5 for capacity dimensioning menu */
 
 AppAsset::register($this);
 ?>
@@ -31,6 +36,8 @@ AppAsset::register($this);
                     sessionStorage.flag1="0";
                 if (sessionStorage.flag2==null)
                     sessionStorage.flag2="0";
+                if (sessionStorage.flag3==null)
+                    sessionStorage.flag3="0";
                 if (sessionStorage.nav==null)
                     sessionStorage.nav="1";
             }
@@ -46,7 +53,9 @@ AppAsset::register($this);
                 $("#item3").hide();
                 $("#item4").hide();
                 $("#item14").hide();
+                $("#toggle5").hide();
                 $("#item15").hide();
+                $("#item16").hide();
             }
             if (sessionStorage.flag2=="0")
             {
@@ -75,7 +84,9 @@ AppAsset::register($this);
                 $("#item3").toggle(320);
                 $("#item4").toggle(320);
                 $("#item14").toggle(320);
+                $("#toggle5").toggle(320);
                 $("#item15").toggle(320);
+                $("#item16").toggle(320);
                 if (sessionStorage.flag1=="0")
                     sessionStorage.flag1="1";
                 else
@@ -106,7 +117,9 @@ AppAsset::register($this);
                     $("#item3").toggle(320);
                     $("#item4").toggle(320);
                     $("#item14").toggle(320);
+                    $("#toggle5").toggle(320);
                     $("#item15").toggle(320);
+                    $("#item16").toggle(320);
                 }
 
                 $("#item5").toggle(320);
@@ -123,11 +136,22 @@ AppAsset::register($this);
                 else
                     sessionStorage.flag2="0";
             });
+
+            $("#toggle5").click(function(){
+                $("#item15").toggle(320);
+                $("#item16").toggle(320);
+                if (sessionStorage.flag3=="1")
+                    sessionStorage.flag3="0";                   
+                else
+                    sessionStorage.flag3="1";
+            });
+
             $("#toggle3").click(function(){
                 $("#chart2").hide();
                 $("#chart1").show(640);
 
             });
+
             $("#toggle4").click(function(){
                 $("#chart1").hide();
                 $("#chart2").show(640);

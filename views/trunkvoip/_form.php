@@ -19,9 +19,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'trunk_id')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'mgw')->dropDownList($listData, ['prompt' => 'Choose MGW']) ?>
+    <?= $form->field($model, 'mgw')->dropDownList($listMgw, ['prompt' => 'Choose MGW']) ?>
 
-    <?= $form->field($model, 'mss')->dropDownList($listData, ['prompt' => 'Choose MSS']) ?>
+    <?= $form->field($model, 'mss')->dropDownList($listMsc, ['prompt' => 'Choose MSS']) ?>
 
     <?= $form->field($model, 'detail')->textarea(['rows' => 6]) ?>
 
@@ -37,7 +37,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'dpc')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'voip_gateway')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'voip_gateway')->textInput(['maxlength' => true])->label('VOIP Gateway (e.g. : SBC ACME packet, IMG, Telcobridge)') ?>
 
     <?= $form->field($model, 'status')->dropDownList($option, ['prompt' => 'Choose Status']) ?>
 

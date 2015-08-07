@@ -127,4 +127,54 @@ class NetworkElement extends \yii\db\ActiveRecord
     {
         return $this->hasMany(TrunkVoip::className(), ['mgw' => 'network_element_id']);
     }
+
+    /*
+        Generic function to list specified Network Element.
+        @param $begin: beginning index of string to be matched with substring
+        @param $end: ending index of string to be matched with substring
+        @param $substr: the substring to be matched
+        @param $maxlength: max length of string allowed
+        @return $listData: array of all string that match above criteria
+    */
+    public static function listData($begin, $end, $substr, $maxlength)
+    {
+        $temp = Yii::$app->db->createCommand('SELECT network_element_id as name FROM network_element')->queryAll();
+        $listData = array();
+        foreach ($temp as $key => $value) 
+        {
+            if ((substr(strtolower($value['name']),$begin,$end) == $substr) && (strlen($value['name']) <= $maxlength))
+            {
+                array_push($listData, $value['name']);
+            }
+        }
+        sort($listData);
+        return $listData;
+    }
+
+    public static function listMgw()
+    {
+        return static::listData(0,2,"mg",20);
+    }
+
+    public static function listMsc()
+    {
+        $listMsc = array_merge(static::listData(0,2,"ms",20),static::listData(0,1,"t",6));
+        sort($listMsc);
+        return $listMsc;
+    }
+
+    public static function listRnc()
+    {
+        return static::listData(0,2,"rn",20);
+    }
+
+    public static function listBsc()
+    {
+        return static::listData(0,1,"b",6);
+    }
+
+    public static function listSgsn()
+    {
+        return static::listData(0,2,"sg",40);
+    }
 }

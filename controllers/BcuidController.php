@@ -82,7 +82,7 @@ class BcuidController extends Controller
     public function actionCreate()
     {
         $model = new BcuId();
-        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
+        $listData = NetworkElement::listMgw();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->fillModel($model);
@@ -105,7 +105,7 @@ class BcuidController extends Controller
     {
         $model = $this->findModel($id);
         $this->convertDropDown($model);
-        $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
+        $listData = NetworkElement::listMgw();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->fillModel($model);

@@ -84,7 +84,8 @@ class RncreferenceController extends Controller
     {
         $model = new RncReference();
         $option = ['Dismantle', 'In Service', 'Plan', 'Trial'];
-        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
+        $listRnc = NetworkElement::listRnc();
+        $listMgw = NetworkElement::listMgw();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->fillModel($model);
@@ -92,7 +93,8 @@ class RncreferenceController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'listData' => $listData,
+                'listRnc' => $listRnc,
+                'listMgw' => $listMgw,
                 'option' => $option,
             ]);
         }
@@ -109,7 +111,8 @@ class RncreferenceController extends Controller
     {
         $model = $this->findModel($rnc_id, $mgw_name);
         $option = ['Dismantle', 'In Service', 'Plan', 'Trial'];
-        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
+        $listRnc = NetworkElement::listRnc();
+        $listMgw = NetworkElement::listMgw();
         $this->convertDropDown($model);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -118,7 +121,8 @@ class RncreferenceController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'listData' => $listData,
+                'listRnc' => $listRnc,
+                'listMgw' => $listMgw,
                 'option' => $option,
             ]);
         }

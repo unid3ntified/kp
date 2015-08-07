@@ -51,7 +51,7 @@ class Bsc extends \yii\db\ActiveRecord
         return [
             'bsc_id' => 'BSC ID',
             'mgw' => 'MGW',
-            'msc' => 'MSC',
+            'msc' => 'Pool',
             'trunk_name' => 'Trunk Name',
             'log_date' => 'Log Date',
             'remark' => 'Remark',

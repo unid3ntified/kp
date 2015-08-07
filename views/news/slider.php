@@ -8,7 +8,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="row">
 		<?php
-			$data = Yii::$app->db->createCommand('SELECT id FROM uploaded_file WHERE type = "slider"')->queryAll();
 			echo '<div class="row">
 				<div class="col-md-1">#</div>
 				<div class="col-md-6">Slider</div>

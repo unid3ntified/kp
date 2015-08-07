@@ -140,13 +140,15 @@ class NewsController extends Controller
             'file_id'
         ]);
      
-        // behavior untuk upload file
+        // behavior for upload file
         $model->attachBehavior('upload', [
             'class' => 'mdm\upload\UploadBehavior',
             'attribute' => 'file',
             'savedAttribute' => 'file_id', 
             //'uploadPath' => Yii::$app->homeUrl.'/files',
-        ]);   
+        ]);
+
+        $data = Yii::$app->db->createCommand('SELECT id FROM uploaded_file WHERE type = "slider"')->queryAll();   
      
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->saveUploadedFile() !== false) {
@@ -155,7 +157,10 @@ class NewsController extends Controller
                 Yii::$app->session->setFlash('success', 'Upload Success');
             }
         }
-        return $this->render('slider',['model' => $model]);
+        return $this->render('slider',[
+            'model' => $model,
+            'data' => $data,
+        ]);
     }
 
     public function actionDeleteslider($id)
@@ -180,6 +185,7 @@ class NewsController extends Controller
         }
     }
 
+    //save model to database
     protected function saveModel($model)
     {
         $model->username = User::findIdentity(Yii::$app->user->id)->username;

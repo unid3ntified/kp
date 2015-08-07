@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 <div class="desc-network-form">
 
     <p>
-    <h4>* Jika network_element id tidak ada dalam drop down list, silahkan buat network element baru di <?= Html::a('sini', ['/networkelement/create']) ?></h4>
+    <h4>* Jika network element id tidak ada dalam drop down list, silahkan buat network element baru di <?= Html::a('sini', ['/networkelement/create']) ?></h4>
     </p>
     <p>
         <font color="red"><?= $err ?></font>

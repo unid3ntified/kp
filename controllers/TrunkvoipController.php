@@ -83,7 +83,8 @@ class TrunkvoipController extends Controller
     {
         $model = new TrunkVoip();
         $option = ['Dismantle', 'In Service', 'Plan', 'Trial'];
-        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
+        $listMgw = NetworkElement::listMgw();
+        $listMsc = NetworkElement::listMsc();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->fillmodel($model);
@@ -91,7 +92,8 @@ class TrunkvoipController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'listData' => $listData,
+                'listMgw' => $listMgw,
+                'listMsc' => $listMsc,
                 'option' => $option,
             ]);
         }
@@ -108,7 +110,8 @@ class TrunkvoipController extends Controller
         $model = $this->findModel($id);
 
         $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
-        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
+        $listMgw = NetworkElement::listMgw();
+        $listMsc = NetworkElement::listMsc();
         $this->convertDropDown($model);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->fillmodel($model);
@@ -116,7 +119,8 @@ class TrunkvoipController extends Controller
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'listData' => $listData,
+                'listMgw' => $listMgw,
+                'listMsc' => $listMsc,
                 'option' => $option,
             ]);
         }

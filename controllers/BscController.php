@@ -83,7 +83,8 @@ class BscController extends Controller
     public function actionCreate()
     {
         $model = new Bsc();
-        $listData = ArrayHelper::map(NetworkElement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
+        $listBsc = NetworkElement::listBsc();
+        $listMgw = NetworkElement::listMgw();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->fillModel($model);
@@ -91,7 +92,8 @@ class BscController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
-                'listData' => $listData,
+                'listBsc' => $listBsc,
+                'listMgw' => $listMgw,
             ]);
         }
     }
@@ -106,14 +108,16 @@ class BscController extends Controller
     public function actionUpdate($bsc_id, $mgw)
     {
         $model = $this->findModel($bsc_id, $mgw);
-        $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
+        $listBsc = NetworkElement::listBsc();
+        $listMgw = NetworkElement::listMgw();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'bsc_id' => $model->bsc_id, 'mgw' => $model->mgw]);
         } else {
             return $this->render('update', [
                 'model' => $model,
-                'listData' => $listData,
+                'listBsc' => $listBsc,
+                'listMgw' => $listMgw,
             ]);
         }
     }
