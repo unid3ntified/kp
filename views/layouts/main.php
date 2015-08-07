@@ -242,7 +242,7 @@ AppAsset::register($this);
                         ['label' => 'Interconnection Trunk', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
                         ['label' => 'VOIP Trunk', 'url' => ['/trunkvoip/index'], 'options' => ['id' => 'item3']],
                         ['label' => 'POI', 'url' => ['/poi/index'], 'options' => ['id' => 'item4']],
-                        ['label' => 'Capacity Dimensioning', 'url' => ['/capdimensioning/index'], 'options' => ['id' => 'item15']],
+                        ['label' => 'Capacity Dimensioning', 'url' => ['/capdimensioning/index'], 'options' => ['id' => 'toggle5']],
                         ['label' => ' Download','url' => ['/site/download'], 'options' => ['id' => 'item14']],
                         ['label' => ' Network Information', 'options' => ['id' => 'toggle2']],
                         ['label' => 'GT Rule', 'url' => ['/gtrule/index'], 'options' => ['id' => 'item13']],
