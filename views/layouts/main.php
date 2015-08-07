@@ -85,8 +85,11 @@ AppAsset::register($this);
                 $("#item4").toggle(320);
                 $("#item14").toggle(320);
                 $("#toggle5").toggle(320);
-                $("#item15").toggle(320);
-                $("#item16").toggle(320);
+                if (sessionStorage.flag3=="1")
+                {
+                    $("#item15").toggle(320);
+                    $("#item16").toggle(320);
+                }
                 if (sessionStorage.flag1=="0")
                     sessionStorage.flag1="1";
                 else
@@ -118,8 +121,11 @@ AppAsset::register($this);
                     $("#item4").toggle(320);
                     $("#item14").toggle(320);
                     $("#toggle5").toggle(320);
-                    $("#item15").toggle(320);
-                    $("#item16").toggle(320);
+                    if (sessionStorage.flag3=="1")
+                    {
+                        $("#item15").toggle(320);
+                        $("#item16").toggle(320);
+                    }
                 }
 
                 $("#item5").toggle(320);
@@ -242,7 +248,9 @@ AppAsset::register($this);
                         ['label' => 'Interconnection Trunk', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
                         ['label' => 'VOIP Trunk', 'url' => ['/trunkvoip/index'], 'options' => ['id' => 'item3']],
                         ['label' => 'POI', 'url' => ['/poi/index'], 'options' => ['id' => 'item4']],
-                        ['label' => 'Capacity Dimensioning', 'url' => ['/capdimensioning/index'], 'options' => ['id' => 'toggle5']],
+                        ['label' => 'Capacity Dimensioning', 'options' => ['id' => 'toggle5']],
+                        ['label' => 'MSC', 'url' => ['/capdimensioning/index'], 'options' => ['id' => 'item15']],
+                        ['label' => 'SGSN', 'url' => ['/sgsncapdimensioning/index'], 'options' => ['id' => 'item16']],
                         ['label' => ' Download','url' => ['/site/download'], 'options' => ['id' => 'item14']],
                         ['label' => ' Network Information', 'options' => ['id' => 'toggle2']],
                         ['label' => 'GT Rule', 'url' => ['/gtrule/index'], 'options' => ['id' => 'item13']],
@@ -273,7 +281,9 @@ AppAsset::register($this);
                         ['label' => 'Interconnection Trunk', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
                         ['label' => 'VOIP Trunk', 'url' => ['/trunkvoip/index'], 'options' => ['id' => 'item3']],
                         ['label' => 'POI', 'url' => ['/poi/index'], 'options' => ['id' => 'item4']],
-                        ['label' => 'Capacity Dimensioning', 'url' => ['/capdimensioning/index'], 'options' => ['id' => 'item15']],
+                        ['label' => 'Capacity Dimensioning', 'options' => ['id' => 'toggle5']],
+                        ['label' => 'MSC', 'url' => ['/capdimensioning/index'], 'options' => ['id' => 'item15']],
+                        ['label' => 'SGSN', 'url' => ['/sgsncapdimensioning/index'], 'options' => ['id' => 'item16']],
                         ['label' => ' Download','url' => ['/site/download'], 'options' => ['id' => 'item14']],
                         ['label' => ' Network Information', 'options' => ['id' => 'toggle2']],
                         ['label' => 'GT Rule', 'url' => ['/gtrule/index'], 'options' => ['id' => 'item13']],
