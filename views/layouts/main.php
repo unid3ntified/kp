@@ -69,6 +69,11 @@ AppAsset::register($this);
                 $("#item12").hide();
                 $("#item13").hide();
             }
+            if (sessionStorage.flag3=="0")
+            {
+                $("#item15").hide();
+                $("#item16").hide();
+            }
                 $("#chart1").hide();
                 $("#chart2").hide();
 

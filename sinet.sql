@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.2.11
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 07, 2015 at 05:37 AM
--- Server version: 5.6.11
--- PHP Version: 5.5.1
+-- Generation Time: Aug 07, 2015 at 01:15 PM
+-- Server version: 5.6.21
+-- PHP Version: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `sinet`
 --
-CREATE DATABASE IF NOT EXISTS `sinet` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `sinet`;
 
 -- --------------------------------------------------------
 
@@ -35,9 +33,7 @@ CREATE TABLE IF NOT EXISTS `bsc` (
   `trunk_name` varchar(20) NOT NULL,
   `year` year(4) DEFAULT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`bsc_id`,`mgw`),
-  KEY `mgw` (`mgw`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -332,7 +328,7 @@ INSERT INTO `bsc` (`bsc_id`, `mgw`, `msc`, `trunk_name`, `year`, `log_date`, `re
 --
 
 CREATE TABLE IF NOT EXISTS `desc_network` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `network_element_id` varchar(100) NOT NULL,
   `opc_nat0` varchar(20) DEFAULT NULL,
   `opc_nat1` varchar(20) DEFAULT NULL,
@@ -344,10 +340,8 @@ CREATE TABLE IF NOT EXISTS `desc_network` (
   `fifth_opc` varchar(20) DEFAULT NULL,
   `sixth_opc` varchar(20) DEFAULT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`id`),
-  KEY `network_id` (`network_element_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15519 ;
+  `remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=15519 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `desc_network`
@@ -2073,16 +2067,15 @@ INSERT INTO `desc_network` (`id`, `network_element_id`, `opc_nat0`, `opc_nat1`, 
 --
 
 CREATE TABLE IF NOT EXISTS `gt_proposedlist` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
+`No` int(11) NOT NULL,
   `Regional` varchar(100) NOT NULL,
   `MSS` varchar(20) DEFAULT NULL,
   `Vendor` varchar(100) DEFAULT NULL,
   `GT` varchar(30) DEFAULT NULL,
   `new_GT` varchar(30) DEFAULT NULL,
   `Status` varchar(50) DEFAULT NULL,
-  `Remark` text,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=249 ;
+  `Remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=249 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `gt_proposedlist`
@@ -2219,15 +2212,14 @@ INSERT INTO `gt_proposedlist` (`No`, `Regional`, `MSS`, `Vendor`, `GT`, `new_GT`
 --
 
 CREATE TABLE IF NOT EXISTS `gt_rule` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
+`No` int(11) NOT NULL,
   `STP` text NOT NULL,
   `Area` text NOT NULL,
   `Equipment` varchar(100) DEFAULT NULL,
   `GT` text NOT NULL,
   `Last_counter` varchar(30) DEFAULT NULL,
-  `Remark` text,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=70 ;
+  `Remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `gt_rule`
@@ -2318,9 +2310,7 @@ CREATE TABLE IF NOT EXISTS `mgw` (
   `new_mss_connected` varchar(20) DEFAULT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`bcu_id`),
-  KEY `mgw_name` (`mgw_name`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2584,8 +2574,7 @@ INSERT INTO `mgw` (`bcu_id`, `mgw_name`, `pool`, `region`, `old_mss_connected`, 
 
 CREATE TABLE IF NOT EXISTS `migration` (
   `version` varchar(180) NOT NULL,
-  `apply_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`version`)
+  `apply_time` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2619,9 +2608,7 @@ CREATE TABLE IF NOT EXISTS `msc` (
   `mgw_managerA_circuit` varchar(10) DEFAULT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`msc_name`),
-  UNIQUE KEY `cnid` (`cnid`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2762,8 +2749,7 @@ CREATE TABLE IF NOT EXISTS `msc_cap_dimensioning` (
   `subs_capacity` int(11) DEFAULT NULL,
   `erlang_capacity` int(11) DEFAULT NULL,
   `bhca_capacity` int(11) DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`node_id`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -2884,7 +2870,7 @@ INSERT INTO `msc_cap_dimensioning` (`node_id`, `region`, `hw_type`, `software_re
 --
 
 CREATE TABLE IF NOT EXISTS `msrn_proposedlist` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
+`No` int(11) NOT NULL,
   `Regional` varchar(100) NOT NULL,
   `MSS` varchar(10) NOT NULL,
   `Vendor` varchar(100) DEFAULT NULL,
@@ -2893,9 +2879,8 @@ CREATE TABLE IF NOT EXISTS `msrn_proposedlist` (
   `Status` varchar(50) DEFAULT NULL,
   `Reserved_by` varchar(50) NOT NULL,
   `Updated` varchar(20) NOT NULL,
-  `Remark` text,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=230 ;
+  `Remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=230 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `msrn_proposedlist`
@@ -3026,14 +3011,13 @@ INSERT INTO `msrn_proposedlist` (`No`, `Regional`, `MSS`, `Vendor`, `Existing_MS
 --
 
 CREATE TABLE IF NOT EXISTS `msrn_routing` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
+`No` int(11) NOT NULL,
   `cluster` varchar(100) NOT NULL,
   `mss` varchar(20) NOT NULL,
   `first_route` varchar(30) NOT NULL,
   `second_route` varchar(20) NOT NULL,
-  `remark` text,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=61 ;
+  `remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `msrn_routing`
@@ -3112,8 +3096,7 @@ CREATE TABLE IF NOT EXISTS `msrn_rule` (
   `equipment` varchar(100) NOT NULL,
   `new_msrn` varchar(20) NOT NULL,
   `last_counter` varchar(20) NOT NULL,
-  `remark` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`cmn`,`new_msrn`)
+  `remark` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -3146,10 +3129,7 @@ CREATE TABLE IF NOT EXISTS `network_element` (
   `gtt` varchar(20) DEFAULT NULL,
   `status` varchar(20) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`network_element_id`),
-  UNIQUE KEY `sc-_address` (`gt_address`),
-  UNIQUE KEY `gtt` (`gtt`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -5095,25 +5075,20 @@ INSERT INTO `network_element` (`network_element_id`, `gt_address`, `location`, `
 --
 
 CREATE TABLE IF NOT EXISTS `news` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `title` text NOT NULL,
   `news_desc` text NOT NULL,
   `image_id` int(11) DEFAULT NULL,
   `username` varchar(50) DEFAULT NULL,
-  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `image_id` (`image_id`,`username`),
-  KEY `user_id` (`username`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `news`
 --
 
 INSERT INTO `news` (`id`, `title`, `news_desc`, `image_id`, `username`, `timestamp`) VALUES
-(4, 'Tes 3', 'Lorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.', 72, 'admin', '2015-07-14 04:15:50'),
-(5, 'Tes 4', 'Lorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.', 74, 'admin', '2015-07-14 04:43:28'),
-(12, 'Tes 1', 'Lorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.\r\nLorem ipsum dolor sit amet.', 76, 'admin', '2015-07-28 06:22:52');
+(15, 'TES', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 98, 'admin', '2015-08-07 06:01:54');
 
 -- --------------------------------------------------------
 
@@ -5122,13 +5097,12 @@ INSERT INTO `news` (`id`, `title`, `news_desc`, `image_id`, `username`, `timesta
 --
 
 CREATE TABLE IF NOT EXISTS `pabx_info` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
+`No` int(11) NOT NULL,
   `Regional` varchar(100) NOT NULL,
   `LAC` varchar(15) NOT NULL,
   `DN` varchar(15) DEFAULT NULL,
-  `Remark` text,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=73 ;
+  `Remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `pabx_info`
@@ -5198,9 +5172,7 @@ CREATE TABLE IF NOT EXISTS `poi` (
   `MSRN` varchar(30) DEFAULT NULL,
   `dummy_number` varchar(20) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`poi`),
-  KEY `msc_name` (`msc_name`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -5254,10 +5226,7 @@ CREATE TABLE IF NOT EXISTS `rnc_reference` (
   `rnc_location` varchar(80) NOT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`rnc_id`,`mgw_name`),
-  KEY `msc_name` (`pool`),
-  KEY `mgw_name` (`mgw_name`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -5546,13 +5515,12 @@ INSERT INTO `rnc_reference` (`rnc_id`, `mgw_name`, `rnc_name`, `pool`, `vendor_r
 --
 
 CREATE TABLE IF NOT EXISTS `sct_port_huawei` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
+`No` int(11) NOT NULL,
   `mss_huawei` varchar(100) NOT NULL,
   `sctp_port` varchar(20) NOT NULL,
   `last_counter` varchar(20) DEFAULT NULL,
-  `Remark` text,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+  `Remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `sct_port_huawei`
@@ -5586,8 +5554,7 @@ CREATE TABLE IF NOT EXISTS `sgsn_cap_dimensioning` (
   `cap_used_sau_percent` float DEFAULT NULL,
   `cap_used_pdp_percent` float DEFAULT NULL,
   `cpu_utilisation_percent` float DEFAULT NULL,
-  `memory_utilisation_percent` float DEFAULT NULL,
-  PRIMARY KEY (`node_name`)
+  `memory_utilisation_percent` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -5620,10 +5587,9 @@ INSERT INTO `sgsn_cap_dimensioning` (`node_name`, `site_name`, `technology_type`
 --
 
 CREATE TABLE IF NOT EXISTS `spc_ransharing` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
-  `SPC` varchar(20) NOT NULL,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+`No` int(11) NOT NULL,
+  `SPC` varchar(20) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `spc_ransharing`
@@ -5644,14 +5610,13 @@ INSERT INTO `spc_ransharing` (`No`, `SPC`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `spc_rule` (
-  `No` int(11) NOT NULL AUTO_INCREMENT,
+`No` int(11) NOT NULL,
   `Area` varchar(100) NOT NULL,
   `SPC` varchar(50) NOT NULL,
   `Jenis` varchar(20) NOT NULL,
   `Last_counter` varchar(30) NOT NULL,
-  `Remark` text,
-  PRIMARY KEY (`No`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+  `Remark` text
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `spc_rule`
@@ -5685,9 +5650,7 @@ CREATE TABLE IF NOT EXISTS `trunk_interkoneksi` (
   `e1_capacity` int(11) DEFAULT NULL,
   `status` varchar(30) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`trunk_id`),
-  KEY `POI` (`POI`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -5984,10 +5947,7 @@ CREATE TABLE IF NOT EXISTS `trunk_voip` (
   `voip_gateway` varchar(80) NOT NULL,
   `status` varchar(20) NOT NULL,
   `log_date` date DEFAULT NULL,
-  `remark` text,
-  PRIMARY KEY (`trunk_id`),
-  KEY `mgw_name` (`mgw`),
-  KEY `mss` (`mss`)
+  `remark` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -6121,50 +6081,31 @@ INSERT INTO `trunk_voip` (`trunk_id`, `mss`, `mgw`, `detail`, `direction`, `konf
 --
 
 CREATE TABLE IF NOT EXISTS `uploaded_file` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+`id` int(11) NOT NULL,
   `name` varchar(64) DEFAULT NULL,
   `filename` varchar(256) DEFAULT NULL,
   `size` int(11) DEFAULT NULL,
   `type` varchar(30) DEFAULT NULL,
-  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=94 ;
+  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `uploaded_file`
 --
 
 INSERT INTO `uploaded_file` (`id`, `name`, `filename`, `size`, `type`, `timestamp`) VALUES
-(9, 'sinet.sql', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\b1\\b1631225f3277cde083584cf8a3d134b_sinet.sql', 530778, 'sharing', NULL),
-(29, 'home.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\7f\\7fbbc32f8b6e0ec3689ac7f7b758b795_home.png', 546321, 'news', '2015-07-28 01:06:19'),
-(31, 'dashboard.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\13\\139598597a5b537d3735247bf5dad9ce_dashboard.png', 107577, 'news', '2015-07-28 01:10:59'),
-(54, '1005665_560013057396229_1841222337_n.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\7e\\7e707ead6ee8cb2a763f5e48393ecb59_1005665_560013057396229_1841222337_n.png', 521578, NULL, '2015-07-28 06:16:49'),
-(57, 'selfie.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\2d\\2d00530d988338467da17e6424d8926f_selfie.jpg', 85165, 'news', '2015-07-28 06:22:52'),
-(58, 'home.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\b8\\b8612804d385e2b2ac09b4b402d860ee_home.png', 546321, NULL, '2015-07-28 06:35:43'),
-(59, 'home.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\e2\\e22d955aa9b3439767982d2cc2ae0866_home.png', 546321, 'news', '2015-07-28 06:35:43'),
-(60, 'crm.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\b3\\b3cb2e2c382f29fb35d27c6647cf81b4_crm.jpg', 244467, NULL, '2015-07-28 06:37:38'),
-(61, 'crm.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\0f\\0f31bfde1c728d9092c00fb144beeceb_crm.jpg', 244467, 'news', '2015-07-28 06:37:38'),
-(62, 'uploaded_file.sql', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\3a\\3ac9917af6e88d4015bc5ebecbe11021_uploaded_file.sql', 3491, 'sharing', '2015-07-28 09:25:00'),
-(66, 'Satellite1.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\ec\\ec1589607ad49c8f9be087b95e4158ae_Satellite1.jpg', 198290, 'slider', '2015-07-28 09:28:04'),
-(67, 'Satellite.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\01\\017634c1f6b46e80ffe5478a68ceb4e1_Satellite.jpg', 73188, 'slider', '2015-07-28 09:28:14'),
-(69, '2.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\8a\\8a8bcaa369e59f81da725b7c4ac6daef_2.jpg', 4805, NULL, '2015-07-29 03:48:21'),
-(70, '2.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\09\\094d6dfecf06fca3cd8f5b640c7532bd_2.jpg', 4805, 'news', '2015-07-29 03:48:21'),
-(71, '11.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\33\\33112afba6a6680e507a511c3f3f41d5_11.jpg', 5310, NULL, '2015-07-29 03:48:35'),
-(72, '11.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\72\\7249cb7e538575213be3aa16423f9a49_11.jpg', 5310, 'news', '2015-07-29 03:48:35'),
-(73, '99.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\9c\\9c65d22af8697f1917abb70c84b8b5f6_99.jpg', 10589, NULL, '2015-07-29 03:48:53'),
-(74, '99.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\a4\\a46921722471a11ef5ec116106fb3933_99.jpg', 10589, 'news', '2015-07-29 03:48:53'),
-(75, '2013-07-11_123536.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\cf\\cf59a7973b7d9ae310e89dd11b8d7fc4_2013-07-11_123536.png', 180457, NULL, '2015-07-29 03:49:10'),
-(76, '2013-07-11_123536.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\4d\\4da0130265c01152fe73975b14dd9b08_2013-07-11_123536.png', 180457, 'news', '2015-07-29 03:49:10'),
-(82, '3.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\bf\\bfa65b1f1218c25ff22b8da998377606_3.png', 56590, NULL, '2015-08-05 02:02:01'),
-(83, '3.png', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\73\\734a0667ff7237c3bf0135d8b2b0109e_3.png', 56590, 'news', '2015-08-05 02:02:01'),
-(84, 'HLR,SGSN,STP,IN.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\16\\1693c6009c539835a91cd96f1c79d005_HLR,SGSN,STP,IN.JPG', 357854, 'topology', '2015-08-05 07:19:58'),
-(85, 'MSS.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\aa\\aab8ffcd80962291ea1ee0b8aafaa65b_MSS.JPG', 484045, 'topology', '2015-08-05 07:20:14'),
-(86, 'SGSN.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\aa\\aa942d47e9984174b1ffaeba4eb48f03_SGSN.JPG', 269989, 'topology', '2015-08-05 07:20:22'),
-(88, 'SMSC,FDA.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\da\\da1172990ce67f8f10b0739bb90b5bbe_SMSC,FDA.JPG', 328726, 'topology', '2015-08-05 07:20:57'),
-(89, 'VMS.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\30\\30eeb77593fe82dc2dd2ffb678d76a5f_VMS.JPG', 331878, 'topology', '2015-08-05 07:21:06'),
 (90, '11.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\6f\\6f06a694d54fdcbf1323d453b6a319c8_11.jpg', 5310, NULL, '2015-08-06 02:58:07'),
 (91, '11.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\3c\\3c2b67998231f4b50a13e130fa061a68_11.jpg', 5310, 'news', '2015-08-06 02:58:07'),
-(92, 'Satellite5.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\0b\\0b3ce481b92927d93ceb748b423b3b6a_Satellite5.jpg', 222554, 'slider', '2015-08-06 03:06:39');
+(94, 'slider2.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\4a\\4a8bf365e74c96cf27dd36d69fb19493_slider2.jpg', 102773, 'slider', '2015-08-07 05:59:17'),
+(95, 'slider3.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\62\\62cf532fd9e5f7e9e7fb2a904244a89e_slider3.jpg', 198290, 'slider', '2015-08-07 05:59:33'),
+(96, 'slider1.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\f8\\f8826b0c89e0326191aa58fb9c55d966_slider1.jpg', 77608, 'slider', '2015-08-07 05:59:43'),
+(97, 'selfie.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\c9\\c9abcee7aa4abb74ffe7f3ce7ed6fe19_selfie.jpg', 85165, NULL, '2015-08-07 06:01:54'),
+(98, 'selfie.jpg', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\a4\\a4367d82576fabe852bc3c3b1ad10bea_selfie.jpg', 85165, 'news', '2015-08-07 06:01:54'),
+(99, 'HLR,SGSN,STP,IN.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\90\\90e89ade5cba0d3999a3a567b846e5a8_HLR,SGSN,STP,IN.JPG', 357854, 'topology', '2015-08-07 06:06:23'),
+(100, 'MSS.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\d1\\d16aff254ce6877eb062fa352d593917_MSS.JPG', 484045, 'topology', '2015-08-07 06:06:31'),
+(101, 'SGSN.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\c6\\c683140c055b8137a53f8602f1384a48_SGSN.JPG', 269989, 'topology', '2015-08-07 06:06:51'),
+(102, 'SMSC,FDA.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\b5\\b5e9372d75c9ed5003f0d54b3cad63c4_SMSC,FDA.JPG', 328726, 'topology', '2015-08-07 06:07:02'),
+(103, 'VMS.JPG', 'C:\\xampp\\htdocs\\xl\\runtime/upload\\3e\\3efdda9fecff0768e83a89dd6bc80590_VMS.JPG', 331878, 'topology', '2015-08-07 06:07:11');
 
 -- --------------------------------------------------------
 
@@ -6173,7 +6114,7 @@ INSERT INTO `uploaded_file` (`id`, `name`, `filename`, `size`, `type`, `timestam
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `ID` int(10) NOT NULL AUTO_INCREMENT,
+`ID` int(10) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password_hash` varchar(255) NOT NULL,
   `password_reset_token` varchar(32) DEFAULT NULL,
@@ -6182,22 +6123,228 @@ CREATE TABLE IF NOT EXISTS `user` (
   `status` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `Phone` varchar(12) DEFAULT NULL,
-  PRIMARY KEY (`ID`),
-  UNIQUE KEY `Username` (`username`),
-  KEY `User_ID` (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
+  `Phone` varchar(12) DEFAULT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`ID`, `username`, `password_hash`, `password_reset_token`, `auth_key`, `email`, `status`, `created_at`, `updated_at`, `Phone`) VALUES
-(17, 'admin', '$2y$13$2Jpvuobfxs/c9lX3BhTlA.HNyBSgtGy1aAbyU4so0K87FnKfVrYf6', NULL, 'Uxgyfo8tKfeAR3WyqfKVKhwvJAMIBHJN', 'admin@example.com', 10, '2015-06-30 06:05:02', '2015-06-30 06:05:02', NULL),
-(18, 'admin2', '$2y$13$2BbZ9UPTlxF3murf4r9PtOuR9VCZ4buqMfWRMVwc/j.WVX5/13BmK', NULL, 'Ug7ePFo8TKFsjgk_tDF7ixDQ0lc2UswO', 'admin2@admin.com', 10, '2015-07-30 00:45:58', '2015-07-30 00:45:58', NULL),
-(19, 'admin3', '$2y$13$PRkkrLkE.kgg/XAR3Io9Weq8wa6UIgxqrZraFoYmFtjdGvweC1MMi', NULL, 'WtRHklpQYDnufzMirL8tcL72BTMCuUQr', 'admin3@admin.com', 10, '2015-07-30 00:46:55', '2015-07-30 00:46:55', NULL),
-(20, 'made', '$2y$13$yRb5915CYcPp6exNuSd6iuIMI.7gNz5HgIFgVM9vLvBaRm8CR7vbG', NULL, '5XKGiIVjkAjjJwlSR5hyUAaLeIu81V_e', 'made@ui.ac.id', 10, '2015-08-06 02:56:30', '2015-08-06 02:56:30', NULL);
+(17, 'admin', '$2y$13$2Jpvuobfxs/c9lX3BhTlA.HNyBSgtGy1aAbyU4so0K87FnKfVrYf6', NULL, 'Uxgyfo8tKfeAR3WyqfKVKhwvJAMIBHJN', 'admin@example.com', 10, '2015-06-30 06:05:02', '2015-06-30 06:05:02', NULL);
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `bsc`
+--
+ALTER TABLE `bsc`
+ ADD PRIMARY KEY (`bsc_id`,`mgw`), ADD KEY `mgw` (`mgw`);
+
+--
+-- Indexes for table `desc_network`
+--
+ALTER TABLE `desc_network`
+ ADD PRIMARY KEY (`id`), ADD KEY `network_id` (`network_element_id`);
+
+--
+-- Indexes for table `gt_proposedlist`
+--
+ALTER TABLE `gt_proposedlist`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `gt_rule`
+--
+ALTER TABLE `gt_rule`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `mgw`
+--
+ALTER TABLE `mgw`
+ ADD PRIMARY KEY (`bcu_id`), ADD KEY `mgw_name` (`mgw_name`);
+
+--
+-- Indexes for table `migration`
+--
+ALTER TABLE `migration`
+ ADD PRIMARY KEY (`version`);
+
+--
+-- Indexes for table `msc`
+--
+ALTER TABLE `msc`
+ ADD PRIMARY KEY (`msc_name`), ADD UNIQUE KEY `cnid` (`cnid`);
+
+--
+-- Indexes for table `msc_cap_dimensioning`
+--
+ALTER TABLE `msc_cap_dimensioning`
+ ADD PRIMARY KEY (`node_id`);
+
+--
+-- Indexes for table `msrn_proposedlist`
+--
+ALTER TABLE `msrn_proposedlist`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `msrn_routing`
+--
+ALTER TABLE `msrn_routing`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `msrn_rule`
+--
+ALTER TABLE `msrn_rule`
+ ADD PRIMARY KEY (`cmn`,`new_msrn`);
+
+--
+-- Indexes for table `network_element`
+--
+ALTER TABLE `network_element`
+ ADD PRIMARY KEY (`network_element_id`), ADD UNIQUE KEY `sc-_address` (`gt_address`), ADD UNIQUE KEY `gtt` (`gtt`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+ ADD PRIMARY KEY (`id`), ADD KEY `image_id` (`image_id`,`username`), ADD KEY `user_id` (`username`);
+
+--
+-- Indexes for table `pabx_info`
+--
+ALTER TABLE `pabx_info`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `poi`
+--
+ALTER TABLE `poi`
+ ADD PRIMARY KEY (`poi`), ADD KEY `msc_name` (`msc_name`);
+
+--
+-- Indexes for table `rnc_reference`
+--
+ALTER TABLE `rnc_reference`
+ ADD PRIMARY KEY (`rnc_id`,`mgw_name`), ADD KEY `msc_name` (`pool`), ADD KEY `mgw_name` (`mgw_name`);
+
+--
+-- Indexes for table `sct_port_huawei`
+--
+ALTER TABLE `sct_port_huawei`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `sgsn_cap_dimensioning`
+--
+ALTER TABLE `sgsn_cap_dimensioning`
+ ADD PRIMARY KEY (`node_name`);
+
+--
+-- Indexes for table `spc_ransharing`
+--
+ALTER TABLE `spc_ransharing`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `spc_rule`
+--
+ALTER TABLE `spc_rule`
+ ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `trunk_interkoneksi`
+--
+ALTER TABLE `trunk_interkoneksi`
+ ADD PRIMARY KEY (`trunk_id`), ADD KEY `POI` (`POI`);
+
+--
+-- Indexes for table `trunk_voip`
+--
+ALTER TABLE `trunk_voip`
+ ADD PRIMARY KEY (`trunk_id`), ADD KEY `mgw_name` (`mgw`), ADD KEY `mss` (`mss`);
+
+--
+-- Indexes for table `uploaded_file`
+--
+ALTER TABLE `uploaded_file`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+ ADD PRIMARY KEY (`ID`), ADD UNIQUE KEY `Username` (`username`), ADD KEY `User_ID` (`ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `desc_network`
+--
+ALTER TABLE `desc_network`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15519;
+--
+-- AUTO_INCREMENT for table `gt_proposedlist`
+--
+ALTER TABLE `gt_proposedlist`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=249;
+--
+-- AUTO_INCREMENT for table `gt_rule`
+--
+ALTER TABLE `gt_rule`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=70;
+--
+-- AUTO_INCREMENT for table `msrn_proposedlist`
+--
+ALTER TABLE `msrn_proposedlist`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=230;
+--
+-- AUTO_INCREMENT for table `msrn_routing`
+--
+ALTER TABLE `msrn_routing`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=61;
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
+--
+-- AUTO_INCREMENT for table `pabx_info`
+--
+ALTER TABLE `pabx_info`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=73;
+--
+-- AUTO_INCREMENT for table `sct_port_huawei`
+--
+ALTER TABLE `sct_port_huawei`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `spc_ransharing`
+--
+ALTER TABLE `spc_ransharing`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `spc_rule`
+--
+ALTER TABLE `spc_rule`
+MODIFY `No` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT for table `uploaded_file`
+--
+ALTER TABLE `uploaded_file`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=104;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- Constraints for dumped tables
 --
@@ -6206,64 +6353,64 @@ INSERT INTO `user` (`ID`, `username`, `password_hash`, `password_reset_token`, `
 -- Constraints for table `bsc`
 --
 ALTER TABLE `bsc`
-  ADD CONSTRAINT `bsc_ibfk_1` FOREIGN KEY (`bsc_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `bsc_ibfk_2` FOREIGN KEY (`mgw`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `bsc_ibfk_1` FOREIGN KEY (`bsc_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `bsc_ibfk_2` FOREIGN KEY (`mgw`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `desc_network`
 --
 ALTER TABLE `desc_network`
-  ADD CONSTRAINT `desc_network_ibfk_1` FOREIGN KEY (`network_element_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `desc_network_ibfk_1` FOREIGN KEY (`network_element_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `mgw`
 --
 ALTER TABLE `mgw`
-  ADD CONSTRAINT `mgw_ibfk_1` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `mgw_ibfk_1` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `msc`
 --
 ALTER TABLE `msc`
-  ADD CONSTRAINT `msc_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `msc_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `msc_cap_dimensioning`
 --
 ALTER TABLE `msc_cap_dimensioning`
-  ADD CONSTRAINT `msc_cap_dimensioning_ibfk_1` FOREIGN KEY (`node_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `msc_cap_dimensioning_ibfk_1` FOREIGN KEY (`node_id`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `news`
 --
 ALTER TABLE `news`
-  ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `uploaded_file` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `news_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `uploaded_file` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `news_ibfk_2` FOREIGN KEY (`username`) REFERENCES `user` (`username`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `poi`
 --
 ALTER TABLE `poi`
-  ADD CONSTRAINT `poi_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `poi_ibfk_1` FOREIGN KEY (`msc_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `rnc_reference`
 --
 ALTER TABLE `rnc_reference`
-  ADD CONSTRAINT `rnc_reference_ibfk_2` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `rnc_reference_ibfk_2` FOREIGN KEY (`mgw_name`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `trunk_interkoneksi`
 --
 ALTER TABLE `trunk_interkoneksi`
-  ADD CONSTRAINT `trunk_interkoneksi_ibfk_1` FOREIGN KEY (`POI`) REFERENCES `poi` (`poi`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `trunk_interkoneksi_ibfk_1` FOREIGN KEY (`POI`) REFERENCES `poi` (`poi`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `trunk_voip`
 --
 ALTER TABLE `trunk_voip`
-  ADD CONSTRAINT `trunk_voip_ibfk_4` FOREIGN KEY (`mgw`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `trunk_voip_ibfk_3` FOREIGN KEY (`mss`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `trunk_voip_ibfk_3` FOREIGN KEY (`mss`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `trunk_voip_ibfk_4` FOREIGN KEY (`mgw`) REFERENCES `network_element` (`network_element_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
