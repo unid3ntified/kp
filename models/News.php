@@ -40,7 +40,7 @@ class News extends \yii\db\ActiveRecord
         return [
             [['title', 'news_desc'], 'required'],
             [['title', 'news_desc'], 'string'],
-            [['image_id'], 'safe'],
+            [['image_id', 'timestamp'], 'safe'],
             [['username'], 'string', 'max' => 50],
         ];
     }

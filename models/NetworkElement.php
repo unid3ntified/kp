@@ -140,11 +140,14 @@ class NetworkElement extends \yii\db\ActiveRecord
     {
         $temp = Yii::$app->db->createCommand('SELECT network_element_id as name FROM network_element')->queryAll();
         $listData = array();
+        $i = 0;
         foreach ($temp as $key => $value) 
         {
             if ((substr(strtolower($value['name']),$begin,$end) == $substr) && (strlen($value['name']) <= $maxlength))
             {
-                array_push($listData, $value['name']);
+                $listData[$i] = $value['name'];
+                //array_push($listData, $value['name']);
+                $i++;
             }
         }
         sort($listData);
