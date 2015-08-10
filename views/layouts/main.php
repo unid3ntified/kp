@@ -56,6 +56,8 @@ AppAsset::register($this);
                 $("#toggle5").hide();
                 $("#item15").hide();
                 $("#item16").hide();
+                $("#item17").toggle(320);
+                $("#item18").toggle(320);
             }
             if (sessionStorage.flag2=="0")
             {
@@ -89,6 +91,8 @@ AppAsset::register($this);
                 $("#item3").toggle(320);
                 $("#item4").toggle(320);
                 $("#item14").toggle(320);
+                $("#item17").toggle(320);
+                $("#item18").toggle(320);
                 $("#toggle5").toggle(320);
                 if (sessionStorage.flag3=="1")
                 {
@@ -125,6 +129,8 @@ AppAsset::register($this);
                     $("#item3").toggle(320);
                     $("#item4").toggle(320);
                     $("#item14").toggle(320);
+                    $("#item17").toggle(320);
+                    $("#item18").toggle(320);
                     $("#toggle5").toggle(320);
                     if (sessionStorage.flag3=="1")
                     {
@@ -251,11 +257,13 @@ AppAsset::register($this);
                         ['label' => ' Network Data', 'options' => ['id' => 'toggle1']],
                         ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
                         ['label' => 'Interconnection Trunk', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
-                        ['label' => 'VOIP Trunk', 'url' => ['/trunkvoip/index'], 'options' => ['id' => 'item3']],
-                        ['label' => 'POI', 'url' => ['/poi/index'], 'options' => ['id' => 'item4']],
                         ['label' => 'Capacity Dimensioning', 'options' => ['id' => 'toggle5']],
                         ['label' => 'MSC', 'url' => ['/capdimensioning/index'], 'options' => ['id' => 'item15']],
                         ['label' => 'SGSN', 'url' => ['/sgsncapdimensioning/index'], 'options' => ['id' => 'item16']],
+                        ['label' => 'RNC Reference', 'url' => ['/rncreference/index'], 'options' => ['id' => 'item17']],
+                        ['label' => 'VOIP Trunk', 'url' => ['/trunkvoip/index'], 'options' => ['id' => 'item3']],
+                        ['label' => 'BSC', 'url' => ['/bsc/index'], 'options' => ['id' => 'item18']],
+                        ['label' => 'POI', 'url' => ['/poi/index'], 'options' => ['id' => 'item4']],                                               
                         ['label' => ' Download','url' => ['/site/download'], 'options' => ['id' => 'item14']],
                         ['label' => ' Network Information', 'options' => ['id' => 'toggle2']],
                         ['label' => 'GT Rule', 'url' => ['/gtrule/index'], 'options' => ['id' => 'item13']],
@@ -284,11 +292,13 @@ AppAsset::register($this);
                         ['label' => ' Network Data', 'options' => ['id' => 'toggle1']],
                         ['label' => 'Network Element', 'url' => ['/networkelement/index'], 'options' => ['id' => 'item1']],
                         ['label' => 'Interconnection Trunk', 'url' => ['/trunkinterkoneksi/index'], 'options' => ['id' => 'item2']],
-                        ['label' => 'VOIP Trunk', 'url' => ['/trunkvoip/index'], 'options' => ['id' => 'item3']],
-                        ['label' => 'POI', 'url' => ['/poi/index'], 'options' => ['id' => 'item4']],
                         ['label' => 'Capacity Dimensioning', 'options' => ['id' => 'toggle5']],
                         ['label' => 'MSC', 'url' => ['/capdimensioning/index'], 'options' => ['id' => 'item15']],
                         ['label' => 'SGSN', 'url' => ['/sgsncapdimensioning/index'], 'options' => ['id' => 'item16']],
+                        ['label' => 'RNC Reference', 'url' => ['/rncreference/index'], 'options' => ['id' => 'item17']],
+                        ['label' => 'VOIP Trunk', 'url' => ['/trunkvoip/index'], 'options' => ['id' => 'item3']],
+                        ['label' => 'BSC', 'url' => ['/bsc/index'], 'options' => ['id' => 'item18']],
+                        ['label' => 'POI', 'url' => ['/poi/index'], 'options' => ['id' => 'item4']],                       
                         ['label' => ' Download','url' => ['/site/download'], 'options' => ['id' => 'item14']],
                         ['label' => ' Network Information', 'options' => ['id' => 'toggle2']],
                         ['label' => 'GT Rule', 'url' => ['/gtrule/index'], 'options' => ['id' => 'item13']],
