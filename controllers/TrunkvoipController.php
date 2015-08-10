@@ -82,11 +82,11 @@ class TrunkvoipController extends Controller
     public function actionCreate()
     {
         $model = new TrunkVoip();
-        $option = ['Dismantle', 'In Service', 'Plan', 'Trial'];
         $listMgw = NetworkElement::listMgw();
         $listMsc = NetworkElement::listMsc();
+        $option = ['Dismantle', 'In Service', 'Plan', 'Trial'];
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $this->fillmodel($model);
             return $this->redirect(['view', 'id' => $model->trunk_id]);
         } else {
@@ -108,10 +108,9 @@ class TrunkvoipController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        $option = ['Dismantle', 'In service', 'Plan', 'Trial'];
         $listMgw = NetworkElement::listMgw();
         $listMsc = NetworkElement::listMsc();
+        $option = ['Dismantle', 'In Service', 'Plan', 'Trial'];
         $this->convertDropDown($model);
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->fillmodel($model);
@@ -157,6 +156,8 @@ class TrunkvoipController extends Controller
 
     public function fillModel($model)
     {
+        $listMgw = NetworkElement::listMgw();
+        $listMsc = NetworkElement::listMsc();
         switch($model->status)
         {
             case ("0"):
@@ -172,13 +173,17 @@ class TrunkvoipController extends Controller
                 $model->status = "Trial";
                 break;
         }
+        $model->mgw = $listMgw[$model->mgw];
+        $model->mss = $listMsc[$model->mss];
         $model->log_date = date('Y-m-d');
         $model->save();
     }
 
     public function convertDropDown($model)
     {
-         switch($model->status)
+        $listMgw = NetworkElement::listMgw();
+        $listMsc = NetworkElement::listMsc();
+        switch($model->status)
         {
             case ("Dismantle"):
                 $model->status = "0";
@@ -193,5 +198,7 @@ class TrunkvoipController extends Controller
                 $model->status = "3";
                 break;
         }
+        $model->mgw = array_search($model->mgw, $listMgw);
+        $model->mss = array_search($model->mss, $listMsc);
     }
 }

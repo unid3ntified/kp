@@ -102,7 +102,7 @@ class NewsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $model->news_desc = str_replace("<br />", "", $model->news_desc);
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             $this->saveModel($model);
             return $this->redirect(['view', 'id' => $model->id]);
@@ -189,6 +189,8 @@ class NewsController extends Controller
     protected function saveModel($model)
     {
         $model->username = User::findIdentity(Yii::$app->user->id)->username;
+        $model->timestamp = date('Y-m-d H:i:s');
+        $model->news_desc = nl2br($model->news_desc);
         if($model->saveUploadedFile() !== false)
         {               
             $model->save();
