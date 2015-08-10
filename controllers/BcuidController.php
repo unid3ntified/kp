@@ -89,7 +89,7 @@ class BcuidController extends Controller
             $valid = $this->fillModel($model);
             if ($valid)
             {
-                return $this->redirect(['view', 'id' => $model->mgw_name]);
+                return $this->redirect(['view', 'id' => $model->bcu_id]);
             }
             else 
             {
@@ -125,7 +125,7 @@ class BcuidController extends Controller
             $valid = $this->fillModel($model);
             if ($valid)
             {
-                return $this->redirect(['view', 'id' => $model->mgw_name]);
+                return $this->redirect(['view', 'id' => $model->bcu_id]);
             }
             else 
             {
