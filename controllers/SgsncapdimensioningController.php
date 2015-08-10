@@ -68,9 +68,24 @@ class SgsncapdimensioningController extends Controller
         $model = new SgsnCapDimensioning();
         $listSgsn = NetworkElement::listSgsn();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->node_name]);
-        } else {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+        {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'id' => $model->node_name]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('create', [
+                    'model' => $model,
+                    'listSgsn' => $listSgsn,
+                ]);
+            }
+        } 
+        else
+        {
             return $this->render('create', [
                 'model' => $model,
                 'listSgsn' => $listSgsn,
@@ -89,9 +104,24 @@ class SgsncapdimensioningController extends Controller
         $model = $this->findModel($id);
         $listSgsn = NetworkElement::listSgsn();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->node_name]);
-        } else {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+        {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'id' => $model->node_name]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('update', [
+                    'model' => $model,
+                    'listSgsn' => $listSgsn,
+                ]);
+            }
+        } 
+        else
+        {
             return $this->render('update', [
                 'model' => $model,
                 'listSgsn' => $listSgsn,
@@ -126,5 +156,18 @@ class SgsncapdimensioningController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function fillModel($model)
+    {
+        $listSgsn = NetworkElement::listSgsn();
+        $model->node_name = $listSgsn[$model->node_name];
+        return $model->save();
+    }
+
+    public function convertDropDown($model)
+    {
+        $listSgsn = NetworkElement::listSgsn();
+        $model->node_name = array_search($model->node_name, $listSgsn);
     }
 }

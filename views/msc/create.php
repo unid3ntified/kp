@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\Msc */
 
 $this->title = 'Manage Msc';
-$this->params['breadcrumbs'][] = ['label' => 'Mscs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Msc List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="msc-create">

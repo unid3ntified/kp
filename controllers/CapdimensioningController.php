@@ -84,9 +84,24 @@ class CapdimensioningController extends Controller
         $model = new CapDimensioning();
         $listData = NetworkElement::listMsc();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->node_id]);
-        } else {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+        {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'id' => $model->node_id]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('create', [
+                    'model' => $model,
+                    'listData' => $listData,
+                ]);
+            }           
+        } 
+        else 
+        {
             return $this->render('create', [
                 'model' => $model,
                 'listData' => $listData,
@@ -105,9 +120,24 @@ class CapdimensioningController extends Controller
         $model = $this->findModel($id);
         $listData = NetworkElement::listMsc();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->node_id]);
-        } else {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+        {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'id' => $model->node_id]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('update', [
+                    'model' => $model,
+                    'listData' => $listData,
+                ]);
+            }
+        } 
+        else 
+        {
             return $this->render('update', [
                 'model' => $model,
                 'listData' => $listData,
@@ -142,5 +172,18 @@ class CapdimensioningController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function fillModel($model)
+    {
+        $listMsc = NetworkElement::listMsc();
+        $model->node_id = $listMsc[$model->node_id];
+        return $model->save();
+    }
+
+    public function convertDropDown($model)
+    {
+        $listMsc = NetworkElement::listMsc();
+        $model->node_id = array_search($model->node_id, $listMsc);
     }
 }

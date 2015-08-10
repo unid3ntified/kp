@@ -84,7 +84,8 @@ class DescnetworkController extends Controller
         $model = new DescNetwork();
         $listData = ArrayHelper::map(NetworkELement::find()->asArray()->all(), 'network_element_id', 'network_element_id');
        
-        if ($model->load(Yii::$app->request->post())) {
+        if ($model->load(Yii::$app->request->post())) 
+        {
             $valid = $this->fillModel($model);
                         
             if ($valid == 0)

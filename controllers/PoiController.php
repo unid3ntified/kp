@@ -89,10 +89,24 @@ class PoiController extends Controller
         $model = new Poi();
         $listData = NetworkElement::listMsc();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->fillModel($model);
-            return $this->redirect(['view', 'id' => $model->poi]);
-        } else {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+        {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'id' => $model->poi]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('create', [
+                    'model' => $model,
+                    'listData' => $listData,
+                ]);
+            }
+        }
+        else 
+        {
             return $this->render('create', [
                 'model' => $model,
                 'listData' => $listData,
@@ -111,10 +125,24 @@ class PoiController extends Controller
         $model = $this->findModel($id);
         $listData = NetworkElement::listMsc();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->fillModel($model);
-            return $this->redirect(['view', 'id' => $model->poi]);
-        } else {
+       if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+       {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'id' => $model->poi]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('update', [
+                    'model' => $model,
+                    'listData' => $listData,
+                ]);
+            }
+        } 
+        else 
+        {
             return $this->render('update', [
                 'model' => $model,
                 'listData' => $listData,
@@ -151,9 +179,17 @@ class PoiController extends Controller
         }
     }
 
-     public function fillModel($model)
+    public function fillModel($model)
     {
+        $listData = NetworkElement::listMsc();
         $model->log_date = date('Y-m-d');
-        $model->save();
+        $model->msc_name = $listData[$model->msc_name];
+        return $model->save();
+    }
+
+    public function convertDropDown($model)
+    {
+        $listData = NetworkElement::listMsc();
+        $model->msc_name = array_search($model->msc_name, $listData);
     }
 }

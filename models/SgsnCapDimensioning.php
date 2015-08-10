@@ -43,7 +43,9 @@ class SgsnCapDimensioning extends \yii\db\ActiveRecord
             [['node_name', 'technology_type'], 'string', 'max' => 20],
             [['site_name'], 'string', 'max' => 100],
             [['vendor'], 'string', 'max' => 30],
-            [['hardware_version', 'software_level', 'cap_max_sau', 'cap_max_pdp', 'cap_used_sau', 'cap_used_pdp'], 'string', 'max' => 50]
+            [['hardware_version', 'software_level'], 'string', 'max' => 50],
+            [['cap_max_sau', 'cap_max_pdp', 'cap_used_sau', 'cap_used_pdp'], 'integer'],
+            [['node_name'], 'unique', 'targetClass' => 'app\models\SgsnCapDimensioning'],
         ];
     }
 

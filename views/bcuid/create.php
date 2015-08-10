@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model app\models\BcuId */
 
 $this->title = 'Create Bcu Id';
-$this->params['breadcrumbs'][] = ['label' => 'Bcu Ids', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'MGW List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bcu-id-create">

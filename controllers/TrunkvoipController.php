@@ -85,11 +85,27 @@ class TrunkvoipController extends Controller
         $listMgw = NetworkElement::listMgw();
         $listMsc = NetworkElement::listMsc();
         $option = ['Dismantle', 'In Service', 'Plan', 'Trial'];
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            $this->fillmodel($model);
-            return $this->redirect(['view', 'id' => $model->trunk_id]);
-        } else {
+  
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+        {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'id' => $model->trunk_id]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('create', [
+                    'model' => $model,
+                    'listMgw' => $listMgw,
+                    'listMsc' => $listMsc,
+                    'option' => $option,
+                ]);
+            }
+        } 
+        else 
+        {
             return $this->render('create', [
                 'model' => $model,
                 'listMgw' => $listMgw,
@@ -111,11 +127,27 @@ class TrunkvoipController extends Controller
         $listMgw = NetworkElement::listMgw();
         $listMsc = NetworkElement::listMsc();
         $option = ['Dismantle', 'In Service', 'Plan', 'Trial'];
-        $this->convertDropDown($model);
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->fillmodel($model);
-            return $this->redirect(['view', 'id' => $model->trunk_id]);
-        } else {
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+        {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'id' => $model->trunk_id]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('update', [
+                    'model' => $model,
+                    'listMgw' => $listMgw,
+                    'listMsc' => $listMsc,
+                    'option' => $option,
+                ]);
+            }
+        } 
+        else 
+        {
             return $this->render('update', [
                 'model' => $model,
                 'listMgw' => $listMgw,
@@ -176,7 +208,7 @@ class TrunkvoipController extends Controller
         $model->mgw = $listMgw[$model->mgw];
         $model->mss = $listMsc[$model->mss];
         $model->log_date = date('Y-m-d');
-        $model->save();
+        return $model->save();
     }
 
     public function convertDropDown($model)

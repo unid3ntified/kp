@@ -59,6 +59,14 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ],
 
+            ['attribute'=>'mgw_name',
+                'value' => function ($model, $key, $index) { 
+                    return $model->mgw_name;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search MGW here'],
+            ],
+
             ['attribute'=>'pool',
                 'value' => function ($model, $key, $index) { 
                     return $model->pool;
@@ -67,12 +75,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterInputOptions' => ['placeholder' => 'Search pool here'],
             ],
 
-             ['attribute'=>'trunk_name',
+            ['attribute'=>'trunk_name',
                 'value' => function ($model, $key, $index) { 
                     return $model->trunk_name;
                 },
                 'format'=>'raw',
                 'filterInputOptions' => ['placeholder' => 'Search trunk name here'],
+            ],
+
+            ['attribute'=>'spc_nat0',
+                'value' => function ($model, $key, $index) { 
+                    return $model->spc_nat0;
+                },
+                'format'=>'raw',
+                'filterInputOptions' => ['placeholder' => 'Search spc nat0 here'],
             ],
 
             ['attribute'=>'rnc_location',

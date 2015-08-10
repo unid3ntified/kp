@@ -40,6 +40,7 @@ class CapDimensioning extends \yii\db\ActiveRecord
             [['hw_type'], 'string', 'max' => 10],
             [['software_release'], 'string', 'max' => 30],
             ['remark', 'string'],
+            [['node_id'], 'unique', 'targetClass' => 'app\models\CapDimensioning'],
         ];
     }
 

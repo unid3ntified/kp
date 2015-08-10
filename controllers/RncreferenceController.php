@@ -87,10 +87,26 @@ class RncreferenceController extends Controller
         $listRnc = NetworkElement::listRnc();
         $listMgw = NetworkElement::listMgw();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->fillModel($model);
-            return $this->redirect(['view', 'rnc_id' => $model->rnc_id, 'mgw_name' => $model->mgw_name]);
-        } else {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+        {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'rnc_id' => $model->rnc_id, 'mgw_name' => $model->mgw_name]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('create', [
+                    'model' => $model,
+                    'listRnc' => $listRnc,
+                    'listMgw' => $listMgw,
+                    'option' => $option,
+                ]);
+            }
+        } 
+        else 
+        {
             return $this->render('create', [
                 'model' => $model,
                 'listRnc' => $listRnc,
@@ -113,12 +129,27 @@ class RncreferenceController extends Controller
         $option = ['Dismantle', 'In Service', 'Plan', 'Trial'];
         $listRnc = NetworkElement::listRnc();
         $listMgw = NetworkElement::listMgw();
-        $this->convertDropDown($model);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->fillModel($model);
-            return $this->redirect(['view', 'rnc_id' => $model->rnc_id, 'mgw_name' => $model->mgw_name]);
-        } else {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+        {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'rnc_id' => $model->rnc_id, 'mgw_name' => $model->mgw_name]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('update', [
+                    'model' => $model,
+                    'listRnc' => $listRnc,
+                    'listMgw' => $listMgw,
+                    'option' => $option,
+                ]);
+            }
+        } 
+        else 
+        {
             return $this->render('update', [
                 'model' => $model,
                 'listRnc' => $listRnc,
@@ -161,6 +192,8 @@ class RncreferenceController extends Controller
 
     public function fillModel($model)
     {
+        $listRnc = NetworkElement::listRnc();
+        $listMgw = NetworkElement::listMgw();
         switch($model->status)
         {
             case ("0"):
@@ -177,12 +210,16 @@ class RncreferenceController extends Controller
                 break;
         }
         $model->log_date = date('Y-m-d');
-        $model->save();
+        $model->mgw_name = $listMgw[$model->mgw_name];
+        $model->rnc_id = $listRnc[$model->rnc_id];
+        return $model->save();
     }
 
     public function convertDropDown($model)
     {
-         switch($model->status)
+        $listRnc = NetworkElement::listRnc();
+        $listMgw = NetworkElement::listMgw();
+        switch($model->status)
         {
             case ("Dismantle"):
                 $model->status = "0";
@@ -197,5 +234,7 @@ class RncreferenceController extends Controller
                 $model->status = "3";
                 break;
         }
+        $model->mgw_name = array_search($model->mgw_name, $listMgw);
+        $model->rnc_id = array_search($model->rnc_id, $listRnc);
     }
 }

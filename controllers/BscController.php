@@ -86,10 +86,25 @@ class BscController extends Controller
         $listBsc = NetworkElement::listBsc();
         $listMgw = NetworkElement::listMgw();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->fillModel($model);
-            return $this->redirect(['view', 'bsc_id' => $model->bsc_id, 'mgw' => $model->mgw]);
-        } else {
+       if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+       {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'bsc_id' => $model->bsc_id, 'mgw' => $model->mgw]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('create', [
+                    'model' => $model,
+                    'listBsc' => $listBsc,
+                    'listMgw' => $listMgw,
+                ]);
+            }          
+        } 
+        else 
+        {
             return $this->render('create', [
                 'model' => $model,
                 'listBsc' => $listBsc,
@@ -111,9 +126,25 @@ class BscController extends Controller
         $listBsc = NetworkElement::listBsc();
         $listMgw = NetworkElement::listMgw();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'bsc_id' => $model->bsc_id, 'mgw' => $model->mgw]);
-        } else {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+        {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'bsc_id' => $model->bsc_id, 'mgw' => $model->mgw]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('update', [
+                    'model' => $model,
+                    'listBsc' => $listBsc,
+                    'listMgw' => $listMgw,
+                ]);
+            }
+        } 
+        else 
+        {
             return $this->render('update', [
                 'model' => $model,
                 'listBsc' => $listBsc,
@@ -153,11 +184,23 @@ class BscController extends Controller
         }
     }
 
-     public function fillModel($model)
+    public function fillModel($model)
     {
+        $listMgw = NetworkElement::listMgw();
+        $listBsc = NetworkElement::listBsc();
         $model->log_date = date('Y-m-d');
         if ($model->trunk_name == '')
             $model->trunk_name = NULL;
-        $model->save();
+        $model->mgw = $listMgw[$model->mgw];
+        $model->bsc_id = $listBsc[$model->bsc_id];
+        return $model->save();
+    }
+
+    public function convertDropDown($model)
+    {
+        $listMgw = NetworkElement::listMgw();
+        $listBsc = NetworkElement::listBsc();
+        $model->mgw = array_search($model->mgw, $listMgw);
+        $model->bsc_id = array_search($model->bsc_id, $listBsc);
     }
 }
