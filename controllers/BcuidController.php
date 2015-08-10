@@ -84,10 +84,24 @@ class BcuidController extends Controller
         $model = new BcuId();
         $listData = NetworkElement::listMgw();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->fillModel($model);
-            return $this->redirect(['view', 'id' => $model->bcu_id]);
-        } else {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+        {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'id' => $model->mgw_name]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('create', [
+                    'model' => $model,
+                    'listData' => $listData,
+                ]);
+            }
+        } 
+        else 
+        {
             return $this->render('create', [
                 'model' => $model,
                 'listData' => $listData,
@@ -104,13 +118,26 @@ class BcuidController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $this->convertDropDown($model);
         $listData = NetworkElement::listMgw();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->fillModel($model);
-            return $this->redirect(['view', 'id' => $model->bcu_id]);
-        } else {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+        {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'id' => $model->mgw_name]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('update', [
+                    'model' => $model,
+                    'listData' => $listData,
+                ]);
+            }
+        } 
+        else 
+        {
             return $this->render('update', [
                 'model' => $model,
                 'listData' => $listData,
@@ -149,6 +176,7 @@ class BcuidController extends Controller
 
     public function fillModel($model)
     {
+        $listData = NetworkElement::listMgw();
         switch($model->status)
         {
             case ("0"):
@@ -164,13 +192,15 @@ class BcuidController extends Controller
                 $model->status = "Trial";
                 break;
         }
+        $model->mgw_name = $listData[$model->mgw_name];
         $model->log_date = date('Y-m-d');
-        $model->save();
+        return $model->save();
     }
 
     public function convertDropDown($model)
     {
-         switch($model->status)
+        $listData = NetworkElement::listMgw();
+        switch($model->status)
         {
             case ("Dismantle"):
                 $model->status = "0";
@@ -185,5 +215,6 @@ class BcuidController extends Controller
                 $model->status = "3";
                 break;
         }
+        $model->mgw_name = array_search($model->mgw_name, $listData);
     }
 }

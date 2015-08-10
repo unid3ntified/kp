@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Msc */
 
 $this->title = $model->msc_name;
-$this->params['breadcrumbs'][] = ['label' => 'Mscs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Msc List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="msc-view">

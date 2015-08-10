@@ -33,13 +33,14 @@ class Bsc extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['bsc_id', 'mgw'], 'required'],
+            [['bsc_id', 'mgw', 'trunk_name'], 'required'],
             [['log_date'], 'safe'],
             [['remark'], 'string'],
             [['year'], 'integer', 'max' => 2999, 'message' => 'Please enter a valid year.', 'tooBig' => 'Please enter a valid year.'],
             [['year'], 'integer', 'min' => 1900, 'message' => 'Please enter a valid year.', 'tooSmall' => 'Please enter a valid year.'],         
             [['bsc_id', 'mgw', 'msc', 'trunk_name'], 'string', 'max' => 20],
-            [['trunk_name'], 'unique']
+            [['trunk_name'], 'unique'],
+            [['bsc_id', 'mgw'], 'unique', 'targetAttribute' => ['bsc_id', 'mgw'], 'message' => 'The combination of BSC ID and MGW has already been taken.'],
         ];
     }
 

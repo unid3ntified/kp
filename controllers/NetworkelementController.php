@@ -140,17 +140,13 @@ class NetworkelementController extends Controller
     public function actionCreate()
     {
         $model = new NetworkElement();
-        //$model2 = new DescNetwork();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->fillmodel($model);
-            //$model2->network_id = $model->network_id;
-            //$model2->save();
             return $this->redirect(['view', 'id' => $model->network_element_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                //'model2' => $model2,
             ]);
         }
     }
@@ -165,17 +161,13 @@ class NetworkelementController extends Controller
     {
         $model = $this->findModel($id);
         $this->convertDropDown($model);
-        //$model2 = new DescNetwork();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $this->fillmodel($model);
-            //$model2->network_id = $model->network_id;
-            //$model2->save();
             return $this->redirect(['view', 'id' => $model->network_element_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
-                //'model2' => $model2,
             ]);
         }
     }

@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\BcuId */
 
 $this->title = $model->bcu_id;
-$this->params['breadcrumbs'][] = ['label' => 'Bcu Ids', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'MGW List', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="bcu-id-view">

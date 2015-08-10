@@ -84,11 +84,24 @@ class MscController extends Controller
         $model = new Msc();
         $listData = NetworkElement::listMsc();
         
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->fillModel($model);
-            return $this->redirect(['view', 'id' => $model->msc_name]);
-        } 
-        else {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+        {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'id' => $model->msc_name]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('create', [
+                    'model' => $model,
+                    'listData' => $listData,
+                ]);
+            }
+        }
+        else 
+        {
             return $this->render('create', [
                 'model' => $model,
                 'listData' => $listData,
@@ -106,16 +119,27 @@ class MscController extends Controller
     {
         $model = $this->findModel($id);
         $listData = NetworkElement::listMsc();
-        $this->convertDropDown($model);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $this->fillModel($model);
-            return $this->redirect(['view', 'id' => $model->msc_name]);
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) 
+        {
+            $valid = $this->fillModel($model);
+            if ($valid)
+            {
+                return $this->redirect(['view', 'id' => $model->msc_name]);
+            }
+            else 
+            {
+                $this->convertDropDown($model);
+                return $this->render('update', [
+                    'model' => $model,
+                    'listData' => $listData,
+                ]);
+            }
         } 
-        else {
+        else 
+        {
             return $this->render('update', [
                 'model' => $model,
-                //'model2' => $model2,
                 'listData' => $listData,
             ]);
         }
@@ -152,6 +176,7 @@ class MscController extends Controller
 
     public function fillModel($model)
     {
+        $listMsc = NetworkElement::listMsc();
         switch($model->status)
         {
             case ("0"):
@@ -179,7 +204,8 @@ class MscController extends Controller
         else
             $model->mgw_managerA_circuit = 'Yes';
         $model->log_date = date('Y-m-d');
-        $model->save();
+        $model->msc_name = $listMsc[$model->msc_name];
+        return $model->save();
     }
 
     public function convertDropDown($model)
@@ -208,7 +234,8 @@ class MscController extends Controller
             $model->mgw_managerA_circuit = 0;
         else
             $model->mgw_managerA_circuit = 1;
+
+        $listMsc = NetworkElement::listMsc();
+        $model->msc_name = array_search($model->msc_name, $listMsc);
     }
-
-
 }
